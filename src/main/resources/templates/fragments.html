@@ -5,9 +5,9 @@
     <head th:fragment="head">
 
         <!-- Bootstrap stylesheets and script -->
-        <link th:href="@{../static/CSS/bootstrap.css}" rel="stylesheet" />
-        <link th:href="@{../static/CSS/qleanquotes.css}" rel="stylesheet" />
-        <script type="text/javascript" th:src="@{../static/js/bootstrap.js}"></script>
+        <link th:href="@{/CSS/bootstrap.css}" rel="stylesheet" />
+        <link th:href="@{/CSS/qleanquotes.css}" rel="stylesheet" />
+        <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
 
 <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>

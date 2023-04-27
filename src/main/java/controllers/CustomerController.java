@@ -6,6 +6,8 @@ import models.Customer;
 import models.data.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -21,12 +23,12 @@ cross-origin requests from a specified origin.*/
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("customers")
-
-
 public class CustomerController {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+
 
     @GetMapping("")
     public Iterable<Customer>  getCustomer(){

@@ -49,6 +49,7 @@ public class Customer extends AbstractEntity{
     }
 
 
+
     public Customer(String name, String lastName, String email, String password, Address address, String phoneNumber){
         this.name = name;
         this.lastName = lastName;
@@ -96,7 +97,33 @@ public class Customer extends AbstractEntity{
     }
 
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPwHash(String pwHash) {
+        this.pwHash = pwHash;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+
     //Since address have integar and String info
+    //I think this needs to be made as a separate model...~Pigeon 04/27
     public class Address {
         private  String streetAddress;
         private int streetNumber;

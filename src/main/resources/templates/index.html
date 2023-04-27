@@ -19,10 +19,12 @@
             <input type="password" id="password" name="password">
         </div>
         <div>
-            <button type="submit">Log in</button>
-            <button type="button" onclick="location.href='@{/signup}'">Sign up</button>
+            <button type="submit" onclick="location.href='pages/landing.html';">Log in</button>
+            <a th:href="@{/add}" class="button">Sign Up</a>
         </div>
     </form>
+
+
 </div>
 
 <div class="container body-content">
@@ -32,10 +34,6 @@
     <h2>Got a question?</h2>
     <h3>Contact Us!</h3>
 </div>
-
-
-
-
 
 </body>
 </html>
