@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8"/>
+    <head th:fragment="head">
+
+        <!-- Bootstrap stylesheets and script -->
+        <link th:href="@{../static/CSS/bootstrap.css}" rel="stylesheet" />
+        <link th:href="@{../static/CSS/qleanquotes.css}" rel="stylesheet" />
+        <script type="text/javascript" th:src="@{../static/js/bootstrap.js}"></script>
+
+<!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
+        <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
+    </head>
+</head>
+<body>
+
+<div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+<!--            not sure where the below link should go... -->
+            <a th:href="@{/}" class="navbar-brand">Qlean Quotes Logo</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+<!--                add relative links to below list items-->
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -34,6 +34,8 @@ public class CustomerController {
     }
 
 
+    //getPwHash should already have the password encoded so the encoding
+    // function should not be included in the below controls.
     @PostMapping("add")
     void addCustomer(@RequestBody Customer customer){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
