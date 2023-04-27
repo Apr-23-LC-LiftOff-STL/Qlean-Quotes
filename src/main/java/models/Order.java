@@ -10,7 +10,7 @@ public class Order extends AbstractEntity{
 
 
     @NotNull
-    @NotBlank(message = "Information if square feet is required!")
+    @NotBlank(message = "Information of square feet is required!")
     @Size(min= 70, message = "Minimum requirement of square feet is 70")
     private int squareFeet;
 
@@ -21,15 +21,13 @@ public class Order extends AbstractEntity{
 
     private int numOfBathroom;
 
-    @NotNull
-    @NotBlank (message = "Address is required")
-    private Address address;
 
-    public Order(int squareFeet, int numOfRoom, int numOfBathroom, Address address){
+
+    public Order(int squareFeet, int numOfRoom, int numOfBathroom){
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
-        this.address = address;
+
     }
 
 
@@ -57,50 +55,7 @@ public class Order extends AbstractEntity{
         this.numOfBathroom = numOfBathroom;
     }
 
-    public Address getAddress() {
-        return address;
-    }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    //Since address have integar and String info
-    public class Address {
-        private  String streetAddress;
-        private int streetNumber;
-        private int zipCode;
-
-        public Address(String streetAddress, int streetNumber, int zipCode) {
-            this.streetAddress = streetAddress;
-            this.streetNumber = streetNumber;
-            this.zipCode = zipCode;
-        }
-
-        public String getStreetAddress() {
-            return streetAddress;
-        }
-
-        public void setStreetAddress(String streetAddress) {
-            this.streetAddress = streetAddress;
-        }
-
-        public int getStreetNumber() {
-            return streetNumber;
-        }
-
-        public void setStreetNumber(int streetNumber) {
-            this.streetNumber = streetNumber;
-        }
-
-        public int getZipCode() {
-            return zipCode;
-        }
-
-        public void setZipCode(int zipCode) {
-            this.zipCode = zipCode;
-        }
-    }
 
 
 

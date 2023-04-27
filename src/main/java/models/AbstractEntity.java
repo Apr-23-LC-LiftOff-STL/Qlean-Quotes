@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
+import java.util.Objects;
+
 @MappedSuperclass
 public abstract class AbstractEntity {
 
@@ -29,10 +31,9 @@ public abstract class AbstractEntity {
         return id == that.id;
     }
 
-/*
- @Override
+    @Override
     public int hashCode() {
         return Objects.hash(id);
     }
- */
+
 }

@@ -9,11 +9,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Entity
-public class User extends AbstractEntity{
+public class Customer extends AbstractEntity{
 
 
     @NotNull
-    @NotBlank(message = "User name is required!")
+    @NotBlank(message = "Name is required!")
     @Size(min = 3, max=20, message = "Name must be between 3 and 20 characters!")
     private String name;
 
@@ -32,6 +32,10 @@ public class User extends AbstractEntity{
     @NotNull
     private String pwHash;
 
+    @NotNull
+    @NotBlank (message = "Address is required")
+    private Address address;
+
     /* NOTE1 : Mobile phone numbers are not stored as integers, as the integer data type holds values that have the potential to be used in calculations.
      There is no context for using a mobile phone number as part of a calculation, so it is stored as a STRING value. */
     @NotNull
@@ -41,16 +45,18 @@ public class User extends AbstractEntity{
     private String phoneNumber;
 
 
-    public User(){
+    public Customer(){
     }
 
 
-    public User(String name, String lastName, String email, String password, String phoneNumber){
+    public Customer(String name, String lastName, String email, String password, Address address, String phoneNumber){
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.pwHash = encoder.encode(password);
+        this.address = address;
         this.phoneNumber = phoneNumber;
+
 
     }
 
@@ -76,8 +82,55 @@ public class User extends AbstractEntity{
         return email;
     }
 
+    public String getPwHash() {
+        return pwHash;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+
+    //Since address have integar and String info
+    public class Address {
+        private  String streetAddress;
+        private int streetNumber;
+        private int zipCode;
+
+        public Address(String streetAddress, int streetNumber, int zipCode) {
+            this.streetAddress = streetAddress;
+            this.streetNumber = streetNumber;
+            this.zipCode = zipCode;
+        }
+
+        public String getStreetAddress() {
+            return streetAddress;
+        }
+
+        public void setStreetAddress(String streetAddress) {
+            this.streetAddress = streetAddress;
+        }
+
+        public int getStreetNumber() {
+            return streetNumber;
+        }
+
+        public void setStreetNumber(int streetNumber) {
+            this.streetNumber = streetNumber;
+        }
+
+        public int getZipCode() {
+            return zipCode;
+        }
+
+        public void setZipCode(int zipCode) {
+            this.zipCode = zipCode;
+        }
     }
 
 
