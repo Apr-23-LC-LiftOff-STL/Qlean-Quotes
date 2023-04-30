@@ -1,9 +1,6 @@
 package models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -12,40 +9,43 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
 @Entity
+@Table(name = "customer")
 public class Customer extends AbstractEntity{
 
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "first_name")
     @NotNull
     @NotBlank(message = "Name is required!")
     @Size(min = 3, max=20, message = "Name must be between 3 and 20 characters!")
     private String name;
 
+    @Column (name = "last_name")
     @NotNull
     @NotBlank(message = "Last name is required!")
     @Size(min = 3, max=20, message = "Last name must be between 3 and 20 characters!")
     private String lastName;
 
 
-    @Email(message = "Invalid email.Please try again!")
+    //    @Email(message = "Invalid email.Please try again!")
+    @Column(name= "email")
     @NotNull
-    @NotBlank (message = "Email is required")
-//    below annotation is to ensure that each email is unique in the database
-    @Column(unique = true)
+    @NotBlank
     private String email;
 
 
-    @NotNull
+    @Column(name = "password_hash")
+    @NotNull(message = "This field can not be empty.")
     private String pwHash;
 
-    @NotNull
-    @NotBlank (message = "Address is required")
-//    @Embedded to indicate that it is a 'composite object' that should be persisted
-//    in the same table as the Customer entity
-    @Embedded
-    private Address address;
+
 
     /* NOTE1 : Mobile phone numbers are not stored as integers, as the integer data type holds values that have the potential to be used in calculations.
-     There is no context for using a mobile phone number as part of a calculation, so it is stored as a STRING value. */
+    There is no context for using a mobile phone number as part of a calculation, so it is stored as a STRING value. */
+    @Column(name = "phone_number")
     @NotNull
     @NotBlank
     // NOTE2 : Phone numbers have 10 numbers in USA!
@@ -53,32 +53,40 @@ public class Customer extends AbstractEntity{
     private String phoneNumber;
 
 
-    public Customer(){
-    }
+    @Column(name = "address")
+    @NotNull
+    @NotBlank (message = "Address is required")
+    private Address address;
 
-
-
-    public Customer(String name, String lastName, String email, String password, Address address, String phoneNumber){
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.pwHash = encoder.encode(password);
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-
-
-    }
 
 
     // NOT SAVING USER PASSWORD TO DATA!!! HASHING PASSWORD FOR SAFETY!
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+    public Customer(){
+    }
+
+
+    public Customer(String name, String lastName, String email, String password, String phoneNumber,Address address){
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.pwHash = encoder.encode(password);
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+
+    }
+
+    public Customer(String email, String password) {
+        super();
+    }
 
     public boolean isMatchingPassword(String password){
         String candidateHash = encoder.encode(password);
         return candidateHash.equals(pwHash);
     }
 
-    //only getters for data
+    //we only need getters
     public String getName(){
         return name;
     }
@@ -105,33 +113,8 @@ public class Customer extends AbstractEntity{
     }
 
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPwHash(String pwHash) {
-        this.pwHash = pwHash;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-
-    //Since address have integer and String info
-    @Embeddable
+    //Since address have integar and String info
     public class Address {
         private  String streetAddress;
         private int streetNumber;
@@ -141,10 +124,6 @@ public class Customer extends AbstractEntity{
             this.streetAddress = streetAddress;
             this.streetNumber = streetNumber;
             this.zipCode = zipCode;
-        }
-
-        public Address() {
-
         }
 
         public String getStreetAddress() {
@@ -171,6 +150,7 @@ public class Customer extends AbstractEntity{
             this.zipCode = zipCode;
         }
     }
+
 
 
 
