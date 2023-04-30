@@ -14,7 +14,7 @@ import org.springframework.validation.Errors;
 import java.util.Objects;
 
 @Controller
-public class HomeController {
+public class MainController {
 
     @Autowired
     private CustomerRepository customerRepository;

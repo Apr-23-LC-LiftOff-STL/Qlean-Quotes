@@ -1,5 +1,8 @@
 package models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -25,7 +28,9 @@ public class Customer extends AbstractEntity{
 
     @Email(message = "Invalid email.Please try again!")
     @NotNull
-    @NotBlank
+    @NotBlank (message = "Email is required")
+//    below annotation is to ensure that each email is unique in the database
+    @Column(unique = true)
     private String email;
 
 
@@ -34,6 +39,9 @@ public class Customer extends AbstractEntity{
 
     @NotNull
     @NotBlank (message = "Address is required")
+//    @Embedded to indicate that it is a 'composite object' that should be persisted
+//    in the same table as the Customer entity
+    @Embedded
     private Address address;
 
     /* NOTE1 : Mobile phone numbers are not stored as integers, as the integer data type holds values that have the potential to be used in calculations.
@@ -122,8 +130,8 @@ public class Customer extends AbstractEntity{
     }
 
 
-    //Since address have integar and String info
-    //I think this needs to be made as a separate model...~Pigeon 04/27
+    //Since address have integer and String info
+    @Embeddable
     public class Address {
         private  String streetAddress;
         private int streetNumber;
@@ -133,6 +141,10 @@ public class Customer extends AbstractEntity{
             this.streetAddress = streetAddress;
             this.streetNumber = streetNumber;
             this.zipCode = zipCode;
+        }
+
+        public Address() {
+
         }
 
         public String getStreetAddress() {

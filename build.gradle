@@ -25,7 +25,17 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java:8.0.27'
+//	Esra's code has below line instead of what i have above'
+//	implementation 'mysql:mysql-connector-java:8.0.26'
+
+
+//	Rainy, You can replace 20.79.0 with the version of the Stripe library that you want us to use.
+	implementation 'com.stripe:stripe-java:20.79.0'
 	implementation  'org.springframework.security:spring-security-crypto'
+
+	//	we may need to replace below 5.5.0 with the version of Spring Security that we need.
+	implementation 'org.springframework.security:spring-security-core:5.5.0'
+
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation("org.jmockit:jmockit:1.49")
