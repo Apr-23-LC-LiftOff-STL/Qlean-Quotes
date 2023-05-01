@@ -1,6 +1,5 @@
 package org.launchcode.qleanquotes.models;
 
-//import com.stripe.model.Address;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -8,12 +7,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class Customer extends AbstractEntity {
-
-    //Id is inherited from AbstractEntity so we do not need another here
-//    @Id
-//    @GeneratedValue (strategy = GenerationType.IDENTITY)
-//    private Long id;
-
 
     @NotNull
     private String name;
@@ -29,7 +22,7 @@ public class Customer extends AbstractEntity {
     @NotNull
     private String pwHash;
 
-//below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
+    //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     /* NOTE1 : Mobile phone numbers are not stored as integers, as the integer data type holds values that have the potential to be used in calculations.
@@ -48,8 +41,9 @@ public class Customer extends AbstractEntity {
 //    private Address address;
 
 
-//constructors
-    public Customer() {}
+    //constructors
+    public Customer() {
+    }
 
     public Customer(String name, String lastName, String email, String password) {
         this.name = name;
@@ -59,7 +53,7 @@ public class Customer extends AbstractEntity {
     }
 
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -78,10 +72,6 @@ public class Customer extends AbstractEntity {
         String candidateHash = encoder.encode(password);
         return candidateHash.equals(pwHash);
     }
-
-
-
-
 
 
     //Since address have integar and String info
@@ -120,8 +110,6 @@ public class Customer extends AbstractEntity {
 //            this.zipCode = zipCode;
 //        }
 //    }
-
-
 
 
 }
