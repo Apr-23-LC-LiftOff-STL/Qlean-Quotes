@@ -6,6 +6,7 @@ import models.data.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -25,22 +26,22 @@ cross-origin requests from a specified origin.*/
 @Controller
 public class CustomerController {
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @GetMapping("")
-    public Iterable<Customer>  getCustomer(){
-        return customerRepository.findAll();
-    }
-
-
-    @PostMapping("add")
-    void addCustomer(@RequestBody Customer customer){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Customer addCustomer = new Customer(customer.getName(), customer.getLastName(), customer.getEmail(),
-                encoder.encode(customer.getPwHash()), customer.getPhoneNumber(), customer.getAddress());
-        customerRepository.save(addCustomer);
-    }
+//    @Autowired
+//    private CustomerRepository customerRepository;
+//
+//    @GetMapping("")
+//    public Iterable<Customer>  getCustomer(){
+//        return customerRepository.findAll();
+//    }
+//
+//
+//    @PostMapping("/register")
+//    void addCustomer(@RequestBody Customer customer){
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        Customer addCustomer = new Customer(customer.getName(), customer.getLastName(), customer.getEmail(),
+//                encoder.encode(customer.getPwHash()), customer.getPhoneNumber(), customer.getAddress());
+//        customerRepository.save(addCustomer);
+//    }
 
 //    @PostMapping("authenticate")
 //    public boolean customerAuthenticate(@RequestBody Customer customer) {
@@ -59,6 +60,7 @@ public class CustomerController {
 //            return false;
 //        }
 //    }
+
 
 
 }
