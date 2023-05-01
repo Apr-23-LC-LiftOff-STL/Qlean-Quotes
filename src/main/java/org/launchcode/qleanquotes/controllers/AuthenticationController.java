@@ -56,7 +56,7 @@ public class AuthenticationController {
     @GetMapping("/register")
     public String displayRegisterForm(Model model){
         model.addAttribute(new RegisterFormDTO());
-        //model.addAttribute("title", "Register");
+        model.addAttribute("title", "Register");
         return "register";
     }
 
@@ -71,7 +71,7 @@ public class AuthenticationController {
 
         if(existingCustomer != null){
             errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
-            return "register";
+            return "/login";
         }
 
 
@@ -80,22 +80,21 @@ public class AuthenticationController {
         String verifyPassword = registerFormDTO.getVerifyPassword();
         if(!password.equals(verifyPassword)){
             errors.rejectValue("password" , "passwords.mismatch", "Passwords do not match");
-            return "register";
+            return "/register";
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, start a new session, and redirect to home page
         Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(),registerFormDTO.getEmail(),registerFormDTO.getPassword());
         customerRepository.save(newCustomer);
         setCustomerInSession(request.getSession(), newCustomer);
-        return "redirect:";
+        return "redirect:/";
     }
 
-    // Handlers for login form
     @GetMapping("/login")
     public String displayLoginForm(Model model){
         model.addAttribute(new LoginFormDTO());
-//        model.addAttribute("title", "Log In");
-        return "login";
+        model.addAttribute("title", "Log In");
+        return "/login";
     }
 
     @PostMapping("/login")
@@ -103,7 +102,7 @@ public class AuthenticationController {
                                    HttpServletRequest request){
 
         if(errors.hasErrors()){
-            return "login";
+            return "/login";
         }
 
         // Look up user in database using email they provided in the form
@@ -112,21 +111,20 @@ public class AuthenticationController {
 
         if(theCustomer == null){
             errors.rejectValue("email", "customer.invalid", "The given email does not exist");
-            return "login";
+            return "/login";
         }
 
         String password = loginFormDTO.getPassword();
 
         if(!theCustomer.isMatchingPassword(password)){
             errors.rejectValue("password", "password.invalid", "Invalid password");
-            return "login";
+            return "/login";
         }
 
         setCustomerInSession(request.getSession(), theCustomer);
-        return  "redirect:";
+        return  "redirect:/";
     }
-
-    // Handler for logout
+    
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
         request.getSession().invalidate();
