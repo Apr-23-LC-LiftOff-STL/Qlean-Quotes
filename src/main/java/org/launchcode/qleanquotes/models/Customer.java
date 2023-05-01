@@ -4,17 +4,15 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-
+//TODO there needs to be persistence annotations in this model for the databases tables to relate to each other (foreign key! think @manytoone, @onetomany, blah blah)
 @Entity
 public class Customer extends AbstractEntity {
 
     @NotNull
     private String name;
 
-
     @NotNull
     private String lastName;
-
 
     @NotNull
     private String email;
@@ -69,8 +67,7 @@ public class Customer extends AbstractEntity {
     // NOT SAVING USER PASSWORD TO DATA!!! HASHING PASSWORD FOR SAFETY!
 //    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     public boolean isMatchingPassword(String password) {
-        String candidateHash = encoder.encode(password);
-        return candidateHash.equals(pwHash);
+        return encoder.matches(password, pwHash);
     }
 
 

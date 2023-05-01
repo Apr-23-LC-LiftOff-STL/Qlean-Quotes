@@ -2,6 +2,8 @@ package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.Entity;
 
+
+//TODO there needs to be persistence annotations in this model for the databases tables to relate to each other (foreign key! think @manytoone, @onetomany, blah blah)
 @Entity
 public class Quote extends AbstractEntity {
 
