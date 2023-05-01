@@ -5,34 +5,11 @@
 <body>
 
 <div th:replace="~{fragments :: page-header}"></div>
+<!--TODO we need the create quote form to go here!-->
+<h1>CREATE QUOTE FORM GOES HERE</h1>
 
-<div class="container body-content">
-    <h2>Log in to your account</h2>
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <div>
-            <button type="submit" onclick="location.href='pages/landing.html';">Log in</button>
-            <a th:href="@{/register}"  class="button">Sign Up</a>
-        </div>
-    </form>
-
-
-</div>
-
-<div class="container body-content">
-    <h2>About Us</h2>
-</div>
-<div class="container body-content">
-    <h2>Got a question?</h2>
-    <h3>Contact Us!</h3>
-</div>
+<div th:replace="~{fragments :: page-about}"></div>
+<div th:replace="~{fragments :: page-contact}"></div>
 
 </body>
 </html>
