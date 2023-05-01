@@ -4,10 +4,12 @@
     <meta charset="UTF-8"/>
     <head th:fragment="head">
 
-        <!-- Bootstrap stylesheets and script -->
-        <link th:href="@{/CSS/bootstrap.css}" rel="stylesheet" />
-        <link th:href="@{/CSS/qleanquotes.css}" rel="stylesheet" />
-        <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link th:href="@{/css/qleanquotes.css}" rel="stylesheet" />
+
 
 <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
@@ -18,16 +20,29 @@
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-<!--            not sure where the below link should go... -->
             <a th:href="@{/}" class="navbar-brand">Qlean Quotes Logo</a>
         </div>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse">
             <ul class="nav navbar-nav">
-<!--                add relative links to below list items-->
+<!--                TODO the below list items should have relative links that link to the page-about and page-contact sections below-->
                 <li>About</li>
                 <li>Contact</li>
             </ul>
         </div>
+    </div>
+</div>
+
+<div th:fragment="page-about">
+    <div class="container">
+        <h1>About Us</h1>
+        <p>quackquackquackquackquack</p>
+    </div>
+</div>
+
+<div th:fragment="page-contact">
+    <div class="container">
+        <h1>Contact Us!</h1>
+        <p>barkbarkbarkbarkbarkbarkfart</p>
     </div>
 </div>
 
