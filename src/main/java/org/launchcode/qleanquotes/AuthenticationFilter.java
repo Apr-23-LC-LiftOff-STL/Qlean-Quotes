@@ -1,11 +1,11 @@
 package org.launchcode.qleanquotes;
 
-import controllers.AuthenticationController;
+import org.launchcode.qleanquotes.controllers.AuthenticationController;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import models.Customer;
-import models.data.CustomerRepository;
+import org.launchcode.qleanquotes.models.Customer;
+import org.launchcode.qleanquotes.models.data.CustomerRepository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

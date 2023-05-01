@@ -1,9 +1,7 @@
-package models.data;
+package org.launchcode.qleanquotes.models.data;
 
-import models.Customer;
-import models.dto.RegisterFormDTO;
+import org.launchcode.qleanquotes.models.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 

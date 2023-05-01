@@ -1,12 +1,9 @@
-package models.data;
+package org.launchcode.qleanquotes.models.data;
 
 
-import models.Order;
-import org.springframework.data.repository.CrudRepository;
+import org.launchcode.qleanquotes.models.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {

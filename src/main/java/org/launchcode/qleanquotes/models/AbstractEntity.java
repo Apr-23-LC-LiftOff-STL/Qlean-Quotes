@@ -1,4 +1,4 @@
-package models;
+package org.launchcode.qleanquotes.models;
 
 
  /* every entity class that we create will extend AbstractEntity.

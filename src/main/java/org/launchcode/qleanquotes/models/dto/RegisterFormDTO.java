@@ -1,4 +1,4 @@
-package models.dto;
+package org.launchcode.qleanquotes.models.dto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;

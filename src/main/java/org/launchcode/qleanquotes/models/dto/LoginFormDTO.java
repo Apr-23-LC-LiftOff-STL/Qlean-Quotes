@@ -1,4 +1,4 @@
-package models.dto;
+package org.launchcode.qleanquotes.models.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package models;
+package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;

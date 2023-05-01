@@ -1,13 +1,13 @@
-package controllers;
+package org.launchcode.qleanquotes.controllers;
 
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import models.Customer;
-import models.data.CustomerRepository;
-import models.dto.LoginFormDTO;
-import models.dto.RegisterFormDTO;
+import org.launchcode.qleanquotes.models.Customer;
+import org.launchcode.qleanquotes.models.data.CustomerRepository;
+import org.launchcode.qleanquotes.models.dto.LoginFormDTO;
+import org.launchcode.qleanquotes.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
