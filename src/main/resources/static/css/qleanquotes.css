@@ -11,3 +11,33 @@
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+
+
+#about-me {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 100px;
+    background-color: #7bd29d;
+    border-radius: 30px;
+}
+
+#contact-us {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 100px;
+    background-color: #d0906b;
+    border-radius: 30px;
+}
+
+#login-form {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-content: center;*/
+    padding: 100px;
+    background-color: cadetblue;
+    border-radius: 30px;
+}

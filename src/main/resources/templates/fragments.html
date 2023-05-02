@@ -25,24 +25,29 @@
         <div class="navbar-collapse">
             <ul class="nav navbar-nav">
 <!--                TODO the below list items should have relative links that link to the page-about and page-contact sections below-->
-                <li>About</li>
-                <li>Contact</li>
+                <li><a href="#about-me">About</a></li>
+                <li><a href="#contact-us">Contact</a></li>
             </ul>
         </div>
     </div>
 </div>
 
-<div th:fragment="page-about">
+<div id="about-me" th:fragment="page-about">
     <div class="container">
         <h1>About Us</h1>
-        <p>quackquackquackquackquack</p>
+        <div>
+            <p>quackquackquackquackquackhonk</p>
+        </div>
+
     </div>
 </div>
 
-<div th:fragment="page-contact">
+<div id="contact-us" th:fragment="page-contact">
     <div class="container">
         <h1>Contact Us!</h1>
-        <p>barkbarkbarkbarkbarkbarkfart</p>
+            <div>
+                <p>barkbarkbarkbarkbarkbarkfart</p>
+            </div>
     </div>
 </div>
 
