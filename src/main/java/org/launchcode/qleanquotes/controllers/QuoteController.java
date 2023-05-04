@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//@RestController
-//@CrossOrigin(origins = "http://localhost:4200")
 
 @Controller
 //@RequestMapping("orders")
@@ -63,6 +61,7 @@ public class QuoteController {
             return "createquotes";
         }
 
+        esra/createquoteandpaymentpage
         Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom());
         quoteRepository.save(newQuote);
         setQuoteInsession(request.getSession(), newQuote);
@@ -71,6 +70,5 @@ public class QuoteController {
         return "redirect:/payment";
 
     }
-
 
 }
