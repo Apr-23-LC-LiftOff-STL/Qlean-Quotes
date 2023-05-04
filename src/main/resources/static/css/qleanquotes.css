@@ -41,3 +41,23 @@
     background-color: cadetblue;
     border-radius: 30px;
 }
+
+
+
+
+.btn {
+  font-size: 20px;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-green {
+  background-color: #4CAF50;
+}
+
+.btn-green a {
+  color: #000;
+}

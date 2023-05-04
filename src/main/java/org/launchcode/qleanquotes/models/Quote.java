@@ -7,17 +7,13 @@ import jakarta.persistence.Entity;
 @Entity
 public class Quote extends AbstractEntity {
 
-//    @NotNull
-//    @NotBlank(message = "Information of square feet is required!")
-//    @Size(min = 70, message = "Minimum requirement of square feet is 70")
+
     private Integer squareFeet;
 
-//    @NotNull
-//    @NotBlank
-//    @Size(min = 1, message = "Number of room is required")
     private Integer numOfRoom;
 
     private Integer numOfBathroom;
+
 
 
     public Quote() {
@@ -28,6 +24,7 @@ public class Quote extends AbstractEntity {
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
     }
+
 
 
     public Integer getSquareFeet() {

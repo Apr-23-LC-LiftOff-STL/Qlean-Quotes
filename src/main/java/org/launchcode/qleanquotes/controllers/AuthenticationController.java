@@ -87,14 +87,14 @@ public class AuthenticationController {
         Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(),registerFormDTO.getEmail(),registerFormDTO.getPassword());
         customerRepository.save(newCustomer);
         setCustomerInSession(request.getSession(), newCustomer);
-        return "redirect:/";
+        return "redirect:/landing";
     }
 
     @GetMapping("/login")
     public String displayLoginForm(Model model){
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
-        return "/login";
+        return "login";
     }
 
     @PostMapping("/login")
@@ -122,7 +122,7 @@ public class AuthenticationController {
         }
 
         setCustomerInSession(request.getSession(), theCustomer);
-        return  "redirect:/";
+        return  "redirect:/landing";
     }
     
     @GetMapping("/logout")
