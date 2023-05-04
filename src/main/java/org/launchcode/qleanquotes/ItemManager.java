@@ -33,9 +33,9 @@ public class ItemManager {
 
     // Constructor that sets headers common to every Connect API request
     public ItemManager() {
-        Unirest.setDefaultHeader("Authorization", "Bearer " + _accessToken);
-        Unirest.setDefaultHeader("Content-Type", "application/json");
-        Unirest.setDefaultHeader("Accept", "application/json");
+       // Unirest.setDefaultHeader("Authorization", "Bearer " + _accessToken);
+       // Unirest.setDefaultHeader("Content-Type", "application/json");
+     //   Unirest.setDefaultHeader("Accept", "application/json");
     }
 
     // Creates a "Milkshake" item.

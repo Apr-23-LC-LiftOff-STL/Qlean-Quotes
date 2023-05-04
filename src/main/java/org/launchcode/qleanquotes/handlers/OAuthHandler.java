@@ -122,41 +122,41 @@ public class OAuthHandler {
             }
 
             // Create obtain token request body
-            ObtainTokenRequest body = new ObtainTokenRequest.Builder(
-                    APPLICATION_ID,
-                    APPLICATION_SECRET,
-                    "authorization_code")
-                    .code(authorizationCode)
-                    .scopes(bodyScopes)
-                    .build();
-
-            OAuthApi oAuthApi = client.getOAuthApi();
-
-            // Call obtain token API and print the results on success
-            // In production, you should never write tokens to the page.
-            // You should encrypt the tokens and handle them securely.
-            oAuthApi.obtainTokenAsync(body).thenAccept(result -> {
-                if (result != null) {
-                    System.out.println("Access token: " + result.getAccessToken());
-                    System.out.println("Refresh token: " + result.getRefreshToken());
-                    System.out.println("Merchant id: " + result.getMerchantId());
-                    System.out.println("Authorization succeeded!");
-                    try {
-                        t.sendResponseHeaders(200, 0);
-                        t.getResponseBody().close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).exceptionally(exception -> {
-                try {
-                    t.sendResponseHeaders(405, 0);
-                    t.getResponseBody().close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            });
+//            ObtainTokenRequest body = new ObtainTokenRequest.Builder(
+//                    APPLICATION_ID,
+//                    APPLICATION_SECRET,
+//                    "authorization_code")
+//                    .code(authorizationCode)
+//                    .scopes(bodyScopes)
+////                    .build();
+//
+//            OAuthApi oAuthApi = client.getOAuthApi();
+//
+//            // Call obtain token API and print the results on success
+//            // In production, you should never write tokens to the page.
+//            // You should encrypt the tokens and handle them securely.
+//            oAuthApi.obtainTokenAsync(body).thenAccept(result -> {
+//                if (result != null) {
+//                    System.out.println("Access token: " + result.getAccessToken());
+//                    System.out.println("Refresh token: " + result.getRefreshToken());
+//                    System.out.println("Merchant id: " + result.getMerchantId());
+//                    System.out.println("Authorization succeeded!");
+//                    try {
+//                        t.sendResponseHeaders(200, 0);
+//                        t.getResponseBody().close();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }).exceptionally(exception -> {
+//                try {
+//                    t.sendResponseHeaders(405, 0);
+//                    t.getResponseBody().close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                return null;
+//            });
         }
     }
 

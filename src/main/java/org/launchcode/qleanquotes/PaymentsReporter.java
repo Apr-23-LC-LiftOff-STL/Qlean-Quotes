@@ -21,9 +21,9 @@ public class PaymentsReporter {
     // Constructor that sets headers common to every Connect API request
     public PaymentsReporter() {
 
-        Unirest.setDefaultHeader("Authorization", "Bearer " + _accessToken);
-        Unirest.setDefaultHeader("Content-Type", "application/json");
-        Unirest.setDefaultHeader("Accept", "application/json");
+//        Unirest.setDefaultHeader("Authorization", "Bearer " + _accessToken);
+//        Unirest.setDefaultHeader("Content-Type", "application/json");
+//        Unirest.setDefaultHeader("Accept", "application/json");
     }
 
     // Helper function to convert cent-based money amounts to dollars and cents
