@@ -61,7 +61,7 @@ public class QuoteController {
             return "createquotes";
         }
 
-        esra/createquoteandpaymentpage
+       // esra/createquoteandpaymentpage
         Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom());
         quoteRepository.save(newQuote);
         setQuoteInsession(request.getSession(), newQuote);
