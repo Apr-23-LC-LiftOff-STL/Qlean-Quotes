@@ -10,7 +10,7 @@ Technologies
 JavaScript Angular HTML CSS Java Spring Boot MySQL
 
 What I'll Have to Learn
-Spring Security, Stripe Checkout, And we will need to learn how to connect front-end and back-end
+Spring Security, Square API, And we will need to learn how to connect front-end and back-end
 
 Project Tracker
 https://trello.com/b/69tSr3fF/qleanquotes
