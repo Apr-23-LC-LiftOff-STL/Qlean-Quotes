@@ -20,29 +20,33 @@
 <div th:fragment="page-header" class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <a th:href="@{/}" class="navbar-brand">Qlean Quotes Logo</a>
+            <a class="navbar-brand">Qlean Quotes Logo</a>
         </div>
         <div class="navbar-collapse">
             <ul class="nav navbar-nav">
 <!--                TODO the below list items should have relative links that link to the page-about and page-contact sections below-->
-                <li><a href="#about-me">About</a></li>
-                <li><a href="#contact-us">Contact</a></li>
+
+                <li class="nav-item"><a class="nav-link" href="#about-me">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout" onclick="return confirm('Are you sure you want to log out?')">Log Out</a></li>
+
             </ul>
         </div>
     </div>
 </div>
+
 
 <div id="about-me" th:fragment="page-about">
     <div class="container">
         <h1>  About Us</h1>
 
             <div style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; color: #333; margin: 20px;">
-                <p>At Qreate Quotes, we are dedicated to providing exceptional housekeeping services to our clients. We understand that your home is your sanctuary, and we aim to help you maintain a clean and comfortable living space.</p>
+                <p>At Qlean Quotes, we are dedicated to providing exceptional housekeeping services to our clients. We understand that your home is your sanctuary, and we aim to help you maintain a clean and comfortable living space.</p>
                 <p>Our team of experienced and trained professionals is committed to delivering the highest level of service. We use the latest techniques, tools, and products to ensure that your home is spotless, healthy, and welcoming.</p>
                 <p>Our mission is to make your life easier by taking care of all your housekeeping needs. Whether you require regular cleaning, deep cleaning, or special services, we are here to help. Our services are flexible and customizable, so you can choose what works best for you.</p>
-                <p>At Qreate Quotes, we value your trust and strive to build long-term relationships with our clients. We believe that open communication, transparency, and honesty are essential for a successful partnership. We listen to your feedback and suggestions to continually improve our services and exceed your expectations.</p>
+                <p>At Qlean Quotes, we value your trust and strive to build long-term relationships with our clients. We believe that open communication, transparency, and honesty are essential for a successful partnership. We listen to your feedback and suggestions to continually improve our services and exceed your expectations.</p>
                 <p>We are proud of our commitment to sustainability and use eco-friendly cleaning products whenever possible. We believe that we have a responsibility to protect the environment and contribute to a better world.</p>
-                <p>Thank you for considering Qreate Quotes Housekeeping for your cleaning needs. We look forward to serving you and making your home a cleaner and happier place.</p>
+                <p>Thank you for considering Qlean Quotes Housekeeping for your cleaning needs. We look forward to serving you and making your home a cleaner and happier place.</p>
             </div>
     </div>
 </div>
