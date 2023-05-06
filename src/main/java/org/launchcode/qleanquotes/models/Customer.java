@@ -27,12 +27,14 @@ public class Customer extends AbstractEntity implements UserDetails {
     @Transient
     Collection<? extends GrantedAuthority> authorities = Collections.emptySet();
 
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 
     public Customer(String name, String lastName, String email, String password) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
+        this.password = encoder.encode(password);
     }
 
     public Customer(Customer customer) {

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Optional;
 
 @Controller
@@ -23,8 +24,13 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @GetMapping("/")
+    public String displayIndexPage(Model model) {
+        return "index";
+    }
+
     @GetMapping("/register")
-    public String displayRegisterForm(Model model){
+    public String displayRegisterForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
         return "register";
@@ -32,14 +38,14 @@ public class CustomerController {
 
 
     @PostMapping("/register")
-    public  String processRegisterForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors,
-                                       HttpServletRequest request){
-        if(errors.hasErrors()){
+    public String processRegisterForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors,
+                                      HttpServletRequest request) {
+        if (errors.hasErrors()) {
             return "/register";
         }
         Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
 
-        if(existingCustomer != null){
+        if (existingCustomer != null) {
             errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
             return "/login";
         }
@@ -47,19 +53,19 @@ public class CustomerController {
         // Send customer back to form if passwords didn't match
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
-        if(!password.equals(verifyPassword)){
-            errors.rejectValue("password" , "passwords.mismatch", "Passwords do not match");
+        if (!password.equals(verifyPassword)) {
+            errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
             return "/register";
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
-        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(),registerFormDTO.getEmail(),registerFormDTO.getPassword());
+        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword());
         customerRepository.save(newCustomer);
         return "redirect:/index";
     }
 
     @GetMapping("/login")
-    public String displayLoginForm(Model model){
+    public String displayLoginForm(Model model) {
         model.addAttribute(new LoginFormDTO());
         model.addAttribute("title", "Log In");
         return "login";
@@ -91,8 +97,6 @@ public class CustomerController {
 //
 //        return  "redirect:/index";
 //    }
-
-
 
 
 }

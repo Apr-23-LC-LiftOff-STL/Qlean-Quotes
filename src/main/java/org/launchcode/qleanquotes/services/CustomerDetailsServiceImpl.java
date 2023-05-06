@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerDetailsServiceImpl implements UserDetailsService {
 
+    //possible something in this class can be overridden to perform the registration.
     @Autowired
     private CustomerRepository customerRepository;
 
