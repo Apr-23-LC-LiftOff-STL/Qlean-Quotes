@@ -34,17 +34,8 @@ dependencies {
 	implementation 'com.konghq:unirest-java:3.11.09'
 	implementation 'com.mashape.unirest:unirest-java:1.4.9'
 
-	//Spring Security lombok annotation library
-	compileOnly 'org.projectlombok:lombok:1.18.20'
-	annotationProcessor 'org.projectlombok:lombok:1.18.20'
-//more spring security additions
+	//more spring security additions
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-
-	//may need below if Security switches to JWT tokens
-//	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-//	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5',
-//			'io.jsonwebtoken:jjwt-jackson:0.11.5'
-//	runtimeOnly 'com.mysql:mysql-connector-j'
 
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'

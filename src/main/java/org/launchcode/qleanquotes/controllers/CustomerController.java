@@ -17,18 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Optional;
 
-
-
-/* NOTE1: The @RestController annotation in Spring MVC is nothing but a combination of @Controller and @ResponseBody annotation.
- Response from a web application is generally view (HTML + CSS + JavaScript) */
-
-/* NOTE2 :@CrossOrigin(origins = "http://localhost:4200") is a Java annotation that can be used in a Spring Boot application to allow
-cross-origin requests from a specified origin.*/
-
-//@RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-//@RequestMapping("customers")
-
 @Controller
 public class CustomerController {
 
@@ -76,33 +64,33 @@ public class CustomerController {
         model.addAttribute("title", "Log In");
         return "login";
     }
-
-    @PostMapping("/login")
-    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors,
-                                   HttpServletRequest request){
-
-        if(errors.hasErrors()){
-            return "/login";
-        }
-
-        // Look up user in database using email they provided in the form
-        Customer theCustomer = customerRepository.findByEmail(loginFormDTO.getEmail());
-
-
-        if(theCustomer == null){
-            errors.rejectValue("email", "customer.invalid", "The given email does not exist");
-            return "/login";
-        }
-
-        String password = loginFormDTO.getPassword();
-
-        if(!theCustomer.isMatchingPassword(password)){
-            errors.rejectValue("password", "password.invalid", "Invalid password");
-            return "/login";
-        }
-
-        return  "redirect:/index";
-    }
+//
+//    @PostMapping("/login")
+//    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors,
+//                                   HttpServletRequest request){
+//
+//        if(errors.hasErrors()){
+//            return "/login";
+//        }
+//
+//        // Look up user in database using email they provided in the form
+//        Customer theCustomer = customerRepository.findByEmail(loginFormDTO.getEmail());
+//
+//
+//        if(theCustomer == null){
+//            errors.rejectValue("email", "customer.invalid", "The given email does not exist");
+//            return "/login";
+//        }
+//
+//        String password = loginFormDTO.getPassword();
+//
+//        if(!theCustomer.getPassword().equals(password)) { //.isMatchingPassword(password)){
+//            errors.rejectValue("password", "password.invalid", "Invalid password");
+//            return "/login";
+//        }
+//
+//        return  "redirect:/index";
+//    }
 
 
 
