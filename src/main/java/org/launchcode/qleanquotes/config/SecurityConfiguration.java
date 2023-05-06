@@ -34,20 +34,27 @@ public class SecurityConfiguration {
     }
 
 
-
     //start here to figure out how to white list the registration form and find login page endpoints..
     @Bean
-    public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests()
-                .requestMatchers("/login", "/register")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .formLogin()
-                .and()
-                .authenticationProvider(authenticationProvider());
+                .authenticationProvider(authenticationProvider())
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/authentication/**", "/css/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(formLogin -> formLogin
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+                        .loginPage("/authentication/login")
+                        .failureUrl("/authentication/login?failed")
+                        .loginProcessingUrl("/authentication/login/process")
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/authentication/logout")
+                        .logoutSuccessUrl("/authentication/login")
+                )
+        ;
 
         return http.build();
     }

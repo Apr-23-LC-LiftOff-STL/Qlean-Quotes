@@ -29,25 +29,25 @@ public class CustomerController {
         return "index";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/authentication/register")
     public String displayRegisterForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
-        return "register";
+        return "/authentication/register";
     }
 
 
-    @PostMapping("/register")
+    @PostMapping("/authentication/register")
     public String processRegisterForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors,
                                       HttpServletRequest request) {
         if (errors.hasErrors()) {
-            return "/register";
+            return "/authentication/register";
         }
         Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
 
         if (existingCustomer != null) {
             errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
-            return "/login";
+            return "/authentication/login";
         }
 
         // Send customer back to form if passwords didn't match
@@ -55,20 +55,20 @@ public class CustomerController {
         String verifyPassword = registerFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            return "/register";
+            return "/authentication/register";
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
         Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword());
         customerRepository.save(newCustomer);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/authentication/login")
     public String displayLoginForm(Model model) {
-        model.addAttribute(new LoginFormDTO());
-        model.addAttribute("title", "Log In");
-        return "login";
+//        model.addAttribute(new LoginFormDTO());
+//        model.addAttribute("title", "Log In");
+        return "authentication/login";
     }
 //
 //    @PostMapping("/login")
