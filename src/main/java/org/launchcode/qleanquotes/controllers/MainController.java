@@ -28,12 +28,6 @@ public class MainController {
     @Autowired
     private QuoteRepository quoteRepository;
 
-    @GetMapping("/landing")
-        public String landingPage(){
-        return "landing";
-
-    }
-
     @GetMapping("/payment")
     public String showPayment(){
         return "payment";

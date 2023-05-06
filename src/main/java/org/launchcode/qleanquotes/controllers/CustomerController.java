@@ -14,6 +14,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import java.util.Optional;
 
 
 
@@ -65,7 +67,7 @@ public class CustomerController {
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
         Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(),registerFormDTO.getEmail(),registerFormDTO.getPassword());
         customerRepository.save(newCustomer);
-        return "redirect:/landing";
+        return "redirect:/index";
     }
 
     @GetMapping("/login")
@@ -99,9 +101,14 @@ public class CustomerController {
             return "/login";
         }
 
-        return  "redirect:/landing";
+        return  "redirect:/index";
     }
 
 
 
+
 }
+
+
+
+
