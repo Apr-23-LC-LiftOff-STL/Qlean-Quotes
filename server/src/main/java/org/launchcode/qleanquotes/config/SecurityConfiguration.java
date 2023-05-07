@@ -1,6 +1,5 @@
 package org.launchcode.qleanquotes.config;
 
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.launchcode.qleanquotes.services.CustomerDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -53,7 +52,7 @@ public class SecurityConfiguration {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        SecretKey secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), SignatureAlgorithm.HS256.getJcaName());
+        SecretKey secretKey = new SecretKeySpec(SECRET_KEY.getBytes(), "HS256");
         return NimbusJwtDecoder.withSecretKey(secretKey).build();
     }
 

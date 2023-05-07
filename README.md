@@ -16,3 +16,4 @@ Project Tracker
 https://trello.com/b/69tSr3fF/qleanquotes
 
 JWT Authentication Tutorial: https://thomasandolf.medium.com/spring-security-jwts-getting-started-ebdb4e4f1dd1
+Generating JWTs: https://medium.com/swlh/stateless-jwt-authentication-with-spring-boot-a-better-approach-1f5dbae6c30f

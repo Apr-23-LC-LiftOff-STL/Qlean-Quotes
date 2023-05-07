@@ -12,7 +12,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthService {
@@ -37,7 +42,16 @@ public class AuthService {
                     );
 
             Customer customer = (Customer) authentication.getPrincipal();
-            String token = jwtService.generateToken(customer);
+//            String token = jwtService.generateToken(customer);
+
+            Map<String, String> claims = new HashMap<>();
+            String authorities = customer.getAuthorities().stream()
+                    .map(GrantedAuthority::getAuthority)
+                    .collect(Collectors.joining(","));
+            claims.put("authorities", authorities);
+            claims.put("userId", String.valueOf(customer.getId()));
+
+            String token = jwtService.createJwt(customer.getEmail(), claims);
             TokenResponseApiDTO response = new TokenResponseApiDTO(token);
 
             return ResponseEntity.ok().body(response);
@@ -46,7 +60,6 @@ public class AuthService {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
         }
     }
-
 
     public ResponseEntity<TokenResponseApiDTO> register(RegisterFormDTO request) {
         String password = request.getPassword();
