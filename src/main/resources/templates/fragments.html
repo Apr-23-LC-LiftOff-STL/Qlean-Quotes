@@ -24,14 +24,12 @@
         </div>
         <div class="navbar-collapse">
             <ul class="nav navbar-nav">
-<!--                TODO the below list items should have relative links that link to the page-about and page-contact sections below-->
-
                 <li class="nav-item"><a class="nav-link" href="#about-me">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
                 <li class="nav-item">
                     <form id="logout-form" method="post" th:action="@{/authentication/logout}">
-                        <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit()">Log Out</a>
+                        <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit()}">Log Out</a>
                     </form>
                 </li>
 

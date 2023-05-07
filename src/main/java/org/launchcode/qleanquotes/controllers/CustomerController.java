@@ -66,38 +66,8 @@ public class CustomerController {
 
     @GetMapping("/authentication/login")
     public String displayLoginForm(Model model) {
-//        model.addAttribute(new LoginFormDTO());
-//        model.addAttribute("title", "Log In");
         return "authentication/login";
     }
-//
-//    @PostMapping("/login")
-//    public String processLoginForm(@ModelAttribute @Valid LoginFormDTO loginFormDTO, Errors errors,
-//                                   HttpServletRequest request){
-//
-//        if(errors.hasErrors()){
-//            return "/login";
-//        }
-//
-//        // Look up user in database using email they provided in the form
-//        Customer theCustomer = customerRepository.findByEmail(loginFormDTO.getEmail());
-//
-//
-//        if(theCustomer == null){
-//            errors.rejectValue("email", "customer.invalid", "The given email does not exist");
-//            return "/login";
-//        }
-//
-//        String password = loginFormDTO.getPassword();
-//
-//        if(!theCustomer.getPassword().equals(password)) { //.isMatchingPassword(password)){
-//            errors.rejectValue("password", "password.invalid", "Invalid password");
-//            return "/login";
-//        }
-//
-//        return  "redirect:/index";
-//    }
-
 
 }
 
