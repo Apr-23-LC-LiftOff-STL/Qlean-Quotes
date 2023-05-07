@@ -9,7 +9,7 @@ import {LogoutGuard} from '@core/guards/logout.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'under-construction',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
 

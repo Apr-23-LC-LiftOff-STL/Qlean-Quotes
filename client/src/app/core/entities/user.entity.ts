@@ -5,8 +5,6 @@ import {InitializableEntity} from '@core/entities/extra/intializable-entity';
 export class User extends InitializableEntity {
     @Expose() id?: number = 0;
 
-    @Expose() username: string = '';
-
     @Expose({name: 'first_name'}) firstName: string = '';
 
     @Expose({name: 'last_name'}) lastName: string = '';

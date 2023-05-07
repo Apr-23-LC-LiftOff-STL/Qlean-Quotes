@@ -8,7 +8,7 @@ import {ClearStorage, GetRefreshToken, GetToken, GetUserType, RemoveAuthData, Se
 import {HttpClient} from '@angular/common/http';
 import {UserType} from '@core/constants/users.constant';
 
-const baseUrl = environment.baseUrl;
+const baseUrl = `${environment.baseUrl}/api/v1/auth`;
 
 @Injectable({
     providedIn: 'root'
@@ -69,13 +69,13 @@ export class AuthService {
         if (this._authenticated) {
             return throwError('User is already logged in.');
         }
-        return this.http.post(`${baseUrl}/api/auth/token/`, data)
+        return this.http.post(`${baseUrl}/token`, data)
             .pipe(
                 switchMap((response: any) => {
                     RemoveAuthData();
-                    this.setToken(response.data.access);
-                    this.setRefreshToken(response.data.refresh);
-                    const decoded = jwtDecode(response.data.access);
+                    this.setToken(response.token);
+                    this.setRefreshToken(response.refresh);
+                    const decoded = jwtDecode(response.token);
                     // @ts-ignore
                     const user_type = decoded.user_type ?? UserType.USER;
                     this.setUserType(user_type);
@@ -91,7 +91,7 @@ export class AuthService {
     signInUsingToken(): Observable<any> {
 
         // Renew token
-        return this.http.post(`${baseUrl}/api/auth/token/refresh/`, {
+        return this.http.post(`${baseUrl}/token/refresh`, {
             refresh: this.getRefreshToken()
         }).pipe(
             catchError((err) => {

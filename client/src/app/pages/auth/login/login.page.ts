@@ -38,7 +38,7 @@ export class LoginPage implements OnInit, OnDestroy {
 
     initForm() {
         this.$LoginForm = new UntypedFormGroup({
-            username: new UntypedFormControl('', [Validators.required]),
+            email: new UntypedFormControl('', [Validators.required]),
             password: new UntypedFormControl('', [Validators.required])
         }, {
             updateOn: 'submit'
