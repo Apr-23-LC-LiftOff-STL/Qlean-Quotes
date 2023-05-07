@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CustomerDetailsServiceImpl implements UserDetailsService {
+public class CustomerDetailsService implements UserDetailsService {
 
     //possible something in this class can be overridden to perform the registration.
     @Autowired
