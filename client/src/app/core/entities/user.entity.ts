@@ -5,13 +5,11 @@ import {InitializableEntity} from '@core/entities/extra/intializable-entity';
 export class User extends InitializableEntity {
     @Expose() id?: number = 0;
 
-    @Expose({name: 'first_name'}) firstName: string = '';
+    @Expose({name: 'name'}) name: string = '';
 
     @Expose({name: 'last_name'}) lastName: string = '';
 
     @Expose() email: string = '';
-
-    @Expose({name: 'is_active'}) isActive: boolean = true;
 
     constructor(values?: Partial<User>) {
         super();

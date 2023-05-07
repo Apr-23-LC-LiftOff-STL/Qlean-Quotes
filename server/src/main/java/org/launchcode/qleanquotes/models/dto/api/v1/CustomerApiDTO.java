@@ -4,6 +4,7 @@ import org.launchcode.qleanquotes.models.Customer;
 
 public class CustomerApiDTO {
 
+    //maybe wont need id in DTO
     private int id;
 
     private String email;
