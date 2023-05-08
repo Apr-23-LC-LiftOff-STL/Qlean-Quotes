@@ -80,7 +80,7 @@ public class AuthenticationFilter implements HandlerInterceptor{
         HttpSession session = request.getSession();
         Customer customer = authenticationController.getCustomerFromSession(session);
 
-        if(customer != null) {
+        if(customer != null && modelAndView != null) {
             modelAndView.addObject("customer" , customer);
         }
     }
