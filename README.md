@@ -20,4 +20,5 @@ https://trello.com/b/69tSr3fF/qleanquotes
 
 
 Spring Security Learnin' Trail
-Tutorial 1: https://www.youtube.com/watch?v=bB6A490Uh5M
+Tutorial 1: https://www.youtube.com/watch?v=bB6A490Uh5M (unsuccessful)
+Tutorial 2: https://www.youtube.com/watch?v=E6P7V5vvkus ()

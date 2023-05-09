@@ -1,53 +1,38 @@
 package org.launchcode.qleanquotes.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
 public class SecurityConfig {
 
 
-    @Bean
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+    //this class will need to have details about the customers injected in
+        @Bean
+        PasswordEncoder passwordEncoder(){
+         return new BCryptPasswordEncoder();
+        }
 
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+            http
+                    .authorizeHttpRequests()
+                    .requestMatchers("/payment", "/createquotes", "/profile").authenticated()
+                    .anyRequest().permitAll();
+                  http.formLogin()
+                          .and()
+                          .logout()
+                          .logoutUrl("/logout")
+                          .logoutSuccessUrl("/login");
+            return http.build();
+        }
 
-        http.csrf().disable()
-                .authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated()
-                ).httpBasic(Customizer.withDefaults());
-        return http.build();
-    }
-
-    @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails pigeon = User.builder()
-                .username("pigeon")
-                .password(passwordEncoder().encode("pigeon"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("pigeon"))
-                .roles("ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(pigeon, admin);
-    }
 
 }
