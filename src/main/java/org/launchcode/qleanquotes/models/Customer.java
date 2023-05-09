@@ -18,12 +18,51 @@ public class Customer extends AbstractEntity {
     private String email;
 
     @NotNull
+    private String phone;
+
+    @NotNull
     private String pwHash;
 
     //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-    /* NOTE1 : Mobile phone numbers are not stored as integers, as the integer data type holds values that have the potential to be used in calculations.
+
+    //constructors
+    public Customer() {
+    }
+
+    public Customer(String name, String lastName, String email, String password) {
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.pwHash = encoder.encode(password);
+    }
+
+
+
+
+        public String getName() { return name;}
+        public String getLastName() {return lastName;}
+
+        public String getEmail() { return email;}
+        public String getPhone() { return phone; }
+
+
+
+
+        // NOT SAVING USER PASSWORD TO DATA!!! HASHING PASSWORD FOR SAFETY!
+//    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        public boolean isMatchingPassword(String password) {
+            return encoder.matches(password, pwHash);
+        }
+
+
+    }
+
+
+
+
+     /* NOTE1 : Mobile phone numbers are not stored as integers, as the integer data type holds values that have the potential to be used in calculations.
     There is no context for using a mobile phone number as part of a calculation, so it is stored as a STRING value. */
 //    @Column(name = "phone_number")
 //    @NotNull
@@ -39,48 +78,18 @@ public class Customer extends AbstractEntity {
 //    private Address address;
 
 
-    //constructors
-    public Customer() {
-    }
-
-    public Customer(String name, String lastName, String email, String password) {
-        this.name = name;
-        this.lastName = lastName;
-        this.email = email;
-        this.pwHash = encoder.encode(password);
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    // NOT SAVING USER PASSWORD TO DATA!!! HASHING PASSWORD FOR SAFETY!
-//    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    public boolean isMatchingPassword(String password) {
-        return encoder.matches(password, pwHash);
-    }
-
-
-    //Since address have integar and String info
+        //Since address have integar and String info
 //    public class Address {
-//        private  String streetAddress;
-//        private int streetNumber;
-//        private int zipCode;
+//        private  String address;
+//        private String city;
+//        private String state;
+//        private int zip;
 //
-//        public Address(String streetAddress, int streetNumber, int zipCode) {
-//            this.streetAddress = streetAddress;
-//            this.streetNumber = streetNumber;
-//            this.zipCode = zipCode;
+//        public Address(String address, String city, String state, String zip) {
+//            this.address = address;
+//            this.city = city;
+//            this.state = state;
+//            this.zip = zip;
 //        }
 //
 //        public String getStreetAddress() {
@@ -109,4 +118,4 @@ public class Customer extends AbstractEntity {
 //    }
 
 
-}
+
