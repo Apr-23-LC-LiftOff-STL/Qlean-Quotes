@@ -6,11 +6,18 @@ Our group will be working on a project about housekeeping. The project's name is
 Features
 User login : Users will be able to create accounts and log in to the application.Each user will have a profile page. Payment option / Secure payment : Personal information is protected during payment processing. Calendar/Instant Booking : User will be able to see availability on the calendar to book. Calculates Quote : Calculating of the price to provide to user based on given information (square foot, rooms, level of cleanliness). Feedback : User will be able to create a comment/feedback.
 
-Technologies
-JavaScript Angular HTML CSS Java Spring Boot MySQL
+Back End Technologies
+Java, Spring boot, Hibernate, mySQL
+
+Front End Technologies
+HTML CSS Javascript BootStrap SASS
 
 What I'll Have to Learn
 Spring Security, Square API, And we will need to learn how to connect front-end and back-end
 
 Project Tracker
 https://trello.com/b/69tSr3fF/qleanquotes
+
+
+Spring Security Learnin' Trail
+Tutorial 1: https://www.youtube.com/watch?v=bB6A490Uh5M

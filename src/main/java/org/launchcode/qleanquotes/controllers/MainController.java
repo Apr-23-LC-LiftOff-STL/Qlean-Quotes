@@ -1,21 +1,10 @@
 package org.launchcode.qleanquotes.controllers;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
-import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.CustomerRepository;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
-import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
-import org.launchcode.qleanquotes.models.dto.LoginFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 //import javax.validation.Valid;
 
 
@@ -30,7 +19,7 @@ public class MainController {
 
     @GetMapping("/landing")
         public String landingPage(){
-        return "landing";
+        return "index";
 
     }
 
