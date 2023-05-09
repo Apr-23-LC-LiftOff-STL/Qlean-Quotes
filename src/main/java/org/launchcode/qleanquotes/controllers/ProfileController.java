@@ -1,5 +1,7 @@
 package org.launchcode.qleanquotes.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.data.CustomerRepository;
 import org.launchcode.qleanquotes.models.dto.ProfileFormDTO;
@@ -7,6 +9,7 @@ import org.launchcode.qleanquotes.models.dto.RegisterFormDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +32,31 @@ import java.security.Principal;
         model.addAttribute("title", "Profile");
         return "profile";
     }
+
+    @PostMapping("/register")
+    public  String processProfileForm(@ModelAttribute @Valid ProfileFormDTO profileFormDTO, RegisterFormDTO registerFormDTO, Errors errors,
+                                       HttpServletRequest request){
+        if(errors.hasErrors()){
+            return "/profile";
+        }
+        Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
+
+        //We have existing customer, has name, last name, email, and password. should have an empty phone number field.
+        //we want to figure out how to add phone number involving profileFormDTO somehow
+        //will also save new phone to customer repository somehow
+//        customerRepository.save();
+
+        return "redirect:/profile";
+    }
+//
+//
+//        if(existingCustomer != null){
+//            errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
+//            return "/login";
+//        }
+    // next need post mapping-- when user hits add it will go through post mapping
+    // look at authentication controller and see how it
+    // create save button in html
 
 
 
