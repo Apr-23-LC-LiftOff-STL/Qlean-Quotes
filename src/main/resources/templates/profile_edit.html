@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+</head>
+<body>
+<h1>Edit Profile</h1>
+<form th:action="@{/profile/edit}" method="post">
+    <input type="hidden" th:name="email" th:value="${customer.email}" />
+    <label>Phone Number:</label>
+    <input type="text" th:name="phone" th:value="${customer.phone}" required />
+    <br>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
+
+
+<!--<head>-->
+<!--    <title>Edit Profile</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Edit Profile</h1>-->
+<!--<form th:action="@{/profile/edit(email=${customer.email})}" method="post" th:object="${profileFormDTO}">-->
+<!--    <div>-->
+<!--        <label for="address">Address:</label>-->
+<!--        <input type="text" id="address" th:field="*{address}">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="phoneNumber">Phone Number:</label>-->
+<!--        <input type="text" id="phoneNumber" th:field="*{phoneNumber}">-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button type="submit">Save</button>-->
+<!--    </div>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
