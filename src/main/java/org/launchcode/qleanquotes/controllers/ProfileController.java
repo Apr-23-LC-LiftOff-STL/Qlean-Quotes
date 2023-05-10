@@ -33,40 +33,23 @@ import java.security.Principal;
         return "profile";
     }
 
-    @PostMapping("/register")
-    public  String processProfileForm(@ModelAttribute @Valid ProfileFormDTO profileFormDTO, RegisterFormDTO registerFormDTO, Errors errors,
-                                       HttpServletRequest request){
-        if(errors.hasErrors()){
-            return "/profile";
-        }
-        Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
-
-        //We have existing customer, has name, last name, email, and password. should have an empty phone number field.
-        //we want to figure out how to add phone number involving profileFormDTO somehow
-        //will also save new phone to customer repository somehow
-//        customerRepository.save();
-
-        return "redirect:/profile";
-    }
-//
-//
-//        if(existingCustomer != null){
-//            errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
-//            return "/login";
-//        }
-    // next need post mapping-- when user hits add it will go through post mapping
-    // look at authentication controller and see how it
-    // create save button in html
-
-
-
 //    @PostMapping("/profile")
-//    public String processProfilePage(@RequestParam("email") String email, @RequestParam("phone") String phone) {
-//        Customer customer = customerRepository.findByEmail(email);
-//        customer.setPhone(phone);
-//        customerRepository.save(customer);
-//        return "redirect:/profile";
+//    public  String processProfileForm(@ModelAttribute @Valid ProfileFormDTO profileFormDTO, RegisterFormDTO registerFormDTO, Errors errors,
+//                                       HttpServletRequest request){
+//        if(errors.hasErrors()){
+//            return "/profile";
+//        }
+//        Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
+//
+//        //We have existing customer, has name, last name, email, and password. should have an empty phone number field.
+//        //we want to figure out how to add phone number involving profileFormDTO somehow
+//        //will also save new phone to customer repository somehow
+////        customerRepository.save();
+//
+//        return "redirect:/";
 //    }
+
+
 }
 //    @GetMapping("/profile")
 //    public String displayProfilePage(Model model, RegisterFormDTO registerFormDTO) {
@@ -76,101 +59,13 @@ import java.security.Principal;
 //        model.addAttribute("profileForm", profileFormDTO);
 //        model.addAttribute("title", "Profile");
 //        return "profile";
-//    }
-//
-//    public String displayProfileEditPage(Model model, @RequestParam("email") String email) {
-//        Customer customer = customerRepository.findByEmail(email);
-//        model.addAttribute("customer", customer);
-//        return "profile_edit";
-//    }
-//
-//    @PostMapping("/profile/edit")
-//    public String handleProfileEditForm(@RequestParam("email") String email, @RequestParam("phone") String phone) {
-//        Customer customer = customerRepository.findByEmail(email);
-//        customer.setPhone(phone);
-//        customerRepository.save(customer);
-//        return "redirect:/profile";
-//    }
-//
 
 
-
-//This is the original that works
+//This is the one that works
 //    @GetMapping("/profile")
 //    public String displayProfilePage(Model model, RegisterFormDTO registerFormDTO) {
 //        model.addAttribute(new RegisterFormDTO());
 //        model.addAttribute("title", "Profile");
 //        return "profile";
-//    }
-//I'm not sure where this one came from
-//    @GetMapping("/profile/edit")
-//    public String displayProfileEditPage(Model model) {
-//        model.addAttribute("profileFormDTO", new ProfileFormDTO());
-//        return "profile_edit";
-//    }
-//}
-
-
-//    @GetMapping("/profile")
-//    public String displayProfilePage(Model model, @RequestParam("email") String email) {
-//        Customer customer = customerRepository.findByEmail(email);
-//        model.addAttribute("customer", customer);
-//        model.addAttribute("profileFormDTO", new ProfileFormDTO());
-//        model.addAttribute("title", "Profile");
-//        return "profile";
-//    }
-//
-//    @GetMapping("/profile/edit")
-//    public String displayProfileEditPage(Model model, @RequestParam("email") String email) {
-//        Customer customer = customerRepository.findByEmail(email);
-//        model.addAttribute("customer", customer);
-//        model.addAttribute("profileFormDTO", new ProfileFormDTO());
-//        return "profile_edit";
-//    }
-//
-//    @PostMapping("/profile/edit")
-//    public String handleProfileEditForm(@ModelAttribute("profileFormDTO") ProfileFormDTO formDTO, @RequestParam("email") String email) {
-//        Customer customer = customerRepository.findByEmail(email);
-//        customer.setAddress(formDTO.getAddress());
-//        customer.setPhoneNumber(formDTO.getPhoneNumber());
-//        customerRepository.save(customer);
-//        return "redirect:/profile";
-//    }
-//}
-
-//   @PostMapping("/profile/edit")
-//    public String handleProfileEditForm(@ModelAttribute("profileFormDTO") ProfileFormDTO formDTO,
-//                                        @RequestParam("email") String email) {
-//        Customer customer = customerRepository.findByEmail(email);
-//       ProfileFormDTO addressDTO = formDTO.getAddressDTO();
-//       customer.setAddress(addressDTO.getAddress());
-//       customer.setPhoneNumber(addressDTO.getPhoneNumber());
-//
-////       customer.setAddress(formDTO.getAddress());
-////       customer.setPhoneNumber(formDTO.getPhoneNumber());
-//       customerRepository.save(customer);
-//       return "redirect:/profile";
-
-
-
-    //Note that you will need to instantiate the encoder variable with BCryptPasswordEncoder in your ProfileController.
-
-
-
-
-
-
-
-// Update the customer information
-
-//        // Update the customer information
-//            customer.setName(formDTO.getName());
-//            customer.setLastName(formDTO.getLastName());
-//            customer.setEmail(formDTO.getEmail());
-//            customerRepository.save(customer);
-//
-//            model.addAttribute("message", "Your profile has been updated successfully.");
-//            return "profile";
-
 
 
