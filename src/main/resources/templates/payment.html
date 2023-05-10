@@ -19,6 +19,9 @@
     <button id="card-button" type="button">Pay</button>
 </div>
 <script type="module">
+    //SDK reference: payments API
+    // TODO make a Money object
+    // TODO get input value (cc payments)
     const payments = Square.payments('sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q', 'LPA9X767FQCCV');
     const card = await payments.card();
     await card.attach('#card-container');
