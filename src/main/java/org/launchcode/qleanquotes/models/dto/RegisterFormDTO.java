@@ -1,10 +1,7 @@
 package org.launchcode.qleanquotes.models.dto;
 
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 public class RegisterFormDTO {
 
@@ -22,6 +19,7 @@ public class RegisterFormDTO {
     @NotBlank
     @Email
     private String email;
+
 
     @NotNull(message = "Password is required.")
     @NotBlank(message = "Password is required.")
@@ -69,5 +67,6 @@ public class RegisterFormDTO {
     public void setVerifyPassword(String verifyPassword) {
         this.verifyPassword = verifyPassword;
     }
+
 
 }

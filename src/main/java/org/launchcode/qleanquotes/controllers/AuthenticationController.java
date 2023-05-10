@@ -84,7 +84,7 @@ public class AuthenticationController {
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, start a new session, and redirect to home page
-        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(),registerFormDTO.getEmail(),registerFormDTO.getPassword());
+        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(),registerFormDTO.getEmail(), registerFormDTO.getPassword());
         customerRepository.save(newCustomer);
         setCustomerInSession(request.getSession(), newCustomer);
         return "redirect:/landing";
