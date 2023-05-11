@@ -35,10 +35,10 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+//        return authConfig.getAuthenticationManager();
+//    }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -51,30 +51,28 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                // URL matching for accessibility
-                .requestMatchers("/authentication/**", "/css/**").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/authentication/**", "/css/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                // form login
-                .csrf().disable().formLogin()
+                .csrf()
+                .disable()
+                .formLogin()
                 .loginPage("/authentication/login")
+                .permitAll()
                 .failureUrl("/authentication/login?failed")
-//                .successHandler(sucessHandler)
                 .usernameParameter("email")
                 .passwordParameter("password")
 //                .loginProcessingUrl("/authentication/login/process")
                 .and()
-                // logout
                 .logout()
-//                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/authentication/login")
-                .and()
-                .exceptionHandling()
-//                .accessDeniedPage("/access-denied");
-        ;
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .logoutSuccessUrl("/authentication/login") .permitAll();
 
-        http.authenticationProvider(authenticationProvider());
-        http.headers().frameOptions().sameOrigin();
+//        http.authenticationProvider(authenticationProvider());
+//        http.headers().frameOptions().sameOrigin();
 
         return http.build();
     }

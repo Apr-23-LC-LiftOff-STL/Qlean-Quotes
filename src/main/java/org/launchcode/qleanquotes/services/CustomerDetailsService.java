@@ -20,7 +20,7 @@ public class CustomerDetailsService implements UserDetailsService {
 
     //information about our customers needs to be provided here
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
 //    @Autowired
 //    public PasswordEncoder passwordEncoder() {
@@ -52,14 +52,30 @@ public class CustomerDetailsService implements UserDetailsService {
 
 
     //required method in implementation, below overrides the default
+//    @Override
+//    public UserDetails loadUserByUsername(String username)
+//            throws UsernameNotFoundException {
+//        Customer customer = customerRepository.findByEmail(username);
+//        if (customer == null) {
+//            throw new UsernameNotFoundException("User not found!");
+//        }
+//        return new Customer(customer);
+//    }
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Customer> optionalCustomer = Optional.ofNullable(customerRepository.findByEmail(username));
         if (optionalCustomer.isPresent()) {
-            Customer customer = optionalCustomer.get();
-            return new Customer(customer);
+            return optionalCustomer.get();
         } else {
-            throw new UsernameNotFoundException("User not found!");
+            throw new UsernameNotFoundException("User doesn't exist");
         }
     }
+//will below save a user to database everytime they log in tho?
+    public void createUser(UserDetails user) {
+        customerRepository.save((Customer) user);
+    }
 }
+
+

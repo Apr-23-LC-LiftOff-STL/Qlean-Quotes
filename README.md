@@ -22,3 +22,5 @@ https://trello.com/b/69tSr3fF/qleanquotes
 Spring Security Learnin' Trail
 Tutorial 1: https://www.youtube.com/watch?v=bB6A490Uh5M (unsuccessful)
 Tutorial 2: https://www.youtube.com/watch?v=E6P7V5vvkus ()
+Tutorial 3, most helpful tutorial so far, has code to create an admin user as well, but also uses deprecated code in securityconfig: https://studygyaan.com/spring-boot/login-register-example-using-spring-boot
+Tutorial 4: also helpful: https://www.tutorialspoint.com/spring_security/spring_security_form_login_with_database.htm
