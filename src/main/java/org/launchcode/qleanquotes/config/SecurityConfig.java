@@ -28,6 +28,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    //below creates our "authenticator", wires in user details and our encoder. creates authProvider object
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -36,35 +37,67 @@ public class SecurityConfig {
         return authProvider;
     }
 
+
+    //this bit is the meat of SPring Security. this part decides the customized functionality of our security. We want OUR DAO, we want certain pages unrestricted and others not. we want our custom pages.
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers("/authentication/**", "/css/**")
                 .permitAll()
+                //below, any request beyond the request matchers needs authentication. this is probz why register isnt working.
                 .anyRequest()
                 .authenticated()
                 .and()
-                .csrf()
-                .disable()
                 .formLogin()
-                .loginPage("/authentication/login")
-                .permitAll()
-                .failureUrl("/authentication/login?failed")
                 .usernameParameter("email")
                 .passwordParameter("password")
-//                .loginProcessingUrl("/authentication/login/process")
+                .loginPage("/authentication/login")
+                .failureUrl("/authentication/login?failed")
+                .loginProcessingUrl("/authentication/login/process")
                 .and()
                 .logout()
+                .logoutUrl("/authentication/logout")
+                .logoutSuccessUrl("/authentication/login")
                 .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutSuccessUrl("/authentication/login") .permitAll();
-
-
+                .clearAuthentication(true);
+    //sets our DAOAuthProvider as the auth provider used by spring security
+        http.authenticationProvider(authenticationProvider());
 
         return http.build();
     }
 
+
 }
+
+
+
+
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .authenticationProvider(authenticationProvider())
+//                .authorizeHttpRequests(authorize -> authorize
+//                        .requestMatchers("/authentication/**", "/css/**").permitAll()
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(formLogin -> formLogin
+//                        .usernameParameter("email")
+//                        .passwordParameter("password")
+//                        .loginPage("/authentication/login")
+//                        .failureUrl("/authentication/login?failed")
+//                        .loginProcessingUrl("/authentication/login/process")
+//                )
+//                .logout(logout -> logout
+//                        .invalidateHttpSession(true)
+//                        .clearAuthentication(true)
+//                        .logoutUrl("/authentication/logout")
+//                        .logoutSuccessUrl("/authentication/login")
+//                );
+//        return http.build();
+//    }
+
+
+
 
 
 //tutorial 2
@@ -93,7 +126,7 @@ public class SecurityConfig {
 //                .logoutSuccessUrl("/authentication/login")
 
 
-    //below creates temporary custom users
+//below creates temporary custom users
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsService() {
 //        UserDetails user1 = User.withUsername("user1")

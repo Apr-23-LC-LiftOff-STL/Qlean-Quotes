@@ -2,7 +2,9 @@ package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -57,14 +59,15 @@ public class Customer extends AbstractEntity implements UserDetails {
     }
 
 
+
     //this is a constructor for security
-    public Customer(Customer customer) {
-        this.name = customer.name;
-        this.lastName = customer.lastName;
-        this.email = customer.email;
-        this.password = customer.password;
-        this.authorities = customer.authorities;
-    }
+//    public Customer(Customer customer) {
+//        this.name = customer.name;
+//        this.lastName = customer.lastName;
+//        this.email = customer.email;
+//        this.password = customer.password;
+//        this.authorities = customer.authorities;
+//    }
 
 
 
@@ -72,12 +75,14 @@ public class Customer extends AbstractEntity implements UserDetails {
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
+        return null;
     }
 
-    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
+
+
+//    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+//        this.authorities = authorities;
+//    }
 
     //the transient annotation means the authorities field will not be persisted in the database
     //initializes authorities to an empty set
@@ -88,6 +93,8 @@ public class Customer extends AbstractEntity implements UserDetails {
     public String getUsername() {
         return null;
     }
+
+
 
     @Override
     public String getPassword() {

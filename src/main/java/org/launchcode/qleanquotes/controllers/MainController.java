@@ -1,12 +1,9 @@
 package org.launchcode.qleanquotes.controllers;
 
-import org.launchcode.qleanquotes.models.data.CustomerRepository;
-import org.launchcode.qleanquotes.models.data.QuoteRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-//import javax.validation.Valid;
+
 
 
 @Controller
@@ -16,13 +13,6 @@ public class MainController {
     public String displayIndexPage(Model model) {
         return "index";
     }
-
-//    @Autowired
-//    private CustomerRepository customerRepository;
-//
-//    @Autowired
-//    private QuoteRepository quoteRepository;
-
 
 
     @GetMapping("/payment")
