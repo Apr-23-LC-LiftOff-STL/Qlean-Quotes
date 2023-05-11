@@ -7,6 +7,8 @@
 
 <h1>Log In</h1>
 
+<div th:if="${param.logout}"> You have logged out. </div>
+
 <form id="login-form" method="post" th:action="@{/authentication/login/process}">
     <div class="form-group">
         <label>Email
