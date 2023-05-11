@@ -11,6 +11,7 @@
         <link th:href="@{/css/qleanquotes.css}" rel="stylesheet" />
 
 
+
 <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
     </head>

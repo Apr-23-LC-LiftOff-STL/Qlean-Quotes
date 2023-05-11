@@ -40,10 +40,7 @@ public class Customer extends AbstractEntity implements UserDetails {
         this.pwHash = encoder.encode(password);
     }
 
-    //intelliJ auto generated?
-    public Customer(Customer customer) {
-        super();
-    }
+
 
     public String getName() {
         return name;
@@ -60,13 +57,13 @@ public class Customer extends AbstractEntity implements UserDetails {
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
 
     //this is a constructor for security
-//    public Customer(Customer customer) {
-//        this.name = customer.name;
-//        this.lastName = customer.lastName;
-//        this.email = customer.email;
-//        this.pwHash = customer.pwHash;
-//        this.authorities = customer.authorities;
-//    }
+    public Customer(Customer customer) {
+        this.name = customer.name;
+        this.lastName = customer.lastName;
+        this.email = customer.email;
+        this.pwHash = customer.pwHash;
+        this.authorities = customer.authorities;
+    }
 
     //the transient annotation means the authorities field will not be persisted in the database
     //initializes authorities to an empty set
@@ -86,6 +83,10 @@ public class Customer extends AbstractEntity implements UserDetails {
     @Override
     public String getPassword() {
         return pwHash;
+    }
+
+    public void setPassword(String password){
+        this.pwHash = password;
     }
     @Override
     public boolean isAccountNonExpired() {
