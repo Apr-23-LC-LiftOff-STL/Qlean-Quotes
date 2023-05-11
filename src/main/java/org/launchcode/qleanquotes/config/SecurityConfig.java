@@ -28,11 +28,6 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-//        return authConfig.getAuthenticationManager();
-//    }
-
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -64,8 +59,7 @@ public class SecurityConfig {
                 .clearAuthentication(true)
                 .logoutSuccessUrl("/authentication/login") .permitAll();
 
-//        http.authenticationProvider(authenticationProvider());
-//        http.headers().frameOptions().sameOrigin();
+
 
         return http.build();
     }

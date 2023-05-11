@@ -24,7 +24,9 @@ public class Customer extends AbstractEntity implements UserDetails {
 
     //Pigeon: security will handle the pwhash, plz dont touch this.
     @NotNull
-    private String pwHash;
+    private String password;
+
+
 
     //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -37,7 +39,7 @@ public class Customer extends AbstractEntity implements UserDetails {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
-        this.pwHash = encoder.encode(password);
+        this.password = encoder.encode(password);
     }
 
 
@@ -54,15 +56,27 @@ public class Customer extends AbstractEntity implements UserDetails {
         return email;
     }
 
-    //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
 
     //this is a constructor for security
     public Customer(Customer customer) {
         this.name = customer.name;
         this.lastName = customer.lastName;
         this.email = customer.email;
-        this.pwHash = customer.pwHash;
+        this.password = customer.password;
         this.authorities = customer.authorities;
+    }
+
+
+
+
+    //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     //the transient annotation means the authorities field will not be persisted in the database
@@ -71,23 +85,15 @@ public class Customer extends AbstractEntity implements UserDetails {
     Collection<? extends GrantedAuthority> authorities = Collections.emptySet();
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    @Override
     public String getUsername() {
         return null;
     }
 
     @Override
     public String getPassword() {
-        return pwHash;
+        return password;
     }
 
-    public void setPassword(String password){
-        this.pwHash = password;
-    }
     @Override
     public boolean isAccountNonExpired() {
         return true;

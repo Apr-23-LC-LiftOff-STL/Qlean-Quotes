@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+
 
 
 
@@ -35,17 +35,19 @@ public class CustomerDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Customer> optionalCustomer = Optional.ofNullable(customerRepository.findByEmail(username));
-        if (optionalCustomer.isPresent()) {
-            return optionalCustomer.get();
-        } else {
+//        Optional<Customer> optionalCustomer = Optional.ofNullable(customerRepository.findByEmail(username));
+        Customer customer = customerRepository.findByEmail(username);
+        if (customer == null) {
             throw new UsernameNotFoundException("User doesn't exist");
         }
+            return customer;
+
     }
 //will below save a user to database everytime they log in tho?
-    public void createUser(UserDetails user) {
-        customerRepository.save((Customer) user);
-    }
+//    public void createUser(UserDetails user) {
+//        customerRepository.save((Customer) user);
+//    }
+
 }
 
 

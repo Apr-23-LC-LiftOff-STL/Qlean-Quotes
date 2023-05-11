@@ -4,6 +4,7 @@ import org.launchcode.qleanquotes.models.data.CustomerRepository;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 //import javax.validation.Valid;
 
@@ -11,34 +12,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    @Autowired
-    private QuoteRepository quoteRepository;
-
-    @GetMapping("/landing")
-        public String landingPage(){
+    @GetMapping("/")
+    public String displayIndexPage(Model model) {
         return "index";
-
     }
+
+//    @Autowired
+//    private CustomerRepository customerRepository;
+//
+//    @Autowired
+//    private QuoteRepository quoteRepository;
+
+
 
     @GetMapping("/payment")
     public String showPayment(){
         return "payment";
     }
 
-//
-//    @RequestMapping("/landing")
-//    public String shoLandingPage(HttpSession session, Model model) {
-//        String customer = (String) session.getAttribute("customer");
-//        if (customer == null) {
-//            return "redirect:/login";
-//        }
-//
-//        model.addAttribute("customer" , customer);
-//        return "landing";
-//    }
 
 
 
