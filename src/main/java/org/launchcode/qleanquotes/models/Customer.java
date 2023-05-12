@@ -2,16 +2,13 @@ package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
 
-//TODO there needs to be persistence annotations in this model for the databases tables to relate to each other (foreign key! think @manytoone, @onetomany, blah blah)
 @Entity
 public class Customer extends AbstractEntity implements UserDetails {
 
@@ -24,11 +21,8 @@ public class Customer extends AbstractEntity implements UserDetails {
     @NotNull
     private String email;
 
-    //Pigeon: security will handle the pwhash, plz dont touch this.
     @NotNull
     private String password;
-
-
 
     //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -36,15 +30,12 @@ public class Customer extends AbstractEntity implements UserDetails {
     public Customer() {
     }
 
-    //below is constructor at registration
     public Customer(String name, String lastName, String email, String password) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = encoder.encode(password);
     }
-
-
 
     public String getName() {
         return name;
@@ -58,31 +49,11 @@ public class Customer extends AbstractEntity implements UserDetails {
         return email;
     }
 
-
-
-    //this is a constructor for security
-//    public Customer(Customer customer) {
-//        this.name = customer.name;
-//        this.lastName = customer.lastName;
-//        this.email = customer.email;
-//        this.password = customer.password;
-//        this.authorities = customer.authorities;
-//    }
-
-
-
-
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
     }
-
-
-
-//    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
-//        this.authorities = authorities;
-//    }
 
     //the transient annotation means the authorities field will not be persisted in the database
     //initializes authorities to an empty set
@@ -93,8 +64,6 @@ public class Customer extends AbstractEntity implements UserDetails {
     public String getUsername() {
         return null;
     }
-
-
 
     @Override
     public String getPassword() {

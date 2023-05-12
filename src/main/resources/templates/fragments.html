@@ -10,8 +10,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link th:href="@{/css/qleanquotes.css}" rel="stylesheet" />
 
-
-
 <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
     </head>
@@ -25,15 +23,13 @@
         </div>
         <div class="navbar-collapse">
             <ul class="nav navbar-nav">
-<!--                TODO the below list items should have relative links that link to the page-about and page-contact sections below-->
-
                 <li class="nav-item"><a class="nav-link" href="#about-me">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
                 <li class="nav-item">
                     <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
                     <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/login'}">Log Out</a>
                 </li>
-
             </ul>
         </div>
     </div>
