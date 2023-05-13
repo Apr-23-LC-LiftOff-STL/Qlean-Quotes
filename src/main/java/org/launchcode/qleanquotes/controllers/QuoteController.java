@@ -24,7 +24,6 @@ public class QuoteController {
     @Autowired
     private QuoteRepository quoteRepository;
 
-
     private static final String quoteSessionKey = "quote";
 
     public static void setQuoteInsession(HttpSession session, Quote quote) {
