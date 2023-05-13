@@ -1,12 +1,9 @@
 package org.launchcode.qleanquotes;
 
-import com.squareup.square.Environment;
 import com.squareup.square.api.CustomersApi;
 import com.squareup.square.api.LocationsApi;
 import com.squareup.square.api.OrdersApi;
 import com.squareup.square.api.PaymentsApi;
-import com.squareup.square.exceptions.ApiException;
-import com.squareup.square.models.Location;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -11,5 +11,4 @@ public class MoneyController {
     private SquareClient squareClient;
 
 
-
 }

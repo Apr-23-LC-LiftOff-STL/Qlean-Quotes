@@ -20,7 +20,6 @@
 </div>
 <script type="module">
     //SDK reference: payments API
-    // TODO make a Money object
     // TODO get input value (cc payments)
 
     //generate identifier
@@ -31,13 +30,12 @@
     const cardButton = document.getElementById('card-button');
     cardButton.addEventListener('click', async () => {
         const statusContainer = document.getElementById('payment-status-container');
-        //paymentsapi.execute
-
+        //paymentsApi.execute
         try {
             //tokenize card info
             const result = await card.tokenize();
             if (result.status === 'OK') {
-
+        //create request
                 console.log(`Payment token is ${result.token}`);
                 statusContainer.innerHTML = "Payment Successful";
             } else {

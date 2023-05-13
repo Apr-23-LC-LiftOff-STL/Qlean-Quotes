@@ -112,13 +112,13 @@ public class SquareClient {
     //TODO align API requirements and desired functionality with data to be collected client-side
     //TODO replace hard-coded strings with Customer variables
         public void CreateCustomer() {
-        CreateCustomerRequest body = new CreateCustomerRequest.Builder()
+        CreateCustomerRequest request = new CreateCustomerRequest.Builder()
                 .idempotencyKey("{UNIQUE_KEY}")
                 .givenName("John")
                 .familyName("Doe")
                 .build();
 
-        customersApi.createCustomerAsync(body)
+            customersApi.createCustomerAsync(request)
                 .thenAccept(result -> {
                     System.out.println("Success!");
                 })
@@ -152,12 +152,12 @@ public class SquareClient {
                 .lineItems(lineItems)
                 .build();
 
-        CreateOrderRequest body = new CreateOrderRequest.Builder()
+        CreateOrderRequest request = new CreateOrderRequest.Builder()
                 .order(order)
                 .idempotencyKey("{UNIQUE_KEY}")
                 .build();
 
-        ordersApi.createOrderAsync(body)
+        ordersApi.createOrderAsync(request)
                 .thenAccept(result -> {
                     System.out.println("Success!");
                 })
