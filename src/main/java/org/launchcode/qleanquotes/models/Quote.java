@@ -15,7 +15,6 @@ public class Quote extends AbstractEntity {
     private Integer numOfBathroom;
 
 
-
     public Quote() {
     }
 
@@ -24,8 +23,6 @@ public class Quote extends AbstractEntity {
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
     }
-
-
 
     public Integer getSquareFeet() {
         return squareFeet;
