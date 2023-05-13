@@ -22,6 +22,8 @@
     //SDK reference: payments API
     // TODO make a Money object
     // TODO get input value (cc payments)
+
+    //generate identifier
     const payments = Square.payments('sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q', 'LPA9X767FQCCV');
     const card = await payments.card();
     await card.attach('#card-container');
@@ -29,11 +31,44 @@
     const cardButton = document.getElementById('card-button');
     cardButton.addEventListener('click', async () => {
         const statusContainer = document.getElementById('payment-status-container');
+        //paymentsapi.execute
 
         try {
+            //tokenize card info
             const result = await card.tokenize();
             if (result.status === 'OK') {
+
                 console.log(`Payment token is ${result.token}`);
+
+                Money amountMoney = new Money.Builder()
+                    .amount(1000L)
+            .currency("USD")
+                    .build();
+
+                Money appFeeMoney = new Money.Builder()
+                    .amount(10L)
+            .currency("USD")
+                    .build();
+
+                CreatePaymentRequest request = new CreatePaymentRequest.Builder(result.token, "7b0f3ec5-086a-4871-8f13-3c81b3875218")
+                    .amountMoney(amountMoney)
+                    .appFeeMoney(appFeeMoney)
+                    .autocomplete(true)
+                    .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
+                    .locationId("L88917AVBK2S5")
+                    .referenceId("123456")
+                    .note("Brief description")
+                    .build();
+
+                paymentsApi.createPaymentAsync(request)
+                    .thenAccept(result -> {
+                        System.out.println("Success!");
+                    })
+                    .exceptionally(exception -> {
+                        System.out.println("Failed to make the request");
+                        System.out.println(String.format("Exception: %s", exception.getMessage()));
+                        return null;
+                    });
                 statusContainer.innerHTML = "Payment Successful";
             } else {
                 let errorMessage = `Tokenization failed with status: ${result.status}`;
