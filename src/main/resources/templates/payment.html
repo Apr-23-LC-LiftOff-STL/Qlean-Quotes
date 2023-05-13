@@ -26,7 +26,6 @@
     const payments = Square.payments('sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q', 'LPA9X767FQCCV');
     const card = await payments.card();
     await card.attach('#card-container');
-
     const cardButton = document.getElementById('card-button');
     cardButton.addEventListener('click', async () => {
         const statusContainer = document.getElementById('payment-status-container');
