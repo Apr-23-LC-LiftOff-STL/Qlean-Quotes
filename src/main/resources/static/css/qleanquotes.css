@@ -1,16 +1,3 @@
-.button {
-    display: inline-block;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 
 
@@ -19,9 +6,12 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    padding: 100px;
+    margin: 0;
+    padding: 0;
     background-color: #7bd29d;
     border-radius: 30px;
+    margin-top:250px;
+    margin-bottom:250px;
 }
 
 #contact-us {
@@ -31,20 +21,97 @@
     padding: 100px;
     background-color: #d0906b;
     border-radius: 30px;
+
 }
 
-#login-form {
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-content: center;*/
-    padding: 100px;
-    background-color: cadetblue;
-    border-radius: 30px;
+.navbar-brand{
+  margin-left:70px;
+
 }
 
 
 
 
+
+.brand-name{
+   font-family: 'Abril Fatface', serif;
+   font-size: 46px;
+   margin-left:100px;
+   margin-top: 50px;
+   margin-bottom: 30px;
+
+
+}
+
+
+
+
+.login-container  {
+  display: flex;
+  align-items:center;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+
+}
+
+
+.login-form-contain {
+  display: flex;
+  align-items: center;
+  padding:78px;
+  background-color:#E7F1DE;
+  border-radius: 30px;
+
+
+}
+
+.login-image {
+  position: absolute;
+  display: flex;
+  background-size: cover;
+  width: 50%;
+  height: auto;
+  margin-left: 310px;
+  margin-right: auto;
+  border-radius: 30px;
+}
+
+
+
+
+
+
+/* These buttons only for login and sign up */
+#login-form .btn {
+  padding: 15px 25px;
+  font-size: 17px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 9px #999;
+  margin-right: 10px;
+
+}
+
+#login-form .btn.primary {background-color: #2196F3;} /* Blue */
+#login-form .btn.primary:hover {background: #0b7dda;}
+
+#login-form .btn.success {background-color: #04AA6D;} /* Green */
+#login-form .btn.success:hover {background-color: #46a049;}
+
+#login-form .btn:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
+
+/* This button code for others */
 .btn {
   font-size: 20px;
   padding: 12px 20px;
@@ -54,10 +121,77 @@
   cursor: pointer;
 }
 
-.btn-green {
-  background-color: #4CAF50;
+
+
+
+/* Hide footer container on all pages */
+#footer-container {
+  display: none;
+
 }
 
-.btn-green a {
-  color: #000;
+/* Show footer container only on Contact Us page */
+body.contact-us #footer-container {
+   position: absolute;
+}
+
+
+
+.navbar-nav {
+  display: flex;
+  float:right;
+  text-align: center;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 20px;
+  font-family:'Alexandria';
+  font-size: 20px;
+}
+
+.navbar-nav li a {
+  color: black;
+}
+
+
+/* Create Quotes button from index.html */
+.button-a {
+  border-radius: 4px;
+  background-color: #76B947;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 30px;
+  margin: 5px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  justify-content: center;
+  position: absolute;
+  right: 50%;
+}
+
+.button-a span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-a span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-a:hover span {
+  padding-right: 25px;
+}
+
+.button-a:hover span:after {
+  opacity: 1;
+  right: 0;
 }

@@ -14,15 +14,18 @@ public class Quote extends AbstractEntity {
 
     private Integer numOfBathroom;
 
+    private String cleaningOptions;
+
 
 
     public Quote() {
     }
 
-    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom) {
+    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom,String cleaningOptions) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
+        this.cleaningOptions = cleaningOptions;
     }
 
 
@@ -51,5 +54,11 @@ public class Quote extends AbstractEntity {
         this.numOfBathroom = numOfBathroom;
     }
 
+    public String getCleaningOptions() {
+        return cleaningOptions;
+    }
 
+    public void setCleaningOptions(String cleaningOptions) {
+        this.cleaningOptions = cleaningOptions;
+    }
 }

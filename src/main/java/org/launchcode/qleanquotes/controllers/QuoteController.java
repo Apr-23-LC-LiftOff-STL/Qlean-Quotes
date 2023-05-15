@@ -53,16 +53,29 @@ public class QuoteController {
         if (createQuoteFormDTO.getSquareFeet() != null && createQuoteFormDTO.getNumOfRoom() != null) {
             totalCost += createQuoteFormDTO.getSquareFeet() * 0.5 + createQuoteFormDTO.getNumOfRoom() * 20;
 
+
+
             if (createQuoteFormDTO.getNumOfBathroom() != null) {
                 totalCost += createQuoteFormDTO.getNumOfBathroom() * 30;
             }
+
+
+            if (createQuoteFormDTO.getCleaningOptions() != null) {
+                if (createQuoteFormDTO.getCleaningOptions().equals("deep")) {
+                    totalCost += 50.0;
+                } else if (createQuoteFormDTO.getCleaningOptions().equals("average")) {
+                    totalCost += 25.0;
+                }
+            }
+
 
             model.addAttribute("totalCost", totalCost);
             return "createquotes";
         }
 
+
        // esra/createquoteandpaymentpage
-        Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom());
+        Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOptions());
         quoteRepository.save(newQuote);
         setQuoteInsession(request.getSession(), newQuote);
         model.addAttribute("quote", newQuote);
