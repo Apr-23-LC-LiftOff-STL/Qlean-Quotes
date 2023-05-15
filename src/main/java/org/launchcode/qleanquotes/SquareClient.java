@@ -7,6 +7,7 @@ import com.squareup.square.api.OrdersApi;
 import com.squareup.square.api.PaymentsApi;
 import com.squareup.square.exceptions.ApiException;
 import com.squareup.square.models.*;
+import jakarta.validation.constraints.Email;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -78,47 +79,59 @@ public class SquareClient {
 
     //TODO align API requirements and desired functionality with data to be collected client-side
     //TODO replace hard-coded strings with Money variables
-        public void CreatePayment (){
-            Money amountMoney = new Money.Builder()
-                    .amount(1000L)
-                    .currency("USD")
-                    .build();
+    public void CreatePayment (){
+        Money amountMoney = new Money.Builder()
+                .amount(1000L)
+                .currency("USD")
+                .build();
 
-            Money appFeeMoney = new Money.Builder()
-                    .amount(10L)
-                    .currency("USD")
-                    .build();
 
-            CreatePaymentRequest request = new CreatePaymentRequest.Builder("ccof:GaJGNaZa8x4OgDJn4GB", "7b0f3ec5-086a-4871-8f13-3c81b3875218")
-                    .amountMoney(amountMoney)
-                    .appFeeMoney(appFeeMoney)
-                    .autocomplete(true)
-                    .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
-                    .locationId("L88917AVBK2S5")
-                    .referenceId("123456")
-                    .note("Brief description")
-                    .build();
+        Address billingAddress = new Address.Builder()
+                .addressLine1("Address line 1")
+                .addressLine2("Address line 2")
+                .locality("City")
+                .administrativeDistrictLevel1("State")
+                .postalCode("ZIP Code")
+                .build();
 
-            paymentsApi.createPaymentAsync(request)
-                    .thenAccept(result -> {
-                        System.out.println("Success!");
-                    })
-                    .exceptionally(exception -> {
-                        System.out.println("Failed to make the request");
-                        System.out.println(String.format("Exception: %s", exception.getMessage()));
-                        return null;
-                    });
-        }
+        Address shippingAddress = new Address.Builder()
+                .addressLine1("Address line 1")
+                .addressLine2("Address line 2")
+                .locality("City")
+                .administrativeDistrictLevel1("State")
+                .postalCode("ZIP Code")
+                .build();
+
+        CreatePaymentRequest request = new CreatePaymentRequest.Builder("ccof:GaJGNaZa8x4OgDJn4GB", "7b0f3ec5-086a-4871-8f13-3c81b3875218")
+                .amountMoney(amountMoney)
+                .autocomplete(true)
+                .buyerEmailAddress("email@email.com")
+                .billingAddress(billingAddress)
+                .shippingAddress(shippingAddress)
+                // .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
+                .orderId("orderId")
+                .build();
+
+        paymentsApi.createPaymentAsync(request)
+                .thenAccept(result -> {
+                    System.out.println("Success!");
+                })
+                .exceptionally(exception -> {
+                    System.out.println("Failed to make the request");
+                    System.out.println(String.format("Exception: %s", exception.getMessage()));
+                    return null;
+                });
+    }
     //TODO align API requirements and desired functionality with data to be collected client-side
     //TODO replace hard-coded strings with Customer variables
-        public void CreateCustomer() {
+    public void CreateCustomer() {
         CreateCustomerRequest request = new CreateCustomerRequest.Builder()
                 .idempotencyKey("{UNIQUE_KEY}")
                 .givenName("John")
                 .familyName("Doe")
                 .build();
 
-            customersApi.createCustomerAsync(request)
+        customersApi.createCustomerAsync(request)
                 .thenAccept(result -> {
                     System.out.println("Success!");
                 })
