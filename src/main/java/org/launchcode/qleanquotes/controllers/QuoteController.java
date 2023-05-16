@@ -1,6 +1,10 @@
 package org.launchcode.qleanquotes.controllers;
 
 
+import com.squareup.square.models.CreateOrderRequest;
+import com.squareup.square.models.Order;
+import com.squareup.square.models.OrderLineItem;
+import com.squareup.square.models.OrderLineItemModifier;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.LinkedList;
 
 
 @Controller
@@ -41,6 +47,43 @@ public class QuoteController {
     @PostMapping("/createquotes")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
+
+//        //TODO align API requirements and desired functionality with data to be collected client-side
+//        //TODO replace hard-coded strings with Customer variables
+//            OrderLineItemModifier orderLineItemModifier = new OrderLineItemModifier.Builder()
+//                    .catalogObjectId("{MODIFIER_ID}")
+//                    .quantity("1")
+//                    .build();
+//
+//            LinkedList<OrderLineItemModifier> modifiers = new LinkedList<>();
+//            modifiers.add(orderLineItemModifier);
+//
+//            OrderLineItem orderLineItem = new OrderLineItem.Builder("1")
+//                    .catalogObjectId("{ITEM_VARIATION_ID}")
+//                    .modifiers(modifiers)
+//                    .build();
+//
+//            LinkedList<OrderLineItem> lineItems = new LinkedList<>();
+//            lineItems.add(orderLineItem);
+//
+//            Order order = new Order.Builder("{LOCATION_ID}")
+//                    .lineItems(lineItems)
+//                    .build();
+//
+//            CreateOrderRequest request = new CreateOrderRequest.Builder()
+//                    .order(order)
+//                    .idempotencyKey("{UNIQUE_KEY}")
+//                    .build();
+//
+//            ordersApi.createOrderAsync(request)
+//                    .thenAccept(result -> {
+//                        System.out.println("Success!");
+//                    })
+//                    .exceptionally(exception -> {
+//                        System.out.println("Failed to make the request");
+//                        System.out.println(String.format("Exception: %s", exception.getMessage()));
+//                        return null;
+//                    });
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "/createquotes";
