@@ -1,15 +1,46 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="~{fragments :: head}"></head>
+
+<header>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/authentication/login" title="Qlean Quotes Logo">
+                <img src="/images/logo.png" alt="Qlean Quotes Logo" width="100">
+            </a>
+        </div>
+        <div class="navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#about-me">About Us</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</header>
+
+
 <body class="container body-content">
 
-<nav th:replace="~{fragments :: page-header}"></nav>
-
-<h1>Log In</h1>
 <!--if logout, the below th:if condition is triggered, find this in securityconfig, logoutURL() query parameter-->
 <div th:if="${param.logout}"> You have logged out. </div>
 
+
+<div class="brand-name">
+    <h1> Qlean Quotes </h1>
+</div>
+
+<div class="login-container">
+
+    <div class="login-form-contain">
+
 <form id="login-form" method="post" th:action="@{/authentication/login/process}">
+
+    <h1>Log In</h1>
+
     <div class="form-group">
         <label>Email
             <input class="form-control" name="email" />
@@ -30,8 +61,14 @@
     </div>
 </form>
 
+        <img class="login-image"  src="/images/clean.png"  alt="Cleaning Image" >
+    </div>
+</div>
+
+
 <div th:replace="~{fragments :: page-about}"></div>
 <div th:replace="~{fragments :: page-contact}"></div>
+<div th:replace="fragments :: footer"></div>
 
 <script th:src="@{/css/script.js}"></script>
 </body>

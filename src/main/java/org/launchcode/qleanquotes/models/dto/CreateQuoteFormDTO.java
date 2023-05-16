@@ -3,7 +3,7 @@ package org.launchcode.qleanquotes.models.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+
 
 
 public class CreateQuoteFormDTO {
@@ -20,14 +20,19 @@ public class CreateQuoteFormDTO {
     private Integer numOfBathroom;
 
 
+    @NotNull (message = "Please select one of the options!")
+    private String cleaningOptions;
+
+
 
     public CreateQuoteFormDTO() {
     }
 
-    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom) {
+    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
+        this.cleaningOptions = cleaningOptions;
 
     }
 
@@ -56,7 +61,13 @@ public class CreateQuoteFormDTO {
         this.numOfBathroom = numOfBathroom;
     }
 
+    public String getCleaningOptions() {
+        return cleaningOptions;
+    }
 
+    public void setCleaningOptions(String cleaningOptions) {
+        this.cleaningOptions = cleaningOptions;
+    }
 }
 
 
