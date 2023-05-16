@@ -8,6 +8,7 @@ import org.launchcode.qleanquotes.SquareClient;
 import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.TokenWrapper;
+import org.launchcode.qleanquotes.models.dto.RegisterFormDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ import java.util.concurrent.ExecutionException;
 @Controller
 public class MoneyController {
 
-    @RequestMapping("/")
+    @RequestMapping("/payment")
     String index(Map<String, Object> model, @ModelAttribute SquareClient squareClient) throws InterruptedException, ExecutionException {
 
         model.put("paymentFormUrl",
@@ -36,7 +37,7 @@ public class MoneyController {
 
     @PostMapping("/payment")
     @ResponseBody
-    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute SquareClient squareClient, @ModelAttribute Customer customer, Model model)
+    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
             throws InterruptedException, ExecutionException {
 
         Money amountMoney = new Money.Builder()

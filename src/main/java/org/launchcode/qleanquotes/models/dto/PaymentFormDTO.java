@@ -1,11 +1,14 @@
 package org.launchcode.qleanquotes.models.dto;
 
 public class PaymentFormDTO {
+
+    //TODO need to add validation
         private String shippingAddressLine1;
         private String shippingAddressLine2;
         private String shippingLocality;
         private String shippingAdministrativeDistrictLevel1;
         private String shippingPostalCode;
+
         private String billingAddressLine1;
         private String billingAddressLine2;
         private String billingLocality;
