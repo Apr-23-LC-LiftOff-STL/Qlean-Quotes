@@ -208,6 +208,7 @@ body.contact-us #footer-container {
 
 .register-body {
     font-family: 'Arial', sans-serif;
+
 }
 
 .register-form {
@@ -291,7 +292,14 @@ body.contact-us #footer-container {
     text-decoration: underline;
 }
 
-/*.register-login-redirect a:hover {*/
-/*    background-color: #b6b4b4;*/
-/*    border-radius: 3px;*/
-/*}*/
+#register-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: small;
+    padding: 4px;
+}
