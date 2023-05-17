@@ -1,57 +1,38 @@
 <!DOCTYPE html>
-<html lange="en">
+<html>
+
 <head>
-    <script
-            type="text/javascript"
-            src="https://sandbox.web.squarecdn.com/v1/square.js"
-    ></script>
-    <meta charset="utf-8" />
-    <title>Payment Page</title>
-    <link href="app.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta content="ie=edge" http-equiv="x-ua-compatible">
+    <title>Sample Payment Form</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <script th:src="${paymentFormUrl}" type="text/javascript"></script>
+    <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+    <script>
+
+        const payments = window.Square.payments(applicationId, locationId);
+
+    </script>
+    <script type="application/javascript">
+        window.applicationId = '[[${appId}]]';
+        window.locationId = '[[${locationId}]]';
+        window.currency = '[[${currency}]]';
+        window.country = '[[${country}]]';
+        window.idempotencyKey = '[[${idempotencyKey}]]';
+    </script>
+    <link rel="stylesheet" type="text/css" href="/css/sq-payment.css">
+    <link rel="stylesheet" type="text/css" href="/css/sq-style.css">
 </head>
-<!--<head>-->
-<!--    <link rel="stylesheet" href="/reference/sdks/web/static/styles/code-preview.css" preload>-->
-<!--</head>-->
+
 <body>
-<div id="payment-form">
-    <div id="payment-status-container"></div>
+<!-- Begin Payment Form -->
+<form id="payment-form">
     <div id="card-container"></div>
-    <button id="card-button" type="button">Pay</button>
-</div>
-<script type="module">
-    //SDK reference: payments API
-    // TODO get input value (cc payments)
-
-    //generate identifier
-    const payments = Square.payments('sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q', 'LPA9X767FQCCV');
-    const card = await payments.card();
-    await card.attach('#card-container');
-    const cardButton = document.getElementById('card-button');
-    cardButton.addEventListener('click', async () => {
-        const statusContainer = document.getElementById('payment-status-container');
-        //paymentsApi.execute
-        try {
-            //tokenize card info
-            const result = await card.tokenize();
-            if (result.status === 'OK') {
-        //create request
-                console.log(`Payment token is ${result.token}`);
-                statusContainer.innerHTML = "Payment Successful";
-            } else {
-                let errorMessage = `Tokenization failed with status: ${result.status}`;
-                if (result.errors) {
-                    errorMessage += ` and errors: ${JSON.stringify(
-                        result.errors
-                    )}`;
-                }
-
-                throw new Error(errorMessage);
-            }
-        } catch (e) {
-            console.error(e);
-            statusContainer.innerHTML = "Payment Failed";
-        }
-    });
-</script>
+    <button id="card-button" type="button">Pay $1.00</button>
+</form>
+<div id="payment-status-container"></div>
+</form>
+<!-- End Payment Form -->
+<script src="js/webpayments-sdk.js"></script>
 </body>
 </html>
