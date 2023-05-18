@@ -1,18 +1,66 @@
 
 
+#about-us {
+  position: relative;
+  margin-top:250px;
+  margin-bottom:250px;
 
 
-#about-me {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin: 0;
-    padding: 0;
-    background-color: #7bd29d;
-    border-radius: 30px;
-    margin-top:250px;
-    margin-bottom:250px;
 }
+
+#about-us .aboutus-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: -1;
+  border-radius: 30px;
+}
+
+#about-us > div {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  color: #333;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+
+
+#about-us h1{
+  font-family: 'Oleo Script';
+  font-size: 38px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+}
+
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 10px;
+  margin-top: 300px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+
+
+
+
+
 
 #contact-us {
     display: flex;
@@ -32,16 +80,21 @@
 
 
 
-
 .brand-name{
-   font-family: 'Abril Fatface', serif;
-   font-size: 46px;
+   font-family: 'Oleo Script';
+   font-size: 38px;
    margin-left:100px;
-   margin-top: 50px;
-   margin-bottom: 30px;
+   margin-top:20px;
+   font-style: italic;
 
+ }
+
+.brand-name p {
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
 
 }
+
 
 
 
@@ -52,29 +105,37 @@
   flex-direction: row;
   margin: 0;
   padding: 0;
+  position: relative;
 
 }
 
 
 .login-form-contain {
-  display: flex;
+  position: relative;
   align-items: center;
-  padding:78px;
-  background-color:#E7F1DE;
+  padding:100px;
   border-radius: 30px;
 
-
 }
+
+.login-form-contain h1 {
+ font-family: 'Abril Fatface', serif;
+ margin-bottom: 40px;
+}
+
 
 .login-image {
   position: absolute;
   display: flex;
-  background-size: cover;
-  width: 50%;
+  top: 20px;
+  margin-top: -180px;
+  left: 0;
+  width: 300%;
   height: auto;
-  margin-left: 310px;
-  margin-right: auto;
+  z-index: -1;
   border-radius: 30px;
+  margin-left: -150px;
+
 }
 
 
@@ -91,9 +152,9 @@
   outline: none;
   color: #fff;
   border: none;
-  border-radius: 18px;
   box-shadow: 0 9px #999;
   margin-right: 10px;
+  margin-top: 25px;
 
 }
 
@@ -108,6 +169,7 @@
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
 
 
 
