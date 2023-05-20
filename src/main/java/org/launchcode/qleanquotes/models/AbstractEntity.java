@@ -5,6 +5,9 @@ package org.launchcode.qleanquotes.models;
  (Recall that an entity is a class/object that can be stored in a database.) */
 
 
+import com.squareup.square.Environment;
+import com.squareup.square.SquareClient;
+import com.squareup.square.exceptions.ApiException;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
