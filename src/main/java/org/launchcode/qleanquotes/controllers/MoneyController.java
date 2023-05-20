@@ -1,26 +1,43 @@
 package org.launchcode.qleanquotes.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.squareup.square.ApiHelper;
 import com.squareup.square.Environment;
+import com.squareup.square.Server;
+import com.squareup.square.api.BaseApi;
 import com.squareup.square.api.PaymentsApi;
 import com.squareup.square.exceptions.ApiException;
+import com.squareup.square.http.client.HttpContext;
+import com.squareup.square.http.request.HttpMethod;
 import com.squareup.square.models.*;
+import io.apimatic.core.ApiCall;
 import org.launchcode.qleanquotes.SquareClient;
 import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.TokenWrapper;
+import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
 import org.launchcode.qleanquotes.models.dto.RegisterFormDTO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.ExecutionException;
 
 
 @Controller
 public class MoneyController {
+
+    @GetMapping("/payment")
+    public String showPaymentForm(Model model){
+        model.addAttribute(new PaymentFormDTO());
+        return "payment";
+    }
 
     @RequestMapping("/payment")
     String index(Map<String, Object> model, @ModelAttribute SquareClient squareClient) throws InterruptedException, ExecutionException {
@@ -32,10 +49,10 @@ public class MoneyController {
         model.put("appId", squareClient.getSquareAppId());
         model.put("idempotencyKey", UUID.randomUUID().toString());
 
-        return "index";
+        return "payment";
     }
 
-    @PostMapping("/payment")
+    @PostMapping("/process-payment")
     @ResponseBody
     PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
             throws InterruptedException, ExecutionException {
