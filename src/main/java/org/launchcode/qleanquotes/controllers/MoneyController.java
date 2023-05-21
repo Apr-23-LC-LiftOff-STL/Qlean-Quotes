@@ -54,7 +54,7 @@ public class MoneyController {
 
     @PostMapping("/process-payment")
     @ResponseBody
-    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
+    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentForm, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
             throws InterruptedException, ExecutionException {
 
         Money amountMoney = new Money.Builder()
@@ -63,19 +63,19 @@ public class MoneyController {
                 .build();
 
         Address billingAddress = new Address.Builder()
-                .addressLine1(paymentFormDTO.getBillingAddressLine1())
-                .addressLine2(paymentFormDTO.getBillingAddressLine2())
-                .locality(paymentFormDTO.getBillingLocality())
-                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
-                .postalCode(paymentFormDTO.getBillingPostalCode())
+                .addressLine1(paymentForm.getBillingAddressLine1())
+                .addressLine2(paymentForm.getBillingAddressLine2())
+                .locality(paymentForm.getBillingLocality())
+                .administrativeDistrictLevel1(paymentForm.getBillingAdministrativeDistrictLevel1())
+                .postalCode(paymentForm.getBillingPostalCode())
                 .build();
 
         Address shippingAddress = new Address.Builder()
-                .addressLine1(paymentFormDTO.getShippingAddressLine1())
-                .addressLine2(paymentFormDTO.getShippingAddressLine2())
-                .locality(paymentFormDTO.getShippingLocality())
-                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
-                .postalCode(paymentFormDTO.getShippingPostalCode())
+                .addressLine1(paymentForm.getShippingAddressLine1())
+                .addressLine2(paymentForm.getShippingAddressLine2())
+                .locality(paymentForm.getShippingLocality())
+                .administrativeDistrictLevel1(paymentForm.getShippingAdministrativeDistrictLevel1())
+                .postalCode(paymentForm.getShippingPostalCode())
                 .build();
 
         CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest.Builder(

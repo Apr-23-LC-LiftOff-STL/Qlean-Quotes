@@ -13,6 +13,8 @@ public class PaymentFormDTO {
         private String billingAdministrativeDistrictLevel1;
         private String billingPostalCode;
 
+    public PaymentFormDTO (){}
+
     public String getShippingAddressLine1() {
         return shippingAddressLine1;
     }
