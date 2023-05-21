@@ -1,7 +1,4 @@
 
-
-
-
 #about-me {
     display: flex;
     justify-content: center;
@@ -207,8 +204,7 @@ body.contact-us #footer-container {
 }
 
 .register-body {
-    font-family: 'Arial', sans-serif;
-
+    font-family: 'Montserrat', sans-serif;
 }
 
 .register-form {
@@ -279,6 +275,7 @@ body.contact-us #footer-container {
 #register-create-button:active {
     background-color: cadetblue;
     box-shadow: 0px 2px 4px #335556;
+    color: #f1cbbd;
 }
 
 .register-login-redirect {
@@ -303,3 +300,7 @@ body.contact-us #footer-container {
     font-size: small;
     padding: 4px;
 }
+
+
+
+
