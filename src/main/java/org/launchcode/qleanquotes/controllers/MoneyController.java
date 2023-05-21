@@ -11,6 +11,7 @@ import com.squareup.square.http.client.HttpContext;
 import com.squareup.square.http.request.HttpMethod;
 import com.squareup.square.models.*;
 import io.apimatic.core.ApiCall;
+import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.SquareClient;
 import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
@@ -39,7 +40,7 @@ public class MoneyController {
         return "payment";
     }
 
-    @RequestMapping("/payment")
+    @RequestMapping("/")
     String index(Map<String, Object> model, @ModelAttribute SquareClient squareClient) throws InterruptedException, ExecutionException {
 
         model.put("paymentFormUrl",
@@ -49,12 +50,12 @@ public class MoneyController {
         model.put("appId", squareClient.getSquareAppId());
         model.put("idempotencyKey", UUID.randomUUID().toString());
 
-        return "payment";
+        return "index";
     }
 
     @PostMapping("/process-payment")
     @ResponseBody
-    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentForm, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
+    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute @Valid PaymentFormDTO paymentForm, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
             throws InterruptedException, ExecutionException {
 
         Money amountMoney = new Money.Builder()

@@ -1,16 +1,34 @@
 package org.launchcode.qleanquotes.models.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class PaymentFormDTO {
-    //TODO need to add validation
+        @NotNull
+        @NotBlank
         private String shippingAddressLine1;
         private String shippingAddressLine2;
+        @NotNull
+        @NotBlank
         private String shippingLocality;
+        @NotNull
+        @NotBlank
         private String shippingAdministrativeDistrictLevel1;
+        @NotNull
+        @NotBlank
         private String shippingPostalCode;
+        @NotNull
+        @NotBlank
         private String billingAddressLine1;
         private String billingAddressLine2;
+        @NotNull
+        @NotBlank
         private String billingLocality;
+        @NotNull
+        @NotBlank
         private String billingAdministrativeDistrictLevel1;
+        @NotNull
+        @NotBlank
         private String billingPostalCode;
 
     public PaymentFormDTO (){}

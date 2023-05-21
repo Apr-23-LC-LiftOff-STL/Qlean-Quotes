@@ -14,8 +14,4 @@ public class MainController {
         return "index";
     }
 
-//    @GetMapping("/payment")
-//    public String showPayment() {
-//        return "payment";
-//    }
 }
