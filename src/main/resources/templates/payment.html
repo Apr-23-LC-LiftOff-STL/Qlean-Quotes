@@ -90,6 +90,26 @@
         await card.attach('#card-container');
         return card;
     }
+    // This function tokenizes a payment method.
+    // The ‘error’ thrown from this async function denotes a failed tokenization,
+    // which is due to buyer error (such as an expired card). It is up to the
+    // developer to handle the error and provide the buyer the chance to fix
+    // their mistakes.
+    async function tokenize(paymentMethod) {
+        const tokenResult = await paymentMethod.tokenize();
+        if (tokenResult.status === 'OK') {
+            return tokenResult.token;
+        } else {
+            let errorMessage = `Tokenization failed-status: ${tokenResult.status}`;
+            if (tokenResult.errors) {
+                errorMessage += ` and errors: ${JSON.stringify(
+                    tokenResult.errors
+                )}`;
+            }
+            throw new Error(errorMessage);
+        }
+    }
+
     // Call this function to send a payment token, buyer name, and other details
     // to the project server code so that a payment can be created with
     // Payments API
@@ -110,25 +130,6 @@
         }
         const errorBody = await paymentResponse.text();
         throw new Error(errorBody);
-    }
-    // This function tokenizes a payment method.
-    // The ‘error’ thrown from this async function denotes a failed tokenization,
-    // which is due to buyer error (such as an expired card). It is up to the
-    // developer to handle the error and provide the buyer the chance to fix
-    // their mistakes.
-    async function tokenize(paymentMethod) {
-        const tokenResult = await paymentMethod.tokenize();
-        if (tokenResult.status === 'OK') {
-            return tokenResult.token;
-        } else {
-            let errorMessage = `Tokenization failed-status: ${tokenResult.status}`;
-            if (tokenResult.errors) {
-                errorMessage += ` and errors: ${JSON.stringify(
-                    tokenResult.errors
-                )}`;
-            }
-            throw new Error(errorMessage);
-        }
     }
 
     // Helper method for displaying the Payment Status on the screen.

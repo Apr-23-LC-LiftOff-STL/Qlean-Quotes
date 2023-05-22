@@ -1,6 +1,7 @@
 package org.launchcode.qleanquotes;
 
 import com.squareup.square.Environment;
+import com.squareup.square.SquareClient;
 import com.squareup.square.api.CustomersApi;
 import com.squareup.square.api.LocationsApi;
 import com.squareup.square.api.OrdersApi;
@@ -9,25 +10,7 @@ import com.squareup.square.exceptions.ApiException;
 
 import java.io.IOException;
 
-public class SquareClient {
-
-    private LocationsApi locationsApi;
-    private PaymentsApi paymentsApi;
-    private CustomersApi customersApi;
-    private OrdersApi ordersApi;
-
-
-    public SquareClient(LocationsApi locationsApi, PaymentsApi paymentsApi, CustomersApi customersApi, OrdersApi ordersApi, com.squareup.square.SquareClient squareClient, String squareLocationId, String squareAppId, String squareEnvironment) throws IOException {
-
-        this.squareClient = squareClient;
-        this.squareLocationId = squareLocationId;
-        this.squareAppId = squareAppId;
-        this.squareEnvironment = squareEnvironment;
-        this.locationsApi = locationsApi;
-        this.paymentsApi = paymentsApi;
-        this.customersApi = customersApi;
-        this.ordersApi = ordersApi;
-    }
+public class ApiClient {
 
     private static final String SQUARE_ACCESS_TOKEN_ENV_VAR = "SQUARE_ACCESS_TOKEN";
 
@@ -44,22 +27,34 @@ public class SquareClient {
     // This must be set in order for the application to start.
     private static final String SQUARE_ENV_ENV_VAR = "ENVIRONMENT";
 
-    private final com.squareup.square.SquareClient squareClient;
     private final String squareLocationId;
     private final String squareAppId;
     private final String squareEnvironment;
 
-    public SquareClient() throws ApiException {
+    private PaymentsApi paymentsApi;
+
+    public SquareClient squareClient;
+
+    public ApiClient() throws ApiException {
         squareEnvironment = mustLoadEnvironmentVariable(SQUARE_ENV_ENV_VAR);
         squareAppId = mustLoadEnvironmentVariable(SQUARE_APP_ID_ENV_VAR);
         squareLocationId = mustLoadEnvironmentVariable(SQUARE_LOCATION_ID_ENV_VAR);
 
-        squareClient = new com.squareup.square.SquareClient.Builder()
+        squareClient = new SquareClient.Builder()
                 .environment(Environment.fromString(squareEnvironment))
                 .accessToken(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
                 .build();
 
     }
+
+       public ApiClient(PaymentsApi paymentsApi, String squareLocationId, String squareAppId, String squareEnvironment, SquareClient squareClient) throws IOException {
+
+            this.squareLocationId = squareLocationId;
+            this.squareAppId = squareAppId;
+            this.squareEnvironment = squareEnvironment;
+            this.squareClient = squareClient;
+            this.paymentsApi = paymentsApi;
+        }
 
     private String mustLoadEnvironmentVariable(String name) {
         String value = System.getenv(name);
@@ -71,24 +66,9 @@ public class SquareClient {
         return value;
     }
 
-    public LocationsApi getLocationsApi() {
-        return locationsApi;
-    }
 
     public PaymentsApi getPaymentsApi() {
         return paymentsApi;
-    }
-
-    public CustomersApi getCustomersApi() {
-        return customersApi;
-    }
-
-    public OrdersApi getOrdersApi() {
-        return ordersApi;
-    }
-
-    public com.squareup.square.SquareClient getSquareClient() {
-        return squareClient;
     }
 
     public String getSquareLocationId() {
@@ -102,4 +82,5 @@ public class SquareClient {
     public String getSquareEnvironment() {
         return squareEnvironment;
     }
+
 }
