@@ -1,4 +1,14 @@
 
+#about-me {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0;
+    padding: 0;
+    background-color: #7bd29d;
+    border-radius: 30px;
+    margin-top:250px;
+    margin-bottom:250px;
 
 #about-us {
   position: relative;
@@ -295,8 +305,7 @@ body.contact-us #footer-container {
 }
 
 .register-body {
-    font-family: 'Arial', sans-serif;
-
+    font-family: 'Montserrat', sans-serif;
 }
 
 .register-form {
@@ -367,6 +376,7 @@ body.contact-us #footer-container {
 #register-create-button:active {
     background-color: cadetblue;
     box-shadow: 0px 2px 4px #335556;
+    color: #f1cbbd;
 }
 
 .register-login-redirect {
@@ -391,3 +401,7 @@ body.contact-us #footer-container {
     font-size: small;
     padding: 4px;
 }
+
+
+
+

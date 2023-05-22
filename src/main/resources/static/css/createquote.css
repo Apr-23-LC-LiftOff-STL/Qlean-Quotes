@@ -1,0 +1,191 @@
+
+
+.create-quote-body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.create-quote-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1cm;
+    padding: 1cm;
+    border-radius: 5%;
+    background-color: rgba(245, 243, 243, 0.8);
+}
+
+
+/*/page title */
+.create-quote-title-container {
+    background-color: #0e1818;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    width: 300px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+}
+
+.create-quote-title {
+    color: #e7e4e7;
+    margin: 0;
+    font-size: 30px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+/*cleaning options with radio buttons, and title*/
+.cleaning-options-container {
+    border: 2px solid gray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.radio-button-title-container {
+    background-color: #1f2121;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
+    width: 190px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.radio-button-title {
+    color: #e7e4e7;
+    margin: 0;
+    font-size: 17px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.create-quote-radio-buttons-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-bottom: 25px;
+}
+
+
+
+
+.create-quote-radio-buttons-container {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+/*styling the actual radio buttons*/
+.form-check-input[type="radio"] {
+    /* Hide the default radio button */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #888888;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-check-input[type="radio"]:checked {
+    background-color: cadetblue;
+    border-color: #3f696b;
+    box-shadow: 0 0 5px #2a4748;
+}
+
+.form-check-label {
+    position: relative;
+    padding-right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/*container for calculate and pay buttons*/
+.create-quote-submit-button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-bottom: 25px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+
+/*calculate and pay buttons*/
+.btn {
+    border: #0e1818;
+}
+
+.btn-primary {
+    background-color: #0e1818;
+    padding: 5px;
+    border: #0e1818;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+
+.btn-primary:hover {
+    background-color: #2a2d2d;
+    box-shadow: 0 0 5px #32393a;
+}
+
+.btn-primary:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
+}
+
+.btn-success {
+    background-color: #0e1818;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+
+.btn-success:hover {
+    background-color: #2a2d2d;
+    box-shadow: 0 0 5px #32393a;
+}
+
+.btn-success:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
+}
+
+
+/*footer*/
+#register-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: small;
+    padding: 4px;
+}
+
