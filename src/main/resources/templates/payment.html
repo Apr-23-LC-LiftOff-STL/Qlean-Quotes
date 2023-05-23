@@ -9,73 +9,73 @@
 <header th:replace="~{fragments :: page-header}"></header>
 
 <h1>Service Address</h1>
-<div id="address-form-container">
+<!--<div id="address-form-container">-->
 <!--<form id="address-form" th:action="@{/payment}"  method="post" >-->
-    <form id="address-form" th:action="@{/payment}"  method="post" >
-<div class="form-group">
-    <label>Address Line 1
-        <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine1}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
-</div>
-<div class="form-group">
-    <label>Address Line 2
-        <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine2}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
-</div>
-<div class="form-group">
-    <label>City
-        <input class="form-control" th:field="${paymentFormDTO.shippingLocality}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
-</div>
-<div class="form-group">
-    <label>State
-        <input class="form-control" th:field="${paymentFormDTO.shippingAdministrativeDistrictLevel1}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
-</div>
-<div class="form-group">
-    <label>ZIP Code
-        <input class="form-control" th:field="${paymentFormDTO.shippingPostalCode}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
-</div>
+<!--    <form id="address-form" th:action="@{/payment}"  method="post" >-->
+<!--<div class="form-group">-->
+<!--    <label>Address Line 1-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine1}" />-->
+<!--    </label>-->
+<!--&lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>Address Line 2-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine2}" />-->
+<!--    </label>-->
+<!--&lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>City-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.shippingLocality}" />-->
+<!--    </label>-->
+<!--&lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>State-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.shippingAdministrativeDistrictLevel1}" />-->
+<!--    </label>-->
+<!--&lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>ZIP Code-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.shippingPostalCode}" />-->
+<!--    </label>-->
+<!--&lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>&ndash;&gt;-->
+<!--</div>-->
 
-<h1>Billing Address</h1>
-<div class="form-group">
-    <label>Address Line 1
-        <input class="form-control" th:field="${paymentFormDTO.billingAddressLine1}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
-</div>
-<div class="form-group">
-    <label>Address Line 2
-        <input class="form-control" th:field="${paymentFormDTO.billingAddressLine2}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
-</div>
-<div class="form-group">
-    <label>City
-        <input class="form-control" th:field="${paymentFormDTO.billingLocality}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
-</div>
-<div class="form-group">
-    <label>State
-        <input class="form-control" th:field="${paymentFormDTO.billingAdministrativeDistrictLevel1}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
-</div>
-<div class="form-group">
-    <label>ZIP Code
-        <input class="form-control" th:field="${paymentFormDTO.billingPostalCode}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
-</div>
-</form>
-</div>
+<!--<h1>Billing Address</h1>-->
+<!--<div class="form-group">-->
+<!--    <label>Address Line 1-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.billingAddressLine1}" />-->
+<!--    </label>-->
+<!--    &lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>Address Line 2-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.billingAddressLine2}" />-->
+<!--    </label>-->
+<!--    &lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>City-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.billingLocality}" />-->
+<!--    </label>-->
+<!--    &lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>State-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.billingAdministrativeDistrictLevel1}" />-->
+<!--    </label>-->
+<!--    &lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--    <label>ZIP Code-->
+<!--        <input class="form-control" th:field="${paymentFormDTO.billingPostalCode}" />-->
+<!--    </label>-->
+<!--    &lt;!&ndash;    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>&ndash;&gt;-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
 <script
         type="text/javascript"
         src="https://sandbox.web.squarecdn.com/v1/square.js"
@@ -83,8 +83,8 @@
 <h3>Enter Your Payment Card Details</h3>
 <script type="module">
 
-    const appId = '{$application_id}';
-    const locationId = '{location_id}';
+    const appId = 'sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q';
+    const locationId = 'LPA9X767FQCCV';
     async function initializeCard(payments) {
         const card = await payments.card();
         await card.attach('#card-container');
@@ -168,7 +168,7 @@
 
         async function handlePaymentMethodSubmission(event, paymentMethod) {
             event.preventDefault();
-            const addressForm = document.getElementById('address-form');
+            // const addressForm = document.getElementById('address-form');
                 if (event.target === cardButton) {
                     try {
                         // disable the submit button as we await tokenization and make a
@@ -195,10 +195,10 @@
             await handlePaymentMethodSubmission(event, card);
         });
 
-        const addressForm = document.getElementById('address-form');
-        addressForm.addEventListener('submit', async function (event) {
-            await handlePaymentMethodSubmission(event, null);
-        });
+        // const addressForm = document.getElementById('address-form');
+        // addressForm.addEventListener('submit', async function (event) {
+        //     await handlePaymentMethodSubmission(event, null);
+        // });
     });
 </script>
 <form id="payment-form">

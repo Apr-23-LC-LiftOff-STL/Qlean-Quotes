@@ -30,9 +30,7 @@ public class ApiClient {
     private final String squareLocationId;
     private final String squareAppId;
     private final String squareEnvironment;
-
     private PaymentsApi paymentsApi;
-
     public SquareClient squareClient;
 
     public ApiClient() throws ApiException {
@@ -40,19 +38,18 @@ public class ApiClient {
         squareAppId = mustLoadEnvironmentVariable(SQUARE_APP_ID_ENV_VAR);
         squareLocationId = mustLoadEnvironmentVariable(SQUARE_LOCATION_ID_ENV_VAR);
 
-        squareClient = new SquareClient.Builder()
+        SquareClient squareClient = new SquareClient.Builder()
                 .environment(Environment.fromString(squareEnvironment))
                 .accessToken(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
                 .build();
 
     }
 
-       public ApiClient(PaymentsApi paymentsApi, String squareLocationId, String squareAppId, String squareEnvironment, SquareClient squareClient) throws IOException {
+       public ApiClient(PaymentsApi paymentsApi, String squareLocationId, String squareAppId, String squareEnvironment) throws IOException {
 
             this.squareLocationId = squareLocationId;
             this.squareAppId = squareAppId;
             this.squareEnvironment = squareEnvironment;
-            this.squareClient = squareClient;
             this.paymentsApi = paymentsApi;
         }
 
