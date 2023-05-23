@@ -39,10 +39,10 @@ import java.util.concurrent.ExecutionException;
         model.put("appId", squareWrapper.getSquareAppId());
         model.put("idempotencyKey", UUID.randomUUID().toString());
 
-        return "index";
+        return "payment";
     }
 
-    @PostMapping("/payment")
+    @PostMapping("/process-payment")
     public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute CreatePaymentRequest body, @ModelAttribute TokenWrapper tokenObject, Model model) {
 
         try {
