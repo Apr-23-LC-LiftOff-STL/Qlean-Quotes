@@ -12,7 +12,7 @@ import com.squareup.square.http.request.HttpMethod;
 import com.squareup.square.models.*;
 import io.apimatic.core.ApiCall;
 import org.launchcode.qleanquotes.SquareClient;
-import org.launchcode.qleanquotes.models.Customer;
+//import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.TokenWrapper;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
@@ -54,7 +54,7 @@ public class MoneyController {
 
     @PostMapping("/process-payment")
     @ResponseBody
-    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
+    PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute SquareClient squareClient, Model model)
             throws InterruptedException, ExecutionException {
 
         Money amountMoney = new Money.Builder()
@@ -83,7 +83,7 @@ public class MoneyController {
                 tokenObject.getIdempotencyKey())
                 .amountMoney(amountMoney)
                 .autocomplete(true)
-                .buyerEmailAddress(customer.getEmail())
+                //.buyerEmailAddress(customer.getEmail())
                 .billingAddress(billingAddress)
                 .shippingAddress(shippingAddress)
                 // .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
