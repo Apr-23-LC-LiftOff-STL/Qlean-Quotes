@@ -7,14 +7,14 @@
     padding: 0;
     background-color: #7bd29d;
     border-radius: 30px;
-    margin-top:250px;
-    margin-bottom:250px;
+    margin-top: 250px;
+    margin-bottom: 250px;
+}
 
 #about-us {
   position: relative;
   margin-top:250px;
   margin-bottom:250px;
-
 
 }
 
@@ -295,7 +295,7 @@ body.contact-us #footer-container {
   display: flex;
   font-weight: bold;
   margin-top:25px;
-=======
+}
 /*Create User form*/
 /*TODO: revisit this part when fonts and colors have been standardized*/
 
