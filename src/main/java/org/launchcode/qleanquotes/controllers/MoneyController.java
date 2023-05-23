@@ -2,7 +2,6 @@ package org.launchcode.qleanquotes.controllers;
 
 import com.squareup.square.api.PaymentsApi;
 import com.squareup.square.exceptions.ApiException;
-
 import com.squareup.square.models.*;
 import jakarta.validation.Valid;
 import com.squareup.square.SquareClient;
@@ -43,6 +42,8 @@ public class MoneyController {
     @ResponseBody
     PaymentResult processPayment(@RequestBody TokenWrapper tokenObject, @ModelAttribute @Valid PaymentFormDTO paymentForm, @ModelAttribute SquareClient squareClient, @ModelAttribute RegisterFormDTO customer, Model model)
             throws InterruptedException, ExecutionException {
+
+        System.out.println("Top of request");
 
         Money amountMoney = new Money.Builder()
                 .amount(1000L)

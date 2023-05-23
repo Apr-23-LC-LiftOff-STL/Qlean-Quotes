@@ -83,13 +83,26 @@
 <h3>Enter Your Payment Card Details</h3>
 <script type="module">
 
-    const appId = 'sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q';
-    const locationId = 'LPA9X767FQCCV';
+    const appId = '{$application_id}';
+    const locationId = '{location_id}';
     async function initializeCard(payments) {
         const card = await payments.card();
         await card.attach('#card-container');
         return card;
     }
+
+    document.addEventListener('DOMContentLoaded', async function () {
+        if (!window.Square) {
+            throw new Error('Square.js failed to load properly');
+        }
+        const payments = window.Square.payments(appId, locationId);
+        let card;
+        try {
+            card = await initializeCard(payments);
+        } catch (e) {
+            console.error('Initializing Card failed', e);
+            return;
+        }
     // This function tokenizes a payment method.
     // The ‘error’ thrown from this async function denotes a failed tokenization,
     // which is due to buyer error (such as an expired card). It is up to the
@@ -114,11 +127,12 @@
     // to the project server code so that a payment can be created with
     // Payments API
     async function createPayment(token) {
+        console.log("sending payment")
         const body = JSON.stringify({
             locationId,
             sourceId: token,
         });
-        const paymentResponse = await fetch('/payment', {
+        const paymentResponse = await fetch('/process-payment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,6 +140,7 @@
             body,
         });
         if (paymentResponse.ok) {
+            console.log("token saved")
             return paymentResponse.json();
         }
         const errorBody = await paymentResponse.text();
@@ -149,18 +164,7 @@
         statusContainer.style.visibility = 'visible';
     }
 
-    document.addEventListener('DOMContentLoaded', async function () {
-        if (!window.Square) {
-            throw new Error('Square.js failed to load properly');
-        }
-        const payments = window.Square.payments(appId, locationId);
-        let card;
-        try {
-            card = await initializeCard(payments);
-        } catch (e) {
-            console.error('Initializing Card failed', e);
-            return;
-        }
+
 
         async function handlePaymentMethodSubmission(event, paymentMethod) {
             event.preventDefault();
@@ -171,10 +175,11 @@
                         // payment request.
                         cardButton.disabled = true;
                         const token = await tokenize(paymentMethod);
+                        console.log("tokenize successful")
                         const paymentResults = await createPayment(token);
                         displayPaymentResults('SUCCESS');
-
                         console.debug('Payment Success', paymentResults);
+                        console.log("payment successful")
                     } catch (e) {
                         cardButton.disabled = false;
                         displayPaymentResults('FAILURE');
