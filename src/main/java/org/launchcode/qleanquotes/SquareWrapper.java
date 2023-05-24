@@ -17,6 +17,8 @@ import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 
 import java.io.IOException;
 
+import static com.squareup.square.Environment.SANDBOX;
+
 @Component
 public final class SquareWrapper {
 
@@ -33,7 +35,7 @@ public final class SquareWrapper {
     // The environment variable indicate the square environment - sandbox or
     // production.
     // This must be set in order for the application to start.
-    private static final String SQUARE_ENV_ENV_VAR = "ENVIRONMENT";
+//    private static final String SQUARE_ENV_ENV_VAR = "ENVIRONMENT";
 
     private final com.squareup.square.SquareClient squareClient;
     private final String squareLocationId;
@@ -42,13 +44,13 @@ public final class SquareWrapper {
     private final PaymentsApi paymentsApi;
 
     public SquareWrapper() throws ApiException {
-        squareEnvironment = mustLoadEnvironmentVariable(SQUARE_ENV_ENV_VAR);
-        squareAppId = mustLoadEnvironmentVariable(SQUARE_APP_ID_ENV_VAR);
-        squareLocationId = mustLoadEnvironmentVariable(SQUARE_LOCATION_ID_ENV_VAR);
+        squareEnvironment = SANDBOX.toString();
+        squareAppId = "sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q";
+        squareLocationId = "LPA9X767FQCCV";
 
         squareClient = new com.squareup.square.SquareClient.Builder()
-                .environment(Environment.fromString(squareEnvironment))
-                .accessToken(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
+                .environment(SANDBOX)
+                .accessToken("EAAAEMaLGtOCNqh3giwdE5Blj4FyIciGfc7gUGUGN9vvvsey8gb1vsWdESceuX53")
                 .build();
 
         paymentsApi = squareClient.getPaymentsApi();
@@ -101,7 +103,7 @@ public final class SquareWrapper {
 
         PaymentsApi paymentsApi = squareClient.getPaymentsApi();
         paymentsApi.createPayment(body);
-        return new PaymentResult("SUCESS", null);
+        return new PaymentResult("SUCCESS", null);
     }
 
     private ApiCall<CreatePaymentResponse, ApiException>
