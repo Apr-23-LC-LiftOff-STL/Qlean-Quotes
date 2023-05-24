@@ -27,7 +27,7 @@ dependencies {
 	implementation 'mysql:mysql-connector-java:8.0.26'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
-	//implementation 'org.springframework.security:spring-security-crypto:5.6.0'
+	implementation 'org.springframework.security:spring-security-crypto:5.6.0'
 
 	implementation 'com.squareup:square:28.0.0.20230419'
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.7.1'
@@ -35,7 +35,7 @@ dependencies {
 	implementation 'com.mashape.unirest:unirest-java:1.4.9'
 
 	//spring security implementation
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -46,9 +46,6 @@ dependencies {
 
 }
 
-//tasks.named('test') {
-//	useJUnitPlatform()
-//}
 
 test {
 	useJUnitPlatform()
