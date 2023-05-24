@@ -67,63 +67,55 @@ public final class SquareWrapper {
     public PaymentResult createPayment(
             final CreatePaymentRequest body, PaymentFormDTO paymentFormDTO, TokenWrapper tokenObject) throws ApiException, IOException {
 
-        Money amountMoney = new Money.Builder()
-                .amount(1000L)
-                .currency("USD")
-                .build();
-
-        Address billingAddress = new Address.Builder()
-                .addressLine1(paymentFormDTO.getBillingAddressLine1())
-                .addressLine2(paymentFormDTO.getBillingAddressLine2())
-                .locality(paymentFormDTO.getBillingLocality())
-                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
-                .postalCode(paymentFormDTO.getBillingPostalCode())
-                .build();
-
-        Address shippingAddress = new Address.Builder()
-                .addressLine1(paymentFormDTO.getShippingAddressLine1())
-                .addressLine2(paymentFormDTO.getShippingAddressLine2())
-                .locality(paymentFormDTO.getShippingLocality())
-                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
-                .postalCode(paymentFormDTO.getShippingPostalCode())
-                .build();
-
-        CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest.Builder(
-                tokenObject.getToken(),
-                tokenObject.getIdempotencyKey())
-                .amountMoney(amountMoney)
-                .autocomplete(true)
-                .billingAddress(billingAddress)
-                .shippingAddress(shippingAddress)
-                // .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
-                //.orderId("orderId")
-                .build();
+//        Money amountMoney = new Money.Builder()
+//                .amount(1000L)
+//                .currency("USD")
+//                .build();
+//
+//        Address billingAddress = new Address.Builder()
+//                .addressLine1(paymentFormDTO.getBillingAddressLine1())
+//                .addressLine2(paymentFormDTO.getBillingAddressLine2())
+//                .locality(paymentFormDTO.getBillingLocality())
+//                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
+//                .postalCode(paymentFormDTO.getBillingPostalCode())
+//                .build();
+//
+//        Address shippingAddress = new Address.Builder()
+//                .addressLine1(paymentFormDTO.getShippingAddressLine1())
+//                .addressLine2(paymentFormDTO.getShippingAddressLine2())
+//                .locality(paymentFormDTO.getShippingLocality())
+//                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
+//                .postalCode(paymentFormDTO.getShippingPostalCode())
+//                .build();
+//
+//        CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest.Builder(
+//                tokenObject.getToken(),
+//                tokenObject.getIdempotencyKey())
+//                .amountMoney(amountMoney)
+//                .autocomplete(true)
+//                .billingAddress(billingAddress)
+//                .shippingAddress(shippingAddress)
+//                // .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
+//                //.orderId("orderId")
+//                .build();
 
         PaymentsApi paymentsApi = squareClient.getPaymentsApi();
-
-        return paymentsApi.createPaymentAsync(createPaymentRequest).thenApply(result -> {
-            return new PaymentResult("SUCCESS", null);
-        }).exceptionally(exception -> {
-            ApiException e = (ApiException) exception.getCause();
-            System.out.println("Failed to make the request");
-            System.out.printf("Exception: %s%n", e.getMessage());
-            return new PaymentResult("FAILURE", e.getErrors());
-        }).join();
+        paymentsApi.createPayment(body);
+        return new PaymentResult("SUCESS", null);
     }
 
-    private ApiCall<CreatePaymentResponse, ApiException> prepareCreatePaymentRequest(
-            final CreatePaymentRequest body) throws JsonProcessingException, IOException {
+    private ApiCall<CreatePaymentResponse, ApiException>
+        prepareCreatePaymentRequest(final CreatePaymentRequest body)
+            throws JsonProcessingException, IOException {
         return new ApiCall.Builder<CreatePaymentResponse, ApiException>()
-                //.globalConfig(getGlobalConfiguration())
                 .requestBuilder(requestBuilder -> requestBuilder
-                        .server(Server.ENUM_DEFAULT.value())
-                        .path("/v2/payments")
+                        .path("https://connect.squareupsandbox.com/v2/payments")
                         .bodyParam(param -> param.value(body))
                         .bodySerializer(() ->  ApiHelper.serialize(body))
                         .headerParam(param -> param.key("Content-Type")
                                 .value("application/json").isRequired(false))
                         .headerParam(param -> param.key("accept").value("application/json"))
-                        //.authenticationKey(BaseApi.AUTHENTICATION_KEY)
+                        .authenticationKey(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
                         .httpMethod(HttpMethod.POST))
                 .responseHandler(responseHandler -> responseHandler
                         .deserializer(
@@ -131,7 +123,6 @@ public final class SquareWrapper {
                         .nullify404(false)
                         .contextInitializer((context, result) ->
                                 result.toBuilder().httpContext((HttpContext)context).build()))
-                        //.globalErrorCase(GLOBAL_ERROR_CASES))
                 .build();
     }
 
