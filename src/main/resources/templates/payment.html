@@ -9,7 +9,7 @@
 <header th:replace="~{fragments :: page-header}"></header>
 
 <h1>Service Address</h1>
-<form th:action="@{/payment}"  method="get" >
+<form th:action="@{/payment}"  method="post" id="payment-shipping-form">
     <!-- form content -->
     <div class="form-group">
         <label>Address Line 1
@@ -104,25 +104,45 @@
         console.log("token")
         const tokenBody = JSON.stringify({
             token: token,
-            idempotencyKey: "abscsgdsfglmdflgkjknfdgskjsjns"
+            idempotencyKey: window.crypto.randomUUID()
         });
 
-        const paymentResponse = await fetch('/payment', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            tokenBody
-        });
+        // Get reference to the form element
+        const form = document.getElementById('payment-shipping-form');
 
-        console.log("response")
-        if (paymentResponse.ok) {
-            console.log(paymentResponse.body);
-            return paymentResponse.body;
-        }
+        const tokenField = document.createElement('input');
+        tokenField.type = 'text';
+        tokenField.name = 'token';
+        tokenField.value = token;
 
-        const errorBody = await paymentResponse.text();
-        throw new Error(errorBody);
+        const idempotentKeyField = document.createElement('input');
+        idempotentKeyField.type = 'text';
+        idempotentKeyField.name = 'idempotencyKey';
+        idempotentKeyField.value = window.crypto.randomUUID();
+
+        form.appendChild(tokenField);
+        form.appendChild(idempotentKeyField);
+
+        // Submit the form programmatically
+        form.submit();
+
+
+        // const paymentResponse = await fetch('/payment', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: tokenBody
+        // });
+
+        // console.log("response")
+        // if (paymentResponse.ok) {
+        //     console.log(paymentResponse.body);
+        //     return paymentResponse.body;
+        // }
+        //
+        // const errorBody = await paymentResponse.text();
+        // throw new Error(errorBody);
     }
 
     async function tokenize(paymentMethod) {

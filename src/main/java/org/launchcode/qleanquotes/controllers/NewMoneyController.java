@@ -44,29 +44,49 @@ import java.util.concurrent.ExecutionException;
         return "payment";
     }
 
-//     TODO: get body in here
+
     @PostMapping("/payment")
-    public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, TokenWrapper token, Model model) {
+    public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, Model model) {
 
         try {
 
+            // TODO: use money from `paymentFormDTO`
             Money amountMoney = new Money.Builder()
                 .amount(1000L)
                 .currency("USD")
                 .build();
 
-            CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest.Builder(
-                token.getToken(),
-                token.getIdempotencyKey())
-                .amountMoney(amountMoney)
-                .autocomplete(true)
-//                .billingAddress(billingAddress)
-//                .shippingAddress(shippingAddress)
-                // .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
-                //.orderId("orderId")
-                .build();
+            // TODO: use `Address.Builder()` and the fields in `paymentFormDTO` to create an address object,
+            //  do this for shipping and billing address
+//          Address billingAddress = new Address.Builder()
+//                .addressLine1(paymentFormDTO.getBillingAddressLine1())
+//                .addressLine2(paymentFormDTO.getBillingAddressLine2())
+//                .locality(paymentFormDTO.getBillingLocality())
+//                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
+//                .postalCode(paymentFormDTO.getBillingPostalCode())
+//                .build();
+//
+//        Address shippingAddress = new Address.Builder()
+//                .addressLine1(paymentFormDTO.getShippingAddressLine1())
+//                .addressLine2(paymentFormDTO.getShippingAddressLine2())
+//                .locality(paymentFormDTO.getShippingLocality())
+//                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
+//                .postalCode(paymentFormDTO.getShippingPostalCode())
+//                .build();
 
-            PaymentResult paymentResult = squareWrapper.createPayment(createPaymentRequest, paymentFormDTO, token);
+            CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest
+                    .Builder(paymentFormDTO.getToken(), paymentFormDTO.getIdempotencyKey())
+                    .amountMoney(amountMoney)
+                    // TODO: Use the Address objects created above and add them to the request
+                    //.billingAddress(billingAddress)
+                    //.shippingAddress(shippingAddress)
+                    // TODO: Decide how to get customer id and order id from database for the transaction
+                    //   these are not strictly necessary for a successful payment call to Square
+                    //.customerId("W92WH6P11H4Z77CTET0RNTGFW8")
+                    //.orderId("orderId")
+                    .build();
+
+            PaymentResult paymentResult = squareWrapper.createPayment(createPaymentRequest);
             System.out.println(paymentResult.getTitle());
             model.addAttribute("paymentResult", paymentResult);
             if (paymentResult.getTitle().equals("SUCCESS")) {
@@ -83,3 +103,5 @@ import java.util.concurrent.ExecutionException;
         return "payment";
     }
 }
+
+//TODO: create a payment successful page and redirect users to it!

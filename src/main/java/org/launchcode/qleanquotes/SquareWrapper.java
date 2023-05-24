@@ -67,66 +67,33 @@ public final class SquareWrapper {
     }
 
     public PaymentResult createPayment(
-            final CreatePaymentRequest body, PaymentFormDTO paymentFormDTO, TokenWrapper tokenObject) throws ApiException, IOException {
-
-//        Money amountMoney = new Money.Builder()
-//                .amount(1000L)
-//                .currency("USD")
-//                .build();
-//
-//        Address billingAddress = new Address.Builder()
-//                .addressLine1(paymentFormDTO.getBillingAddressLine1())
-//                .addressLine2(paymentFormDTO.getBillingAddressLine2())
-//                .locality(paymentFormDTO.getBillingLocality())
-//                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
-//                .postalCode(paymentFormDTO.getBillingPostalCode())
-//                .build();
-//
-//        Address shippingAddress = new Address.Builder()
-//                .addressLine1(paymentFormDTO.getShippingAddressLine1())
-//                .addressLine2(paymentFormDTO.getShippingAddressLine2())
-//                .locality(paymentFormDTO.getShippingLocality())
-//                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
-//                .postalCode(paymentFormDTO.getShippingPostalCode())
-//                .build();
-//
-//        CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest.Builder(
-//                tokenObject.getToken(),
-//                tokenObject.getIdempotencyKey())
-//                .amountMoney(amountMoney)
-//                .autocomplete(true)
-//                .billingAddress(billingAddress)
-//                .shippingAddress(shippingAddress)
-//                // .customerId("W92WH6P11H4Z77CTET0RNTGFW8")
-//                //.orderId("orderId")
-//                .build();
-
+            final CreatePaymentRequest body) throws ApiException, IOException {
         PaymentsApi paymentsApi = squareClient.getPaymentsApi();
         paymentsApi.createPayment(body);
         return new PaymentResult("SUCCESS", null);
     }
 
-    private ApiCall<CreatePaymentResponse, ApiException>
-        prepareCreatePaymentRequest(final CreatePaymentRequest body)
-            throws JsonProcessingException, IOException {
-        return new ApiCall.Builder<CreatePaymentResponse, ApiException>()
-                .requestBuilder(requestBuilder -> requestBuilder
-                        .path("https://connect.squareupsandbox.com/v2/payments")
-                        .bodyParam(param -> param.value(body))
-                        .bodySerializer(() ->  ApiHelper.serialize(body))
-                        .headerParam(param -> param.key("Content-Type")
-                                .value("application/json").isRequired(false))
-                        .headerParam(param -> param.key("accept").value("application/json"))
-                        .authenticationKey(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
-                        .httpMethod(HttpMethod.POST))
-                .responseHandler(responseHandler -> responseHandler
-                        .deserializer(
-                                response -> ApiHelper.deserialize(response, CreatePaymentResponse.class))
-                        .nullify404(false)
-                        .contextInitializer((context, result) ->
-                                result.toBuilder().httpContext((HttpContext)context).build()))
-                .build();
-    }
+//    private ApiCall<CreatePaymentResponse, ApiException>
+//        prepareCreatePaymentRequest(final CreatePaymentRequest body)
+//            throws JsonProcessingException, IOException {
+//        return new ApiCall.Builder<CreatePaymentResponse, ApiException>()
+//                .requestBuilder(requestBuilder -> requestBuilder
+//                        .path("https://connect.squareupsandbox.com/v2/payments")
+//                        .bodyParam(param -> param.value(body))
+//                        .bodySerializer(() ->  ApiHelper.serialize(body))
+//                        .headerParam(param -> param.key("Content-Type")
+//                                .value("application/json").isRequired(false))
+//                        .headerParam(param -> param.key("accept").value("application/json"))
+//                        .authenticationKey(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
+//                        .httpMethod(HttpMethod.POST))
+//                .responseHandler(responseHandler -> responseHandler
+//                        .deserializer(
+//                                response -> ApiHelper.deserialize(response, CreatePaymentResponse.class))
+//                        .nullify404(false)
+//                        .contextInitializer((context, result) ->
+//                                result.toBuilder().httpContext((HttpContext)context).build()))
+//                .build();
+//    }
 
     public String getSquareLocationId() {
         return squareLocationId;
