@@ -73,6 +73,9 @@
         </label>
         <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
     </div>
+    <div th:if="${totalCost != null}" class="alert alert-info" role="alert">
+        Total cost:$ <strong th:text="${totalCost}"></strong>
+    </div>
 </form>
 <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 <!--<h3>Enter Your Payment Card Details</h3>-->
@@ -228,10 +231,12 @@
             await handlePaymentMethodSubmission(event, card);
         });
     });</script>
+
 <form id="payment-form">
     <div id="card-container"></div>
-    <button id="card-button" type="button">Pay $1.00</button>
+     <button id="card-button" type="button">Pay Now</button>
 </form>
 <div id="payment-status-container"></div>
+
 </body>
 </html>

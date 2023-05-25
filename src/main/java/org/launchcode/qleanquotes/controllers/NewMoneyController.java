@@ -1,12 +1,16 @@
 package org.launchcode.qleanquotes.controllers;
 
 import com.squareup.square.exceptions.ApiException;
+import com.squareup.square.models.Address;
 import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.CreatePaymentResponse;
 import com.squareup.square.models.Money;
 import org.launchcode.qleanquotes.SquareWrapper;
 import org.launchcode.qleanquotes.models.PaymentResult;
+import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.TokenWrapper;
+import org.launchcode.qleanquotes.models.data.QuoteRepository;
+import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
 import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +32,8 @@ import java.util.concurrent.ExecutionException;
         }
 
         @GetMapping("/payment")
-        public String showPaymentForm(Model model){
+        public String showPaymentForm(@ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model){
+            model.addAttribute("totalCost", createQuoteFormDTO.getTotalCost());
             model.addAttribute(new PaymentFormDTO());
             return "payment";
         }
@@ -46,40 +51,39 @@ import java.util.concurrent.ExecutionException;
 
 
     @PostMapping("/payment")
-    public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, Model model) {
+    public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model) {
 
         try {
-
             // TODO: use money from `paymentFormDTO`
             Money amountMoney = new Money.Builder()
-                .amount(1000L)
+                .amount(createQuoteFormDTO.getTotalCharge())
                 .currency("USD")
                 .build();
 
             // TODO: use `Address.Builder()` and the fields in `paymentFormDTO` to create an address object,
             //  do this for shipping and billing address
-//          Address billingAddress = new Address.Builder()
-//                .addressLine1(paymentFormDTO.getBillingAddressLine1())
-//                .addressLine2(paymentFormDTO.getBillingAddressLine2())
-//                .locality(paymentFormDTO.getBillingLocality())
-//                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
-//                .postalCode(paymentFormDTO.getBillingPostalCode())
-//                .build();
-//
-//        Address shippingAddress = new Address.Builder()
-//                .addressLine1(paymentFormDTO.getShippingAddressLine1())
-//                .addressLine2(paymentFormDTO.getShippingAddressLine2())
-//                .locality(paymentFormDTO.getShippingLocality())
-//                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
-//                .postalCode(paymentFormDTO.getShippingPostalCode())
-//                .build();
+          Address billingAddress = new Address.Builder()
+                .addressLine1(paymentFormDTO.getBillingAddressLine1())
+                .addressLine2(paymentFormDTO.getBillingAddressLine2())
+                .locality(paymentFormDTO.getBillingLocality())
+                .administrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1())
+                .postalCode(paymentFormDTO.getBillingPostalCode())
+                .build();
+
+        Address shippingAddress = new Address.Builder()
+                .addressLine1(paymentFormDTO.getShippingAddressLine1())
+                .addressLine2(paymentFormDTO.getShippingAddressLine2())
+                .locality(paymentFormDTO.getShippingLocality())
+                .administrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1())
+                .postalCode(paymentFormDTO.getShippingPostalCode())
+                .build();
 
             CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest
                     .Builder(paymentFormDTO.getToken(), paymentFormDTO.getIdempotencyKey())
                     .amountMoney(amountMoney)
                     // TODO: Use the Address objects created above and add them to the request
-                    //.billingAddress(billingAddress)
-                    //.shippingAddress(shippingAddress)
+                    .billingAddress(billingAddress)
+                    .shippingAddress(shippingAddress)
                     // TODO: Decide how to get customer id and order id from database for the transaction
                     //   these are not strictly necessary for a successful payment call to Square
                     //.customerId("W92WH6P11H4Z77CTET0RNTGFW8")
