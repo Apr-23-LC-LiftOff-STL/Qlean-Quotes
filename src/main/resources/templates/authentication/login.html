@@ -49,7 +49,7 @@
         </label>
 <!--        if login is unsuccessful, the below th:if condition is triggered, find this in securityconfig, failureURL() query parameter-->
         <div th:if="${param.failed}" class="text-danger">
-            Invalid username or password.
+            <p>Invalid username or password.</p>
         </div>
     </div>
     <div class="form-group">
@@ -73,7 +73,7 @@
 <div th:replace="~{fragments :: page-contact}"></div>
 <div th:replace="~{fragments :: footer}"></div>
 
-<script th:src="@{/js/payment-flow.js}"></script>
+
 </body>
 </html>
 

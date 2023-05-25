@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lange="en">
+<html lange="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="~{fragments :: head}">
     <meta charset="utf-8" />
     <title>Payment Page</title>
@@ -9,114 +9,234 @@
 <header th:replace="~{fragments :: page-header}"></header>
 
 <h1>Service Address</h1>
-<form th:action="@{/payment}"  method="post" >
-<div class="form-group">
-    <label>Address Line 1
-        <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine1}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
-</div>
-<div class="form-group">
-    <label>Address Line 2
-        <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine2}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
-</div>
-<div class="form-group">
-    <label>City
-        <input class="form-control" th:field="${paymentFormDTO.shippingLocality}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
-</div>
-<div class="form-group">
-    <label>State
-        <input class="form-control" th:field="${paymentFormDTO.shippingAdministrativeDistrictLevel1}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
-</div>
-<div class="form-group">
-    <label>ZIP Code
-        <input class="form-control" th:field="${paymentFormDTO.shippingPostalCode}" />
-    </label>
-<!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
-</div>
+<form th:action="@{/payment}"  method="post" id="payment-shipping-form">
+    <!-- form content -->
+    <div class="form-group">
+        <label>Address Line 1
+            <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine1}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>Address Line 2
+            <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine2}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>City
+            <input class="form-control" th:field="${paymentFormDTO.shippingLocality}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>State
+            <input class="form-control" th:field="${paymentFormDTO.shippingAdministrativeDistrictLevel1}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>ZIP Code
+            <input class="form-control" th:field="${paymentFormDTO.shippingPostalCode}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
+    </div>
 
-<h1>Billing Address</h1>
-<div class="form-group">
-    <label>Address Line 1
-        <input class="form-control" th:field="${paymentFormDTO.billingAddressLine1}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
-</div>
-<div class="form-group">
-    <label>Address Line 2
-        <input class="form-control" th:field="${paymentFormDTO.billingAddressLine2}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
-</div>
-<div class="form-group">
-    <label>City
-        <input class="form-control" th:field="${paymentFormDTO.billingLocality}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
-</div>
-<div class="form-group">
-    <label>State
-        <input class="form-control" th:field="${paymentFormDTO.billingAdministrativeDistrictLevel1}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
-</div>
-<div class="form-group">
-    <label>ZIP Code
-        <input class="form-control" th:field="${paymentFormDTO.billingPostalCode}" />
-    </label>
-    <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
-</div>
+    <h1>Billing Address</h1>
+    <div class="form-group">
+        <label>Address Line 1
+            <input class="form-control" th:field="${paymentFormDTO.billingAddressLine1}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>Address Line 2
+            <input class="form-control" th:field="${paymentFormDTO.billingAddressLine2}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>City
+            <input class="form-control" th:field="${paymentFormDTO.billingLocality}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>State
+            <input class="form-control" th:field="${paymentFormDTO.billingAdministrativeDistrictLevel1}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
+    </div>
+    <div class="form-group">
+        <label>ZIP Code
+            <input class="form-control" th:field="${paymentFormDTO.billingPostalCode}" />
+        </label>
+        <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
+    </div>
+    <div th:if="${totalCost != null}" class="alert alert-info" role="alert">
+        Total cost:$ <strong th:text="${totalCost}"></strong>
+    </div>
 </form>
-<script
-        type="text/javascript"
-        src="https://sandbox.web.squarecdn.com/v1/square.js"
-></script>
-<h3>Enter Your Payment Card Details</h3>
-<div id="payment-form">
-    <div id="payment-status-container"></div>
-    <div id="card-container"></div>
-    <button id="card-button" type="button">Pay</button>
-</div>
+<script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
+<!--<h3>Enter Your Payment Card Details</h3>-->
+<!--<div id="payment-form">-->
+<!--    <div id="payment-status-container"></div>-->
+<!--    <div id="card-container"></div>-->
+<!--    <button id="card-button" type="button">Pay</button>-->
+<!--</div>-->
 <script type="module">
     //SDK reference: payments API
     // TODO get input value (cc payments)
 
     //generate identifier
-    const payments = Square.payments('sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q', 'LPA9X767FQCCV');
-    const card = await payments.card();
-    await card.attach('#card-container');
-    const cardButton = document.getElementById('card-button');
-    cardButton.addEventListener('click', async () => {
-        const statusContainer = document.getElementById('payment-status-container');
-        //paymentsApi.execute
-        try {
-            //tokenize card info
-            const result = await card.tokenize();
-            if (result.status === 'OK') {
-                //create request
-                console.log(`Payment token is ${result.token}`);
-                statusContainer.innerHTML = "Payment Successful";
-            } else {
-                let errorMessage = `Tokenization failed with status: ${result.status}`;
-                if (result.errors) {
-                    errorMessage += ` and errors: ${JSON.stringify(
-                        result.errors
-                    )}`;
-                }
+    const appId = 'sandbox-sq0idb-VMvJ-CvdQE73OtQbS6uH_Q';
+    const locationId = 'LPA9X767FQCCV';
+    async function initializeCard(payments) {
+        const card = await payments.card();
+        await card.attach('#card-container');
 
-                throw new Error(errorMessage);
+        return card;
+    }
+
+    async function createPayment(token) {
+        // const body = JSON.stringify({
+        //     locationId,
+        //     sourceId: token,
+        //     idempotencyKey: window.crypto.randomUUID(),
+        // });
+        console.log("token")
+        const tokenBody = JSON.stringify({
+            token: token,
+            idempotencyKey: window.crypto.randomUUID()
+        });
+
+        // Get reference to the form element
+        const form = document.getElementById('payment-shipping-form');
+
+        const tokenField = document.createElement('input');
+        tokenField.type = 'text';
+        tokenField.name = 'token';
+        tokenField.value = token;
+
+        const idempotentKeyField = document.createElement('input');
+        idempotentKeyField.type = 'text';
+        idempotentKeyField.name = 'idempotencyKey';
+        idempotentKeyField.value = window.crypto.randomUUID();
+
+        form.appendChild(tokenField);
+        form.appendChild(idempotentKeyField);
+
+        // Submit the form programmatically
+        form.submit();
+
+
+        // const paymentResponse = await fetch('/payment', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: tokenBody
+        // });
+
+        // console.log("response")
+        // if (paymentResponse.ok) {
+        //     console.log(paymentResponse.body);
+        //     return paymentResponse.body;
+        // }
+        //
+        // const errorBody = await paymentResponse.text();
+        // throw new Error(errorBody);
+    }
+
+    async function tokenize(paymentMethod) {
+        const tokenResult = await paymentMethod.tokenize();
+        if (tokenResult.status === 'OK') {
+            return tokenResult.token;
+        } else {
+            let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+            if (tokenResult.errors) {
+                console.log("errors");
+                errorMessage += ` and errors: ${JSON.stringify(
+                    tokenResult.errors
+                )}`;
             }
-        } catch (e) {
-            console.error(e);
-            statusContainer.innerHTML = "Payment Failed";
+
+            throw new Error(errorMessage);
         }
-    });
-</script>
+    }
+
+    // status is either SUCCESS or FAILURE;
+    function displayPaymentResults(status) {
+        const statusContainer = document.getElementById(
+            'payment-status-container'
+        );
+        if (status === 'SUCCESS') {
+            statusContainer.classList.remove('is-failure');
+            statusContainer.classList.add('is-success');
+        } else {
+            statusContainer.classList.remove('is-success');
+            statusContainer.classList.add('is-failure');
+        }
+
+        statusContainer.style.visibility = 'visible';
+    }
+
+    document.addEventListener('DOMContentLoaded', async function () {
+        if (!window.Square) {
+            throw new Error('Square.js failed to load properly');
+        }
+
+        let payments;
+        try {
+            payments = window.Square.payments(appId, locationId);
+        } catch {
+            const statusContainer = document.getElementById(
+                'payment-status-container'
+            );
+            statusContainer.className = 'missing-credentials';
+            statusContainer.style.visibility = 'visible';
+            return;
+        }
+
+        let card;
+        try {
+            card = await initializeCard(payments);
+        } catch (e) {
+            console.error('Initializing Card failed', e);
+            return;
+        }
+
+        async function handlePaymentMethodSubmission(event, card) {
+            event.preventDefault();
+
+            try {
+                // disable the submit button as we await tokenization and make a payment request.
+                cardButton.disabled = true;
+                const token = await tokenize(card);
+                const paymentResults = await createPayment(
+                    token
+                );
+                displayPaymentResults('SUCCESS');
+
+                console.debug('Payment Success', paymentResults);
+            } catch (e) {
+                cardButton.disabled = false;
+                displayPaymentResults('FAILURE');
+                console.error(e.message);
+            }
+        }
+
+        const cardButton = document.getElementById('card-button');
+        cardButton.addEventListener('click', async function (event) {
+            await handlePaymentMethodSubmission(event, card);
+        });
+    });</script>
+
+<form id="payment-form">
+    <div id="card-container"></div>
+     <button id="card-button" type="button">Pay Now</button>
+</form>
+<div id="payment-status-container"></div>
+
 </body>
 </html>

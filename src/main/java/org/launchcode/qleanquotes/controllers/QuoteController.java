@@ -47,77 +47,38 @@ public class QuoteController {
     @PostMapping("/createquotes")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
-
-//        //TODO align API requirements and desired functionality with data to be collected client-side
-//        //TODO replace hard-coded strings with Customer variables
-//            OrderLineItemModifier orderLineItemModifier = new OrderLineItemModifier.Builder()
-//                    .catalogObjectId("{MODIFIER_ID}")
-//                    .quantity("1")
-//                    .build();
-//
-//            LinkedList<OrderLineItemModifier> modifiers = new LinkedList<>();
-//            modifiers.add(orderLineItemModifier);
-//
-//            OrderLineItem orderLineItem = new OrderLineItem.Builder("1")
-//                    .catalogObjectId("{ITEM_VARIATION_ID}")
-//                    .modifiers(modifiers)
-//                    .build();
-//
-//            LinkedList<OrderLineItem> lineItems = new LinkedList<>();
-//            lineItems.add(orderLineItem);
-//
-//            Order order = new Order.Builder("{LOCATION_ID}")
-//                    .lineItems(lineItems)
-//                    .build();
-//
-//            CreateOrderRequest request = new CreateOrderRequest.Builder()
-//                    .order(order)
-//                    .idempotencyKey("{UNIQUE_KEY}")
-//                    .build();
-//
-//            ordersApi.createOrderAsync(request)
-//                    .thenAccept(result -> {
-//                        System.out.println("Success!");
-//                    })
-//                    .exceptionally(exception -> {
-//                        System.out.println("Failed to make the request");
-//                        System.out.println(String.format("Exception: %s", exception.getMessage()));
-//                        return null;
-//                    });
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "/createquotes";
         }
 
-
-
-        double totalCost = 0.0;
+        double totalCost = 0;
+        Long totalCharge = 0L;
         if (createQuoteFormDTO.getSquareFeet() != null && createQuoteFormDTO.getNumOfRoom() != null) {
-            totalCost += createQuoteFormDTO.getSquareFeet() * 0.5 + createQuoteFormDTO.getNumOfRoom() * 20;
-
+            totalCost += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 0.01);
+            totalCharge += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 2L);
 
 
             if (createQuoteFormDTO.getNumOfBathroom() != null) {
-                totalCost += createQuoteFormDTO.getNumOfBathroom() * 30;
+                totalCost += (createQuoteFormDTO.getNumOfBathroom() * 3);
+                totalCharge += (createQuoteFormDTO.getNumOfBathroom() * 300L);
             }
-
-
             if (createQuoteFormDTO.getCleaningOptions() != null) {
                 if (createQuoteFormDTO.getCleaningOptions().equals("deep")) {
-                    totalCost += 50.0;
+                    totalCost += 50;
+                    totalCharge += 5000L;
                 } else if (createQuoteFormDTO.getCleaningOptions().equals("average")) {
-                    totalCost += 25.0;
+                    totalCost += 25;
+                    totalCharge += 2500L;
                 }
             }
-
-
             model.addAttribute("totalCost", totalCost);
+            model.addAttribute("totalCharge", totalCharge);
+            System.out.println(totalCost);
             return "createquotes";
         }
 
-
-       // esra/createquoteandpaymentpage
-        Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOptions());
+        Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOptions(), createQuoteFormDTO.getTotalCost(), createQuoteFormDTO.getTotalCharge());
         quoteRepository.save(newQuote);
         setQuoteInsession(request.getSession(), newQuote);
         model.addAttribute("quote", newQuote);

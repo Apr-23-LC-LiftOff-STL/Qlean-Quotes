@@ -12,6 +12,8 @@ public class PaymentFormDTO {
         private String billingLocality;
         private String billingAdministrativeDistrictLevel1;
         private String billingPostalCode;
+        private String token;
+        private String idempotencyKey;
 
     public String getShippingAddressLine1() {
         return shippingAddressLine1;
@@ -92,4 +94,16 @@ public class PaymentFormDTO {
     public void setBillingPostalCode(String billingPostalCode) {
         this.billingPostalCode = billingPostalCode;
     }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) { this.token = token;}
+
+    public String getIdempotencyKey() {
+        return idempotencyKey;
+    }
+
+    public void setIdempotencyKey(String idempotencyKey) { this.idempotencyKey = idempotencyKey;}
 }

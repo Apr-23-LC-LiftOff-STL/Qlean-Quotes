@@ -43,6 +43,7 @@ public class SecurityConfig {
                 .anyRequest()
                 .authenticated()
                 .and()
+                .csrf().disable()
                 .formLogin()
                 .usernameParameter("email")
                 .passwordParameter("password")

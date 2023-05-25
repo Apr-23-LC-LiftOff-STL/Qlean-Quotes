@@ -23,16 +23,20 @@ public class CreateQuoteFormDTO {
     @NotNull (message = "Please select one of the options!")
     private String cleaningOptions;
 
+    private double totalCost;
 
+    private Long totalCharge;
 
     public CreateQuoteFormDTO() {
     }
 
-    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions) {
+    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions, double totalCost, Long totalCharge) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
         this.cleaningOptions = cleaningOptions;
+        this.totalCost = totalCost;
+        this.totalCharge = totalCharge;
 
     }
 
@@ -67,6 +71,22 @@ public class CreateQuoteFormDTO {
 
     public void setCleaningOptions(String cleaningOptions) {
         this.cleaningOptions = cleaningOptions;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public Long getTotalCharge() {
+        return totalCharge;
+    }
+
+    public void setTotalCharge(Long totalCharge) {
+        this.totalCharge = totalCharge;
     }
 }
 
