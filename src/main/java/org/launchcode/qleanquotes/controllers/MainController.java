@@ -9,13 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
+
     @GetMapping("/")
     public String displayIndexPage(Model model) {
         return "index";
     }
 
-//    @GetMapping("/payment")
-//    public String showPayment() {
-//        return "payment";
-//    }
 }
