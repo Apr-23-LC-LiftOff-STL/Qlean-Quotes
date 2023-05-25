@@ -100,7 +100,7 @@ import java.util.concurrent.ExecutionException;
             // Handle exceptions
             System.out.println(e);
         }
-        return "payment";
+        return "payment-successful";
     }
 }
 
