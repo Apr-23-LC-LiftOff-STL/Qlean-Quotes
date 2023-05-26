@@ -289,12 +289,21 @@ body.contact-us #footer-container {
 }
 
 #index > header h1 {
+
+    font-family: 'Oleo Script';
+    font-size: 38px;
+    justify-content: center;
+    display: flex;
+    font-weight: bold;
+    margin-top: 25px;
+
   font-family: 'Oleo Script';
   font-size: 38px;
   justify-content: center;
   display: flex;
   font-weight: bold;
   margin-top:25px;
+
 }
 /*Create User form*/
 /*TODO: revisit this part when fonts and colors have been standardized*/

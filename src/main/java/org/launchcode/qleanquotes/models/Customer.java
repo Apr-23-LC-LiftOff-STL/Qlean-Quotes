@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import jakarta.validation.constraints.Pattern;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -23,6 +24,11 @@ public class Customer extends AbstractEntity implements UserDetails {
 
     @NotNull
     private String password;
+
+    @NotNull
+    private String phoneNumber;
+
+
 
     //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -49,6 +55,13 @@ public class Customer extends AbstractEntity implements UserDetails {
         return email;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

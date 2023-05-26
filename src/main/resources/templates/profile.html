@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+<div th:if="${param.error}"> <h1>This didn't work</h1> </div>
+<body>
+<div>
+    <h1>User Profile</h1>
+    <h4 id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></h4>
+      <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
+    <!--  <h4 id="customerPhone" th:text="'Phone: 123-456-7890'"></h4>-->
+    <!--  <h4 id="customerAddress" th:text="'Address: '"></h4>-->
+
+</div>
+</body>
+</html>
+
+
+
+<!--<form class="register-form" th:action="@{/authentication/register}" method="post">-->
+<!--    <h1 class="register-title">Create New Account</h1>-->
+<!--    <div class="form-group">-->
+<!--        <label class="register-label">Name-->
+<!--            <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>-->
+<!--        </label>-->
+<!--        <p class="error" th:errors="${registerFormDTO.name}"></p>-->
+<!--    </div>-->

@@ -22,11 +22,6 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
-//    @GetMapping("/")
-//    public String displayIndexPage(Model model) {
-//        return "index";
-//    }
-
     @GetMapping("/authentication/register")
     public String displayRegisterForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
