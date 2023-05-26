@@ -7,7 +7,6 @@ import jakarta.persistence.Entity;
 @Entity
 public class Quote extends AbstractEntity {
 
-
     private Integer squareFeet;
 
     private Integer numOfRoom;
@@ -16,16 +15,24 @@ public class Quote extends AbstractEntity {
 
     private String cleaningOptions;
 
+    private double totalCost;
+
+    private Long totalCharge;
+
 
     public Quote() {
     }
 
-    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom,String cleaningOptions) {
+    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions, double totalCost, Long totalCharge) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
         this.cleaningOptions = cleaningOptions;
+        this.totalCost = totalCost;
+        this.totalCharge = totalCharge;
     }
+
+
 
     public Integer getSquareFeet() {
         return squareFeet;
@@ -57,5 +64,21 @@ public class Quote extends AbstractEntity {
 
     public void setCleaningOptions(String cleaningOptions) {
         this.cleaningOptions = cleaningOptions;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCost) {
+        this.totalCost = totalCost;
+    }
+
+    public Long getTotalCharge() {
+        return totalCharge;
+    }
+
+    public void setTotalCharge(Long totalCharge) {
+        this.totalCharge = totalCharge;
     }
 }
