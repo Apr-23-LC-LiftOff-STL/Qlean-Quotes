@@ -74,8 +74,9 @@
         <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
     </div>
     <div th:if="${totalCost != null}" class="alert alert-info" role="alert">
-        Total cost:$ <strong th:text="${totalCost}"></strong>
+        Total cost:$ <span th:text="${totalCost}"></span>
     </div>
+
 </form>
 <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 <!--<h3>Enter Your Payment Card Details</h3>-->

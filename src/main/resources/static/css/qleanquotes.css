@@ -1,15 +1,4 @@
 
-#about-me {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin: 0;
-    padding: 0;
-    background-color: #7bd29d;
-    border-radius: 30px;
-    margin-top: 250px;
-    margin-bottom: 250px;
-}
 
 #about-us {
   position: relative;
@@ -33,7 +22,7 @@
   z-index: 1;
   padding: 20px;
   color: #333;
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   line-height: 1.5;
 }
@@ -41,11 +30,13 @@
 
 
 #about-us h1{
-  font-family: 'Oleo Script';
+  font-family: 'Montserrat', sans-serif;
   font-size: 38px;
   justify-content: center;
   display: flex;
   font-weight: bold;
+  font-style: bold;
+
 }
 
 
@@ -85,7 +76,7 @@
 
 
 .brand-name{
-   font-family: 'Oleo Script';
+   font-family: 'Open Sans';
    font-size: 38px;
    margin-left:100px;
    margin-top:20px;
@@ -98,8 +89,6 @@
     padding: 0; /* Remove any padding */
 
 }
-
-
 
 
 
@@ -133,17 +122,12 @@
   display: flex;
   top: 20px;
   margin-top: -180px;
-  left: 0;
-  width: 300%;
+  margin-left: 85px;
+  width: 250%;
   height: auto;
   z-index: -1;
-  border-radius: 30px;
-  margin-left: -150px;
 
 }
-
-
-
 
 
 
@@ -156,36 +140,44 @@
   outline: none;
   color: #fff;
   border: none;
-  box-shadow: 0 9px #999;
   margin-right: 10px;
   margin-top: 25px;
+  padding: 11px 40px;
+  text-decoration: none;
+
 
 }
 
-#login-form .btn.primary {background-color: #2196F3;} /* Blue */
-#login-form .btn.primary:hover {background: #0b7dda;}
 
-#login-form .btn.success {background-color: #04AA6D;} /* Green */
-#login-form .btn.success:hover {background-color: #46a049;}
+#login-form .btn-primary {
+    background-color: rgb(105, 173, 159)!important;
 
-#login-form .btn:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+}
+
+#login-form .btn-primary:hover {
+    background-color: #548A7F !important;
+
+}
+
+#login-form .btn-primary:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
+}
+
+#login-form .btn-success {
+    background-color: rgb(241,118,86) !important;
+}
+
+#login-form .btn-success:hover {
+    background-color: #c05e44 !important;
+}
+
+#login-form .btn-success:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
 }
 
 
-
-
-/* This button code for others */
-.btn {
-  font-size: 20px;
-  padding: 12px 20px;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
 
 
 
@@ -409,6 +401,7 @@ body.contact-us #footer-container {
     text-align: center;
     font-size: small;
     padding: 4px;
+
 }
 
 
