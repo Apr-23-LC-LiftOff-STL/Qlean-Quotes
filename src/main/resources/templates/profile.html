@@ -11,8 +11,12 @@
     <h1>User Profile</h1>
     <h4 id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></h4>
       <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
-    <!--  <h4 id="customerPhone" th:text="'Phone: 123-456-7890'"></h4>-->
-    <!--  <h4 id="customerAddress" th:text="'Address: '"></h4>-->
+        <form action="#" th:action="@{/profile}" th:object="${phoneNumber}" methods="post">
+            <label for="phoneNumber">Phone Number:</label><br>
+            <input type="text" id="phoneNumber" name="phoneNumber"><br>
+            <input type="submit" value="Submit">
+        </form>
+
 
 </div>
 </body>

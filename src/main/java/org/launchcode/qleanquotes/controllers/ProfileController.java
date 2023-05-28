@@ -8,6 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ProfileController {
@@ -20,6 +22,25 @@ public class ProfileController {
         model.addAttribute(new ProfileFormDTO());
         model.addAttribute("title", "profile");
         return "profile";
+    }
+
+
+    @PostMapping("/profile/phone")
+    public String savePhoneNumber(@ModelAttribute("phoneNumber") ProfileFormDTO phoneNumberForm, Model model) {
+        model.addAttribute("phoneNumber", phoneNumberForm.getPhoneNumber());
+        return "redirect:/updatedProfile";
+    }
+
+    @GetMapping("/updatedProfile")
+    public String displayUpdatedProfile(Model model) {
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
+        model.addAttribute("customerName", customer.getName());
+        model.addAttribute("phoneNumber", customer.getPhoneNumber());
+        model.addAttribute(new ProfileFormDTO());
+        model.addAttribute("title", "profile");
+
+        return "updatedProfile";
     }
 
 }

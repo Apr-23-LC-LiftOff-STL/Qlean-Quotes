@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="~{fragments :: head}">
+</head>
+
+<nav th:replace="~{fragments :: page-header}"></nav>
+
+<div th:if="${param.error}"> <h1>This didn't work</h1> </div>
+<body>
+<div>
+    <h1>User Profile</h1>
+    <h4 id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></h4>
+    <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
+    <h4 id="customerPhone" th:text="'Phone: ' + ${phoneNumber}"></h4>
+
+
+</div>
+</body>
+</html>
