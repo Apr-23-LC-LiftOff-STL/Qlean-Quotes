@@ -45,6 +45,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
     margin-right: 1cm;
     margin-left: 1cm;
     margin-bottom: 1cm;
@@ -78,8 +79,13 @@
     overflow: hidden;
 }
 
+/*input styling*/
 .form-control {
     background-color: #7faba2;
+    color: #46736a;
+}
+
+.input-label {
     color: #46736a;
 }
 
@@ -134,10 +140,9 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
-    padding: 25px;
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 5px;
 }
-
 
 /*styling the actual radio buttons*/
 .form-check-input[type="radio"] {
@@ -166,6 +171,17 @@
     cursor: pointer;
     font-size: 16px;
 }
+
+.text-danger {
+    color: #F06744 !important;
+}
+.text-danger {
+    color: #F06744;
+}
+
+/*.radio-button-error {*/
+/*    */
+/*}*/
 
 /*container for calculate and pay buttons*/
 .create-quote-submit-button-container {
@@ -228,6 +244,10 @@
     background-color: #e88065 !important;
     box-shadow: 0 0 5px #af5f4b !important;
     color: #19243f !important;
+}
+
+.alert-calculate {
+    color: coral;
 }
 
 
