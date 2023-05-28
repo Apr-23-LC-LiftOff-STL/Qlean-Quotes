@@ -1,74 +1,204 @@
 
 
 #about-us {
-  position: relative;
-  margin-top:250px;
-  margin-bottom:250px;
+   position: relative;
+   margin-top:250px;
+   margin-bottom:280px;
 
 }
 
 #about-us .aboutus-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: -1;
-  border-radius: 30px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: auto;
+   z-index: -1;
+   border-radius: 30px;
 }
 
 #about-us > div {
-  position: relative;
-  z-index: 1;
-  padding: 20px;
-  color: #333;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+   position: relative;
+   z-index: 1;
+   padding: 20px;
+   color: #333;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
 }
 
 
 
 #about-us h1{
-  font-family: 'Montserrat', sans-serif;
-  font-size: 38px;
-  justify-content: center;
-  display: flex;
-  font-weight: bold;
-  font-style: bold;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 38px;
+   justify-content: center;
+   display: flex;
+   font-weight: bold;
+   font-style: bold;
 
 }
 
 
 /* Create three equal columns that floats next to each other */
 #about-us .column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  margin-top: 300px;
+   float: left;
+   width: 33.33%;
+   padding: 10px;
+   margin-top: 300px;
+
 }
 
 /* Clear floats after the columns */
 #about-us .row:after {
-  content: "";
-  display: table;
-  clear: both;
+   content: "";
+   display: table;
+   clear: both;
 }
 
 
 
 #contact-us {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 100px;
-    background-color: #d0906b;
-    border-radius: 30px;
+   position: relative;
 
 }
 
+
+#contact-us::before {
+   content: "";
+   position: absolute;
+   top: 15%;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color:#101728; /* color for the bottom section */
+   z-index: -1;
+}
+
+#contact-us .first-part{
+   font-size: 40px;
+   font-family: 'Montserrat', sans-serif;
+   line-height: 1.0;
+   font-weight: 600;
+}
+
+
+.contact-us-bottom {
+   position: relative;
+   align-items: center;
+   padding: 50px;
+}
+
+
+#contact-us .info {
+   position: absolute;
+   top: 100px;
+   right: 60px;
+   margin-top: 20px;
+   margin-right: 100px;
+
+}
+
+.contact-us-bottom h1 {
+   font-size: 45px;
+   color: rgb(224,100,33);
+   font-family: 'Montserrat', sans-serif;
+   line-height:2.5;
+   font-style: bold;
+
+}
+
+
+.contact-us-bottom p {
+   font-size: 16px;
+   color: #fff;
+   font-family: 'Montserrat', sans-serif;
+   line-height: 1.0;
+}
+
+
+
+.contact-us-bottom .contactus-logo {
+   margin-top: 25px;
+   width: 210px;
+   height: auto;
+   display: flex;
+   margin-left: 35px;
+}
+
+
+
+
+.contact-us-bottom .contactus-image {
+   max-width: 40%;
+   margin-top: 100px;
+   display: flex;
+   height: auto;
+   z-index: -1;
+
+}
+
+
+.contact-us-bottom a {  /* social media */
+   line-height: 4.0;
+}
+
+
+.contact-us-bottom .fa {  /* social media */
+   padding: 20px;
+   font-size: 30px;
+   width: 30px;
+   height: auto;
+   text-decoration: none;
+
+}
+
+.contact-us-bottom .fa:hover {
+   opacity: 0.7;
+}
+
+.contact-us-bottom .fa-facebook {
+   color: white;
+}
+
+.contact-us-bottom .fa-twitter {
+   color: white;
+}
+
+.contact-us-bottom .fa-instagram {
+   color: white;
+}
+
+
+
+/* gonna fix this -esra */
+
+/* Hide footer container on all pages */
+/*#footer-container {
+  display: none;
+
+} */
+
+/* Show footer container on Contact Us page */
+#contact-us .footer{
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   text-align: center;
+   font-size: small;
+   padding: 4px;
+
+}
+
+
+
+
+
 .navbar-brand{
-  margin-left:70px;
+   margin-left:70px;
 
 }
 
@@ -85,47 +215,48 @@
  }
 
 .brand-name p {
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
+   margin: 0; /* Remove any margin */
+   padding: 0; /* Remove any padding */
 
 }
 
 
 
 .login-container  {
-  display: flex;
-  align-items:center;
-  flex-direction: row;
-  margin: 0;
-  padding: 0;
-  position: relative;
+   display: flex;
+   align-items:center;
+   flex-direction: row;
+   margin: 0;
+   padding: 0;
+   position: relative;
 
 }
 
 
 .login-form-contain {
-  position: relative;
-  align-items: center;
-  padding:100px;
-  border-radius: 30px;
+   position: relative;
+   align-items: center;
+   padding:100px;
 
 }
 
 .login-form-contain h1 {
- font-family: 'Abril Fatface', serif;
- margin-bottom: 40px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 33px;
+   margin-bottom: 40px;
+   line-height: 0.5;
 }
 
 
 .login-image {
-  position: absolute;
-  display: flex;
-  top: 20px;
-  margin-top: -180px;
-  margin-left: 85px;
-  width: 250%;
-  height: auto;
-  z-index: -1;
+   position: absolute;
+   display: flex;
+   top: 25px;
+   margin-top: -180px;
+   margin-left: 85px;
+   width: 250%;
+   height: auto;
+   z-index: -1;
 
 }
 
@@ -133,17 +264,17 @@
 
 /* These buttons only for login and sign up */
 #login-form .btn {
-  padding: 15px 25px;
-  font-size: 17px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  border: none;
-  margin-right: 10px;
-  margin-top: 25px;
-  padding: 11px 40px;
-  text-decoration: none;
+   padding: 15px 25px;
+   font-size: 17px;
+   text-align: center;
+   cursor: pointer;
+   outline: none;
+   color: #fff;
+   border: none;
+   margin-right: 10px;
+   margin-top: 25px;
+   padding: 11px 40px;
+   text-decoration: none;
 
 
 }
@@ -182,32 +313,22 @@
 
 
 
-/* Hide footer container on all pages */
-/*#footer-container {
-  display: none;
-
-} */
-
-/* Show footer container on Contact Us page */
-body.contact-us #footer-container {
-   position: absolute;
-}
 
 
 
 .navbar-nav {
-  display: flex;
-  float:right;
-  text-align: center;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 20px;
-  font-family:'Alexandria';
-  font-size: 20px;
+   display: flex;
+   float:right;
+   text-align: center;
+   flex-direction: row;
+   justify-content: flex-end;
+   gap: 20px;
+   font-family:'Alexandria';
+   font-size: 20px;
 }
 
 .navbar-nav li a {
-  color: black;
+   color: black;
 }
 
 
@@ -215,30 +336,30 @@ body.contact-us #footer-container {
 
 
 .button-a {
-  border-radius: 4px;
-  background-color: #76B947;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  justify-content: center;
-  position: relative;
-  right: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+   border-radius: 4px;
+   background-color: #76B947;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   font-size: 20px;
+   padding: 20px;
+   width: 200px;
+   transition: all 0.5s;
+   cursor: pointer;
+   justify-content: center;
+   position: relative;
+   right: 50%;
+   left: 50%;
+   transform: translateX(-50%);
+   bottom: 0;
 
 
 }
 
 .button-a span {
-  cursor: pointer;
+   cursor: pointer;
   display: inline-block;
-  position: relative;
+   position: relative;
   transition: 0.5s;
 }
 
@@ -282,12 +403,12 @@ body.contact-us #footer-container {
 
 #index > header h1 {
 
-    font-family: 'Oleo Script';
-    font-size: 38px;
-    justify-content: center;
-    display: flex;
-    font-weight: bold;
-    margin-top: 25px;
+  font-family: 'Oleo Script';
+  font-size: 38px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 25px;
 
   font-family: 'Oleo Script';
   font-size: 38px;

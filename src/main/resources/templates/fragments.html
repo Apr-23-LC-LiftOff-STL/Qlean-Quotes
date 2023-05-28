@@ -10,7 +10,15 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link th:href="@{/css/qleanquotes.css}" rel="stylesheet" />
 
-<!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap" rel="stylesheet">
+
+        <!--  Font for social media -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
     </head>
 </head>
@@ -30,7 +38,7 @@
                 <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
                 <li class="nav-item">
                     <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                    <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/login'}">Log Out</a>
+                    <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log Out</a>
                 </li>
             </ul>
         </div>
@@ -58,12 +66,23 @@
 </div>
 
 <div id="contact-us" th:fragment="page-contact">
-    <div class="container">
-        <h1>Contact Us!</h1>
-            <div>
-                <p>123 Anywhere St., Any City, ST 12345</p>
-                <p> hello@qleanquotes.com </p>
+    <div class="first-part">
+        <p> A clean place is a safe place.</p>
+        <p> Need us? </p>
+            <div class="contact-us-bottom">
+                <img class="contactus-logo"  src="/images/logodark.png"  alt="Dark Logo" >
+                <img class="contactus-image"  src="/images/contactus.png"  alt="Contact Us" >
+
+                <div class="info">
+                <h1>Contact</h1>
+                <p>123 Anywhere St., St.Louis, MO 12345</p>
+                <p> clean@qleanquotes.com </p>
                 <p> +123-456-7890 </p>
+                    <!-- Need to add real social-media links -->
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                </div>
             </div>
     </div>
 </div>
