@@ -17,7 +17,7 @@ public class CreateQuoteFormDTO {
     @Min(value = 1, message = "Number of rooms is required")
     private Integer numOfRoom;
 
-    @NotNull (message = "Enter number of bathrooms")
+
     private Integer numOfBathroom;
 
 
