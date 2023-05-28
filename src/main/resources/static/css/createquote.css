@@ -52,9 +52,8 @@
     padding: 1cm;
     border-radius: 5%;
     background-color: #fdf6c9;
-makes numbe    font-family: 'Montserrat', sans-serif !important;
+    font-family: 'Montserrat', sans-serif !important;
 }
-
 
 /*/page title */
 .create-quote-title-container {
@@ -180,10 +179,6 @@ makes numbe    font-family: 'Montserrat', sans-serif !important;
     color: #F06744;
 }
 
-/*.radio-button-error {*/
-/*    */
-/*}*/
-
 /*container for calculate and pay buttons*/
 .create-quote-submit-button-container {
     display: flex;
@@ -253,7 +248,7 @@ makes numbe    font-family: 'Montserrat', sans-serif !important;
 
 
 /*footer*/
-#register-footer {
+.create-quote-footer {
     position: fixed;
     bottom: 0;
     right: 0;
