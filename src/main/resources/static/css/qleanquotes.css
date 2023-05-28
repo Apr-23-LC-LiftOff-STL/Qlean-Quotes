@@ -46,8 +46,10 @@
    width: 33.33%;
    padding: 10px;
    margin-top: 300px;
+   text-align: justify;
 
 }
+
 
 /* Clear floats after the columns */
 #about-us .row:after {
@@ -55,6 +57,7 @@
    display: table;
    clear: both;
 }
+
 
 
 
@@ -204,12 +207,11 @@
 
 
 
-
 .brand-name{
    font-family: 'Open Sans';
    font-size: 38px;
    margin-left:100px;
-   margin-top:20px;
+   margin-top: 30px;
    font-style: italic;
 
  }
@@ -245,6 +247,7 @@
    font-size: 33px;
    margin-bottom: 40px;
    line-height: 0.5;
+   margin-top: 10px;
 }
 
 
@@ -323,8 +326,8 @@
    flex-direction: row;
    justify-content: flex-end;
    gap: 20px;
-   font-family:'Alexandria';
-   font-size: 20px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
 }
 
 .navbar-nav li a {
