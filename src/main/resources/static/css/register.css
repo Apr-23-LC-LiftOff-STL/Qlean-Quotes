@@ -1,0 +1,167 @@
+/*Create User form*/
+.register-title {
+    font-family: 'Montserrat', sans-serif;
+    color: #101728;
+}
+
+.register-body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #101728;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 1cm;
+    padding: 1cm;
+    border-radius: 5%;
+    background-color: #fdf6c9;
+    /*background: url("/static/images/clean.png") no-repeat center bottom/cover;*/
+    /*height: 100vh;*/
+}
+
+/*.register-form input {*/
+/*    background-color: #7faba2 !important;*/
+/*    color: #46736a !important;*/
+/*    font-size: 16px;*/
+
+/*    -webkit-appearance: none;*/
+/*    -moz-appearance: none;*/
+/*    -webkit-text-fill-color: #46736a !important;*/
+/*    -webkit-box-shadow: 0 0 0px 1000px #7faba2 inset !important;*/
+
+/*}*/
+
+/*.register-form::placeholder {*/
+/*    color: #46736a;*/
+/*}*/
+
+/*.form-control:focus {*/
+/*    background-color: #ef876c;*/
+/*    border-color: #ec795b;*/
+/*    border-width: 2px;*/
+/*    border-style: groove;*/
+/*    color: #9b4731;*/
+/*    box-shadow: 0 0 5px #e86a49;*/
+/*}*/
+
+.register-label {
+    color: #46736a;
+}
+
+
+
+.form-control {
+    background-color: #7faba2;
+    color: #46736a;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-text-fill-color: #46736a !important;
+    -webkit-box-shadow: 0 0 0px 1000px #7faba2 inset !important;
+}
+
+.register-label {
+    color: #46736a;
+}
+
+.form-control::placeholder {
+    color: #46736a;
+}
+
+.form-control:focus {
+    background-color: #ef876c;
+    border-color: #46736a;
+    border-width: 2px;
+    border-style: groove;
+    color: #9b4731;
+    box-shadow: 0 0 5px #e86a49;
+}
+
+.register-error {
+    color: coral;
+}
+
+#register-password-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#register-password-div .form-group {
+    width: 38%;
+}
+
+#register-create-button-div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+#register-create-button {
+    /*background-color: #132626;*/
+    color: #19243f;
+    /*border: none;*/
+    /*padding: 10px 20px;*/
+    /*border-radius: 8px;*/
+    /*width: 180px; !* Adjust the width as needed *!*/
+    /*height: 40px; !* Adjust the height as needed *!*/
+    font-size: 16px;
+    line-height: 20px;
+    background-color: #69AD9F !important;
+    padding: 5px;
+    border: #69AD9F;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 35px;
+    font-size: 20px;
+}
+
+#register-create-button:hover {
+    background-color: #F06744 !important;;
+    box-shadow: 0 0 5px #b94e33 !important;
+    color: #19243f;
+    /*box-shadow: 0px 2px 4px #132626;*/
+}
+
+
+#register-create-button:active {
+    background-color: #e88065 !important;
+    box-shadow: 0 0 5px #af5f4b !important;
+    color: #19243f !important;
+}
+
+.register-login-redirect {
+    font-size: 13px;
+    padding: 5px;
+    color: #101728;
+}
+
+.register-login-redirect a {
+    color: #101728;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+#register-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: small;
+    margin-right: 2cm;
+    padding: 4px;
+    color: #69AD9F;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+

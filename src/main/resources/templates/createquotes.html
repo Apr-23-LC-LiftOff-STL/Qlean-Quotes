@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -15,7 +14,24 @@
 </head>
 <body class="create-quote-body">
 
-<header th:replace="~{fragments :: page-header}"></header>
+<div class="navbar">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+            <img src="/images/logodark.png" width="100px" alt="Logo">
+        </a>
+    </div>
+    <div class="navbar-links">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
+            <li class="nav-item">
+                <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                <a class="nav-link" href="#"
+                   onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                    Out</a>
+            </li>
+        </ul>
+    </div>
+</div>
 
 
 <form class="create-quote-form" th:action="@{/createquotes}" method="post">
@@ -23,20 +39,23 @@
         <h1 class="create-quote-title">Create Quote</h1>
     </div>
     <div class="form-group">
-        <label>Square Feet
-            <input class="form-control" th:field="${createQuoteFormDTO.squareFeet}" placeholder="ex: 1650"/>
+        <label class="input-label">Square Feet
+            <input class="form-control" th:field="${createQuoteFormDTO.squareFeet}"
+                   placeholder="ex: 1650"/>
         </label>
         <p class="text-danger" th:errors="${createQuoteFormDTO.squareFeet}"></p>
     </div>
     <div class="form-group">
-        <label>Number of Rooms
-            <input class="form-control" th:field="${createQuoteFormDTO.numOfRoom}" placeholder="ex: 7"/>
+        <label class="input-label">Number of Rooms
+            <input class="form-control" th:field="${createQuoteFormDTO.numOfRoom}"
+                   placeholder="ex: 7"/>
         </label>
         <p class="text-danger" th:errors="${createQuoteFormDTO.numOfRoom}"></p>
     </div>
     <div class="form-group">
-        <label>Number of Bathrooms
-            <input class="form-control" th:field="${createQuoteFormDTO.numOfBathroom}" placeholder="ex: 2"/>
+        <label class="input-label">Number of Bathrooms
+            <input class="form-control" th:field="${createQuoteFormDTO.numOfBathroom}"
+                   placeholder="ex: 2"/>
         </label>
         <p class="text-danger" th:errors="${createQuoteFormDTO.numOfBathroom}"></p>
     </div>
@@ -45,21 +64,20 @@
         <div class="radio-button-title-container">
             <label class="radio-button-title">Cleaning Options</label>
         </div>
-        <div>
-            <div class="create-quote-radio-buttons-container">
-                <!--            class="form-group"-->
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOptions}"
-                           th:value="average"/>
-                    <label class="form-check-label">Average Cleaning</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOptions}"
-                           th:value="deep"/>
-                    <label class="form-check-label">Deep Cleaning</label>
-                </div>
-                <p class="text-danger" th:errors="${createQuoteFormDTO.cleaningOptions}"></p>
+        <div class="create-quote-radio-buttons-container">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOptions}"
+                       th:value="average"/>
+                <label class="form-check-label">Average Cleaning</label>
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOptions}"
+                       th:value="deep"/>
+                <label class="form-check-label">Deep Cleaning</label>
+            </div>
+        </div>
+        <div class="radio-button-error">
+            <p class="text-danger" th:errors="${createQuoteFormDTO.cleaningOptions}"></p>
         </div>
     </div>
 
@@ -68,15 +86,15 @@
             <button type="submit" name="calculate" class="btn btn-primary">Calculate</button>
             <a href="/payment" class="btn btn-success">Pay</a>
         </div>
-        <div th:if="${totalCost != null}" class="alert alert-info" role="alert">
-            Total cost:$ <strong th:text="${totalCost}"></strong>
-        </div>
+    </div>
+    <div th:if="${totalCost != null}" class="alert-calculate" role="alert">
+        Total cost: $<strong th:text="${totalCost}"></strong>
     </div>
 
 
 </form>
 
-<div id="register-footer">
+<div class="create-quote-footer">
     <footer>
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>

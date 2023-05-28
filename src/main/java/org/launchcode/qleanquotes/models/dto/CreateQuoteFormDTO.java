@@ -9,18 +9,19 @@ import jakarta.validation.constraints.NotNull;
 public class CreateQuoteFormDTO {
 
 
-    @NotNull(message = "Information of square feet is required!")
-    @Min(value = 70, message = "Minimum requirement of square feet is 70!")
+    @NotNull(message = "Square feet is required")
+    @Min(value = 70, message = "Must be at least 70")
     private Integer squareFeet;
 
-    @NotNull (message = "Number of room is required!")
-    @Min(value = 1, message = "Number of rooms is required!")
+    @NotNull (message = "Enter number of rooms")
+    @Min(value = 1, message = "Number of rooms is required")
     private Integer numOfRoom;
+
 
     private Integer numOfBathroom;
 
 
-    @NotNull (message = "Please select one of the options!")
+    @NotNull (message = "Please select an option")
     private String cleaningOptions;
 
     private double totalCost;
