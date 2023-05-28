@@ -1,194 +1,180 @@
 
-#about-me {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin: 0;
-    padding: 0;
-    background-color: #7bd29d;
-    border-radius: 30px;
-    margin-top: 250px;
-    margin-bottom: 250px;
-}
 
 #about-us {
-  position: relative;
-  margin-top:250px;
-  margin-bottom:250px;
+   position: relative;
+   margin-top:250px;
+   margin-bottom:280px;
 
 }
 
 #about-us .aboutus-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: -1;
-  border-radius: 30px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: auto;
+   z-index: -1;
+   border-radius: 30px;
 }
 
 #about-us > div {
-  position: relative;
-  z-index: 1;
-  padding: 20px;
-  color: #333;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+   position: relative;
+   z-index: 1;
+   padding: 20px;
+   color: #333;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
 }
 
 
 
 #about-us h1{
-  font-family: 'Oleo Script';
-  font-size: 38px;
-  justify-content: center;
-  display: flex;
-  font-weight: bold;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 38px;
+   justify-content: center;
+   display: flex;
+   font-weight: bold;
+   font-style: bold;
+
 }
 
 
 /* Create three equal columns that floats next to each other */
 #about-us .column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  margin-top: 300px;
+   float: left;
+   width: 33.33%;
+   padding: 10px;
+   margin-top: 300px;
+   text-align: justify;
+
 }
+
 
 /* Clear floats after the columns */
 #about-us .row:after {
-  content: "";
-  display: table;
-  clear: both;
+   content: "";
+   display: table;
+   clear: both;
 }
+
 
 
 
 #contact-us {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 100px;
-    background-color: #d0906b;
-    border-radius: 30px;
-
-}
-
-.navbar-brand{
-  margin-left:70px;
+   position: relative;
 
 }
 
 
+#contact-us::before {
+   content: "";
+   position: absolute;
+   top: 15%;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color:#101728; /* color for the bottom section */
+   z-index: -1;
+}
+
+#contact-us .first-part{
+   font-size: 40px;
+   font-family: 'Montserrat', sans-serif;
+   line-height: 1.0;
+   font-weight: 600;
+}
 
 
-.brand-name{
-   font-family: 'Oleo Script';
-   font-size: 38px;
-   margin-left:100px;
-   margin-top:20px;
-   font-style: italic;
+.contact-us-bottom {
+   position: relative;
+   align-items: center;
+   padding: 50px;
+}
 
- }
 
-.brand-name p {
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
+#contact-us .info {
+   position: absolute;
+   top: 100px;
+   right: 60px;
+   margin-top: 20px;
+   margin-right: 100px;
+
+}
+
+.contact-us-bottom h1 {
+   font-size: 45px;
+   color: rgb(224,100,33);
+   font-family: 'Montserrat', sans-serif;
+   line-height:2.5;
+   font-style: bold;
 
 }
 
 
-
-
-
-.login-container  {
-  display: flex;
-  align-items:center;
-  flex-direction: row;
-  margin: 0;
-  padding: 0;
-  position: relative;
-
+.contact-us-bottom p {
+   font-size: 16px;
+   color: #fff;
+   font-family: 'Montserrat', sans-serif;
+   line-height: 1.0;
 }
 
 
-.login-form-contain {
-  position: relative;
-  align-items: center;
-  padding:100px;
-  border-radius: 30px;
 
-}
-
-.login-form-contain h1 {
- font-family: 'Abril Fatface', serif;
- margin-bottom: 40px;
-}
-
-
-.login-image {
-  position: absolute;
-  display: flex;
-  top: 20px;
-  margin-top: -180px;
-  left: 0;
-  width: 300%;
-  height: auto;
-  z-index: -1;
-  border-radius: 30px;
-  margin-left: -150px;
-
+.contact-us-bottom .contactus-logo {
+   margin-top: 25px;
+   width: 210px;
+   height: auto;
+   display: flex;
+   margin-left: 35px;
 }
 
 
 
 
-
-
-/* These buttons only for login and sign up */
-#login-form .btn {
-  padding: 15px 25px;
-  font-size: 17px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  border: none;
-  box-shadow: 0 9px #999;
-  margin-right: 10px;
-  margin-top: 25px;
+.contact-us-bottom .contactus-image {
+   max-width: 40%;
+   margin-top: 100px;
+   display: flex;
+   height: auto;
+   z-index: -1;
 
 }
 
-#login-form .btn.primary {background-color: #2196F3;} /* Blue */
-#login-form .btn.primary:hover {background: #0b7dda;}
 
-#login-form .btn.success {background-color: #04AA6D;} /* Green */
-#login-form .btn.success:hover {background-color: #46a049;}
+.contact-us-bottom a {  /* social media */
+   line-height: 4.0;
+}
 
-#login-form .btn:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+
+.contact-us-bottom .fa {  /* social media */
+   padding: 20px;
+   font-size: 30px;
+   width: 30px;
+   height: auto;
+   text-decoration: none;
+
+}
+
+.contact-us-bottom .fa:hover {
+   opacity: 0.7;
+}
+
+.contact-us-bottom .fa-facebook {
+   color: white;
+}
+
+.contact-us-bottom .fa-twitter {
+   color: white;
+}
+
+.contact-us-bottom .fa-instagram {
+   color: white;
 }
 
 
 
-
-/* This button code for others */
-.btn {
-  font-size: 20px;
-  padding: 12px 20px;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-
-
+/* gonna fix this -esra */
 
 /* Hide footer container on all pages */
 /*#footer-container {
@@ -197,25 +183,155 @@
 } */
 
 /* Show footer container on Contact Us page */
-body.contact-us #footer-container {
-   position: absolute;
+#contact-us .footer{
+   position: fixed;
+   bottom: 0;
+   right: 0;
+   display: flex;
+   align-items: center;
+   justify-content: flex-end;
+   text-align: center;
+   font-size: small;
+   padding: 4px;
+
 }
+
+
+
+
+
+.navbar-brand{
+   margin-left:70px;
+
+}
+
+
+
+.brand-name{
+   font-family: 'Open Sans';
+   font-size: 38px;
+   margin-left:100px;
+   margin-top: 30px;
+   font-style: italic;
+
+ }
+
+.brand-name p {
+   margin: 0; /* Remove any margin */
+   padding: 0; /* Remove any padding */
+
+}
+
+
+
+.login-container  {
+   display: flex;
+   align-items:center;
+   flex-direction: row;
+   margin: 0;
+   padding: 0;
+   position: relative;
+
+}
+
+
+.login-form-contain {
+   position: relative;
+   align-items: center;
+   padding:100px;
+
+}
+
+.login-form-contain h1 {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 33px;
+   margin-bottom: 40px;
+   line-height: 0.5;
+   margin-top: 10px;
+}
+
+
+.login-image {
+   position: absolute;
+   display: flex;
+   top: 25px;
+   margin-top: -180px;
+   margin-left: 85px;
+   width: 250%;
+   height: auto;
+   z-index: -1;
+
+}
+
+
+
+/* These buttons only for login and sign up */
+#login-form .btn {
+   padding: 15px 25px;
+   font-size: 17px;
+   text-align: center;
+   cursor: pointer;
+   outline: none;
+   color: #fff;
+   border: none;
+   margin-right: 10px;
+   margin-top: 25px;
+   padding: 11px 40px;
+   text-decoration: none;
+
+
+}
+
+
+#login-form .btn-primary {
+    background-color: rgb(105, 173, 159)!important;
+
+}
+
+#login-form .btn-primary:hover {
+    background-color: #548A7F !important;
+
+}
+
+#login-form .btn-primary:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
+}
+
+#login-form .btn-success {
+    background-color: rgb(241,118,86) !important;
+}
+
+#login-form .btn-success:hover {
+    background-color: #c05e44 !important;
+}
+
+#login-form .btn-success:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
+}
+
+
+
+
+
+
 
 
 
 .navbar-nav {
-  display: flex;
-  float:right;
-  text-align: center;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 20px;
-  font-family:'Alexandria';
-  font-size: 20px;
+   display: flex;
+   float:right;
+   text-align: center;
+   flex-direction: row;
+   justify-content: flex-end;
+   gap: 20px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
 }
 
 .navbar-nav li a {
-  color: black;
+   color: black;
 }
 
 
@@ -223,30 +339,30 @@ body.contact-us #footer-container {
 
 
 .button-a {
-  border-radius: 4px;
-  background-color: #76B947;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  justify-content: center;
-  position: relative;
-  right: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+   border-radius: 4px;
+   background-color: #76B947;
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   font-size: 20px;
+   padding: 20px;
+   width: 200px;
+   transition: all 0.5s;
+   cursor: pointer;
+   justify-content: center;
+   position: relative;
+   right: 50%;
+   left: 50%;
+   transform: translateX(-50%);
+   bottom: 0;
 
 
 }
 
 .button-a span {
-  cursor: pointer;
+   cursor: pointer;
   display: inline-block;
-  position: relative;
+   position: relative;
   transition: 0.5s;
 }
 
@@ -290,12 +406,12 @@ body.contact-us #footer-container {
 
 #index > header h1 {
 
-    font-family: 'Oleo Script';
-    font-size: 38px;
-    justify-content: center;
-    display: flex;
-    font-weight: bold;
-    margin-top: 25px;
+  font-family: 'Oleo Script';
+  font-size: 38px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 25px;
 
   font-family: 'Oleo Script';
   font-size: 38px;
@@ -303,5 +419,111 @@ body.contact-us #footer-container {
   display: flex;
   font-weight: bold;
   margin-top:25px;
+
+}
+/*Create User form*/
+/*TODO: revisit this part when fonts and colors have been standardized*/
+
+.register-title {
+    color: #404242;
+
+}
+
+.register-body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1cm;
+    padding: 1cm;
+    border-radius: 5%;
+    background-color: rgba(245, 243, 243, 0.8);
+    /*background: url("/static/images/clean.png") no-repeat center bottom/cover;*/
+    /*height: 100vh;*/
+}
+
+.register-form input {
+    background-color: #e7e4e7;
+    color: #505050;
+    font-size: small;
+}
+
+.register-form input:focus {
+    outline: none;
+    background-color: #d0cece;
+    border: 2px solid #132626;
+    box-shadow: 0 0 5px #616162;
+}
+
+.register-label {
+    color: #969696;
+}
+
+
+#register-password-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#register-password-div .form-group {
+    width: 38%;
+}
+
+#register-create-button-div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+#register-create-button {
+    background-color: #132626;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 180px; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    font-size: 16px;
+    line-height: 20px;
+}
+
+#register-create-button:hover {
+    box-shadow: 0px 2px 4px #132626;
+}
+
+
+#register-create-button:active {
+    background-color: cadetblue;
+    box-shadow: 0px 2px 4px #335556;
+    color: #f1cbbd;
+}
+
+.register-login-redirect {
+    font-size: 13px;
+    padding: 5px;
+}
+
+.register-login-redirect a {
+    color: #0e1818;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+#register-footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: small;
+    padding: 4px;
 
 }

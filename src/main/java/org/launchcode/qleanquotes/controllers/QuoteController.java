@@ -52,11 +52,11 @@ public class QuoteController {
             return "/createquotes";
         }
 
-        double totalCost = 0;
+        double totalCost = 0.0;
         Long totalCharge = 0L;
         if (createQuoteFormDTO.getSquareFeet() != null && createQuoteFormDTO.getNumOfRoom() != null) {
             totalCost += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 0.01);
-            totalCharge += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 2L);
+            totalCharge += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 200L);
 
 
             if (createQuoteFormDTO.getNumOfBathroom() != null) {
@@ -72,9 +72,12 @@ public class QuoteController {
                     totalCharge += 2500L;
                 }
             }
+
+
             model.addAttribute("totalCost", totalCost);
             model.addAttribute("totalCharge", totalCharge);
             System.out.println(totalCost);
+
             return "createquotes";
         }
 
@@ -82,9 +85,12 @@ public class QuoteController {
         quoteRepository.save(newQuote);
         setQuoteInsession(request.getSession(), newQuote);
         model.addAttribute("quote", newQuote);
+        model.addAttribute("totalCost", totalCost);
+        model.addAttribute("totalCharge", totalCharge);
 
         return "redirect:/payment";
 
     }
+
 
 }
