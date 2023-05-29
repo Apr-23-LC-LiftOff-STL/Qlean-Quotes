@@ -31,18 +31,18 @@ public class CustomerController {
 
     @PostMapping("/authentication/register")
     public String processRegisterForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors,
-                                      HttpServletRequest request) {
+                                      HttpServletRequest request, Model model) {
+        model.addAttribute("errors", errors);
         if (errors.hasErrors()) {
             return "/authentication/register";
         }
         Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
 
         if (existingCustomer != null) {
-            errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
-            return "/authentication/login";
+            errors.rejectValue("email", "email.alreadyExists", "A user with that email already exists");
+            return "/authentication/register";
         }
 
-        // Send customer back to form if passwords didn't match
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
