@@ -25,13 +25,13 @@ public class ProfileController {
     }
 
 
-    @PostMapping("/profile/phone")
+    @PostMapping("/profile")
     public String savePhoneNumber(@ModelAttribute("phoneNumber") ProfileFormDTO phoneNumberForm, Model model) {
         model.addAttribute("phoneNumber", phoneNumberForm.getPhoneNumber());
-        return "redirect:/updatedProfile";
+        return "redirect:/updated-profile";
     }
 
-    @GetMapping("/updatedProfile")
+    @GetMapping("/updated-profile")
     public String displayUpdatedProfile(Model model) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
@@ -40,7 +40,7 @@ public class ProfileController {
         model.addAttribute(new ProfileFormDTO());
         model.addAttribute("title", "profile");
 
-        return "updatedProfile";
+        return "updated-profile";
     }
 
 }
