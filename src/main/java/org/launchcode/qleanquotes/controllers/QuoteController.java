@@ -47,6 +47,8 @@ public class QuoteController {
     @PostMapping("/createquotes")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
+        model.addAttribute("errors", errors);
+
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "/createquotes";
@@ -58,6 +60,10 @@ public class QuoteController {
             totalCost += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 0.01);
             totalCharge += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 200L);
 
+            if(createQuoteFormDTO.getNumOfBathroom() > createQuoteFormDTO.getNumOfRoom()) {
+                errors.rejectValue("numOfBathroom", "bathrooms.tooMany", "You have more bathrooms than total rooms?");
+                return "/createquotes";
+            }
 
             if (createQuoteFormDTO.getNumOfBathroom() != null) {
                 totalCost += (createQuoteFormDTO.getNumOfBathroom() * 3);
