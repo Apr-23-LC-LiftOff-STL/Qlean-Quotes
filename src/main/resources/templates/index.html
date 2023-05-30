@@ -5,37 +5,65 @@
 <body id="index">
 
 <header>
-  <div th:replace="~{fragments :: page-header}"></div>
-
-  <h1> What We Offer </h1>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+<!--            <div class="navbar-header">-->
+<!--                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">-->
+<!--                    <img src="/images/logo.png" alt="Qlean Quotes Logo" width="125" height="auto">-->
+<!--                </a>-->
+<!--            </div>-->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                        <img src="/images/logodark.png" width="140px"  height="auto" alt="Logo">
+                    </a>
+                </div>
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
+                    <li class="nav-item">
+                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                        <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </header>
+
+
+<h1> PROFESSIONAL SERVICES </h1>
+
+<div class="index-bottom">
 
 <div class="image-row">
     <div class="column">
-        <h2> Deep Cleaning </h2>
-        <img src="/images/deep.png" alt="deep cleaning"  width="500px" height="400px" >
-        <p> Deep Cleaning blablablalblalalllalaallalallalala </p>
-        <p>  blablablalblalalllalaallalallalala</p>
-        <p>  blablablalblalalllalaallalallalala</p>
-
+        <img src="/images/deep.png" alt="deep cleaning"  width= "630px" height="auto">
     </div>
     <div class="column">
-        <h2> Average Cleaning</h2>
-        <img src="/images/light.png" alt="average cleaning"  width="500px" height="400px">
-        <p> Average Cleaning blablablalblalalllalaallalallalala</p>
-        <p>  blablablalblalalllalaallalallalala</p>
-        <p>  blablablalblalalllalaallalallalala</p>
+        <img src="/images/average.png" alt="average cleaning"  width= "630px" height="auto" >
     </div>
 
 </div>
 
 
+    <button class="button-a"><a href="/createquotes" style="color:#FFFFFF;"><span>Create Quote </span></a></button>
 
-  <button class="button-a"><a href="/createquotes" style="color:#FFFFFF;"><span>Create Quote </span></a></button>
 
-<div th:replace="~{fragments :: page-about}"></div>
-<div th:replace="~{fragments :: page-contact}"></div>
-<div th:replace="~{fragments :: footer}"></div>
+
+    <div id="index-contact">
+        <img src="/images/indexcontact.png" alt="homepage-contact" >
+    </div>
+
+
+
+    <div id="index-footer">
+        <footer>
+            ©2023 Qlean Quotes. All Rights Reserved.
+        </footer>
+    </div>
+
+</div>
+
 
 </body>
 </html>
