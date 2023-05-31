@@ -1,12 +1,30 @@
 /*Create User form*/
-.register-title {
-    font-family: 'Montserrat', sans-serif;
-    color: #101728;
-}
 
 .register-body {
     font-family: 'Montserrat', sans-serif;
     background-color: #101728;
+}
+
+.register-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.register-title {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+
+}
+
+.navbar-header {
+    margin: 10px;
+}
+
+ .navbar-brand img {
+    width: auto;
+    height: 20vh;
 }
 
 .register-form {
@@ -14,84 +32,50 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 1cm;
+    text-align: left;
     padding: 1cm;
-    border-radius: 5%;
-    background-color: #fdf6c9;
-    /*background: url("/static/images/clean.png") no-repeat center bottom/cover;*/
-    /*height: 100vh;*/
+    border-radius: 0px;
+    background-color: #101728;
+
 }
 
-/*.register-form input {*/
-/*    background-color: #7faba2 !important;*/
-/*    color: #46736a !important;*/
-/*    font-size: 16px;*/
-
-/*    -webkit-appearance: none;*/
-/*    -moz-appearance: none;*/
-/*    -webkit-text-fill-color: #46736a !important;*/
-/*    -webkit-box-shadow: 0 0 0px 1000px #7faba2 inset !important;*/
-
-/*}*/
-
-/*.register-form::placeholder {*/
-/*    color: #46736a;*/
-/*}*/
-
-/*.form-control:focus {*/
-/*    background-color: #ef876c;*/
-/*    border-color: #ec795b;*/
-/*    border-width: 2px;*/
-/*    border-style: groove;*/
-/*    color: #9b4731;*/
-/*    box-shadow: 0 0 5px #e86a49;*/
-/*}*/
 
 .register-label {
-    color: #46736a;
+    color: white;
+    font-size: 13px;
 }
-
 
 
 .form-control {
-    background-color: #7faba2;
-    color: #46736a;
+    background-color: white;
+    color: #101728;
+    border-radius: 0px;
     -webkit-appearance: none;
     -moz-appearance: none;
-    -webkit-text-fill-color: #46736a !important;
-    -webkit-box-shadow: 0 0 0px 1000px #7faba2 inset !important;
+    -webkit-text-fill-color: #101728 !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
-.register-label {
-    color: #46736a;
-}
 
 .form-control::placeholder {
-    color: #46736a;
-}
-
-.form-control:focus {
-    background-color: #ef876c;
-    border-color: #46736a;
-    border-width: 2px;
-    border-style: groove;
-    color: #9b4731;
-    box-shadow: 0 0 5px #e86a49;
+    color: #101728;
 }
 
 .register-error {
-    color: coral;
+    color: #F06744;
 }
 
 #register-password-div {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
+    gap: 30px;
 }
 
 #register-password-div .form-group {
-    width: 38%;
+    width: 40%;
+
 }
 
 #register-create-button-div {
@@ -99,50 +83,46 @@
     flex-direction: column;
     align-content: center;
     align-items: center;
+    margin: 10px;
 }
 
 #register-create-button {
-    /*background-color: #132626;*/
-    color: #19243f;
-    /*border: none;*/
-    /*padding: 10px 20px;*/
-    /*border-radius: 8px;*/
-    /*width: 180px; !* Adjust the width as needed *!*/
-    /*height: 40px; !* Adjust the height as needed *!*/
-    font-size: 16px;
+    color: white;
+    font-size: 15px;
     line-height: 20px;
-    background-color: #69AD9F !important;
+    background-color: #F06744;
     padding: 5px;
-    border: #69AD9F;
-    border-radius: 5px;
+    border-radius: 0px;
+    border-color: #F06744;
     margin-bottom: 5px;
     width: 200px;
     height: 35px;
-    font-size: 20px;
+
 }
 
 #register-create-button:hover {
-    background-color: #F06744 !important;;
-    box-shadow: 0 0 5px #b94e33 !important;
-    color: #19243f;
-    /*box-shadow: 0px 2px 4px #132626;*/
+    background-color: #69AD9F !important;
+    border-color: #69AD9F;
+    box-shadow: 0 0 5px #3f6c63 !important;
+    color: #101728;
 }
 
 
 #register-create-button:active {
-    background-color: #e88065 !important;
-    box-shadow: 0 0 5px #af5f4b !important;
-    color: #19243f !important;
+    background-color: #F06744 !important;
+    box-shadow: 0 0 5px #b64c32 !important;
+    border-color: #F06744;
+    color: white !important;
 }
 
 .register-login-redirect {
     font-size: 13px;
     padding: 5px;
-    color: #101728;
+    color: white;
 }
 
 .register-login-redirect a {
-    color: #101728;
+    color: white;
     text-decoration: none;
     text-decoration: underline;
 }
@@ -150,15 +130,15 @@
 #register-footer {
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     text-align: center;
-    font-size: small;
-    margin-right: 2cm;
+    font-size: 10px;
+    margin-rirght: 2cm;
     padding: 4px;
-    color: #69AD9F;
+    color: white;
     font-family: 'Montserrat', sans-serif !important;
 }
 
