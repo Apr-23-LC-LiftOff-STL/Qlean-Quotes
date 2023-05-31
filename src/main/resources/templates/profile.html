@@ -9,7 +9,7 @@
 <body>
 <div>
     <h1>User Profile</h1>
-    <h4 id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></h4>
+    <h4 id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></h4>
     <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
 
 
@@ -23,12 +23,12 @@
 <!--    </form>-->
 
         <form action="#" th:action="@{/profile}" th:object="${phoneNumber}" method="post">
-            <label for="phoneNumber">Phone Number:</label><br>
-            <input type="text" id="phoneNumber" name="phoneNumber"><br>
-            <input type="submit" value="Submit">
+            <label for="phoneNumber">Phone Number:
+                <input type="text" id="phoneNumber" name="phoneNumber">
+            </label>
             <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
+            <input type="submit" value="Submit">
         </form>
-
 
 
 </div>

@@ -31,15 +31,15 @@ private CustomerRepository customerRepository;
 
 
     @PostMapping("/profile")
-    public String savePhoneNumber(@ModelAttribute @Valid ProfileFormDTO phoneNumberForm, Model model, Errors errors) {
+    public String savePhoneNumber(@ModelAttribute @Valid ProfileFormDTO phoneNumberForm, Errors errors, Model model) {
         Customer existingCustomer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("phoneNumber", phoneNumberForm.getPhoneNumber());
         existingCustomer.setPhoneNumber(phoneNumberForm.getPhoneNumber());
-        customerRepository.save(existingCustomer);
-
         if (errors.hasErrors()) {
-            return "/profile";
+            model.addAttribute("customer", existingCustomer);
+            return "profile";
         }
+        customerRepository.save(existingCustomer);
 
         return "redirect:/updated-profile";
     }
