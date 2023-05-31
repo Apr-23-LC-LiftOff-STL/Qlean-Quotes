@@ -33,7 +33,6 @@ import java.util.concurrent.ExecutionException;
 
         @GetMapping("/payment")
         public String showPaymentForm(@ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model){
-            model.addAttribute("totalCost", createQuoteFormDTO.getTotalCost());
             model.addAttribute(new PaymentFormDTO());
             return "payment";
         }
@@ -56,7 +55,7 @@ import java.util.concurrent.ExecutionException;
         try {
             // TODO: use money from `paymentFormDTO`
             Money amountMoney = new Money.Builder()
-                .amount(createQuoteFormDTO.getTotalCharge())
+                .amount(1000L)
                 .currency("USD")
                 .build();
 

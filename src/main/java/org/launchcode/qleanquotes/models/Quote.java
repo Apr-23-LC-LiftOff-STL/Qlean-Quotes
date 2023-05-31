@@ -1,6 +1,8 @@
 package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.Entity;
+import org.launchcode.qleanquotes.models.data.QuoteRepository;
+import org.launchcode.qleanquotes.models.enums.CleaningOption;
 
 
 //TODO there needs to be persistence annotations in this model for the databases tables to relate to each other (foreign key! think @manytoone, @onetomany, blah blah)
@@ -13,26 +15,19 @@ public class Quote extends AbstractEntity {
 
     private Integer numOfBathroom;
 
-    private String cleaningOptions;
-
-    private double totalCost;
-
-    private Long totalCharge;
+    private CleaningOption cleaningOption;
 
 
     public Quote() {
     }
 
-    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions, double totalCost, Long totalCharge) {
+    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption) {
+        this();
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
-        this.cleaningOptions = cleaningOptions;
-        this.totalCost = totalCost;
-        this.totalCharge = totalCharge;
+        this.cleaningOption = cleaningOption;
     }
-
-
 
     public Integer getSquareFeet() {
         return squareFeet;
@@ -58,27 +53,11 @@ public class Quote extends AbstractEntity {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public String getCleaningOptions() {
-        return cleaningOptions;
+    public CleaningOption getCleaningOption() {
+        return cleaningOption;
     }
 
-    public void setCleaningOptions(String cleaningOptions) {
-        this.cleaningOptions = cleaningOptions;
-    }
-
-    public double getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public Long getTotalCharge() {
-        return totalCharge;
-    }
-
-    public void setTotalCharge(Long totalCharge) {
-        this.totalCharge = totalCharge;
+    public void setCleaningOption(CleaningOption cleaningOption) {
+        this.cleaningOption = cleaningOption;
     }
 }

@@ -60,26 +60,39 @@
         <p class="text-danger" th:errors="${createQuoteFormDTO.numOfBathroom}"></p>
     </div>
 
+
     <div class="cleaning-options-container">
         <div class="radio-button-title-container">
             <label class="radio-button-title">Cleaning Options</label>
         </div>
         <div class="create-quote-radio-buttons-container">
             <div class="form-check">
-                <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOptions}"
+                <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOption}"
                        th:value="average"/>
                 <label class="form-check-label">Average Cleaning</label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOptions}"
+                <input class="form-check-input" type="radio" th:field="${createQuoteFormDTO.cleaningOption}"
                        th:value="deep"/>
                 <label class="form-check-label">Deep Cleaning</label>
             </div>
         </div>
         <div class="radio-button-error">
-            <p class="text-danger" th:errors="${createQuoteFormDTO.cleaningOptions}"></p>
+            <p class="text-danger" th:errors="${createQuoteFormDTO.cleaningOption}"></p>
         </div>
     </div>
+
+<!--    <div class="form-group">-->
+<!--        <label> Type-->
+<!--            <select th:field="${CreateQuoteFormDTO.cleaningOption}">-->
+<!--                <option th:each="option : ${cleaningOption}"-->
+<!--                        th:value="${option}"-->
+<!--                        th:text="${option.displayName}"-->
+<!--                ></option>-->
+<!--            </select>-->
+<!--        </label>-->
+<!--    </div>-->
+
 
     <div class="create-quote-submit-button-container">
         <div class="form-group">

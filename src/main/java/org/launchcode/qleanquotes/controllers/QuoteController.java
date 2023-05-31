@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
+import org.launchcode.qleanquotes.models.enums.CleaningOption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,7 @@ public class QuoteController {
     @GetMapping("/createquotes")
     public String showCreateQuoteForm(Model model){
         model.addAttribute(new CreateQuoteFormDTO());
+        model.addAttribute("cleaningOption", CleaningOption.values());
         model.addAttribute("title", "Get Quote");
         return "createquotes";
     }
@@ -51,46 +53,11 @@ public class QuoteController {
             model.addAttribute("errors", errors);
             return "/createquotes";
         }
-
-        double totalCost = 0.0;
-        Long totalCharge = 0L;
-        if (createQuoteFormDTO.getSquareFeet() != null && createQuoteFormDTO.getNumOfRoom() != null) {
-            totalCost += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 0.01);
-            totalCharge += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 200L);
-
-
-            if (createQuoteFormDTO.getNumOfBathroom() != null) {
-                totalCost += (createQuoteFormDTO.getNumOfBathroom() * 3);
-                totalCharge += (createQuoteFormDTO.getNumOfBathroom() * 300L);
-            }
-            if (createQuoteFormDTO.getCleaningOptions() != null) {
-                if (createQuoteFormDTO.getCleaningOptions().equals("deep")) {
-                    totalCost += 50;
-                    totalCharge += 5000L;
-                } else if (createQuoteFormDTO.getCleaningOptions().equals("average")) {
-                    totalCost += 25;
-                    totalCharge += 2500L;
+                    Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOption());
+                    quoteRepository.save(newQuote);
+                    setQuoteInsession(request.getSession(), newQuote);
+                    model.addAttribute("quote", newQuote);
+                    return "createquotes";
                 }
-            }
-
-
-            model.addAttribute("totalCost", totalCost);
-            model.addAttribute("totalCharge", totalCharge);
-            System.out.println(totalCost);
-
-            return "createquotes";
-        }
-
-        Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOptions(), createQuoteFormDTO.getTotalCost(), createQuoteFormDTO.getTotalCharge());
-        quoteRepository.save(newQuote);
-        setQuoteInsession(request.getSession(), newQuote);
-        model.addAttribute("quote", newQuote);
-        model.addAttribute("totalCost", totalCost);
-        model.addAttribute("totalCharge", totalCharge);
-
-        return "redirect:/payment";
-
-    }
-
 
 }

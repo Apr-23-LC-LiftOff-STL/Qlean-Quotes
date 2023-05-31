@@ -3,7 +3,7 @@ package org.launchcode.qleanquotes.models.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-
+import org.launchcode.qleanquotes.models.enums.CleaningOption;
 
 
 public class CreateQuoteFormDTO {
@@ -22,22 +22,17 @@ public class CreateQuoteFormDTO {
 
 
     @NotNull (message = "Please select an option")
-    private String cleaningOptions;
+    private CleaningOption cleaningOption;
 
-    private double totalCost;
-
-    private Long totalCharge;
 
     public CreateQuoteFormDTO() {
     }
 
-    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions, double totalCost, Long totalCharge) {
+    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOption) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
-        this.cleaningOptions = cleaningOptions;
-        this.totalCost = totalCost;
-        this.totalCharge = totalCharge;
+        this.cleaningOption = CleaningOption.valueOf(cleaningOption);
 
     }
 
@@ -66,29 +61,14 @@ public class CreateQuoteFormDTO {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public String getCleaningOptions() {
-        return cleaningOptions;
+    public CleaningOption getCleaningOption() {
+        return cleaningOption;
     }
 
-    public void setCleaningOptions(String cleaningOptions) {
-        this.cleaningOptions = cleaningOptions;
+    public void setCleaningOption(CleaningOption cleaningOptions) {
+        this.cleaningOption = cleaningOptions;
     }
 
-    public double getTotalCost() {
-        return totalCost;
-    }
-
-    public void setTotalCost(double totalCost) {
-        this.totalCost = totalCost;
-    }
-
-    public Long getTotalCharge() {
-        return totalCharge;
-    }
-
-    public void setTotalCharge(Long totalCharge) {
-        this.totalCharge = totalCharge;
-    }
 }
 
 
