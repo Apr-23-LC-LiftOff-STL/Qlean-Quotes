@@ -1,13 +1,9 @@
 package org.launchcode.qleanquotes.controllers;
 
-
-import com.squareup.square.models.CreateOrderRequest;
-import com.squareup.square.models.Order;
-import com.squareup.square.models.OrderLineItem;
-import com.squareup.square.models.OrderLineItemModifier;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.launchcode.qleanquotes.QuoteCalculator;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
@@ -53,10 +49,20 @@ public class QuoteController {
             model.addAttribute("errors", errors);
             return "/createquotes";
         }
-                    Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOption());
-                    quoteRepository.save(newQuote);
-                    setQuoteInsession(request.getSession(), newQuote);
-                    model.addAttribute("quote", newQuote);
+
+        QuoteCalculator quoteCalculator = new QuoteCalculator();
+        Quote quote = new Quote();
+        quote.setSquareFeet(createQuoteFormDTO.getSquareFeet());
+        quote.setNumOfRoom(createQuoteFormDTO.getNumOfRoom());
+        quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
+        quote.setCleaningOption(createQuoteFormDTO.getCleaningOption());
+        Long calculatedTotalCharge = quoteCalculator.calculateTotalCharge(quote);
+        double calculateTotalCost = quoteCalculator.calculateTotalCost(quote);
+        quote.setTotalCharge(calculatedTotalCharge);
+        quote.setTotalCost(calculateTotalCost);
+                setQuoteInsession(request.getSession(), quote);
+                model.addAttribute("quote", quote);
+                quoteRepository.save(quote);
                     return "createquotes";
                 }
 
