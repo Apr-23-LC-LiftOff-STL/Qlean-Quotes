@@ -5,15 +5,14 @@
 
 <nav th:replace="~{fragments :: page-header}"></nav>
 
-<div th:if="${param.error}"> <h1>This didn't work</h1> </div>
+<div th:if="${param.error}"><h1>This didn't work</h1></div>
 <body>
 <div>
     <h1>User Profile</h1>
     <h4 id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></h4>
     <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
     <h4 id="customerPhone" th:text="'Phone: ' + ${customer.phoneNumber}"></h4>
-
-
+    <a class="edit-button" href="/profile">Edit</a>
 </div>
 </body>
 </html>
