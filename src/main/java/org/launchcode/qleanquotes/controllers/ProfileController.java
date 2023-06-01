@@ -41,7 +41,7 @@ private CustomerRepository customerRepository;
         }
         customerRepository.save(existingCustomer);
 
-        return "redirect:/profile";
+        return "redirect:/updated-profile";
 //
     }
 

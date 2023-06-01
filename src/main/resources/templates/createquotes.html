@@ -22,7 +22,9 @@
     </div>
     <div class="navbar-links">
         <ul class="nav">
-            <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
+            <li class="nav-item">
+                <a th:href="${customer.phoneNumber} == '' ? '/profile' : '/updated-profile'" class="nav-link">User Profile</a>
+            </li>
             <li class="nav-item">
                 <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
                 <a class="nav-link" href="#"
