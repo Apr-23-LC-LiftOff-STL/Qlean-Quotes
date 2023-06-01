@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Size;
 
 public class ProfileFormDTO {
 
-    @NotNull
     @Size(min = 10, max = 11, message="Phone number must be at least 10 digits, without dashes")
     private String phoneNumber;
 

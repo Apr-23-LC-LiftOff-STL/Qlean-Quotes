@@ -7,8 +7,6 @@ import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.data.CustomerRepository;
 import org.launchcode.qleanquotes.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -51,8 +49,9 @@ public class CustomerController {
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
-        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword());
+        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword(), "");
         customerRepository.save(newCustomer);
+//        TODO figure out why, after registering a new user, it takes them t login, not index
         return "redirect:/";
     }
 
