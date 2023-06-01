@@ -41,7 +41,8 @@ private CustomerRepository customerRepository;
         }
         customerRepository.save(existingCustomer);
 
-        return "redirect:/updated-profile";
+        return "redirect:/profile";
+//
     }
 
     @GetMapping("/updated-profile")

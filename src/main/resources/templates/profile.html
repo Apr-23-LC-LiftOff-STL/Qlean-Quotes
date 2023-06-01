@@ -5,43 +5,65 @@
 
 <nav th:replace="~{fragments :: page-header}"></nav>
 
-<div th:if="${param.error}"> <h1>This didn't work</h1> </div>
+<div th:if="${param.error}"><h1>This didn't work</h1></div>
 <body>
 <div>
     <h1>User Profile</h1>
     <h4 id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></h4>
     <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
+    <div th:if="${customer.phoneNumber != ''}">
+        <h4 th:text="'Phone: ' + ${customer.phoneNumber}"></h4>
+    </div>
 
 
-<!--    <div class="form-group">-->
-<!--        <label class="phoneNumber-label">Phone Number:-->
-<!--            <input class="form-control" th:field="${profileFormDTO.phoneNumber}" type="phoneNumber"/>-->
-<!--        </label>-->
-<!--        <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </div>-->
-<!--    </form>-->
 
-        <form action="#" th:action="@{/profile}" th:object="${phoneNumber}" method="post">
-            <label for="phoneNumber">Phone Number:
-                <input type="text" id="phoneNumber" name="phoneNumber">
-            </label>
-            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
-            <input type="submit" value="Submit">
-        </form>
 
+    <!--    <div th:if="${customer.phoneNumber != ''}">-->
+    <!--        <h4>-->
+    <!--            <span th:text="'Phone: ' + ${customer.phoneNumber}"></span>-->
+    <!--            <button onclick="showEditForm()">Edit</button>-->
+    <!--        </h4>-->
+    <!--    </div>-->
+
+    <!--    <div th:if="${customer.phoneNumber == '' }">-->
+    <!--        <form action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">-->
+    <!--            <label for="phoneNumber">Phone Number:-->
+    <!--                <input type="text" id="phoneNumber" name="phoneNumber">-->
+    <!--            </label>-->
+    <!--            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>-->
+    <!--            <input type="submit" value="Submit">-->
+    <!--        </form>-->
+    <!--    </div>-->
+
+    <!--    <div id="editFormContainer" th:if="${customer.phoneNumber != ''}" style="display: none;">-->
+    <!--        <form action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">-->
+    <!--            <label for="editPhoneNumber">Phone Number:-->
+    <!--                <input type="text" id="editPhoneNumber" name="phoneNumber" th:value="${customer.phoneNumber}">-->
+    <!--            </label>-->
+    <!--            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>-->
+    <!--            <input type="submit" value="Save">-->
+    <!--            <button onclick="cancelEdit()">Cancel</button>-->
+    <!--        </form>-->
+    <!--    </div>-->
+
+    <!--    <div th:if="${customer.phoneNumber != ''}">-->
+    <!--        <a th:href="@{/updated-profile}" class="btn btn-primary">Finalize</a>-->
+    <!--    </div>-->
+
+    <!--</div>-->
+
+    <!--<script>-->
+    <!--    function showEditForm() {-->
+    <!--        document.getElementById("editFormContainer").style.display = "block";-->
+    <!--    }-->
+
+    <!--    function cancelEdit() {-->
+    <!--        document.getElementById("editFormContainer").style.display = "none";-->
+    <!--    }-->
+    <!--</script>-->
 
 </div>
 </body>
 </html>
 
 
-
-<!--<form class="register-form" th:action="@{/authentication/register}" method="post">-->
-<!--    <h1 class="register-title">Create New Account</h1>-->
-<!--    <div class="form-group">-->
-<!--        <label class="register-label">Name-->
-<!--            <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>-->
-<!--        </label>-->
-<!--        <p class="error" th:errors="${registerFormDTO.name}"></p>-->
-<!--    </div>-->
