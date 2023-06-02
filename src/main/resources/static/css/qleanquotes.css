@@ -334,9 +334,9 @@
 }
 
 .button-a span {
-   cursor: pointer;
+  cursor: pointer;
   display: inline-block;
-   position: relative;
+  position: relative;
   transition: 0.5s;
 }
 
@@ -415,13 +415,12 @@
   align-items: center;
   width: 500px
   height: auto;
-
-
 }
+
 
 #index .nav-link{
   color: white;
- }
+}
 
 
 #index {
@@ -430,8 +429,61 @@
 
 
 
+#error {
+  background-color:#101728;
+}
+
+.error-container{
+  position: relative;
+  flex-direction: row;
 
 
 
+}
+
+.error-message{
+  font-size: 17px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 0.7;
+  margin-left: 130px;
+  position: absolute;
+  margin-top: -380px;
+  padding: 70px;
+  position: relative;
 
 
+}
+
+.error-message h1{
+  margin-left: 130px;
+  line-height: 2.0;
+
+}
+
+
+
+.button-error {
+  background-color: rgb(105, 173, 159)!important;
+  justify-content: center;
+  position: relative;
+  right: 72%;
+  left: 27%;
+  transform: translateX(-50%);
+  bottom: 0px;
+  padding: 13px 40px;
+  font-size: 17px;
+  border: none;
+  margin-top: -15px;
+
+
+
+}
+
+.button-error:hover {
+  background-color: #548A7F !important;
+}
+
+.error-image{
+  z-index: -1;
+}
