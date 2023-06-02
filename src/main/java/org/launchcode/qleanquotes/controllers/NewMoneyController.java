@@ -3,19 +3,20 @@ package org.launchcode.qleanquotes.controllers;
 import com.squareup.square.exceptions.ApiException;
 import com.squareup.square.models.Address;
 import com.squareup.square.models.CreatePaymentRequest;
-import com.squareup.square.models.CreatePaymentResponse;
 import com.squareup.square.models.Money;
 import org.launchcode.qleanquotes.SquareWrapper;
+import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
-import org.launchcode.qleanquotes.models.Quote;
-import org.launchcode.qleanquotes.models.TokenWrapper;
-import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
 import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.io.IOException;
 import java.util.Map;
@@ -33,6 +34,9 @@ import java.util.concurrent.ExecutionException;
 
         @GetMapping("/payment")
         public String showPaymentForm(@ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model){
+            Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            model.addAttribute("customer", customer);
+            model.addAttribute("totalCost", createQuoteFormDTO.getTotalCost());
             model.addAttribute(new PaymentFormDTO());
             return "payment";
         }
@@ -51,7 +55,8 @@ import java.util.concurrent.ExecutionException;
 
     @PostMapping("/payment")
     public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model) {
-
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
         try {
             // TODO: use money from `paymentFormDTO`
             Money amountMoney = new Money.Builder()

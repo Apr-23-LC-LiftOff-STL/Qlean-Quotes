@@ -14,9 +14,18 @@
 </head>
 
 <body class="register-body">
+<div class="navbar-header">
+    <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+        <img src="/images/logodark.png" width="100px" alt="Logo">
+    </a>
+</div>
+<div class="register-title-container">
+    <h2 class="register-title">CREATE NEW ACCOUNT</h2>
+</div>
+
+<div class="navbar-links">
 <div class="register-background-image">
     <form class="register-form" th:action="@{/authentication/register}" method="post">
-        <h1 class="register-title">Create New Account</h1>
         <div class="form-group">
             <label class="register-label">Name
                 <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>
@@ -41,21 +50,20 @@
                 <label class="register-label">Password
                     <input class="form-control" th:field="${registerFormDTO.password}" type="password"/>
                 </label>
-                <p class="register-error" th:errors="${registerFormDTO.password}"></p>
             </div>
             <div class="form-group">
                 <label class="register-label">Verify Password
                     <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password"/>
                 </label>
-                <p class="register-error" th:errors="${registerFormDTO.verifyPassword}"></p>
             </div>
         </div>
+        <p class="register-error" th:errors="${registerFormDTO.password}"></p>
 
         <div id="register-create-button-div">
-            <input type="submit" id="register-create-button" class="btn btn-primary" value="sign up"/>
+            <input type="submit" id="register-create-button" class="btn btn-primary" value="Sign Up"/>
         </div>
         <div class="register-login-redirect">
-            <p class="normal-margins">Already have an account? <a href="/authentication/login">Log in</a></p>
+            <p class="normal-margins">Already have an account? <a href="/authentication/login"> Log in</a></p>
         </div>
     </form>
 </div>

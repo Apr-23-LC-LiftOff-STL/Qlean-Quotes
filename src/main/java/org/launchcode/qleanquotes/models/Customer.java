@@ -25,7 +25,6 @@ public class Customer extends AbstractEntity implements UserDetails {
     @NotNull
     private String password;
 
-    @NotNull
     private String phoneNumber;
 
 
@@ -36,11 +35,12 @@ public class Customer extends AbstractEntity implements UserDetails {
     public Customer() {
     }
 
-    public Customer(String name, String lastName, String email, String password) {
+    public Customer(String name, String lastName, String email, String password, String phoneNumber) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.password = encoder.encode(password);
+        this.phoneNumber = "";
     }
 
     public String getName() {
@@ -62,6 +62,8 @@ public class Customer extends AbstractEntity implements UserDetails {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

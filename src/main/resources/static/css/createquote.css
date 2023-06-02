@@ -11,10 +11,14 @@
 
 }
 
-/*.navbar-header {*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*}*/
+.navbar-header {
+    margin: 10px;
+}
+
+.navbar-brand img {
+    width: auto;
+    height: 20vh;
+}
 
 .navbar-brand {
     margin-left: 30px;
@@ -24,18 +28,15 @@
 
 .nav {
     list-style-type: none;
-    /*gap: 10px;*/
-    /*margin-right: 20px;*/
 }
 
 .nav-item a {
-    color: #69AD9F;
+    color: white;
     text-decoration: none;
-    /*padding: 5px;*/
 }
 
 .nav-item a:hover {
-    color: #f3ac9a;
+    color: #F06744;
 }
 
 
@@ -48,20 +49,18 @@
     text-align: center;
     margin-right: 1cm;
     margin-left: 1cm;
-    margin-bottom: 1cm;
     padding: 1cm;
-    border-radius: 5%;
-    background-color: #fdf6c9;
+    background-color: #101728;
     font-family: 'Montserrat', sans-serif !important;
 }
 
 /*/page title */
 .create-quote-title-container {
-    background-color: #69AD9F;
+    background-color: #101728;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 15px;
-    width: 300px;
+    width: 400px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -71,9 +70,9 @@
 }
 
 .create-quote-title {
-    color:  #19243f;
+    color:  white;
     margin: 0;
-    font-size: 30px;
+    font-size: 40px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -81,12 +80,17 @@
 
 /*input styling*/
 .form-control {
-    background-color: #7faba2;
-    color: #46736a;
+    background-color: white;
+    color: #101728;
+    border-radius: 0px;
+}
+
+label {
+    margin-bottom: 0rem !important;
 }
 
 .input-label {
-    color: #46736a;
+    color: white;
 }
 
 .form-control::placeholder {
@@ -94,42 +98,37 @@
 }
 
 .form-control:focus {
-    background-color: #ef876c;
-    border-color: #ec795b;
+    background-color: white;
+    border-color: #F06744;
     border-width: 2px;
     border-style: groove;
-    color: #9b4731;
-    box-shadow: 0 0 5px #e86a49;
+    color: #101728;
+    box-shadow: 0 0 5px #F06744;
 }
 
 /*cleaning options with radio buttons, and title*/
 .cleaning-options-container {
-    border: 2px solid #69AD9F;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .radio-button-title-container {
-    background-color: #69AD9F;
     padding: 5px;
     border-radius: 5px;
-    margin: 10px;
     width: 190px;
     height: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     overflow: hidden;
     text-align: center;
-
 }
 
 .radio-button-title {
-    color:  #19243f;
-    margin: 0;
+    color:  white;
+    margin-left: 14px;
     font-size: 17px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -138,9 +137,10 @@
 
 .create-quote-radio-buttons-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
-    padding: 20px;
+    padding: 10px;
     margin-bottom: 5px;
 }
 
@@ -153,7 +153,7 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid #69AD9F;
+    border: 2px solid white;
     outline: none;
     transition: all 0.3s ease;
 }
@@ -167,7 +167,7 @@
 .form-check-label {
     position: relative;
     padding-right: 10px;
-    color: #46736a;
+    color: white;
     cursor: pointer;
     font-size: 16px;
 }
@@ -175,16 +175,13 @@
 .text-danger {
     color: #F06744 !important;
 }
-.text-danger {
-    color: #F06744;
-}
+
 
 /*container for calculate and pay buttons*/
 .create-quote-submit-button-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    padding-bottom: 25px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -194,7 +191,7 @@
 /*calculate and pay buttons*/
 .btn {
     border: #F06744;
-    color: #19243f;
+    color: white;
 }
 
 .btn-primary {
@@ -202,56 +199,68 @@
     padding: 5px;
     border: #69AD9F;
     border-radius: 5px;
+    margin-right: 13px;
     margin-bottom: 5px;
-    width: 200px;
+    width: 150px;
     height: 35px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .btn-primary:hover {
     background-color: #F06744;
     box-shadow: 0 0 5px #b94e33;
-    color: #19243f;
+    color: white;
 }
 
 .btn-primary:active {
-    background-color: #e88065 !important;
-    box-shadow: 0 0 5px #af5f4b !important;
-    color: #19243f !important;
+    background-color: #69AD9F !important;
+    box-shadow: 0 0 5px #5a988b !important;
+    color: white !important;
 }
 
 .btn-success {
-    background-color: #69AD9F;
+    background-color: #F06744;
     padding: 5px;
-    border-radius: 5px;
+    border: #F06744;
+    margin-left: 13px;
     margin-bottom: 5px;
-    width: 200px;
+    width: 150px;
     height: 35px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .btn-success:hover {
-    background-color: #F06744;
-    box-shadow: 0 0 5px #b94e33;
-    color: #19243f;
+    background-color: #69AD9F;
+    box-shadow: 0 0 5px #416c63;
+    color: white;
 }
 
 .btn-success:active {
-    background-color: #e88065 !important;
-    box-shadow: 0 0 5px #af5f4b !important;
-    color: #19243f !important;
+    background-color:  #F06744 !important;
+    box-shadow: 0 0 5px #b24c32 !important;
+    color: white !important;
 }
 
 .alert-calculate {
-    color: coral;
+    color: #F06744;
 }
 
+.create-quote-cancel {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cancel-button a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
 
 /*footer*/
 .create-quote-footer {
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -259,7 +268,7 @@
     font-size: small;
     margin-right: 2cm;
     padding: 4px;
-    color: #69AD9F;
+    color: white;
     font-family: 'Montserrat', sans-serif !important;
 }
 

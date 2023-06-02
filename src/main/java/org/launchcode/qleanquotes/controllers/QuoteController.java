@@ -8,11 +8,13 @@ import com.squareup.square.models.OrderLineItemModifier;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -49,6 +51,10 @@ public class QuoteController {
     @PostMapping("/createquotes")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
+        model.addAttribute("errors", errors);
+
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "/createquotes";
