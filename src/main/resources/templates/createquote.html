@@ -36,7 +36,7 @@
 </div>
 
 
-<form class="create-quote-form" th:action="@{/createquotes}" method="post">
+<form class="create-quote-form" th:action="@{/createquote}" method="post">
     <div class="create-quote-title-container">
         <h1 class="create-quote-title">CREATE QUOTE</h1>
     </div>
@@ -102,8 +102,8 @@
             <a href="/payment" class="btn btn-success">Pay</a>
         </div>
     </div>
-    <div th:if="${createQuoteFormDTO.getTotalCost() != null}" class="alert-calculate" role="alert">
-        Total cost: $<strong th:text="${createQuoteFormDTO.getTotalCost()}"></strong>
+    <div th:if="${quote != null && quote.formattedTotalCost != null}" class="alert-calculate" role="alert">
+        <p>Total Cost: $<span th:text="${quote.formattedTotalCost}">N/A</span></p>
     </div>
 </form>
 

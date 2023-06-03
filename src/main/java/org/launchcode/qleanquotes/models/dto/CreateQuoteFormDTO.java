@@ -26,18 +26,20 @@ public class CreateQuoteFormDTO {
 
     private Long totalCharge;
     private double totalCost;
+    private String formattedTotalCost;
 
 
     public CreateQuoteFormDTO() {
     }
 
-    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost) {
+    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
         this.cleaningOption = cleaningOption;
         this.totalCharge = totalCharge;
         this.totalCost = totalCost;
+        this.formattedTotalCost = formattedTotalCost;
 
     }
 
@@ -88,6 +90,14 @@ public class CreateQuoteFormDTO {
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public String getFormattedTotalCost() {
+        return formattedTotalCost;
+    }
+
+    public void setFormattedTotalCost(String formattedTotalCost) {
+        this.formattedTotalCost = formattedTotalCost;
     }
 }
 

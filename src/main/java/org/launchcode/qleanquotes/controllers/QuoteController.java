@@ -12,12 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
+import java.util.Optional;
 
 
 @Controller
@@ -33,21 +30,25 @@ public class QuoteController {
         session.setAttribute(quoteSessionKey, quote.getId());
     }
 
-    @GetMapping("/createquotes")
+    public static Integer getQuoteIdFromSession(HttpSession session) {
+        return (Integer) session.getAttribute(quoteSessionKey);
+    }
+
+    @GetMapping("/createquote")
     public String showCreateQuoteForm(Model model){
         model.addAttribute(new CreateQuoteFormDTO());
         model.addAttribute("cleaningOption", CleaningOption.values());
         model.addAttribute("title", "Get Quote");
-        return "createquotes";
+        return "createquote";
     }
 
 
-    @PostMapping("/createquotes")
+    @PostMapping("/createquote")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
-            return "/createquotes";
+            return "createquote";
         }
 
         QuoteCalculator quoteCalculator = new QuoteCalculator();
@@ -57,13 +58,33 @@ public class QuoteController {
         quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
         quote.setCleaningOption(createQuoteFormDTO.getCleaningOption());
         Long calculatedTotalCharge = quoteCalculator.calculateTotalCharge(quote);
-        double calculateTotalCost = quoteCalculator.calculateTotalCost(quote);
+        double calculatedTotalCost = quoteCalculator.calculateTotalCost(quote);
+        String formattedTotalCost = quoteCalculator.formatTotalCost(quote);
         quote.setTotalCharge(calculatedTotalCharge);
-        quote.setTotalCost(calculateTotalCost);
+        quote.setTotalCost(calculatedTotalCost);
+        quote.setFormattedTotalCost(formattedTotalCost);
         setQuoteInsession(request.getSession(), quote);
-        model.addAttribute("quote", quote);
         quoteRepository.save(quote);
-        return "createquotes";
+        model.addAttribute("quote", quote);
+        return "createquote";
+    }
+
+
+    @GetMapping("createquote/{quoteId}")
+    public String displayNewQuote(Model model, @PathVariable int quoteId, HttpServletRequest request, Errors errors) {
+
+        HttpSession session = request.getSession();
+        Integer storedQuoteId = getQuoteIdFromSession(session);
+        Optional<Quote> optionalQuote = quoteRepository.findById(quoteId);
+
+        if (storedQuoteId != null && storedQuoteId == quoteId) {
+            Quote quote = optionalQuote.get();
+            model.addAttribute("quote", quote);
+        } else {
+            model.addAttribute("errors", errors);
+            return "createquote";
+        }
+        return "createquote";
     }
 
 }

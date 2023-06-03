@@ -20,12 +20,13 @@ public class Quote extends AbstractEntity {
     private Long totalCharge;
 
     private double totalCost;
+    private String formattedTotalCost;
 
 
     public Quote() {
     }
 
-    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost) {
+    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
         this();
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
@@ -33,6 +34,7 @@ public class Quote extends AbstractEntity {
         this.cleaningOption = cleaningOption;
         this.totalCharge = totalCharge;
         this.totalCost = totalCost;
+        this.formattedTotalCost = formattedTotalCost;
 
     }
 
@@ -82,5 +84,13 @@ public class Quote extends AbstractEntity {
 
     public void setTotalCost(double totalCost) {
         this.totalCost = totalCost;
+    }
+
+    public String getFormattedTotalCost() {
+        return formattedTotalCost;
+    }
+
+    public void setFormattedTotalCost(String formattedTotalCost) {
+        this.formattedTotalCost = formattedTotalCost;
     }
 }
