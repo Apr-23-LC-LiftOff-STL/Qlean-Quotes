@@ -3,7 +3,7 @@ package org.launchcode.qleanquotes.models.dto;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-
+import org.launchcode.qleanquotes.models.enums.CleaningOption;
 
 
 public class CreateQuoteFormDTO {
@@ -22,22 +22,24 @@ public class CreateQuoteFormDTO {
 
 
     @NotNull (message = "Please select an option")
-    private String cleaningOptions;
-
-    private double totalCost;
+    private CleaningOption cleaningOption;
 
     private Long totalCharge;
+    private double totalCost;
+    private String formattedTotalCost;
+
 
     public CreateQuoteFormDTO() {
     }
 
-    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions, double totalCost, Long totalCharge) {
+    public CreateQuoteFormDTO(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
-        this.cleaningOptions = cleaningOptions;
-        this.totalCost = totalCost;
+        this.cleaningOption = cleaningOption;
         this.totalCharge = totalCharge;
+        this.totalCost = totalCost;
+        this.formattedTotalCost = formattedTotalCost;
 
     }
 
@@ -66,12 +68,20 @@ public class CreateQuoteFormDTO {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public String getCleaningOptions() {
-        return cleaningOptions;
+    public CleaningOption getCleaningOption() {
+        return cleaningOption;
     }
 
-    public void setCleaningOptions(String cleaningOptions) {
-        this.cleaningOptions = cleaningOptions;
+    public void setCleaningOption(CleaningOption cleaningOptions) {
+        this.cleaningOption = cleaningOptions;
+    }
+
+    public Long getTotalCharge() {
+        return totalCharge;
+    }
+
+    public void setTotalCharge(Long totalCharge) {
+        this.totalCharge = totalCharge;
     }
 
     public double getTotalCost() {
@@ -82,13 +92,12 @@ public class CreateQuoteFormDTO {
         this.totalCost = totalCost;
     }
 
-    public Long getTotalCharge() {
-        return totalCharge;
+    public String getFormattedTotalCost() {
+        return formattedTotalCost;
     }
 
-    public void setTotalCharge(Long totalCharge) {
-        this.totalCharge = totalCharge;
+    public void setFormattedTotalCost(String formattedTotalCost) {
+        this.formattedTotalCost = formattedTotalCost;
     }
 }
-
 
