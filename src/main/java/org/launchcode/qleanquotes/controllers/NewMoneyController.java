@@ -4,6 +4,8 @@ import com.squareup.square.exceptions.ApiException;
 import com.squareup.square.models.Address;
 import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.Money;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.launchcode.qleanquotes.SquareWrapper;
 import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
@@ -13,33 +15,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.launchcode.qleanquotes.models.Quote;
+import org.launchcode.qleanquotes.models.data.QuoteRepository;
+
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-    @Controller
+import static org.launchcode.qleanquotes.controllers.QuoteController.getQuoteIdFromSession;
+
+@Controller
     public class NewMoneyController {
         private final SquareWrapper squareWrapper;
+
+        @Autowired
+        private QuoteRepository quoteRepository;
 
         @Autowired
         public NewMoneyController(SquareWrapper squareWrapper) {
             this.squareWrapper = squareWrapper;
         }
 
-        @GetMapping("/payment")
-        public String showPaymentForm(@ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model){
-            Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            model.addAttribute("customer", customer);
-       //     model.addAttribute("totalCost", createQuoteFormDTO.getTotalCost());
-            model.addAttribute(new PaymentFormDTO());
-            return "payment";
-        }
+        @GetMapping("/payment/{quoteId}")
+        public String showPaymentForm(@PathVariable int quoteId, HttpServletRequest request, Model model, Error errors) {
+                Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                model.addAttribute("customer", customer);
+            HttpSession session = request.getSession();
+            Integer storedQuoteId = getQuoteIdFromSession(session);
+            Optional<Quote> optionalQuote = quoteRepository.findById(quoteId);
+
+            if (storedQuoteId != null && storedQuoteId == quoteId) {
+                Quote quote = optionalQuote.get();
+                model.addAttribute("quote", quote);
+            } else {
+                model.addAttribute("errors", errors);
+                return "createquote";
+            }
+                model.addAttribute(new PaymentFormDTO());
+                return "payment";
+            }
+
 
         @RequestMapping("")
         public String index(Map<String, Object> model) throws InterruptedException, ExecutionException {
@@ -58,9 +77,9 @@ import java.util.concurrent.ExecutionException;
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         try {
-            // TODO: use money from `paymentFormDTO`
+
             Money amountMoney = new Money.Builder()
-                .amount(1000L)
+                .amount(createQuoteFormDTO.getTotalCharge())
                 .currency("USD")
                 .build();
 
@@ -108,8 +127,15 @@ import java.util.concurrent.ExecutionException;
             // Handle exceptions
             System.out.println(e);
         }
+
         return "payment-successful";
     }
+
+        @GetMapping("payment/cancel")
+        public String cancel(HttpSession session) {
+            session.invalidate();
+            return "redirect:/createquote";
+        }
 }
 
 //TODO: create a payment successful page and redirect users to it!

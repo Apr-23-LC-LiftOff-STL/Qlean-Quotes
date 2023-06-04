@@ -8,8 +8,10 @@
 <body class="container body-content">
 <header th:replace="~{fragments :: page-header}"></header>
 
+<p>Customer: <span th:text="${customer.name}">N/A</span></p>
+
 <h1>Service Address</h1>
-<form th:action="@{/payment}"  method="post" id="payment-shipping-form">
+<form th:action="@{/payment}" method="post" id="payment-shipping-form">
     <!-- form content -->
     <div class="form-group">
         <label>Address Line 1
@@ -73,10 +75,10 @@
         </label>
         <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
     </div>
-    <div th:if="${totalCost != null}" class="alert alert-info" role="alert">
-        Total cost:$ <span th:text="${totalCost}"></span>
-    </div>
-
+<!--    <div th:if="${totalCost != null}" class="alert alert-info" role="alert">-->
+<!--        Total cost:$ <span th:text="${totalCost}"></span>-->
+<!--    </div>-->
+    <p>Total Cost: <span th:text="${totalCost}">N/A</span></p>
 </form>
 <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
 <!--<h3>Enter Your Payment Card Details</h3>-->
@@ -233,11 +235,18 @@
         });
     });</script>
 
+<!--<div th:if="${quote != null && quote.formattedTotalCost != null}" class="alert-calculate" role="alert">-->
+<!--    <p>Total Cost: $<span th:text="${quote.formattedTotalCost}">N/A</span></p>-->
+<!--</div>-->
+<!--<div th:if="${quote != null && quote.formattedTotalCost != null}" class="alert-calculate" role="alert">-->
+<!--    <p>Total Cost: $<span th:text="${quote.formattedTotalCost}">N/A</span></p>-->
+<!--</div>-->
+<!--    <p>Total Cost: $<span th:text="${quote.formattedTotalCost}">N/A</span></p>-->
+
 <form id="payment-form">
     <div id="card-container"></div>
      <button id="card-button" type="button">Pay Now</button>
 </form>
 <div id="payment-status-container"></div>
-
 </body>
 </html>

@@ -42,7 +42,6 @@ public class QuoteController {
         return "createquote";
     }
 
-
     @PostMapping("/createquote")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
@@ -85,6 +84,16 @@ public class QuoteController {
             return "createquote";
         }
         return "createquote";
+    }
+
+    @GetMapping("/createquote/cancel")
+    public String cancel(HttpSession session) {
+        session.invalidate();
+        return "redirect:/createquote";
+    }
+
+    public QuoteRepository getQuoteRepository() {
+        return quoteRepository;
     }
 
 }
