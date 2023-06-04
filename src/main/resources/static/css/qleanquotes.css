@@ -429,6 +429,101 @@
 
 
 
+
+#payment-successful{
+  background-color:#101728;
+}
+
+
+#payment-successful .nav-link{
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+#payment-successful .navbar-brand{
+  margin-left: 30px;
+}
+
+
+
+#payment-successful h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+
+
+#payment-successful h2{
+  color: rgb(105, 173, 159)!important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 48px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 12px;
+
+}
+
+
+.payment-image {
+  z-index: -1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%  !important;
+  max-height: 100%  !important;
+  margin-left: auto  !important;
+  margin-right: auto  !important;
+
+}
+
+
+.payment-message {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 31px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  width: 50% !important;
+  display: block;
+  margin: 0 auto;
+
+}
+
+
+.message-highlight {
+  color: rgb(241,118,86) !important;
+  text-decoration-line: underline !important;
+}
+
+
+
+#payment-success-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: small;
+    margin-right: 2cm;
+    padding: 4px;
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+
 #error {
   background-color:#101728;
 }
@@ -436,10 +531,8 @@
 .error-container{
   position: relative;
   flex-direction: row;
-
-
-
 }
+
 
 .error-message{
   font-size: 17px;
@@ -452,13 +545,11 @@
   padding: 70px;
   position: relative;
 
-
 }
 
 .error-message h1{
   margin-left: 130px;
   line-height: 2.0;
-
 }
 
 
@@ -476,13 +567,13 @@
   border: none;
   margin-top: -15px;
 
-
-
 }
+
 
 .button-error:hover {
   background-color: #548A7F !important;
 }
+
 
 .error-image{
   z-index: -1;
