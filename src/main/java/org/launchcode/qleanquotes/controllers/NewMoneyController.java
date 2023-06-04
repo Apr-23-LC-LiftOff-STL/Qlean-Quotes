@@ -4,7 +4,11 @@ import com.squareup.square.exceptions.ApiException;
 import com.squareup.square.models.Address;
 import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.Money;
-import org.launchcode.qleanquotes.SquareWrapper;
+import jakarta.servlet.http.HttpSession;
+import org.launchcode.qleanquotes.models.Quote;
+import org.launchcode.qleanquotes.models.data.QuoteRepository;
+import org.launchcode.qleanquotes.wrappers.CachedBodyHttpServletRequest;
+import org.launchcode.qleanquotes.wrappers.SquareWrapper;
 import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
@@ -13,30 +17,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-    @Controller
+import static org.launchcode.qleanquotes.controllers.QuoteController.getQuoteIdFromSession;
+
+@Controller
     public class NewMoneyController {
         private final SquareWrapper squareWrapper;
+        @Autowired
+        private QuoteRepository quoteRepository;
 
         @Autowired
         public NewMoneyController(SquareWrapper squareWrapper) {
             this.squareWrapper = squareWrapper;
         }
 
-        @GetMapping("/payment")
-        public String showPaymentForm(@ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model){
+        @GetMapping("/payment/{quoteid}")
+        public String showPaymentForm(@ModelAttribute CreateQuoteFormDTO createQuoteFormDTO,  @PathVariable int quoteId, CachedBodyHttpServletRequest request, Model model){
             Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             model.addAttribute("customer", customer);
-       //     model.addAttribute("totalCost", createQuoteFormDTO.getTotalCost());
+            HttpSession session = request.getSession();
+            Integer storedQuoteId = getQuoteIdFromSession(session);
+            Optional<Quote> optionalQuote = quoteRepository.findById(quoteId);
+
+            if (storedQuoteId != null && storedQuoteId == quoteId) {
+                Quote quote = optionalQuote.get();
+                model.addAttribute("quote", quote);
+            }
             model.addAttribute(new PaymentFormDTO());
             return "payment";
         }
@@ -53,14 +67,18 @@ import java.util.concurrent.ExecutionException;
     }
 
 
-    @PostMapping("/payment")
-    public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, @ModelAttribute CreateQuoteFormDTO createQuoteFormDTO, Model model) {
+    @PostMapping("/payment/{quoteId}")
+    public String createPaymentRequest (@ModelAttribute PaymentFormDTO paymentFormDTO, @PathVariable int quoteId, CachedBodyHttpServletRequest request, Model model, Errors errors) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
+        HttpSession session = request.getSession();
+        Integer storedQuoteId = getQuoteIdFromSession(session);
+        Optional<Quote> optionalQuote = quoteRepository.findById(quoteId);
+        if (storedQuoteId != null && storedQuoteId == quoteId) {
+            Quote quote = optionalQuote.get();
         try {
-            // TODO: use money from `paymentFormDTO`
             Money amountMoney = new Money.Builder()
-                .amount(1000L)
+                .amount(quote.getTotalCharge())
                 .currency("USD")
                 .build();
 
@@ -107,6 +125,10 @@ import java.util.concurrent.ExecutionException;
         } catch (ApiException | IOException e) {
             // Handle exceptions
             System.out.println(e);
+        }
+        } else {
+            model.addAttribute("errors", errors);
+            return "createquote";
         }
         return "payment-successful";
     }

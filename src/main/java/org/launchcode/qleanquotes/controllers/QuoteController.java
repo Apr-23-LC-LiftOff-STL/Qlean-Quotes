@@ -8,6 +8,7 @@ import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
+import org.launchcode.qleanquotes.wrappers.CachedBodyHttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +46,7 @@ public class QuoteController {
 
     @PostMapping("/createquote")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
-                                        Errors errors, HttpServletRequest request, Model model) {
+                                        Errors errors, CachedBodyHttpServletRequest request, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "createquote";
