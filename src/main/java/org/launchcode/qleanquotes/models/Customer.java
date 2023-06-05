@@ -28,7 +28,14 @@ public class Customer extends AbstractEntity implements UserDetails {
     @NotNull
     private String phoneNumber;
 
+    @NotNull
+    private String street;
 
+    @NotNull
+    private String zip;
+
+    @NotNull
+    private String city;
 
     //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -62,6 +69,31 @@ public class Customer extends AbstractEntity implements UserDetails {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
