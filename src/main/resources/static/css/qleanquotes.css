@@ -35,7 +35,7 @@
    justify-content: center;
    display: flex;
    font-weight: bold;
-   font-style: bold;
+   /*font-style: bold;*/
 
 }
 
@@ -107,7 +107,8 @@
    color: rgb(224,100,33);
    font-family: 'Montserrat', sans-serif;
    line-height:2.5;
-   font-style: bold;
+   /*font-style: bold;*/
+    font-weight: bold;
 
 }
 
@@ -413,7 +414,7 @@
   margin-top: 80px;
   padding: 100px;
   align-items: center;
-  width: 500px
+  width: 500px;
   height: auto;
 }
 

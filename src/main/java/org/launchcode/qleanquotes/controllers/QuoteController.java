@@ -58,6 +58,8 @@ public class QuoteController {
 
     @GetMapping("/createquote")
     public String showCreateQuoteForm(Model model){
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
         model.addAttribute(new CreateQuoteFormDTO());
         model.addAttribute("cleaningOption", CleaningOption.values());
         model.addAttribute("title", "Get Quote");
@@ -71,7 +73,11 @@ public class QuoteController {
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "createquote";
-        }
+       
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
+
+
         QuoteCalculator quoteCalculator = new QuoteCalculator();
         Quote quote = new Quote();
         quote.setSquareFeet(createQuoteFormDTO.getSquareFeet());
