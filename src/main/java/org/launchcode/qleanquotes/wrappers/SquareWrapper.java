@@ -1,19 +1,10 @@
-package org.launchcode.qleanquotes;
+package org.launchcode.qleanquotes.wrappers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.squareup.square.ApiHelper;
-import com.squareup.square.Environment;
-import com.squareup.square.Server;
 import com.squareup.square.api.PaymentsApi;
 import com.squareup.square.exceptions.ApiException;
-import com.squareup.square.http.client.HttpContext;
-import com.squareup.square.http.request.HttpMethod;
 import com.squareup.square.models.*;
-import io.apimatic.core.ApiCall;
 import org.launchcode.qleanquotes.models.PaymentResult;
-import org.launchcode.qleanquotes.models.TokenWrapper;
 import org.springframework.stereotype.Component;
-import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 
 import java.io.IOException;
 

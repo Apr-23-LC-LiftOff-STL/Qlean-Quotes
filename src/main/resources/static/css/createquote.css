@@ -8,7 +8,6 @@
     display: flex;
     justify-content: space-between;
     background-color: #101728;
-
 }
 
 .navbar-header {
@@ -66,6 +65,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
 
 }
 
@@ -207,14 +207,14 @@ label {
 }
 
 .btn-primary:hover {
-    background-color: #F06744;
-    box-shadow: 0 0 5px #b94e33;
+    background-color: #548A7F;
+    box-shadow: 0 0 5px #32544d;
     color: white;
 }
 
 .btn-primary:active {
-    background-color: #69AD9F !important;
-    box-shadow: 0 0 5px #5a988b !important;
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
     color: white !important;
 }
 
@@ -230,14 +230,14 @@ label {
 }
 
 .btn-success:hover {
-    background-color: #69AD9F;
-    box-shadow: 0 0 5px #416c63;
+    background-color: #c05e44;
+    box-shadow: 0 0 5px #8a4330;
     color: white;
 }
 
 .btn-success:active {
-    background-color:  #F06744 !important;
-    box-shadow: 0 0 5px #b24c32 !important;
+    background-color: #50403d !important;
+    box-shadow: 0 0 5px #3a3432 !important;
     color: white !important;
 }
 

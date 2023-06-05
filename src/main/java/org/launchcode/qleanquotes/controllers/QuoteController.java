@@ -1,14 +1,23 @@
 package org.launchcode.qleanquotes.controllers;
 
+import com.squareup.square.exceptions.ApiException;
+import com.squareup.square.models.Address;
+import com.squareup.square.models.CreatePaymentRequest;
+import com.squareup.square.models.Money;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.QuoteCalculator;
 import org.launchcode.qleanquotes.models.Customer;
+import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
+import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
+import org.launchcode.qleanquotes.wrappers.CachedBodyHttpServletRequest;
+import org.launchcode.qleanquotes.wrappers.SquareWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -16,24 +25,35 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.Map;
 import java.util.Optional;
-
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 //@RequestMapping("orders")
 public class QuoteController {
 
+    private final SquareWrapper squareWrapper;
+
+    @Autowired
+    public QuoteController(SquareWrapper squareWrapper) {
+        this.squareWrapper = squareWrapper;
+    }
+
     @Autowired
     private QuoteRepository quoteRepository;
 
-    private static final String quoteSessionKey = "quote";
+    public static final String quoteSessionKey = "quote";
+
 
     public static void setQuoteInsession(HttpSession session, Quote quote) {
-        session.setAttribute(quoteSessionKey, quote.getId());
+        session.setAttribute(quoteSessionKey, quote);
     }
 
-    public static Integer getQuoteIdFromSession(HttpSession session) {
-        return (Integer) session.getAttribute(quoteSessionKey);
+    public static Quote getQuoteFromSession(HttpSession session) {
+        return (Quote) session.getAttribute(quoteSessionKey);
     }
 
     @GetMapping("/createquote")
@@ -53,10 +73,10 @@ public class QuoteController {
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "createquote";
-        }
-
+       
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
+
 
         QuoteCalculator quoteCalculator = new QuoteCalculator();
         Quote quote = new Quote();
@@ -78,17 +98,9 @@ public class QuoteController {
 
 
     @GetMapping("createquote/{quoteId}")
-    public String displayNewQuote(Model model, @PathVariable int quoteId, HttpServletRequest request, Errors errors) {
-
-        HttpSession session = request.getSession();
-        Integer storedQuoteId = getQuoteIdFromSession(session);
-        Optional<Quote> optionalQuote = quoteRepository.findById(quoteId);
-
-        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("customer", customer);
-
-        if (storedQuoteId != null && storedQuoteId == quoteId) {
-            Quote quote = optionalQuote.get();
+    public String displayNewQuote(Model model, @PathVariable int quoteId, HttpSession session, Errors errors) {
+        Quote quote = (Quote) session.getAttribute(quoteSessionKey);
+        if (quote != null && quote.getId() == quoteId) {
             model.addAttribute("quote", quote);
         } else {
             model.addAttribute("errors", errors);
@@ -98,3 +110,4 @@ public class QuoteController {
     }
 
 }
+

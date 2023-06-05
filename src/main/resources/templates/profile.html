@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="~{fragments :: head}">
+    <title>User Profile</title>
 </head>
 
 <nav th:replace="~{fragments :: page-header}"></nav>
@@ -14,12 +15,33 @@
 
     <form action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
         <label for="phoneNumber">Phone Number:
-            <input type="text" id="phoneNumber" name="phoneNumber">
+            <input type="text" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()">
         </label>
         <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
         <input type="submit" value="Submit">
     </form>
 </div>
+<script>
+    function formatPhoneNumber() {
+        var phoneNumber = document.getElementById('phoneNumber');
+        var digits = phoneNumber.value.replace(/\D/g, '');
+        var formattedNumber = '';
+
+        if (digits.length > 0) {
+            formattedNumber += digits.substring(0, 3);
+
+            if (digits.length > 3) {
+                formattedNumber += '-' + digits.substring(3, 6);
+
+                if (digits.length > 6) {
+                    formattedNumber += '-' + digits.substring(6);
+                }
+            }
+        }
+        phoneNumber.value = formattedNumber;
+    }
+</script>
+
 </body>
 </html>
 
