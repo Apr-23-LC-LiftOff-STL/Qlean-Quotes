@@ -9,7 +9,8 @@
 <header th:replace="~{fragments :: page-header}"></header>
 
 <h1>Service Address</h1>
-<form th:action="@{/payment}"  method="post" id="payment-shipping-form">
+<form id="payment-shipping-form" method="post" th:action="@{/payment}">
+
     <!-- form content -->
     <div class="form-group">
         <label>Address Line 1
@@ -73,8 +74,8 @@
         </label>
         <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
     </div>
-    <div th:if="${totalCost != null}" class="alert alert-info" role="alert">
-        Total cost:$ <span th:text="${totalCost}"></span>
+    <div>
+        Total cost:$ <span th:text="${quote.getFormattedTotalCost()}"></span>
     </div>
 
 </form>
