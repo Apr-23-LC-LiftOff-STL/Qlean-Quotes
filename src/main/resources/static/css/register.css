@@ -101,17 +101,16 @@
 }
 
 #register-create-button:hover {
-    background-color: #69AD9F !important;
-    border-color: #69AD9F;
-    box-shadow: 0 0 5px #3f6c63 !important;
-    color: #101728;
+    background-color: #c05e44 !important;
+    border-color: #c05e44;
+    box-shadow: 0 0 5px #8a4330 !important;
 }
 
 
 #register-create-button:active {
-    background-color: #F06744 !important;
-    box-shadow: 0 0 5px #b64c32 !important;
-    border-color: #F06744;
+    background-color: #32393a !important;
+    box-shadow: 0 0 5px #3a3432 !important;
+    border-color: #3a3432;
     color: white !important;
 }
 
