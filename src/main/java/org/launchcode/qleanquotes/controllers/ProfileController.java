@@ -35,6 +35,14 @@ private CustomerRepository customerRepository;
         Customer existingCustomer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("phoneNumber", phoneNumberForm.getPhoneNumber());
         existingCustomer.setPhoneNumber(phoneNumberForm.getPhoneNumber());
+
+        model.addAttribute("street", phoneNumberForm.getStreet());
+        existingCustomer.setStreet(phoneNumberForm.getStreet());
+        model.addAttribute("city", phoneNumberForm.getCity());
+        existingCustomer.setCity(phoneNumberForm.getCity());
+        model.addAttribute("zip", phoneNumberForm.getZip());
+        existingCustomer.setZip(phoneNumberForm.getZip());
+
         if (errors.hasErrors()) {
             model.addAttribute("customer", existingCustomer);
             return "profile";
@@ -42,6 +50,7 @@ private CustomerRepository customerRepository;
         customerRepository.save(existingCustomer);
 
         return "redirect:/updated-profile";
+//
     }
 
     @GetMapping("/updated-profile")

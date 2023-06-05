@@ -1,244 +1,335 @@
 
-#about-me {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    margin: 0;
-    padding: 0;
-    background-color: #7bd29d;
-    border-radius: 30px;
-    margin-top: 250px;
-    margin-bottom: 250px;
-}
 
 #about-us {
-  position: relative;
-  margin-top:250px;
-  margin-bottom:250px;
+   position: relative;
+   margin-top:250px;
+   margin-bottom:280px;
 
 }
 
 #about-us .aboutus-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: -1;
-  border-radius: 30px;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: auto;
+   z-index: -1;
+   border-radius: 30px;
 }
 
 #about-us > div {
-  position: relative;
-  z-index: 1;
-  padding: 20px;
-  color: #333;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
+   position: relative;
+   z-index: 1;
+   padding: 20px;
+   color: #333;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
+   line-height: 1.5;
 }
 
 
 
 #about-us h1{
-  font-family: 'Oleo Script';
-  font-size: 38px;
-  justify-content: center;
-  display: flex;
-  font-weight: bold;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 38px;
+   justify-content: center;
+   display: flex;
+   font-weight: bold;
+   /*font-style: bold;*/
+
 }
 
 
 /* Create three equal columns that floats next to each other */
 #about-us .column {
-  float: left;
-  width: 33.33%;
-  padding: 10px;
-  margin-top: 300px;
+   float: left;
+   width: 33.33%;
+   padding: 10px;
+   margin-top: 300px;
+   text-align: justify;
+
 }
+
 
 /* Clear floats after the columns */
 #about-us .row:after {
-  content: "";
-  display: table;
-  clear: both;
+   content: "";
+   display: table;
+   clear: both;
 }
+
 
 
 
 #contact-us {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    padding: 100px;
-    background-color: #d0906b;
-    border-radius: 30px;
+   position: relative;
 
 }
+
+
+#contact-us::before {
+   content: "";
+   position: absolute;
+   top: 15%;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color:#101728; /* color for the bottom section */
+   z-index: -1;
+}
+
+#contact-us .first-part{
+   font-size: 40px;
+   font-family: 'Montserrat', sans-serif;
+   line-height: 1.0;
+   font-weight: 600;
+}
+
+
+.contact-us-bottom {
+   position: relative;
+   align-items: center;
+   padding: 50px;
+}
+
+
+#contact-us .info {
+   position: absolute;
+   top: 100px;
+   right: 60px;
+   margin-top: 20px;
+   margin-right: 100px;
+
+}
+
+.contact-us-bottom h1 {
+   font-size: 45px;
+   color: rgb(224,100,33);
+   font-family: 'Montserrat', sans-serif;
+   line-height:2.5;
+   /*font-style: bold;*/
+    font-weight: bold;
+
+}
+
+
+.contact-us-bottom p {
+   font-size: 16px;
+   color: #fff;
+   font-family: 'Montserrat', sans-serif;
+   line-height: 1.0;
+}
+
+
+
+.contact-us-bottom .contactus-logo {
+   margin-top: 25px;
+   width: 210px;
+   height: auto;
+   display: flex;
+   margin-left: 35px;
+}
+
+
+
+
+.contact-us-bottom .contactus-image {
+   max-width: 40%;
+   margin-top: 100px;
+   display: flex;
+   height: auto;
+   z-index: -1;
+
+}
+
+
+.contact-us-bottom a {  /* social media */
+   line-height: 4.0;
+}
+
+
+.contact-us-bottom .fa {  /* social media */
+   padding: 20px;
+   font-size: 30px;
+   width: 30px;
+   height: auto;
+   text-decoration: none;
+
+}
+
+.contact-us-bottom .fa:hover {
+   opacity: 0.7;
+}
+
+.contact-us-bottom .fa-facebook {
+   color: white;
+}
+
+.contact-us-bottom .fa-twitter {
+   color: white;
+}
+
+.contact-us-bottom .fa-instagram {
+   color: white;
+}
+
+
+
+
+
+
 
 .navbar-brand{
-  margin-left:70px;
+   margin-left:70px;
 
 }
-
 
 
 
 .brand-name{
-   font-family: 'Oleo Script';
+   font-family: 'Open Sans';
    font-size: 38px;
    margin-left:100px;
-   margin-top:20px;
+   margin-top: 30px;
    font-style: italic;
 
  }
 
 .brand-name p {
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
+   margin: 0; /* Remove any margin */
+   padding: 0; /* Remove any padding */
 
 }
 
 
 
-
-
 .login-container  {
-  display: flex;
-  align-items:center;
-  flex-direction: row;
-  margin: 0;
-  padding: 0;
-  position: relative;
+   display: flex;
+   align-items:center;
+   flex-direction: row;
+   margin: 0;
+   padding: 0;
+   position: relative;
 
 }
 
 
 .login-form-contain {
-  position: relative;
-  align-items: center;
-  padding:100px;
-  border-radius: 30px;
+   position: relative;
+   align-items: center;
+   padding:100px;
 
 }
 
 .login-form-contain h1 {
- font-family: 'Abril Fatface', serif;
- margin-bottom: 40px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 33px;
+   margin-bottom: 40px;
+   line-height: 0.5;
+   margin-top: 10px;
 }
 
 
 .login-image {
-  position: absolute;
-  display: flex;
-  top: 20px;
-  margin-top: -180px;
-  left: 0;
-  width: 300%;
-  height: auto;
-  z-index: -1;
-  border-radius: 30px;
-  margin-left: -150px;
+   position: absolute;
+   display: flex;
+   top: 25px;
+   margin-top: -180px;
+   margin-left: 85px;
+   width: 250%;
+   height: auto;
+   z-index: -1;
 
 }
-
-
-
 
 
 
 /* These buttons only for login and sign up */
 #login-form .btn {
-  padding: 15px 25px;
-  font-size: 17px;
-  text-align: center;
-  cursor: pointer;
-  outline: none;
-  color: #fff;
-  border: none;
-  box-shadow: 0 9px #999;
-  margin-right: 10px;
-  margin-top: 25px;
+   padding: 15px 25px;
+   font-size: 17px;
+   text-align: center;
+   cursor: pointer;
+   outline: none;
+   color: #fff;
+   border: none;
+   margin-right: 10px;
+   margin-top: 25px;
+   padding: 11px 40px;
+   text-decoration: none;
+
 
 }
 
-#login-form .btn.primary {background-color: #2196F3;} /* Blue */
-#login-form .btn.primary:hover {background: #0b7dda;}
 
-#login-form .btn.success {background-color: #04AA6D;} /* Green */
-#login-form .btn.success:hover {background-color: #46a049;}
+#login-form .btn-primary {
+    background-color: rgb(105, 173, 159)!important;
 
-#login-form .btn:active {
-  background-color: #3e8e41;
-  box-shadow: 0 5px #666;
-  transform: translateY(4px);
+}
+
+#login-form .btn-primary:hover {
+    background-color: #548A7F !important;
+
+}
+
+#login-form .btn-primary:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
+}
+
+#login-form .btn-success {
+    background-color: rgb(241,118,86) !important;
+}
+
+#login-form .btn-success:hover {
+    background-color: #c05e44 !important;
+}
+
+#login-form .btn-success:active {
+    background-color: #3d5050 !important;
+    box-shadow: 0 0 5px #32393a !important;
 }
 
 
 
-
-/* This button code for others */
-.btn {
-  font-size: 20px;
-  padding: 12px 20px;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-
-
-
-/* Hide footer container on all pages */
-/*#footer-container {
-  display: none;
-
-} */
-
-/* Show footer container on Contact Us page */
-body.contact-us #footer-container {
-   position: absolute;
-}
 
 
 
 .navbar-nav {
-  display: flex;
-  float:right;
-  text-align: center;
-  flex-direction: row;
-  justify-content: flex-end;
-  gap: 20px;
-  font-family:'Alexandria';
-  font-size: 20px;
+   display: flex;
+   float:right;
+   text-align: center;
+   flex-direction: row;
+   justify-content: flex-end;
+   gap: 20px;
+   font-family: 'Montserrat', sans-serif;
+   font-size: 16px;
 }
 
 .navbar-nav li a {
-  color: black;
+   color: black;
 }
 
 
 /* Create Quotes button from index.html */
 
-
 .button-a {
-  border-radius: 4px;
-  background-color: #76B947;
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 20px;
-  padding: 20px;
-  width: 200px;
-  transition: all 0.5s;
-  cursor: pointer;
-  justify-content: center;
-  position: relative;
-  right: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+   border-radius: 4px;
+   background-color: rgb(224,100,33);
+   border: none;
+   color: #FFFFFF;
+   text-align: center;
+   font-size: 20px;
+   padding: 20px;
+   width: 200px;
+   transition: all 0.5s;
+   cursor: pointer;
+   justify-content: center;
+   position: relative;
+   right: 50%;
+   left: 50%;
+   transform: translateX(-50%);
+   bottom: 0;
 
 
 }
@@ -271,146 +362,220 @@ body.contact-us #footer-container {
 
 /* Create equal columns that floats next to each other for createquotes page*/
 #index .column {
- float : left;
- width : 50%;
- padding : 100px;
- height : auto;
- margin-top: 0px;
+  float : left;
+  width : 47%;
+  padding : 80px;
+  height : auto;
+  margin-top: 0px;
+  background-color:#101728;
 
 }
 
 
 /* Clear floats after the columns for createquotes page */
 #index .row:after {
- content: "";
- display: table;
- clear: both ;
+  content: "";
+  display: table;
+  clear: both ;
 
 }
 
-#index > header h1 {
-
-    font-family: 'Oleo Script';
-    font-size: 38px;
-    justify-content: center;
-    display: flex;
-    font-weight: bold;
-    margin-top: 25px;
-
-  font-family: 'Oleo Script';
+#index h1 {
+  font-family: 'Montserrat', sans-serif;
   font-size: 38px;
   justify-content: center;
   display: flex;
   font-weight: bold;
-  margin-top:25px;
-
-}
-/*Create User form*/
-/*TODO: revisit this part when fonts and colors have been standardized*/
-
-.register-title {
-    color: #404242;
+  margin-top: 20px;
+  color: #ffffff;
 
 }
 
-.register-body {
-    font-family: 'Montserrat', sans-serif;
-}
-
-.register-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 1cm;
-    padding: 1cm;
-    border-radius: 5%;
-    background-color: rgba(245, 243, 243, 0.8);
-    /*background: url("/static/images/clean.png") no-repeat center bottom/cover;*/
-    /*height: 100vh;*/
-}
-
-.register-form input {
-    background-color: #e7e4e7;
-    color: #505050;
-    font-size: small;
-}
-
-.register-form input:focus {
-    outline: none;
-    background-color: #d0cece;
-    border: 2px solid #132626;
-    box-shadow: 0 0 5px #616162;
-}
-
-.register-label {
-    color: #969696;
+#index .index-bottom{
+  background-color:#101728;
 }
 
 
-#register-password-div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#register-password-div .form-group {
-    width: 38%;
-}
-
-#register-create-button-div {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    align-items: center;
-}
-
-#register-create-button {
-    background-color: #132626;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    width: 180px; /* Adjust the width as needed */
-    height: 40px; /* Adjust the height as needed */
-    font-size: 16px;
-    line-height: 20px;
-}
-
-#register-create-button:hover {
-    box-shadow: 0px 2px 4px #132626;
+#index-footer{
+  color: #ffffff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top:5px;
+  text-align: center;
+  font-size: small;
+  padding: 4px;
 }
 
 
-#register-create-button:active {
-    background-color: cadetblue;
-    box-shadow: 0px 2px 4px #335556;
-    color: #f1cbbd;
+#index-contact{
+  margin-top: 80px;
+  padding: 100px;
+  align-items: center;
+  width: 500px;
+  height: auto;
 }
 
-.register-login-redirect {
-    font-size: 13px;
-    padding: 5px;
+
+#index .nav-link{
+  color: white;
 }
 
-.register-login-redirect a {
-    color: #0e1818;
-    text-decoration: none;
-    text-decoration: underline;
+
+#index {
+  background-color:#101728;
 }
 
-#register-footer {
+
+
+
+#payment-successful{
+  background-color:#101728;
+}
+
+
+#payment-successful .nav-link{
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+#payment-successful .navbar-brand{
+  margin-left: 30px;
+}
+
+
+
+#payment-successful h1{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 40px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+
+
+#payment-successful h2{
+  color: rgb(105, 173, 159)!important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 48px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 12px;
+
+}
+
+
+.payment-image {
+  z-index: -1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%  !important;
+  max-height: 100%  !important;
+  margin-left: auto  !important;
+  margin-right: auto  !important;
+
+}
+
+
+.payment-message {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 31px;
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  width: 50% !important;
+  display: block;
+  margin: 0 auto;
+
+}
+
+
+.message-highlight {
+  color: rgb(241,118,86) !important;
+  text-decoration-line: underline !important;
+}
+
+
+
+#payment-success-footer{
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     text-align: center;
     font-size: small;
+    margin-right: 2cm;
     padding: 4px;
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 
 
 
+#error {
+  background-color:#101728;
+}
+
+.error-container{
+  position: relative;
+  flex-direction: row;
+}
+
+
+.error-message{
+  font-size: 17px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  line-height: 0.7;
+  margin-left: 130px;
+  position: absolute;
+  margin-top: -380px;
+  padding: 70px;
+  position: relative;
+
+}
+
+.error-message h1{
+  margin-left: 130px;
+  line-height: 2.0;
+}
+
+
+
+.button-error {
+  background-color: rgb(105, 173, 159)!important;
+  justify-content: center;
+  position: relative;
+  right: 72%;
+  left: 27%;
+  transform: translateX(-50%);
+  bottom: 0px;
+  padding: 13px 40px;
+  font-size: 17px;
+  border: none;
+  margin-top: -15px;
+
+}
+
+
+.button-error:hover {
+  background-color: #548A7F !important;
+}
+
+
+.error-image{
+  z-index: -1;
+}

@@ -1,65 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.rawgit.com/MachinisteWeb/konami-code-js/master/src/konami-code.js"></script>
+
+    <link rel=“preconnect” href=“https://fonts.googleapis.com”>
+    <link rel=“preconnect” href=“https://fonts.gstatic.com” crossorigin>
+    <link href=“https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap” rel=“stylesheet”>
+
+    <link th:href="@{/css/register.css}" rel="stylesheet"/>
+    <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
+</head>
+
 <body class="register-body">
-
-
-<!--<header th:replace="~{fragments :: page-header}"></header>-->
-<div class="register-background-image">
-    <form class="register-form" th:action="@{/authentication/register}" method="post">
-        <h1 class="register-title">Create New Account</h1>
-        <div class="form-group">
-            <label class="register-label">Name
-                <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>
-            </label>
-            <p class="error" th:errors="${registerFormDTO.name}"></p>
-        </div>
-        <div class="form-group">
-            <label class="register-label">Last Name
-                <input class="form-control" placeholder="Enter your last name" th:field="${registerFormDTO.lastName}"/>
-            </label>
-            <p class="text-danger" th:errors="${registerFormDTO.lastName}"></p>
-        </div>
-        <div class="form-group">
-            <label class="register-label">Email
-                <input class="form-control" placeholder="example@email.com" th:field="${registerFormDTO.email}" type="email"/>
-            </label>
-            <p class="text-danger" th:errors="${registerFormDTO.email}"></p>
-        </div>
-
-        <div id="register-password-div">
-            <div class="form-group">
-                <label class="register-label">Password
-                    <input class="form-control" th:field="${registerFormDTO.password}" type="password"/>
-                </label>
-                <p class="text-danger" th:errors="${registerFormDTO.password}"></p>
-            </div>
-            <div class="form-group">
-                <label class="register-label">Verify Password
-                    <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password"/>
-                </label>
-                <p class="text-danger" th:errors="${registerFormDTO.verifyPassword}"></p>
-            </div>
-        </div>
-
-        <div id="register-create-button-div">
-            <input type="submit" id="register-create-button" class="btn btn-primary" value="sign up"/>
-        </div>
-        <div class="register-login-redirect">
-            <p class="normal-margins">Already have an account? <a href="/authentication/login">Log in</a></p>
-        </div>
-    </form>
+<div class="navbar-header">
+    <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+        <img src="/images/logodark.png" width="100px" alt="Logo">
+    </a>
+</div>
+<div class="register-title-container">
+    <h2 class="register-title">CREATE NEW ACCOUNT</h2>
 </div>
 
+<div class="navbar-links">
+    <div class="register-background-image">
+        <form class="register-form" th:action="@{/authentication/register}" method="post">
+            <div class="form-group">
+                <label class="register-label">Name
+                    <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>
+                </label>
+                <p class="register-error" th:errors="${registerFormDTO.name}"></p>
+            </div>
+            <div class="form-group">
+                <label class="register-label">Last Name
+                    <input class="form-control" placeholder="Enter your last name"
+                           th:field="${registerFormDTO.lastName}"/>
+                </label>
+                <p class="register-error" th:errors="${registerFormDTO.lastName}"></p>
+            </div>
+            <div class="form-group">
+                <label class="register-label">Email
+                    <input class="form-control" placeholder="example@email.com" th:field="${registerFormDTO.email}"
+                           type="email"/>
+                </label>
+                <p class="register-error" th:errors="${registerFormDTO.email}"></p>
+            </div>
+            <div id="register-password-div">
+                <div class="form-group">
+                    <label class="register-label">Password
+                        <input class="form-control" th:field="${registerFormDTO.password}" type="password"/>
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="register-label">Verify Password
+                        <input class="form-control" th:field="${registerFormDTO.verifyPassword}" type="password"/>
+                    </label>
+                </div>
+            </div>
+            <p class="register-error" th:errors="${registerFormDTO.password}"></p>
 
-<div id="register-footer">
-    <footer>
-        ©2023 Qlean Quotes. All Rights Reserved.
-    </footer>
+            <div id="register-create-button-div">
+                <input type="submit" id="register-create-button" class="btn btn-primary" value="Sign Up"/>
+            </div>
+            <div class="register-login-redirect">
+                <p class="normal-margins">Already have an account? <a href="/authentication/login"> Log in</a></p>
+            </div>
+        </form>
+    </div>
+
+    <div id="register-info" style="display: none;">
+        <img src="https://live.staticflickr.com/3283/3148155493_656c649efc_h.jpg"/>
+    </div>
+
+    <div id="register-footer">
+        <footer>
+            ©2023 Qlean Quotes. All Rights Reserved.
+        </footer>
+    </div>
 </div>
 
 </body>
 </html>
 
+<script type="text/javascript">
+    new KonamiCode(function () {
+        alert("faart frt frt fart fart faaaaaaart");
+        let pigeon = document.getElementById('register-info');
+        pigeon.style = "position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: block;";
+        // up up down down left right left right b a
+    });
+</script>
 
 

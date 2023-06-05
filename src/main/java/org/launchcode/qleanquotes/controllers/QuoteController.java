@@ -1,90 +1,107 @@
 package org.launchcode.qleanquotes.controllers;
 
-
-import com.squareup.square.models.CreateOrderRequest;
-import com.squareup.square.models.Order;
-import com.squareup.square.models.OrderLineItem;
-import com.squareup.square.models.OrderLineItemModifier;
+import com.squareup.square.exceptions.ApiException;
+import com.squareup.square.models.Address;
+import com.squareup.square.models.CreatePaymentRequest;
+import com.squareup.square.models.Money;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.launchcode.qleanquotes.QuoteCalculator;
+import org.launchcode.qleanquotes.models.Customer;
+import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
+import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
+import org.launchcode.qleanquotes.models.enums.CleaningOption;
+import org.launchcode.qleanquotes.wrappers.CachedBodyHttpServletRequest;
+import org.launchcode.qleanquotes.wrappers.SquareWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
-
+import java.io.IOException;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 //@RequestMapping("orders")
 public class QuoteController {
 
+    private final SquareWrapper squareWrapper;
+
+    @Autowired
+    public QuoteController(SquareWrapper squareWrapper) {
+        this.squareWrapper = squareWrapper;
+    }
+
     @Autowired
     private QuoteRepository quoteRepository;
 
-    private static final String quoteSessionKey = "quote";
+    public static final String quoteSessionKey = "quote";
+
 
     public static void setQuoteInsession(HttpSession session, Quote quote) {
-        session.setAttribute(quoteSessionKey, quote.getId());
+        session.setAttribute(quoteSessionKey, quote);
     }
 
-    @GetMapping("/createquotes")
+    public static Quote getQuoteFromSession(HttpSession session) {
+        return (Quote) session.getAttribute(quoteSessionKey);
+    }
+
+    @GetMapping("/createquote")
     public String showCreateQuoteForm(Model model){
         model.addAttribute(new CreateQuoteFormDTO());
+        model.addAttribute("cleaningOption", CleaningOption.values());
         model.addAttribute("title", "Get Quote");
-        return "createquotes";
+        return "createquote";
     }
 
 
-    @PostMapping("/createquotes")
+    @PostMapping("/createquote")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
-            return "/createquotes";
+            return "createquote";
         }
+        QuoteCalculator quoteCalculator = new QuoteCalculator();
+        Quote quote = new Quote();
+        quote.setSquareFeet(createQuoteFormDTO.getSquareFeet());
+        quote.setNumOfRoom(createQuoteFormDTO.getNumOfRoom());
+        quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
+        quote.setCleaningOption(createQuoteFormDTO.getCleaningOption());
+        Long calculatedTotalCharge = quoteCalculator.calculateTotalCharge(quote);
+        double calculatedTotalCost = quoteCalculator.calculateTotalCost(quote);
+        String formattedTotalCost = quoteCalculator.formatTotalCost(quote);
+        quote.setTotalCharge(calculatedTotalCharge);
+        quote.setTotalCost(calculatedTotalCost);
+        quote.setFormattedTotalCost(formattedTotalCost);
+        setQuoteInsession(request.getSession(), quote);
+        quoteRepository.save(quote);
+        model.addAttribute("quote", quote);
+        return "createquote";
+    }
 
-        double totalCost = 0;
-        Long totalCharge = 0L;
-        if (createQuoteFormDTO.getSquareFeet() != null && createQuoteFormDTO.getNumOfRoom() != null) {
-            totalCost += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 0.01);
-            totalCharge += (createQuoteFormDTO.getSquareFeet()) + (createQuoteFormDTO.getNumOfRoom() * 2L);
 
-
-            if (createQuoteFormDTO.getNumOfBathroom() != null) {
-                totalCost += (createQuoteFormDTO.getNumOfBathroom() * 3);
-                totalCharge += (createQuoteFormDTO.getNumOfBathroom() * 300L);
-            }
-            if (createQuoteFormDTO.getCleaningOptions() != null) {
-                if (createQuoteFormDTO.getCleaningOptions().equals("deep")) {
-                    totalCost += 50;
-                    totalCharge += 5000L;
-                } else if (createQuoteFormDTO.getCleaningOptions().equals("average")) {
-                    totalCost += 25;
-                    totalCharge += 2500L;
-                }
-            }
-            model.addAttribute("totalCost", totalCost);
-            model.addAttribute("totalCharge", totalCharge);
-            System.out.println(totalCost);
-            return "createquotes";
+    @GetMapping("createquote/{quoteId}")
+    public String displayNewQuote(Model model, @PathVariable int quoteId, HttpSession session, Errors errors) {
+        Quote quote = (Quote) session.getAttribute(quoteSessionKey);
+        if (quote != null && quote.getId() == quoteId) {
+            model.addAttribute("quote", quote);
+        } else {
+            model.addAttribute("errors", errors);
+            return "createquote";
         }
-
-        Quote newQuote = new Quote(createQuoteFormDTO.getSquareFeet(), createQuoteFormDTO.getNumOfRoom(), createQuoteFormDTO.getNumOfBathroom(), createQuoteFormDTO.getCleaningOptions(), createQuoteFormDTO.getTotalCost(), createQuoteFormDTO.getTotalCharge());
-        quoteRepository.save(newQuote);
-        setQuoteInsession(request.getSession(), newQuote);
-        model.addAttribute("quote", newQuote);
-
-        return "redirect:/payment";
-
+        return "createquote";
     }
 
 }
+

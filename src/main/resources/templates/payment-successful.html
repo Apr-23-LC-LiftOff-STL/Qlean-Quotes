@@ -1,21 +1,55 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
-</head>
-<body id="index">
+<head th:replace="~{fragments :: head}"></head>
+<body id="payment-successful">
+
 
 <header>
-    <div th:replace="~{fragments :: page-header}"></div>
-    <h1> Payment Successful/Quote Qumplete </h1>
-    <h3>Qlean Quotes will get in touch within 24 business hours to schedule your clean!</h3>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+                </a>
+            </div>
+            <div class="navbar-links">
+                <ul class="nav">
+                   <li class="nav-item">
+                       <a class="nav-link" href="/"> Home </a>
+                   </li>
+                   <li class="nav-item">
+                     <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                       <a class="nav-link" href="#"
+                       onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                        Out</a>
+                   </li>
+                 </ul>
+            </div>
+        </div>
+    </div>
 </header>
-<span>
 
-</span>
 
-<div th:replace="~{fragments :: page-about}"></div>
-<div th:replace="~{fragments :: page-contact}"></div>
-<div th:replace="~{fragments :: footer}"></div>
+    <h1> Thank you! </h1>
+    <h2> Payment Successful! </h2>
+
+
+
+<div>
+
+    <img class="payment-image"  src="/images/paymentsuccess.png" alt="Background Image">
+    <div class="payment-message">
+    <p> Qlean Quotes will get in touch within <span class="message-highlight"> 24 business hours</span> to schedule your clean!</p>
+    </div>
+
+</div>
+
+
+<div id="payment-success-footer">
+    <footer>
+        ©2023 Qlean Quotes. All Rights Reserved.
+    </footer>
+</div>
 
 </body>
 </html>

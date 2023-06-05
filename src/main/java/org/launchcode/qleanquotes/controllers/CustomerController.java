@@ -7,8 +7,6 @@ import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.data.CustomerRepository;
 import org.launchcode.qleanquotes.models.dto.RegisterFormDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,18 +29,18 @@ public class CustomerController {
 
     @PostMapping("/authentication/register")
     public String processRegisterForm(@ModelAttribute @Valid RegisterFormDTO registerFormDTO, Errors errors,
-                                      HttpServletRequest request) {
+                                      HttpServletRequest request, Model model) {
+        model.addAttribute("errors", errors);
         if (errors.hasErrors()) {
             return "/authentication/register";
         }
         Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
 
         if (existingCustomer != null) {
-            errors.rejectValue("email", "email.alreadyexists", "A user with that email already exists");
-            return "/authentication/login";
+            errors.rejectValue("email", "email.alreadyExists", "A user with that email already exists");
+            return "/authentication/register";
         }
 
-        // Send customer back to form if passwords didn't match
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
@@ -51,8 +49,9 @@ public class CustomerController {
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
-        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword());
+        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword(), "", "", "", "");
         customerRepository.save(newCustomer);
+//        TODO figure out why, after registering a new user, it takes them t login, not index, its cause we need to create a session
         return "redirect:/";
     }
 

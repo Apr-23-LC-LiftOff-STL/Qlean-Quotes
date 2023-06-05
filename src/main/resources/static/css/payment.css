@@ -1,16 +1,178 @@
-* {
-  box-sizing: border-box;
+
+/*//whole page*/
+.payment-body {
+  font-family: 'Montserrat', sans-serif !important;
+  background-color: #101728;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  /*font-family: 'Montserrat', sans-serif;*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #101728;
+
 }
+
+.navbar-header {
+  margin: 10px;
+}
+
+.navbar-brand img {
+  width: auto;
+  height: 20vh;
+}
+
+.navbar-brand {
+  margin-left: 30px;
+  width: 70px;
+  height: auto;
+}
+
+.nav {
+  list-style-type: none;
+}
+
+.nav-item a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.nav-item a:hover {
+  color: #F06744;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1cm;
+  margin-left: 3cm;
+  margin-bottom: 3cm;
+  padding: 1px;
+  background-color: #101728;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.address-big-container {
+  display: flex;
+  flex-direction: row;
+  gap: 3cm;
+
+}
+
+.payment-title-container {
+  background-color: #101728;
+  border-radius: 10px;
+  margin-top: 1rem;
+  width: 400px;
+  height: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.address-title {
+  color:  white;
+  margin: 0;
+  font-size: 40px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/*input styling*/
+.form-control {
+  background-color: white;
+  color: #101728;
+  border-radius: 0px;
+  width: 350px;
+  margin-top: 3px;
+}
+
+label {
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.form-control::placeholder {
+  color: #46736a;
+}
+
+.form-control:focus {
+  background-color: white;
+  border-color: #F06744;
+  border-width: 2px;
+  border-style: groove;
+  color: #101728;
+  box-shadow: 0 0 5px #F06744;
+}
+
+
+.alert {
+  color: #F06744;
+}
+
 
 #payment-form {
   max-width: 550px;
+  width: 550px;
   min-width: 300px;
-  margin: 150px auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/*.sq-card-iframe-container {*/
+/*  border-radius: 0px !important;*/
+/*}*/
+
+
+#card-container {
+  margin-top: 45px;
+  /* this height depends on the size of the container element */
+  /* We transition from a single row to double row at 485px */
+  /* Setting this min-height minimizes the impact of the card form loading */
+  min-height: 90px;
+}
+
+#card-button {
+  background-color: #F06744;
+  padding: 5px;
+  border: #F06744;
+  /*margin-left: 13px;*/
+  margin-bottom: 5px;
+  width: 100%;
+  height: 55px;
+  font-size: 16px;
+  border-radius: 0px;
+  color: white;
+}
+
+#card-button:hover {
+  background-color: #c05e44 !important;
+  border: #c05e44;
+}
+
+#card-button:active {
+  background-color: #3d5050 !important;
+  box-shadow: 0 0 5px #32393a !important;
+}
+
+/*footer*/
+.payment-footer {
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: small;
+  margin-right: 1cm;
+  padding: 4px;
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 .buyer-inputs {
@@ -20,14 +182,6 @@ body {
   border: none;
   margin: 0;
   padding: 0;
-}
-
-#card-container {
-  margin-top: 45px;
-  /* this height depends on the size of the container element */
-  /* We transition from a single row to double row at 485px */
-  /* Settting this min-height minimizes the impact of the card form loading */
-  min-height: 90px;
 }
 
 #gift-card-container {
@@ -40,6 +194,7 @@ body {
     min-height: 140px;
   }
 }
+
 
 #ach-button {
   margin-top: 20px;
@@ -98,12 +253,9 @@ input {
   border-width: 1px;
   margin-top: 20px;
   font-size: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-input:focus {
-  border: 1px solid #006aff;
-}
+
 
 button {
   color: #ffffff;

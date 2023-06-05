@@ -1,0 +1,146 @@
+/*Create User form*/
+
+.register-body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #101728;
+}
+
+.register-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.register-title {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+
+}
+
+.navbar-header {
+    margin: 10px;
+}
+
+ .navbar-brand img {
+    width: auto;
+    height: 20vh;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding: 1cm;
+    border-radius: 0px;
+    background-color: #101728;
+
+}
+
+
+.register-label {
+    color: white;
+    font-size: 13px;
+}
+
+
+.form-control {
+    background-color: white;
+    color: #101728;
+    border-radius: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-text-fill-color: #101728 !important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+
+.form-control::placeholder {
+    color: #101728;
+}
+
+.register-error {
+    color: #F06744;
+}
+
+#register-password-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+}
+
+#register-password-div .form-group {
+    width: 40%;
+
+}
+
+#register-create-button-div {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+#register-create-button {
+    color: white;
+    font-size: 15px;
+    line-height: 20px;
+    background-color: #F06744;
+    padding: 5px;
+    border-radius: 0px;
+    border-color: #F06744;
+    margin-bottom: 5px;
+    width: 200px;
+    height: 35px;
+
+}
+
+#register-create-button:hover {
+    background-color: #c05e44 !important;
+    border-color: #c05e44;
+    box-shadow: 0 0 5px #8a4330 !important;
+}
+
+
+#register-create-button:active {
+    background-color: #32393a !important;
+    box-shadow: 0 0 5px #3a3432 !important;
+    border-color: #3a3432;
+    color: white !important;
+}
+
+.register-login-redirect {
+    font-size: 13px;
+    padding: 5px;
+    color: white;
+}
+
+.register-login-redirect a {
+    color: white;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+#register-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    font-size: 10px;
+    margin-rirght: 2cm;
+    padding: 4px;
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+

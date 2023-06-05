@@ -1,6 +1,8 @@
 package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.Entity;
+import org.launchcode.qleanquotes.models.data.QuoteRepository;
+import org.launchcode.qleanquotes.models.enums.CleaningOption;
 
 
 //TODO there needs to be persistence annotations in this model for the databases tables to relate to each other (foreign key! think @manytoone, @onetomany, blah blah)
@@ -13,26 +15,28 @@ public class Quote extends AbstractEntity {
 
     private Integer numOfBathroom;
 
-    private String cleaningOptions;
-
-    private double totalCost;
+    private CleaningOption cleaningOption;
 
     private Long totalCharge;
+
+    private double totalCost;
+    private String formattedTotalCost;
 
 
     public Quote() {
     }
 
-    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, String cleaningOptions, double totalCost, Long totalCharge) {
+    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
+        this();
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
-        this.cleaningOptions = cleaningOptions;
-        this.totalCost = totalCost;
+        this.cleaningOption = cleaningOption;
         this.totalCharge = totalCharge;
+        this.totalCost = totalCost;
+        this.formattedTotalCost = formattedTotalCost;
+
     }
-
-
 
     public Integer getSquareFeet() {
         return squareFeet;
@@ -58,12 +62,20 @@ public class Quote extends AbstractEntity {
         this.numOfBathroom = numOfBathroom;
     }
 
-    public String getCleaningOptions() {
-        return cleaningOptions;
+    public CleaningOption getCleaningOption() {
+        return cleaningOption;
     }
 
-    public void setCleaningOptions(String cleaningOptions) {
-        this.cleaningOptions = cleaningOptions;
+    public void setCleaningOption(CleaningOption cleaningOption) {
+        this.cleaningOption = cleaningOption;
+    }
+
+    public Long getTotalCharge() {
+        return totalCharge;
+    }
+
+    public void setTotalCharge(Long totalCharge) {
+        this.totalCharge = totalCharge;
     }
 
     public double getTotalCost() {
@@ -74,11 +86,11 @@ public class Quote extends AbstractEntity {
         this.totalCost = totalCost;
     }
 
-    public Long getTotalCharge() {
-        return totalCharge;
+    public String getFormattedTotalCost() {
+        return formattedTotalCost;
     }
 
-    public void setTotalCharge(Long totalCharge) {
-        this.totalCharge = totalCharge;
+    public void setFormattedTotalCost(String formattedTotalCost) {
+        this.formattedTotalCost = formattedTotalCost;
     }
 }

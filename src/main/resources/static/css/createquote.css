@@ -1,74 +1,134 @@
 
-
 .create-quote-body {
     font-family: 'Montserrat', sans-serif;
+    background-color: #101728;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #101728;
+}
+
+.navbar-header {
+    margin: 10px;
+}
+
+.navbar-brand img {
+    width: auto;
+    height: 20vh;
+}
+
+.navbar-brand {
+    margin-left: 30px;
+    width: 70px;
+    height: auto;
+}
+
+.nav {
+    list-style-type: none;
+}
+
+.nav-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-item a:hover {
+    color: #F06744;
+}
+
+
+/*create quote form*/
 .create-quote-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 1cm;
+    text-align: center;
+    margin-right: 1cm;
+    margin-left: 1cm;
     padding: 1cm;
-    border-radius: 5%;
-    background-color: rgba(245, 243, 243, 0.8);
+    background-color: #101728;
+    font-family: 'Montserrat', sans-serif !important;
 }
-
 
 /*/page title */
 .create-quote-title-container {
-    background-color: #0e1818;
+    background-color: #101728;
     padding: 10px;
     border-radius: 10px;
     margin-bottom: 15px;
-    width: 300px;
+    width: 400px;
     height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
 
 }
 
 .create-quote-title {
-    color: #e7e4e7;
+    color:  white;
     margin: 0;
-    font-size: 30px;
+    font-size: 40px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
+/*input styling*/
+.form-control {
+    background-color: white;
+    color: #101728;
+    border-radius: 0px;
+}
+
+label {
+    margin-bottom: 0rem !important;
+}
+
+.input-label {
+    color: white;
+}
+
+.form-control::placeholder {
+    color: #46736a;
+}
+
+.form-control:focus {
+    background-color: white;
+    border-color: #F06744;
+    border-width: 2px;
+    border-style: groove;
+    color: #101728;
+    box-shadow: 0 0 5px #F06744;
+}
 
 /*cleaning options with radio buttons, and title*/
 .cleaning-options-container {
-    border: 2px solid gray;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .radio-button-title-container {
-    background-color: #1f2121;
     padding: 5px;
     border-radius: 5px;
-    margin: 10px;
     width: 190px;
     height: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     overflow: hidden;
     text-align: center;
-
 }
 
 .radio-button-title {
-    color: #e7e4e7;
-    margin: 0;
+    color:  white;
+    margin-left: 14px;
     font-size: 17px;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -77,17 +137,11 @@
 
 .create-quote-radio-buttons-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
-    padding-bottom: 25px;
-}
-
-
-
-
-.create-quote-radio-buttons-container {
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 /*styling the actual radio buttons*/
@@ -99,30 +153,35 @@
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    border: 2px solid #888888;
+    border: 2px solid white;
     outline: none;
     transition: all 0.3s ease;
 }
 
 .form-check-input[type="radio"]:checked {
-    background-color: cadetblue;
-    border-color: #3f696b;
-    box-shadow: 0 0 5px #2a4748;
+    background-color: #F06744;
+    border-color: #f1876d;
+    box-shadow: 0 0 5px #f3ac9a;
 }
 
 .form-check-label {
     position: relative;
     padding-right: 10px;
+    color: white;
     cursor: pointer;
     font-size: 16px;
 }
+
+.text-danger {
+    color: #F06744 !important;
+}
+
 
 /*container for calculate and pay buttons*/
 .create-quote-submit-button-container {
     display: flex;
     flex-direction: row;
     gap: 10px;
-    padding-bottom: 25px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -131,61 +190,85 @@
 
 /*calculate and pay buttons*/
 .btn {
-    border: #0e1818;
+    border: #F06744;
+    color: white;
 }
 
 .btn-primary {
-    background-color: #0e1818;
+    background-color: #69AD9F;
     padding: 5px;
-    border: #0e1818;
+    border: #69AD9F;
     border-radius: 5px;
+    margin-right: 13px;
     margin-bottom: 5px;
-    width: 200px;
+    width: 150px;
     height: 35px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .btn-primary:hover {
-    background-color: #2a2d2d;
-    box-shadow: 0 0 5px #32393a;
+    background-color: #548A7F;
+    box-shadow: 0 0 5px #32544d;
+    color: white;
 }
 
 .btn-primary:active {
     background-color: #3d5050 !important;
     box-shadow: 0 0 5px #32393a !important;
+    color: white !important;
 }
 
 .btn-success {
-    background-color: #0e1818;
+    background-color: #F06744;
     padding: 5px;
-    border-radius: 5px;
+    border: #F06744;
+    margin-left: 13px;
     margin-bottom: 5px;
-    width: 200px;
+    width: 150px;
     height: 35px;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .btn-success:hover {
-    background-color: #2a2d2d;
-    box-shadow: 0 0 5px #32393a;
+    background-color: #c05e44;
+    box-shadow: 0 0 5px #8a4330;
+    color: white;
 }
 
 .btn-success:active {
-    background-color: #3d5050 !important;
-    box-shadow: 0 0 5px #32393a !important;
+    background-color: #50403d !important;
+    box-shadow: 0 0 5px #3a3432 !important;
+    color: white !important;
 }
 
+.alert-calculate {
+    color: #F06744;
+}
+
+.create-quote-cancel {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.cancel-button a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
 
 /*footer*/
-#register-footer {
+.create-quote-footer {
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     text-align: center;
     font-size: small;
+    margin-right: 2cm;
     padding: 4px;
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
 }
 

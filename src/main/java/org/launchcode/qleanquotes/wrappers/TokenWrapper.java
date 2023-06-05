@@ -1,4 +1,4 @@
-package org.launchcode.qleanquotes.models;
+package org.launchcode.qleanquotes.wrappers;
 
 /**
  * TokenWrapper is a model object representing the token received from the front end.

@@ -10,7 +10,15 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
         <link th:href="@{/css/qleanquotes.css}" rel="stylesheet" />
 
-<!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap" rel="stylesheet">
+
+        <!--  Font for social media -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
     </head>
 </head>
@@ -27,15 +35,20 @@
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="#about-us">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact-us">Contact Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="/profile">User Profile</a></li>
+                <li class="nav-item">
+                    <a th:href="${customer.phoneNumber} == '' ? '/profile' : '/updated-profile'" class="nav-link">User Profile</a>
+                </li>
                 <li class="nav-item">
                     <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                    <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/login'}">Log Out</a>
+                    <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log Out</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
+
+
+
 
 
 <div id="about-us" th:fragment="page-about">
@@ -45,25 +58,35 @@
             <div class="row" >
                 <div class="column" >
                     <p>At Qlean Quotes, we excel in meticulous planning for exceptional housekeeping services. Our experienced team assesses your needs, creating customized cleaning plans. With comprehensive schedules and checklists, we ensure no detail is overlooked, maintaining a clean and comfortable environment for you and your family.</p>
-                    </div>
-                <div class="column" >
-                <p>At Qlean Quotes, our top-notch housekeeping services exceed expectations. Our dedicated team of professionals delivers exceptional results using industry-leading techniques, eco-friendly products, and state-of-the-art equipment. We ensure thorough cleanliness and hygiene in every space we serve, creating a pristine living environment for you to enjoy.</p>
                 </div>
                 <div class="column" >
-                <p>At Qlean Quotes, we offer 24/7 consulting services to address your housekeeping needs. Our friendly and knowledgeable customer support team is always available to assist you. Whether you have questions, need guidance, or require immediate assistance, we prioritize your satisfaction and peace of mind. Contact us today to experience exceptional housekeeping services and enjoy a fresh and comfortable living space without the hassle..</p>
+                    <p>Qlean Quotes delivers exceptional housekeeping services that go above and beyond expectations. Our dedicated team of professionals employs industry-leading techniques, eco-friendly products, and state-of-the-art equipment to ensure thorough cleanliness and hygiene. With our top-notch services, we create a pristine living environment for you to enjoy.</p>
                 </div>
-
+                <div class="column" >
+                    <p>At Qlean Quotes, we prioritize your satisfaction and peace of mind by offering 24/7 consulting services for your housekeeping needs. Our friendly and knowledgeable customer support team is always available to provide assistance, whether you have questions, need guidance, or require immediate help. Experience our exceptional housekeeping services and contact us today. </p>
+                </div>
             </div>
     </div>
 </div>
 
 <div id="contact-us" th:fragment="page-contact">
-    <div class="container">
-        <h1>Contact Us!</h1>
-            <div>
-                <p>123 Anywhere St., Any City, ST 12345</p>
-                <p> hello@qleanquotes.com </p>
+    <div class="first-part">
+        <p> A clean place is a safe place.</p>
+        <p> Need us? </p>
+            <div class="contact-us-bottom">
+                <img class="contactus-logo"  src="/images/logodark.png"  alt="Dark Logo" >
+                <img class="contactus-image"  src="/images/contactus.png"  alt="Contact Us" >
+
+                <div class="info">
+                <h1>Contact</h1>
+                <p>123 Anywhere St., St.Louis, MO 12345</p>
+                <p> clean@qleanquotes.com </p>
                 <p> +123-456-7890 </p>
+                    <!-- Need to add real social-media links -->
+                    <a href="https://www.instagram.com/qlean.quotes" class="fa fa-instagram"  target="_blank"></a>
+                    <a href="https://www.facebook.com/groups/qleanquotes" class="fa fa-facebook"  target="_blank"></a>
+                    <a href="https://www.twitter.com/qleanquotes" class="fa fa-twitter"  target="_blank"></a>
+                </div>
             </div>
     </div>
 </div>

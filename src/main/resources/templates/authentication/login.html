@@ -3,22 +3,21 @@
 <head th:replace="~{fragments :: head}"></head>
 
 <header>
-
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
-                <img src="/images/logo.png" alt="Qlean Quotes Logo" width="100">
-            </a>
-        </div>
-        <div class="navbar-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#contact-us">Contact Us</a></li>
-            </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                    <img src="/images/logo.png" alt="Qlean Quotes Logo" width="125" height="auto">
+                </a>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about-us">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
 
 </header>
 
@@ -26,7 +25,7 @@
 <body class="container body-content">
 
 <!--if logout, the below th:if condition is triggered, find this in securityconfig, logoutURL() query parameter-->
-<div th:if="${param.logout}"> You have logged out. </div>
+<div th:if="${param.logout}"> You have logged out.</div>
 
 
 <div class="brand-name">
@@ -39,43 +38,36 @@
 
     <div class="login-form-contain">
 
-<form id="login-form" method="post" th:action="@{/authentication/login/process}">
+        <form id="login-form" method="post" th:action="@{/authentication/login/process}">
 
-    <h1>Log In</h1>
+            <h1>Log In</h1>
 
-    <div class="form-group">
-        <label>Email
-            <input class="form-control" name="email" />
-        </label>
-<!--        if login is unsuccessful, the below th:if condition is triggered, find this in securityconfig, failureURL() query parameter-->
-        <div th:if="${param.failed}" class="text-danger">
-            <p>Invalid username or password.</p>
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Password
-            <input class="form-control" name="password" type="password"/>
-        </label>
-    </div>
-    <div class="form-group">
-    <input type="submit" class="btn btn-primary" value="Log In" />
-     <a href="/authentication/register" class="btn btn-success">Sign Up</a>
-    </div>
-</form>
+            <div class="form-group">
+                <label>Email
+                    <input class="form-control" name="email"/>
+                </label>
+                <!--        if login is unsuccessful, the below th:if condition is triggered, find this in securityconfig, failureURL() query parameter-->
+                <div th:if="${param.failed}" class="text-danger">
+                    <p>Invalid username or password.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Password
+                    <input class="form-control" name="password" type="password"/>
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Log In"/>
+                <a href="/authentication/register" class="btn btn-success">Sign Up</a>
+            </div>
+        </form>
 
-        <img class="login-image"  src="/images/homepage.png"  alt="Brand Name" >
+        <img class="login-image" src="/images/homepage.png" alt="Brand Name">
     </div>
 </div>
-
-
-
 <div th:replace="~{fragments :: page-about}"></div>
 <div th:replace="~{fragments :: page-contact}"></div>
 <div th:replace="~{fragments :: footer}"></div>
-
-
-<!--<script th:src="@{/js/payment-flow.js}"></script>-->
-
 </body>
 </html>
 

@@ -1,46 +1,64 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="~{fragments :: head}">
+    <title>User Profile</title>
 </head>
 
 <nav th:replace="~{fragments :: page-header}"></nav>
 
-<div th:if="${param.error}"> <h1>This didn't work</h1> </div>
+<div th:if="${param.error}"><h1>This didn't work</h1></div>
 <body>
 <div>
     <h1>User Profile</h1>
     <h4 id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></h4>
     <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
 
+    <form action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
+        <label for="phoneNumber">Phone Number:
+            <input type="text" th:value= "${customer.phoneNumber}" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
+        <br>
+        <label for="street">Street Address:
+            <input type="text" th:value= "${customer.street}" id="street" name="street">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
+        <br>
+        <label for="city">City:
+            <input type="text" th:value= "${customer.city}" id="city" name="city">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.city}"></p>
+        <br>
+        <label for="zip">Zip Code:
+            <input type="text" th:value= "${customer.zip}" id="zip" name="zip">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
 
-<!--    <div class="form-group">-->
-<!--        <label class="phoneNumber-label">Phone Number:-->
-<!--            <input class="form-control" th:field="${profileFormDTO.phoneNumber}" type="phoneNumber"/>-->
-<!--        </label>-->
-<!--        <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>-->
-<!--        <input type="submit" value="Submit">-->
-<!--    </div>-->
-<!--    </form>-->
-
-        <form action="#" th:action="@{/profile}" th:object="${phoneNumber}" method="post">
-            <label for="phoneNumber">Phone Number:
-                <input type="text" id="phoneNumber" name="phoneNumber">
-            </label>
-            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
-            <input type="submit" value="Submit">
-        </form>
-
+        <input type="submit" value="Submit">
+    </form>
 </div>
+<script>
+    function formatPhoneNumber() {
+        var phoneNumber = document.getElementById('phoneNumber');
+        var digits = phoneNumber.value.replace(/\D/g, '');
+        var formattedNumber = '';
+
+        if (digits.length > 0) {
+            formattedNumber += digits.substring(0, 3);
+
+            if (digits.length > 3) {
+                formattedNumber += '-' + digits.substring(3, 6);
+
+                if (digits.length > 6) {
+                    formattedNumber += '-' + digits.substring(6);
+                }
+            }
+        }
+        phoneNumber.value = formattedNumber;
+    }
+</script>
+
 </body>
 </html>
 
 
-
-<!--<form class="register-form" th:action="@{/authentication/register}" method="post">-->
-<!--    <h1 class="register-title">Create New Account</h1>-->
-<!--    <div class="form-group">-->
-<!--        <label class="register-label">Name-->
-<!--            <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>-->
-<!--        </label>-->
-<!--        <p class="error" th:errors="${registerFormDTO.name}"></p>-->
-<!--    </div>-->
