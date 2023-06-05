@@ -40,7 +40,7 @@
     </div>
 </div>
 
-<form class="payment-form" th:action="@{/payment}" method="post">
+<form class="payment-form" th:action="@{/payment}" method="post" id="payment-shipping-form">
     <div class="payment-title-container">
         <h1 class="address-title">Service Address</h1>
     </div>
@@ -117,6 +117,7 @@
     </div>
 
     <div id="payment-form">
+        <div id="payment-status-container"></div>
         <div id="card-container"></div>
         <button id="card-button" type="button">Pay Now</button>
     </div>
@@ -286,7 +287,7 @@
     });</script>
 
 
-<div id="payment-status-container"></div>
+
 
 </body>
 </html>
