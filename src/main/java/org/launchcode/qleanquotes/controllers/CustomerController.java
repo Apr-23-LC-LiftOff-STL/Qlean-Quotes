@@ -49,7 +49,7 @@ public class CustomerController {
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
-        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword(), "");
+        Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword(), "", "", "", "");
         customerRepository.save(newCustomer);
 //        TODO figure out why, after registering a new user, it takes them t login, not index, its cause we need to create a session
         return "redirect:/";

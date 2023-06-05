@@ -15,9 +15,25 @@
 
     <form action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
         <label for="phoneNumber">Phone Number:
-            <input type="text" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()">
+            <input type="text" th:value= "${customer.phoneNumber}" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()">
         </label>
         <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
+        <br>
+        <label for="street">Street Address:
+            <input type="text" th:value= "${customer.street}" id="street" name="street">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
+        <br>
+        <label for="city">City:
+            <input type="text" th:value= "${customer.city}" id="city" name="city">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.city}"></p>
+        <br>
+        <label for="zip">Zip Code:
+            <input type="text" th:value= "${customer.zip}" id="zip" name="zip">
+        </label>
+        <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
+
         <input type="submit" value="Submit">
     </form>
 </div>
