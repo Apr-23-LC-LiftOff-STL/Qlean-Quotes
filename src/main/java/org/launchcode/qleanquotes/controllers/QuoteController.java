@@ -4,11 +4,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.QuoteCalculator;
+import org.launchcode.qleanquotes.models.Customer;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -36,6 +38,8 @@ public class QuoteController {
 
     @GetMapping("/createquote")
     public String showCreateQuoteForm(Model model){
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
         model.addAttribute(new CreateQuoteFormDTO());
         model.addAttribute("cleaningOption", CleaningOption.values());
         model.addAttribute("title", "Get Quote");
@@ -50,6 +54,9 @@ public class QuoteController {
             model.addAttribute("errors", errors);
             return "createquote";
         }
+
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
 
         QuoteCalculator quoteCalculator = new QuoteCalculator();
         Quote quote = new Quote();
@@ -76,6 +83,9 @@ public class QuoteController {
         HttpSession session = request.getSession();
         Integer storedQuoteId = getQuoteIdFromSession(session);
         Optional<Quote> optionalQuote = quoteRepository.findById(quoteId);
+
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
 
         if (storedQuoteId != null && storedQuoteId == quoteId) {
             Quote quote = optionalQuote.get();
