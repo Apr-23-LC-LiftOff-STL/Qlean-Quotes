@@ -58,6 +58,8 @@ public class QuoteController {
 
     @GetMapping("/createquote")
     public String showCreateQuoteForm(Model model){
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
         model.addAttribute(new CreateQuoteFormDTO());
         model.addAttribute("cleaningOption", CleaningOption.values());
         model.addAttribute("title", "Get Quote");
@@ -86,6 +88,8 @@ public class QuoteController {
         quote.setFormattedTotalCost(formattedTotalCost);
         setQuoteInsession(request.getSession(), quote);
         quoteRepository.save(quote);
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
         model.addAttribute("quote", quote);
         return "createquote";
     }
@@ -93,6 +97,8 @@ public class QuoteController {
 
     @GetMapping("createquote/{quoteId}")
     public String displayNewQuote(Model model, @PathVariable int quoteId, HttpSession session, Errors errors) {
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
         if (quote != null && quote.getId() == quoteId) {
             model.addAttribute("quote", quote);
