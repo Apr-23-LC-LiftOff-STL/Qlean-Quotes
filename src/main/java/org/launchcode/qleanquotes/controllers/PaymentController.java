@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
 import static org.launchcode.qleanquotes.controllers.QuoteController.quoteSessionKey;
 
 @Controller
-public class NewMoneyController {
+public class PaymentController {
 
     private final SquareWrapper squareWrapper;
 
@@ -46,7 +46,7 @@ public class NewMoneyController {
     }
 
     @Autowired
-    public NewMoneyController(SquareWrapper squareWrapper) {
+    public PaymentController(SquareWrapper squareWrapper) {
         this.squareWrapper = squareWrapper;
 
     }
@@ -84,27 +84,6 @@ public class NewMoneyController {
             model.addAttribute("quote", quote);
         }
         try {
-            Payment payment = new Payment();
-            Orders orders = new Orders();
-            payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
-            payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
-            payment.setShippingLocality(paymentFormDTO.getShippingLocality());
-            payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
-            payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
-            payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
-            payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
-            payment.setBillingLocality(paymentFormDTO.getBillingLocality());
-            payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
-            payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
-
-            setPaymentInsession(request.getSession(), payment);
-            paymentRepository.save(payment);
-
-            orders.setPayment(payment);
-            orders.setQuote(quote);
-            orders.setCustomer(customer);
-            ordersRepository.save(orders);
-
             Money amountMoney = new Money.Builder()
                     .amount(quote.getTotalCharge())
                     .currency("USD")
@@ -143,6 +122,29 @@ public class NewMoneyController {
             System.out.println(paymentResult.getTitle());
             model.addAttribute("paymentResult", paymentResult);
             if (paymentResult.getTitle().equals("SUCCESS")) {
+
+                Payment payment = new Payment();
+                Orders orders = new Orders();
+                payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
+                payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
+                payment.setShippingLocality(paymentFormDTO.getShippingLocality());
+                payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
+                payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
+                payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
+                payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
+                payment.setBillingLocality(paymentFormDTO.getBillingLocality());
+                payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
+                payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
+                payment.setTotalCost(quote.getTotalCost());
+
+                setPaymentInsession(request.getSession(), payment);
+                paymentRepository.save(payment);
+
+                orders.setPayment(payment);
+                orders.setQuote(quote);
+                orders.setCustomer(customer);
+                ordersRepository.save(orders);
+
                 System.out.println("Payment Successful");
             } else {
                 System.out.println("Payment Failed");
