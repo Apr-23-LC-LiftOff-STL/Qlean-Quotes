@@ -75,7 +75,11 @@ public class QuoteController {
         Quote quote = new Quote();
         quote.setSquareFeet(createQuoteFormDTO.getSquareFeet());
         quote.setNumOfRoom(createQuoteFormDTO.getNumOfRoom());
-        quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
+        if (createQuoteFormDTO.getNumOfBathroom() == null) {
+            quote.setNumOfBathroom(0);
+        } else if (createQuoteFormDTO.getNumOfBathroom() != null) {
+            quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
+        }
         quote.setCleaningOption(createQuoteFormDTO.getCleaningOption());
         Long calculatedTotalCharge = quoteCalculator.calculateTotalCharge(quote);
         double calculatedTotalCost = quoteCalculator.calculateTotalCost(quote);
