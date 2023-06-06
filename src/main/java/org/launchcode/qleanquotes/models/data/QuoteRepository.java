@@ -9,6 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface QuoteRepository extends JpaRepository<Quote, Integer> {
-//   Quote save(Quote quote);
 
 }

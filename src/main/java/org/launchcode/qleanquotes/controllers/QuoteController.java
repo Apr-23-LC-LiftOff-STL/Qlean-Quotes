@@ -52,9 +52,6 @@ public class QuoteController {
         session.setAttribute(quoteSessionKey, quote);
     }
 
-    public static Quote getQuoteFromSession(HttpSession session) {
-        return (Quote) session.getAttribute(quoteSessionKey);
-    }
 
     @GetMapping("/createquote")
     public String showCreateQuoteForm(Model model){

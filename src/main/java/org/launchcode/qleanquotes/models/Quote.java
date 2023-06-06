@@ -1,6 +1,8 @@
 package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
 
@@ -8,6 +10,10 @@ import org.launchcode.qleanquotes.models.enums.CleaningOption;
 //TODO there needs to be persistence annotations in this model for the databases tables to relate to each other (foreign key! think @manytoone, @onetomany, blah blah)
 @Entity
 public class Quote extends AbstractEntity {
+
+    @OneToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    private Order order;
 
     private Integer squareFeet;
 
@@ -26,8 +32,9 @@ public class Quote extends AbstractEntity {
     public Quote() {
     }
 
-    public Quote(Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
-        this();
+    public Quote(Order anOrder, Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
+        super();
+        this.order = anOrder;
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
@@ -92,5 +99,13 @@ public class Quote extends AbstractEntity {
 
     public void setFormattedTotalCost(String formattedTotalCost) {
         this.formattedTotalCost = formattedTotalCost;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

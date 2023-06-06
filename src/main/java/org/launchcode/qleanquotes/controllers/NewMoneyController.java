@@ -4,10 +4,14 @@ import com.squareup.square.exceptions.ApiException;
 import com.squareup.square.models.Address;
 import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.Money;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.launchcode.qleanquotes.models.Customer;
+import org.launchcode.qleanquotes.models.Payment;
 import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.Quote;
+import org.launchcode.qleanquotes.models.data.PaymentRepository;
+import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 import org.launchcode.qleanquotes.wrappers.SquareWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +36,19 @@ public class NewMoneyController {
     private final SquareWrapper squareWrapper;
 
     @Autowired
+    private PaymentRepository paymentRepository;
+
+    public static final String paymentSessionKey = "payment";
+
+
+    public static void setPaymentInsession(HttpSession session, Payment payment) {
+        session.setAttribute(paymentSessionKey, payment);
+    }
+
+    @Autowired
     public NewMoneyController(SquareWrapper squareWrapper) {
         this.squareWrapper = squareWrapper;
+
     }
 
     @GetMapping("/payment")
@@ -61,7 +76,7 @@ public class NewMoneyController {
 
     @PostMapping("/payment")
     public String createPaymentRequest(@ModelAttribute PaymentFormDTO paymentFormDTO,
-                                       HttpSession session, Model model) {
+                                       HttpSession session, HttpServletRequest request, Model model) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
@@ -69,12 +84,27 @@ public class NewMoneyController {
             model.addAttribute("quote", quote);
         }
         try {
+            Payment payment = new Payment();
+            payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
+            payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
+            payment.setShippingLocality(paymentFormDTO.getShippingLocality());
+            payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
+            payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
+            payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
+            payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
+            payment.setBillingLocality(paymentFormDTO.getBillingLocality());
+            payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
+            payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
+            setPaymentInsession(request.getSession(), payment);
+            paymentRepository.save(payment);
             Money amountMoney = new Money.Builder()
                     .amount(quote.getTotalCharge())
                     .currency("USD")
                     .build();
 
             Address billingAddress = new Address.Builder()
+                    .firstName(customer.getName())
+                    .lastName(customer.getLastName())
                     .addressLine1(paymentFormDTO.getBillingAddressLine1())
                     .addressLine2(paymentFormDTO.getBillingAddressLine2())
                     .locality(paymentFormDTO.getBillingLocality())
@@ -83,6 +113,8 @@ public class NewMoneyController {
                     .build();
 
             Address shippingAddress = new Address.Builder()
+                    .firstName(customer.getName())
+                    .lastName(customer.getLastName())
                     .addressLine1(paymentFormDTO.getShippingAddressLine1())
                     .addressLine2(paymentFormDTO.getShippingAddressLine2())
                     .locality(paymentFormDTO.getShippingLocality())
@@ -93,8 +125,10 @@ public class NewMoneyController {
             CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest
                     .Builder(paymentFormDTO.getToken(), paymentFormDTO.getIdempotencyKey())
                     .amountMoney(amountMoney)
+                    .buyerEmailAddress(customer.getEmail())
                     .billingAddress(billingAddress)
                     .shippingAddress(shippingAddress)
+                    .note(customer.getPhoneNumber())
                     .build();
 
             PaymentResult paymentResult = squareWrapper.createPayment(createPaymentRequest);

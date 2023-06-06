@@ -7,11 +7,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import jakarta.validation.constraints.Pattern;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class Customer extends AbstractEntity implements UserDetails {
+    @OneToMany
+    @JoinColumn(name = "order_id")
+    private List<Order> orders = new ArrayList<>();
 
     @NotNull
     private String name;
@@ -133,5 +138,9 @@ public class Customer extends AbstractEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
