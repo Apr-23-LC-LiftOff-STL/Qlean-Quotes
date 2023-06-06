@@ -137,7 +137,7 @@ public class PaymentController {
                     .buyerEmailAddress(customer.getEmail())
                     .billingAddress(billingAddress)
                     .shippingAddress(shippingAddress)
-                    .note("Quote ID: " + quote.getId() + " Customer ID: " + customer.getId())
+                    .note("Quote ID: " + quote.getId() + " Customer ID: " + customer.getId() + " Phone Number: " + customer.getPhoneNumber())
                     .build();
 
             PaymentResult paymentResult = squareWrapper.createPayment(createPaymentRequest);
