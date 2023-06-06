@@ -124,7 +124,7 @@ public class PaymentController {
             if (paymentResult.getTitle().equals("SUCCESS")) {
 
                 Payment payment = new Payment();
-                Orders orders = new Orders();
+                Orders order = new Orders();
                 payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
                 payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
                 payment.setShippingLocality(paymentFormDTO.getShippingLocality());
@@ -139,11 +139,13 @@ public class PaymentController {
 
                 setPaymentInsession(request.getSession(), payment);
                 paymentRepository.save(payment);
+                model.addAttribute("payment", payment);
 
-                orders.setPayment(payment);
-                orders.setQuote(quote);
-                orders.setCustomer(customer);
-                ordersRepository.save(orders);
+                order.setPayment(payment);
+                order.setQuote(quote);
+                order.setCustomer(customer);
+                ordersRepository.save(order);
+                model.addAttribute("order", order);
 
                 System.out.println("Payment Successful");
             } else {

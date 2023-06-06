@@ -499,6 +499,11 @@
 
 }
 
+.receipt-container{
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
 
 .message-highlight {
   color: rgb(241,118,86) !important;
