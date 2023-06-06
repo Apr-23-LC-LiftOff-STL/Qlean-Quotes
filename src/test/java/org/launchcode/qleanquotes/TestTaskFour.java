@@ -38,18 +38,6 @@ public class TestTaskFour extends AbstractTest {
         Assertions.assertEquals(password, actualPassword);
     }
 
-    // do we have email validation ?????????????
-//        @Test
-//        void getEmailInvalidEmailThrowsException() {
-//            String invalidEmail = "invalidemail";
-//            LoginFormDTO loginFormDTO = new LoginFormDTO();
-//            loginFormDTO.setEmail(invalidEmail);
-//
-//            Assertions.assertThrows(ConstraintViolationException.class, () -> {
-//                // do we have email validation ?????????????
-//            });
-//        }
-
 
     @Test
     void getPhoneNumberReturnsValidPhoneNumber() {
