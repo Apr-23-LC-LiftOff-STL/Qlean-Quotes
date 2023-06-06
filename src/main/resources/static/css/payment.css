@@ -110,11 +110,18 @@ label {
   box-shadow: 0 0 5px #F06744;
 }
 
-
-.alert {
-  color: #F06744;
+.total-cost-container {
+  margin-top: 1cm;
+  max-width: 550px;
+  width: 550px;
+  min-width: 300px;
+  text-align: center;
 }
 
+.alert {
+  background-color: #69AD9F;
+  color: #101728;
+}
 
 #payment-form {
   max-width: 550px;
@@ -131,7 +138,7 @@ label {
 
 
 #card-container {
-  margin-top: 45px;
+  /*margin-top: 45px;*/
   /* this height depends on the size of the container element */
   /* We transition from a single row to double row at 485px */
   /* Setting this min-height minimizes the impact of the card form loading */

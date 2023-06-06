@@ -16,7 +16,7 @@
     <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
     <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
 </head>
-  
+
 <!--   wasn't sure which one to use - Rainy -->
 <body class="payment-body">
 
@@ -125,6 +125,12 @@
     </div>
     <div th:if="${totalCost != null}" class="alert" role="alert">
         Total cost:$ <span th:text="${quote.getFormattedTotalCost()}"></span>
+    </div>
+
+    <div class="total-cost-container">
+        <div th:if="${quote.getFormattedTotalCost() != null}" class="alert" role="alert">
+            Total cost: $<span th:text="${quote.getFormattedTotalCost()}"></span>
+        </div>
     </div>
 
     <div id="payment-form">
