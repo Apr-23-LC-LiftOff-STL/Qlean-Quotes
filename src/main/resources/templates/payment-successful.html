@@ -67,7 +67,7 @@
         <label>Square Feet:</label><span th:text="${quote.getSquareFeet()}"></span><br>
         <label>Number of Rooms:</label><span th:text="${quote.getNumOfRoom()}"></span><br>
         <label>Number of Bathrooms:</label><span th:text="${quote.getNumOfBathroom()}"></span><br>
-        <label>Cleaning Option:</label><span th:text="${quote.getCleaningOption()}"></span><br><br>
+        <label>Cleaning Option:</label><span th:text="${quote.getCleaningOption().name()}"></span><br><br>
         <label>Total Charge:</label><span th:text="${quote.getFormattedTotalCost()}"></span><br>
     </div>
 </div>
