@@ -31,10 +31,11 @@
 
 
 <h1> Thank you! </h1>
-<h2> Payment Successful! </h2>
+<div class="receipt-title-container"><h2> Payment Successful! </h2></div>
+
 
 <div class="receipt-container">
-    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>
+<!--    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>-->
 
     <div class="receipt">
         <span th:text="${customer.getName()} + ${customer.getLastName()}"></span><br>
