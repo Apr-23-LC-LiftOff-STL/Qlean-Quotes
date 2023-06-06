@@ -41,14 +41,33 @@
         <span th:text="${customer.getName()} + ${customer.getLastName()}"></span><br>
         <hr>
         <span th:text="${customer.getEmail()}"></span><br>
-        <span th:text="${customer.getPhoneNumber()}"></span>
-        <label>Service Address:</label>
-        <span th:text="${paymentFormDTO.getShippingAddressLine1()}"></span>
-        <br>
-        <hr>
-        <hr>
-        <label>Amount paid: $</label>
-        <span th:text="${quote.getFormattedTotalCost()}"></span>
+
+
+        <label>Phone Number:</label>
+        <span th:text="${customer.getPhoneNumber()}"></span><br>
+
+        <label>Service Address:</label><br>
+        <span th:text="${payment.getShippingAddressLine1()}"></span><br>
+<!--        TODO add if statement to show line 2-->
+        <span th:text="${payment.getShippingAddressLine2()}"></span><br>
+        <span th:text="${payment.getShippingAdministrativeDistrictLevel1()}"></span><br>
+        <span th:text="${payment.getShippingLocality()}"></span><br>
+        <span th:text="${payment.getShippingPostalCode()}"></span><br>
+
+        <label>Billing Address:</label><br>
+        <span th:text="${payment.getBillingAddressLine1()}"></span><br>
+<!--        TODO add if statement to show line 2-->
+        <span th:text="${payment.getBillingAddressLine2()}"></span><br>
+        <span th:text="${payment.getBillingAdministrativeDistrictLevel1()}"></span><br>
+        <span th:text="${payment.getBillingLocality()}"></span><br>
+        <span th:text="${payment.getBillingPostalCode()}"></span><br>
+
+        <label>Service Details</label><br>
+        <label>Square Feet:</label><span th:text="${quote.getSquareFeet()}"></span><br>
+        <label>Number of Rooms:</label><span th:text="${quote.getNumOfRoom()}"></span><br>
+        <label>Number of Bathrooms:</label><span th:text="${quote.getNumOfBathroom()}"></span><br>
+        <label>Cleaning Option:</label><span th:text="${quote.getCleaningOption().name()}"></span><br><br>
+        <label>Total Charge:</label><span th:text="${quote.getFormattedTotalCost()}"></span><br>
     </div>
 </div>
 

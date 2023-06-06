@@ -54,6 +54,11 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
+.customer-payment-details{
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .address-big-container {
   display: flex;
   flex-direction: row;

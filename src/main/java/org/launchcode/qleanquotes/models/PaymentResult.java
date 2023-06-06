@@ -7,6 +7,8 @@ import java.util.List;
  */
 public class PaymentResult {
 
+  //TODO persist with order
+
   private String title;
 
   private List<com.squareup.square.models.Error> errors;

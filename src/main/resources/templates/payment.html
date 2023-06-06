@@ -49,6 +49,14 @@
         <span th:text="${customer.getPhoneNumber()}"></span><br>
     </div>
 </div>
+<div>
+    <label>Service Details</label><br>
+    <label>Square Feet:</label><span th:text="${quote.getSquareFeet()}"></span><br>
+    <label>Number of Rooms:</label><span th:text="${quote.getNumOfRoom()}"></span><br>
+    <label>Number of Bathrooms:</label><span th:text="${quote.getNumOfBathroom()}"></span><br>
+    <label>Cleaning Option:</label><span th:text="${quote.getCleaningOption().name()}"></span><br><br>
+    <label>Total Charge:</label><span th:text="${quote.getFormattedTotalCost()}"></span><br>
+</div>
 
 <form class="payment-form" th:action="@{/payment}" method="post" id="payment-shipping-form">
     <div class="address-big-container">

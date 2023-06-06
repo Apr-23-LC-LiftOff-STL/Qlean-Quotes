@@ -499,6 +499,11 @@
 
 }
 
+.receipt-container{
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
 
 .message-highlight {
   color: rgb(241,118,86) !important;
@@ -579,6 +584,7 @@
 .error-image{
   z-index: -1;
 }
+
 
 .receipt-container {
     display: flex;

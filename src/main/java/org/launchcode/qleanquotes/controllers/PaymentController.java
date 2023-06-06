@@ -80,8 +80,30 @@ public class PaymentController {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
+
+
         if (quote != null) {
             model.addAttribute("quote", quote);
+            Payment payment = new Payment();
+            Orders order = new Orders();
+            payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
+            payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
+            payment.setShippingLocality(paymentFormDTO.getShippingLocality());
+            payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
+            payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
+            payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
+            payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
+            payment.setBillingLocality(paymentFormDTO.getBillingLocality());
+            payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
+            payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
+            payment.setTotalCost(quote.getTotalCost());
+            order.setPayment(payment);
+            order.setQuote(quote);
+            order.setCustomer(customer);
+            paymentRepository.save(payment);
+            model.addAttribute("payment", payment);
+            ordersRepository.save(order);
+            model.addAttribute("order", order);
         }
         try {
             Money amountMoney = new Money.Builder()
@@ -115,38 +137,17 @@ public class PaymentController {
                     .buyerEmailAddress(customer.getEmail())
                     .billingAddress(billingAddress)
                     .shippingAddress(shippingAddress)
-                    .note(customer.getPhoneNumber())
+                    .note("Quote ID: " + quote.getId() + " Customer ID: " + customer.getId() + " Phone Number: " + customer.getPhoneNumber())
                     .build();
 
             PaymentResult paymentResult = squareWrapper.createPayment(createPaymentRequest);
             System.out.println(paymentResult.getTitle());
             model.addAttribute("paymentResult", paymentResult);
             if (paymentResult.getTitle().equals("SUCCESS")) {
-
-                Payment payment = new Payment();
-                Orders orders = new Orders();
-                payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
-                payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
-                payment.setShippingLocality(paymentFormDTO.getShippingLocality());
-                payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
-                payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
-                payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
-                payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
-                payment.setBillingLocality(paymentFormDTO.getBillingLocality());
-                payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
-                payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
-                payment.setTotalCost(quote.getTotalCost());
-
-                setPaymentInsession(request.getSession(), payment);
-                paymentRepository.save(payment);
-
-                orders.setPayment(payment);
-                orders.setQuote(quote);
-                orders.setCustomer(customer);
-                ordersRepository.save(orders);
-
+                //TODO Mark order as paid here
                 System.out.println("Payment Successful");
             } else {
+                //TODO Mark order as status here
                 System.out.println("Payment Failed");
             }
         } catch (ApiException | IOException e) {
