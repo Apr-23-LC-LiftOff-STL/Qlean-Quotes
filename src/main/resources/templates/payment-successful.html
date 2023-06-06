@@ -33,25 +33,32 @@
     <h1> Thank you! </h1>
     <h2> Payment Successful! </h2>
 
-<div><h1>Here's Your Receipt</h1>
-    <div>
-        <label>First Name:</label>
-        <span th:text="${customer.getName()}"></span><br>
+<div class="receipt-container">
+    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>
 
-        <label>Last Name:</label>
-        <span th:text="${customer.getLastName()}"></span><br>
+    <div class="receipt">
+<!--        <label>First Name:</label>-->
+        <span th:text="${customer.getName()} + ${customer.getLastName()}"></span><br>
+        <hr>
+<!--        <label>Last Name:</label>-->
+<!--        <span th:text="${customer.getLastName()}"></span><br>-->
 
-        <label>Email Address:</label>
+<!--        <label>Email Address:</label>-->
         <span th:text="${customer.getEmail()}"></span><br>
 
-        <label>Phone Number:</label>
-        <span th:text="${customer.getPhoneNumber()}"></span><br>
+<!--        <label>Phone Number:</label>-->
+        <span th:text="${customer.getPhoneNumber()}"></span>
+
+        <br>
 
         <label>Service Address:</label>
-        <span th:text="${paymentFormDTO.getShippingAddressLine1()}"></span><br>
+        <span th:text="${paymentFormDTO.getShippingAddressLine1()} + ${paymentFormDTO.getShippingAddressLine2()}"></span>
+
+        <hr>
+        <hr>
+        <label>Amount paid: $</label>
+        <span th:text="${quote.getFormattedTotalCost()}"></span>
     </div>
-
-
 </div>
 
 
