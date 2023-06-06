@@ -46,6 +46,9 @@
     <div class="address-big-container">
         <div class="service-address-container">
             <div class="payment-title-container">
+                <h1></h1>
+
+
                 <h1 class="address-title">Service Address</h1>
             </div>
             <!-- form content -->
@@ -123,7 +126,7 @@
             </div>
         </div>
     </div>
-    <div th:if="${totalCost != null}" class="alert" role="alert">
+    <div th:if="${quote.getFormattedTotalCost() != null}" class="alert" role="alert">
         Total cost:$ <span th:text="${quote.getFormattedTotalCost()}"></span>
     </div>
 

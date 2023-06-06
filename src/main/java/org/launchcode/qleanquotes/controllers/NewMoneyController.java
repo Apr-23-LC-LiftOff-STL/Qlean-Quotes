@@ -75,6 +75,8 @@ public class NewMoneyController {
                     .build();
 
             Address billingAddress = new Address.Builder()
+//                    .firstName(customer.getName())
+//                    .lastName(customer.getLastName())
                     .addressLine1(paymentFormDTO.getBillingAddressLine1())
                     .addressLine2(paymentFormDTO.getBillingAddressLine2())
                     .locality(paymentFormDTO.getBillingLocality())
@@ -83,6 +85,8 @@ public class NewMoneyController {
                     .build();
 
             Address shippingAddress = new Address.Builder()
+//                    .firstName(customer.getName())
+//                    .lastName(customer.getLastName())
                     .addressLine1(paymentFormDTO.getShippingAddressLine1())
                     .addressLine2(paymentFormDTO.getShippingAddressLine2())
                     .locality(paymentFormDTO.getShippingLocality())
@@ -93,6 +97,8 @@ public class NewMoneyController {
             CreatePaymentRequest createPaymentRequest = new CreatePaymentRequest
                     .Builder(paymentFormDTO.getToken(), paymentFormDTO.getIdempotencyKey())
                     .amountMoney(amountMoney)
+//                    .buyerEmailAddress(customer.getEmail())
+//                    .note(customer.getPhoneNumber())
                     .billingAddress(billingAddress)
                     .shippingAddress(shippingAddress)
                     .build();
