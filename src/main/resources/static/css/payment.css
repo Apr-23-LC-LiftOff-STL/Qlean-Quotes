@@ -168,6 +168,21 @@ label {
   box-shadow: 0 0 5px #32393a !important;
 }
 
+
+.payment-profile {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+
+}
+.payment-profile-container {
+  background-color: #101728;
+  width: 400px;
+  color: white;
+  font-size: 16px;
+}
+
 /*footer*/
 .payment-footer {
   bottom: 0;
