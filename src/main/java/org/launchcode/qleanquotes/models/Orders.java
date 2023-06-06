@@ -1,32 +1,24 @@
 package org.launchcode.qleanquotes.models;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
-import jakarta.validation.constraints.NotNull;
-import org.aspectj.weaver.ast.Or;
 
 @Entity
-public class Order extends AbstractEntity{
+public class Orders extends AbstractEntity{
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne
     private Payment payment;
 
-    @OneToOne(mappedBy = "order")
+    @OneToOne
     private Quote quote;
 
     @ManyToOne
     private Customer customer;
 
-    public Order(){
+    public Orders(){
     }
 
-//    public Order(Payment aPayment, Quote aQuote, Customer aCustomer){
-//        this.payment = aPayment;
-//        this.quote = aQuote;
-//        this.customer = aCustomer;
-//    }
 
     public Payment getPayment() {
         return payment;

@@ -6,12 +6,9 @@ import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.Money;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.launchcode.qleanquotes.models.Customer;
-import org.launchcode.qleanquotes.models.Payment;
-import org.launchcode.qleanquotes.models.PaymentResult;
-import org.launchcode.qleanquotes.models.Quote;
+import org.launchcode.qleanquotes.models.*;
+import org.launchcode.qleanquotes.models.data.OrdersRepository;
 import org.launchcode.qleanquotes.models.data.PaymentRepository;
-import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 import org.launchcode.qleanquotes.wrappers.SquareWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,9 @@ public class NewMoneyController {
 
     @Autowired
     private PaymentRepository paymentRepository;
+
+    @Autowired
+    private OrdersRepository ordersRepository;
 
     public static final String paymentSessionKey = "payment";
 
@@ -85,6 +85,7 @@ public class NewMoneyController {
         }
         try {
             Payment payment = new Payment();
+            Orders orders = new Orders();
             payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
             payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
             payment.setShippingLocality(paymentFormDTO.getShippingLocality());
@@ -95,8 +96,15 @@ public class NewMoneyController {
             payment.setBillingLocality(paymentFormDTO.getBillingLocality());
             payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
             payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
+
             setPaymentInsession(request.getSession(), payment);
             paymentRepository.save(payment);
+
+            orders.setPayment(payment);
+            orders.setQuote(quote);
+            orders.setCustomer(customer);
+            ordersRepository.save(orders);
+
             Money amountMoney = new Money.Builder()
                     .amount(quote.getTotalCharge())
                     .currency("USD")

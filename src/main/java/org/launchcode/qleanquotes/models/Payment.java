@@ -6,8 +6,8 @@ import jakarta.persistence.*;
 public class Payment extends AbstractEntity{
 
     @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
+    @JoinColumn(name = "orders_id", referencedColumnName = "id")
+    private Orders orders;
 
     private String shippingAddressLine1;
     private String shippingAddressLine2;
@@ -22,9 +22,9 @@ public class Payment extends AbstractEntity{
 
     public Payment(){}
 
-    public Payment(Order anOrder, String shippingAddressLine1, String shippingAddressLine2, String shippingAdministrativeDistrictLevel1, String shippingLocality, String shippingPostalCode, String billingAddressLine1, String billingAddressLine2, String billingAdministrativeDistrictLevel1, String billingLocality, String billingPostalCode){
+    public Payment(Orders anOrders, String shippingAddressLine1, String shippingAddressLine2, String shippingAdministrativeDistrictLevel1, String shippingLocality, String shippingPostalCode, String billingAddressLine1, String billingAddressLine2, String billingAdministrativeDistrictLevel1, String billingLocality, String billingPostalCode){
         super();
-        this.order = anOrder;
+        this.orders = anOrders;
         this.shippingAddressLine1 = shippingAddressLine1;
         this.shippingAddressLine2 = shippingAddressLine2;
         this.shippingAdministrativeDistrictLevel1 = shippingAdministrativeDistrictLevel1;
@@ -118,11 +118,11 @@ public class Payment extends AbstractEntity{
         this.billingPostalCode = billingPostalCode;
     }
 
-    public Order getOrder() {
-        return order;
+    public Orders getOrder() {
+        return orders;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(Orders orders) {
+        this.orders = orders;
     }
 }

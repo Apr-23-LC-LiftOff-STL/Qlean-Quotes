@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import jakarta.validation.constraints.Pattern;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,8 +14,8 @@ import java.util.List;
 @Entity
 public class Customer extends AbstractEntity implements UserDetails {
     @OneToMany
-    @JoinColumn(name = "order_id")
-    private List<Order> orders = new ArrayList<>();
+    @JoinColumn(name = "id")
+    private List<Orders> orders = new ArrayList<>();
 
     @NotNull
     private String name;
@@ -140,7 +139,11 @@ public class Customer extends AbstractEntity implements UserDetails {
         return true;
     }
 
-    public void setOrders(List<Order> orders) {
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
         this.orders = orders;
     }
 }

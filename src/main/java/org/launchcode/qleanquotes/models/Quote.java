@@ -3,7 +3,6 @@ package org.launchcode.qleanquotes.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
 
 
@@ -12,8 +11,8 @@ import org.launchcode.qleanquotes.models.enums.CleaningOption;
 public class Quote extends AbstractEntity {
 
     @OneToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
+    @JoinColumn(name = "orders_id", referencedColumnName = "id")
+    private Orders orders;
 
     private Integer squareFeet;
 
@@ -32,9 +31,9 @@ public class Quote extends AbstractEntity {
     public Quote() {
     }
 
-    public Quote(Order anOrder, Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
+    public Quote(Orders anOrders, Integer squareFeet, Integer numOfRoom, Integer numOfBathroom, CleaningOption cleaningOption, Long totalCharge, double totalCost, String formattedTotalCost) {
         super();
-        this.order = anOrder;
+        this.orders = anOrders;
         this.squareFeet = squareFeet;
         this.numOfRoom = numOfRoom;
         this.numOfBathroom = numOfBathroom;
@@ -101,11 +100,11 @@ public class Quote extends AbstractEntity {
         this.formattedTotalCost = formattedTotalCost;
     }
 
-    public Order getOrder() {
-        return order;
+    public Orders getOrder() {
+        return orders;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(Orders orders) {
+        this.orders = orders;
     }
 }
