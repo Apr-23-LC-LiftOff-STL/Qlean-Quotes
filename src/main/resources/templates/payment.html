@@ -42,18 +42,12 @@
     </div>
 </div>
 
-<div class="customer-payment-details">
-    <label>First Name:</label>
-    <span th:text="${customer.getName()}"></span><br>
-
-    <label>Last Name:</label>
-    <span th:text="${customer.getLastName()}"></span><br>
-
-    <label>Email Address:</label>
-    <span th:text="${customer.getEmail()}"></span><br>
-
-    <label>Phone Number:</label>
-    <span th:text="${customer.getPhoneNumber()}"></span><br>
+<div class="payment-profile">
+    <div class="payment-profile-container">
+        <span th:text="${customer.getName()} + ' ' + ${customer.getLastName()}"></span><br>
+        <span th:text="${customer.getEmail()}"></span><br>
+        <span th:text="${customer.getPhoneNumber()}"></span><br>
+    </div>
 </div>
 <div>
     <label>Service Details</label><br>

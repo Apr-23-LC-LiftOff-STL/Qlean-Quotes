@@ -14,35 +14,34 @@
             </div>
             <div class="navbar-links">
                 <ul class="nav">
-                   <li class="nav-item">
-                       <a class="nav-link" href="/"> Home </a>
-                   </li>
-                   <li class="nav-item">
-                     <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                       <a class="nav-link" href="#"
-                       onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
-                        Out</a>
-                   </li>
-                 </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                        <a class="nav-link" href="#"
+                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                            Out</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </header>
 
 
-    <h1> Thank you! </h1>
-    <h2> Payment Successful! </h2>
+<h1> Thank you! </h1>
+<div class="receipt-title-container"><h2> Payment Successful! </h2></div>
 
-<div><h1>Here's Your Receipt</h1>
-    <div class="receipt-container">
-        <label>First Name:</label>
-        <span th:text="${customer.getName()}"></span><br>
 
-        <label>Last Name:</label>
-        <span th:text="${customer.getLastName()}"></span><br>
+<div class="receipt-container">
+<!--    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>-->
 
-        <label>Email Address:</label>
+    <div class="receipt">
+        <span th:text="${customer.getName()} + ${customer.getLastName()}"></span><br>
+        <hr>
         <span th:text="${customer.getEmail()}"></span><br>
+
 
         <label>Phone Number:</label>
         <span th:text="${customer.getPhoneNumber()}"></span><br>
@@ -72,11 +71,13 @@
     </div>
 </div>
 
+
 <div>
 
-    <img class="payment-image"  src="/images/paymentsuccess.png" alt="Background Image">
+    <img class="payment-image" src="/images/paymentsuccess.png" alt="Background Image">
     <div class="payment-message">
-    <p> Qlean Quotes will get in touch within <span class="message-highlight"> 24 business hours</span> to schedule your clean!</p>
+        <p> Qlean Quotes will get in touch within <span class="message-highlight"> 24 business hours</span> to schedule
+            your clean!</p>
     </div>
 
 </div>
