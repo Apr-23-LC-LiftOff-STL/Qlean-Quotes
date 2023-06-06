@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns="http://www.w3.org/1999/html">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -40,6 +40,20 @@
             </li>
         </ul>
     </div>
+</div>
+
+<div>
+    <label>First Name:</label>
+    <span th:text="${customer.getName()}"></span><br>
+
+    <label>Last Name:</label>
+    <span th:text="${customer.getLastName()}"></span><br>
+
+    <label>Email Address:</label>
+    <span th:text="${customer.getEmail()}"></span><br>
+
+    <label>Phone Number:</label>
+    <span th:text="${customer.getPhoneNumber()}"></span><br>
 </div>
 
 <form class="payment-form" th:action="@{/payment}" method="post" id="payment-shipping-form">
@@ -122,9 +136,6 @@
                 <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
             </div>
         </div>
-    </div>
-    <div th:if="${totalCost != null}" class="alert" role="alert">
-        Total cost:$ <span th:text="${quote.getFormattedTotalCost()}"></span>
     </div>
 
     <div class="total-cost-container">
