@@ -28,8 +28,11 @@
     <div class="navbar-links">
         <ul class="nav">
             <li class="nav-item">
-<!--                <a th:href="${customer.phoneNumber} == '' ? '/profile' : '/updated-profile'" class="nav-link">User-->
-<!--                    Profile</a>-->
+                <a class="nav-link" href="/"> Home </a>
+            </li>
+            <li class="nav-item">
+                <a th:href="${customer.phoneNumber} == '' ? '/profile' : '/updated-profile'" class="nav-link">User
+                    Profile</a>
             </li>
             <li class="nav-item">
                 <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
@@ -38,6 +41,18 @@
                     Out</a>
             </li>
         </ul>
+    </div>
+</div>
+
+<div class="payment-profile">
+    <div class="payment-profile">
+        <div class="payment-profile-container">
+            <span class="text-danger" th:if="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}">
+            We're missing your phone number! <br> Please update your <a class="profile-link" th:href="@{/profile}">user profile.</a>
+            </span>
+<!--            <span th:unless="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}"-->
+<!--                  th:text="${customer.getPhoneNumber()}"></span><br>-->
+        </div>
     </div>
 </div>
 

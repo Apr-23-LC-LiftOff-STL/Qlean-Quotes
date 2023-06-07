@@ -189,6 +189,16 @@ label {
   font-size: 16px;
 }
 
+.profile-link {
+  text-decoration: none;
+  color: #F06744;
+}
+
+.profile-link:hover {
+  color: #69AD9F;
+}
+
+
 /*footer*/
 .payment-footer {
   bottom: 0;
