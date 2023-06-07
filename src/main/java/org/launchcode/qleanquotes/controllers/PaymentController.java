@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
 import static org.launchcode.qleanquotes.controllers.QuoteController.quoteSessionKey;
 
 @Controller
-public class NewMoneyController {
+public class PaymentController {
 
     private final SquareWrapper squareWrapper;
 
@@ -46,7 +46,7 @@ public class NewMoneyController {
     }
 
     @Autowired
-    public NewMoneyController(SquareWrapper squareWrapper) {
+    public PaymentController(SquareWrapper squareWrapper) {
         this.squareWrapper = squareWrapper;
 
     }
@@ -80,12 +80,12 @@ public class NewMoneyController {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
+
+
         if (quote != null) {
             model.addAttribute("quote", quote);
-        }
-        try {
             Payment payment = new Payment();
-            Orders orders = new Orders();
+            Orders order = new Orders();
             payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
             payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
             payment.setShippingLocality(paymentFormDTO.getShippingLocality());
@@ -96,15 +96,16 @@ public class NewMoneyController {
             payment.setBillingLocality(paymentFormDTO.getBillingLocality());
             payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
             payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
-
-            setPaymentInsession(request.getSession(), payment);
+            payment.setTotalCost(quote.getTotalCost());
+            order.setPayment(payment);
+            order.setQuote(quote);
+            order.setCustomer(customer);
             paymentRepository.save(payment);
-
-            orders.setPayment(payment);
-            orders.setQuote(quote);
-            orders.setCustomer(customer);
-            ordersRepository.save(orders);
-
+            model.addAttribute("payment", payment);
+            ordersRepository.save(order);
+            model.addAttribute("order", order);
+        }
+        try {
             Money amountMoney = new Money.Builder()
                     .amount(quote.getTotalCharge())
                     .currency("USD")
@@ -136,15 +137,17 @@ public class NewMoneyController {
                     .buyerEmailAddress(customer.getEmail())
                     .billingAddress(billingAddress)
                     .shippingAddress(shippingAddress)
-                    .note(customer.getPhoneNumber())
+                    .note("Quote ID: " + quote.getId() + " Customer ID: " + customer.getId() + " Phone Number: " + customer.getPhoneNumber())
                     .build();
 
             PaymentResult paymentResult = squareWrapper.createPayment(createPaymentRequest);
             System.out.println(paymentResult.getTitle());
             model.addAttribute("paymentResult", paymentResult);
             if (paymentResult.getTitle().equals("SUCCESS")) {
+                //TODO Mark order as paid here
                 System.out.println("Payment Successful");
             } else {
+                //TODO Mark order as status here
                 System.out.println("Payment Failed");
             }
         } catch (ApiException | IOException e) {

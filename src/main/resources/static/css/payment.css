@@ -54,6 +54,11 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
+.customer-payment-details{
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
 .address-big-container {
   display: flex;
   flex-direction: row;
@@ -166,6 +171,22 @@ label {
 #card-button:active {
   background-color: #3d5050 !important;
   box-shadow: 0 0 5px #32393a !important;
+}
+
+.text-danger {
+  color: #F06744 !important;
+}
+
+.payment-profile {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.payment-profile-container {
+  background-color: #101728;
+  width: 400px;
+  color: white;
+  font-size: 16px;
 }
 
 /*footer*/

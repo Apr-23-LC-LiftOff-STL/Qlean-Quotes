@@ -1,35 +1,24 @@
 package org.launchcode.qleanquotes.controllers;
 
-import com.squareup.square.exceptions.ApiException;
-import com.squareup.square.models.Address;
-import com.squareup.square.models.CreatePaymentRequest;
-import com.squareup.square.models.Money;
-import org.springframework.web.util.ContentCachingRequestWrapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.QuoteCalculator;
 import org.launchcode.qleanquotes.models.Customer;
-import org.launchcode.qleanquotes.models.PaymentResult;
 import org.launchcode.qleanquotes.models.Quote;
 import org.launchcode.qleanquotes.models.data.QuoteRepository;
 import org.launchcode.qleanquotes.models.dto.CreateQuoteFormDTO;
-import org.launchcode.qleanquotes.models.dto.PaymentFormDTO;
 import org.launchcode.qleanquotes.models.enums.CleaningOption;
-import org.launchcode.qleanquotes.wrappers.CachedBodyHttpServletRequest;
 import org.launchcode.qleanquotes.wrappers.SquareWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-import java.util.concurrent.ExecutionException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 //@RequestMapping("orders")
@@ -54,7 +43,7 @@ public class QuoteController {
 
 
     @GetMapping("/createquote")
-    public String showCreateQuoteForm(Model model){
+    public String showCreateQuoteForm(Model model) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         model.addAttribute(new CreateQuoteFormDTO());
@@ -75,7 +64,11 @@ public class QuoteController {
         Quote quote = new Quote();
         quote.setSquareFeet(createQuoteFormDTO.getSquareFeet());
         quote.setNumOfRoom(createQuoteFormDTO.getNumOfRoom());
-        quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
+        if (createQuoteFormDTO.getNumOfBathroom() == null) {
+            quote.setNumOfBathroom(0);
+        } else if (createQuoteFormDTO.getNumOfBathroom() != null) {
+            quote.setNumOfBathroom(createQuoteFormDTO.getNumOfBathroom());
+        }
         quote.setCleaningOption(createQuoteFormDTO.getCleaningOption());
         Long calculatedTotalCharge = quoteCalculator.calculateTotalCharge(quote);
         double calculatedTotalCost = quoteCalculator.calculateTotalCost(quote);

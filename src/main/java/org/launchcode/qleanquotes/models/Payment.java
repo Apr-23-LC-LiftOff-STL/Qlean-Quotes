@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Payment extends AbstractEntity{
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "orders_id", referencedColumnName = "id")
     private Orders orders;
 
@@ -19,10 +19,11 @@ public class Payment extends AbstractEntity{
     private String billingLocality;
     private String billingAdministrativeDistrictLevel1;
     private String billingPostalCode;
+    private double totalCost;
 
     public Payment(){}
 
-    public Payment(Orders anOrders, String shippingAddressLine1, String shippingAddressLine2, String shippingAdministrativeDistrictLevel1, String shippingLocality, String shippingPostalCode, String billingAddressLine1, String billingAddressLine2, String billingAdministrativeDistrictLevel1, String billingLocality, String billingPostalCode){
+    public Payment(Orders anOrders, String shippingAddressLine1, String shippingAddressLine2, String shippingAdministrativeDistrictLevel1, String shippingLocality, String shippingPostalCode, String billingAddressLine1, String billingAddressLine2, String billingAdministrativeDistrictLevel1, String billingLocality, String billingPostalCode, double totalCost){
         super();
         this.orders = anOrders;
         this.shippingAddressLine1 = shippingAddressLine1;
@@ -35,6 +36,7 @@ public class Payment extends AbstractEntity{
         this.billingAdministrativeDistrictLevel1 = billingAdministrativeDistrictLevel1;
         this.billingLocality = billingLocality;
         this.billingPostalCode = billingPostalCode;
+        this.totalCost = totalCost;
 
     }
 
@@ -118,11 +120,19 @@ public class Payment extends AbstractEntity{
         this.billingPostalCode = billingPostalCode;
     }
 
-    public Orders getOrder() {
+    public Orders getOrders() {
         return orders;
     }
 
-    public void setOrder(Orders orders) {
+    public void setOrders(Orders orders) {
         this.orders = orders;
+    }
+
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(double totalCharge) {
+        this.totalCost = totalCharge;
     }
 }

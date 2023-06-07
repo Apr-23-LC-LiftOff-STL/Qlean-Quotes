@@ -499,6 +499,11 @@
 
 }
 
+.receipt-container{
+    color: white;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
 
 .message-highlight {
   color: rgb(241,118,86) !important;
@@ -734,4 +739,30 @@
   padding: 4px;
   color: white;
   font-family: 'Montserrat', sans-serif !important;
+}
+.receipt-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    font-family: Montserrat, sans-serif;
+}
+
+.receipt-title-container {
+    margin-bottom: 1cm;
+}
+
+/*.receipt-title {*/
+/*    */
+/*}*/
+
+.receipt {
+    font-size: 16px;
+    background-color: white;
+    border-top: dotted;
+    border-bottom: dotted;
+    width: 300px;
+    padding: 1cm;
+    color: #101728;
 }
