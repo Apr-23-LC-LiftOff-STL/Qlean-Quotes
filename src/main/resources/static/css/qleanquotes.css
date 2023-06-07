@@ -605,14 +605,10 @@
   justify-content: center;
   display: flex;
   font-weight: bold;
-  margin-top: 20px;
   color: #ffffff;
   margin-bottom: 15px;
 
 }
-
-
-
 
 
 .profile-avatar{
@@ -760,7 +756,6 @@
   justify-content: center;
   display: flex;
   font-weight: bold;
-  margin-top: 20px;
   color: #ffffff;
   margin-bottom: 15px;
 
@@ -822,12 +817,6 @@
   color: white;
   font-family: 'Montserrat', sans-serif !important;
 }
-
-
-
-
-
-
 
 
 
