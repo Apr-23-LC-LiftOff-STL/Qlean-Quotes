@@ -46,7 +46,15 @@
     <div class="payment-profile-container">
         <span th:text="${customer.getName()} + ' ' + ${customer.getLastName()}"></span><br>
         <span th:text="${customer.getEmail()}"></span><br>
-        <span th:text="${customer.getPhoneNumber()}"></span><br>
+        <span class="text-danger" th:if="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}">
+            We're missing your phone number! <br> Please update your <a th:href="@{/profile}">User Profile</a>
+        </span>
+        <span th:unless="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}"
+              th:text="${customer.getPhoneNumber()}"></span><br>
+    </div>
+</div>
+<div>
+
     <label>Service Details</label><br>
     <label>Square Feet:&nbsp;</label><span th:text="${quote.getSquareFeet()}"></span><br>
     <label>Number of Rooms:&nbsp;</label><span th:text="${quote.getNumOfRoom()}"></span><br>
