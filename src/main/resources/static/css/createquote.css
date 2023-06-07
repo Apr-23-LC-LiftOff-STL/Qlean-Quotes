@@ -38,6 +38,28 @@
     color: #F06744;
 }
 
+/*//update phone section*/
+
+.payment-profile {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.payment-profile-container {
+    background-color: #101728;
+    width: 400px;
+    color: white;
+    font-size: 16px;
+}
+
+.profile-link {
+    text-decoration: none;
+    color: #F06744;
+}
+
+.profile-link:hover {
+    color: #69AD9F;
+}
 
 /*create quote form*/
 .create-quote-form {
