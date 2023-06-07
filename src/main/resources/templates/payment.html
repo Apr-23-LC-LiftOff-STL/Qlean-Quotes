@@ -54,15 +54,17 @@
     </div>
 </div>
 <div>
+
     <label>Service Details</label><br>
-    <label>Square Feet:</label><span th:text="${quote.getSquareFeet()}"></span><br>
-    <label>Number of Rooms:</label><span th:text="${quote.getNumOfRoom()}"></span><br>
-    <label>Number of Bathrooms:</label><span th:text="${quote.getNumOfBathroom()}"></span><br>
-    <label>Cleaning Option:</label><span th:text="${quote.getCleaningOption().name()}"></span><br><br>
-    <label>Total Charge:</label><span th:text="${quote.getFormattedTotalCost()}"></span><br>
+    <label>Square Feet:&nbsp;</label><span th:text="${quote.getSquareFeet()}"></span><br>
+    <label>Number of Rooms:&nbsp;</label><span th:text="${quote.getNumOfRoom()}"></span><br>
+    <label>Number of Bathrooms:&nbsp;</label><span th:text="${quote.getNumOfBathroom()}"></span><br>
+    <label>Cleaning Option:&nbsp;</label><span th:text="${quote.getCleaningOption().getDisplayName()}"></span><br><br>
+    <label>Total Charge:&nbsp;</label><span th:text="${quote.getFormattedTotalCost()}"></span><br>
+    </div>
 </div>
 
-<form class="payment-form" th:action="@{/payment}" method="post" id="payment-shipping-form">
+<form class="payment-form" th:action="@{/payment}" th:object="${paymentFormDTO}" method="post" id="payment-shipping-form">
     <div class="address-big-container">
         <div class="service-address-container">
             <div class="payment-title-container">
@@ -74,33 +76,32 @@
                     <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine1}"
                            placeholder="Address line 1"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>
             </div>
             <div class="form-group">
                 <label>Address Line 2
                     <input class="form-control" th:field="${paymentFormDTO.shippingAddressLine2}"
                            placeholder="Address line 2"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
             </div>
             <div class="form-group">
                 <label>City
                     <input class="form-control" th:field="${paymentFormDTO.shippingLocality}" placeholder="City"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>
             </div>
             <div class="form-group">
                 <label>State
                     <input class="form-control" th:field="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"
                            placeholder="State"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>
             </div>
             <div class="form-group">
                 <label>ZIP Code
                     <input class="form-control" th:field="${paymentFormDTO.shippingPostalCode}" placeholder="Zip Code"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>
             </div>
         </div>
 
@@ -113,33 +114,32 @@
                     <input class="form-control" th:field="${paymentFormDTO.billingAddressLine1}"
                            placeholder="Address Line 1"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine1}"></p>
             </div>
             <div class="form-group">
                 <label>Address Line 2
                     <input class="form-control" th:field="${paymentFormDTO.billingAddressLine2}"
                            placeholder="Address Line 2"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAddressLine2}"></p>-->
             </div>
             <div class="form-group">
                 <label>City
                     <input class="form-control" th:field="${paymentFormDTO.billingLocality}" placeholder="City"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingLocality}"></p>
             </div>
             <div class="form-group">
                 <label>State
                     <input class="form-control" th:field="${paymentFormDTO.billingAdministrativeDistrictLevel1}"
                            placeholder="State"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingAdministrativeDistrictLevel1}"></p>
             </div>
             <div class="form-group">
                 <label>ZIP Code
                     <input class="form-control" th:field="${paymentFormDTO.billingPostalCode}" placeholder="Zip Code"/>
                 </label>
-                <!--    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>-->
+                    <p class="text-danger" th:errors="${paymentFormDTO.shippingPostalCode}"></p>
             </div>
         </div>
     </div>

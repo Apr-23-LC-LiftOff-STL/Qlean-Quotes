@@ -6,6 +6,7 @@ import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.Money;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.models.*;
 import org.launchcode.qleanquotes.models.data.OrdersRepository;
 import org.launchcode.qleanquotes.models.data.PaymentRepository;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,12 +40,6 @@ public class PaymentController {
     @Autowired
     private OrdersRepository ordersRepository;
 
-    public static final String paymentSessionKey = "payment";
-
-
-    public static void setPaymentInsession(HttpSession session, Payment payment) {
-        session.setAttribute(paymentSessionKey, payment);
-    }
 
     @Autowired
     public PaymentController(SquareWrapper squareWrapper) {
@@ -75,12 +71,16 @@ public class PaymentController {
     }
 
     @PostMapping("/payment")
-    public String createPaymentRequest(@ModelAttribute PaymentFormDTO paymentFormDTO,
-                                       HttpSession session, HttpServletRequest request, Model model) {
+    public String createPaymentRequest(@ModelAttribute @Valid PaymentFormDTO paymentFormDTO,
+                                       HttpSession session, Model model, Errors errors) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
 
+        if (errors.hasErrors()) {
+            model.addAttribute("errors", errors);
+            return "payment";
+        }else{
 
         if (quote != null) {
             model.addAttribute("quote", quote);
@@ -152,6 +152,7 @@ public class PaymentController {
             }
         } catch (ApiException | IOException e) {
             System.out.println(e);
+        }
         }
         return "payment-successful";
     }

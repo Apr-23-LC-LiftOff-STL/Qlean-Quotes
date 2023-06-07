@@ -64,28 +64,6 @@ public final class SquareWrapper {
         return new PaymentResult("SUCCESS", null);
     }
 
-//    private ApiCall<CreatePaymentResponse, ApiException>
-//        prepareCreatePaymentRequest(final CreatePaymentRequest body)
-//            throws JsonProcessingException, IOException {
-//        return new ApiCall.Builder<CreatePaymentResponse, ApiException>()
-//                .requestBuilder(requestBuilder -> requestBuilder
-//                        .path("https://connect.squareupsandbox.com/v2/payments")
-//                        .bodyParam(param -> param.value(body))
-//                        .bodySerializer(() ->  ApiHelper.serialize(body))
-//                        .headerParam(param -> param.key("Content-Type")
-//                                .value("application/json").isRequired(false))
-//                        .headerParam(param -> param.key("accept").value("application/json"))
-//                        .authenticationKey(mustLoadEnvironmentVariable(SQUARE_ACCESS_TOKEN_ENV_VAR))
-//                        .httpMethod(HttpMethod.POST))
-//                .responseHandler(responseHandler -> responseHandler
-//                        .deserializer(
-//                                response -> ApiHelper.deserialize(response, CreatePaymentResponse.class))
-//                        .nullify404(false)
-//                        .contextInitializer((context, result) ->
-//                                result.toBuilder().httpContext((HttpContext)context).build()))
-//                .build();
-//    }
-
     public String getSquareLocationId() {
         return squareLocationId;
     }

@@ -52,7 +52,6 @@ public class QuoteController {
         return "createquote";
     }
 
-
     @PostMapping("/createquote")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
