@@ -579,3 +579,133 @@
 .error-image{
   z-index: -1;
 }
+
+
+#profile{
+  background-color:#101728;
+}
+
+#profile .nav-link{
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+#profile .navbar-brand{
+  margin-left: 30px;
+}
+
+#profile h1 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 40px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #ffffff;
+  margin-bottom: 15px;
+
+}
+
+
+
+
+
+.profile-picture{
+  z-index: -1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 35%  !important;
+  max-height: 35%  !important;
+  margin-left: auto  !important;
+  margin-right: auto  !important;
+  margin-bottom: 15px;
+}
+
+
+.profile-container {
+  display: flex;
+  align-items: center !important;
+  flex-direction: column;
+  text-align: justify;
+  justify-content: center !important;
+  font-size: 17px;
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+
+
+
+}
+
+.profile-details {
+    margin-left: 20px; /* Adjust the margin as needed */
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 8px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.label {
+   padding: 12px 12px 12px 0;
+   display: inline-block;
+ }
+
+
+#profile input[type=text] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #69AD9F ;
+  border-radius: 2px;
+  resize: vertical;
+  font-family: none;
+}
+
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+
+
+#profile input[type=submit]{
+  background-color: rgb(241,118,86) !important;
+  border: none;
+  color: #ffffff;
+  transform: translateX(-50%);
+  padding: 10px 60px;
+  font-size: 16px;
+  margin-top: 25px;
+  cursor: pointer;
+  border-radius: 2px;
+  cursor: pointer;
+  justify-content: center !important;
+  margin-left: auto !important;
+
+}
+
+
+#profile input[type=submit]:hover {
+  background-color: #c05e44 !important;
+
+}

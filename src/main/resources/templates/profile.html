@@ -1,41 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
-    <title>User Profile</title>
-</head>
-
-<nav th:replace="~{fragments :: page-header}"></nav>
+<head th:replace="~{fragments :: head}"></head>
+<body id="profile">
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+                </a>
+            </div>
+            <div class="navbar-links">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                        <a class="nav-link" href="#"
+                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                            Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 
 <div th:if="${param.error}"><h1>This didn't work</h1></div>
-<body>
-<div>
-    <h1>User Profile</h1>
-    <h4 id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></h4>
-    <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
 
-    <form action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
-        <label for="phoneNumber">Phone Number:
-            <input type="text" th:value= "${customer.phoneNumber}" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()">
-        </label>
-        <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
-        <br>
-        <label for="street">Street Address:
-            <input type="text" th:value= "${customer.street}" id="street" name="street">
-        </label>
-        <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
-        <br>
-        <label for="city">City:
-            <input type="text" th:value= "${customer.city}" id="city" name="city">
-        </label>
-        <p class="text-danger" th:errors="${profileFormDTO.city}"></p>
-        <br>
-        <label for="zip">Zip Code:
-            <input type="text" th:value= "${customer.zip}" id="zip" name="zip">
-        </label>
-        <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
+<h1>User Profile</h1>
 
-        <input type="submit" value="Submit">
+<div class="profile-container">
+    <img class="profile-picture" src="/images/profilepic.png" alt="Profile Picture">
+
+    <div class="profile-details">
+        <p id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></p>
+        <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
+    </div>
+
+    <form class="profile-form" action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
+        <div class="row">
+            <div class="col-25">
+            <label for="phoneNumber">Phone Number:</label>
+            </div>
+            <div class="col-75">
+            <input type="text" th:value="${customer.phoneNumber}" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()"  placeholder="Please enter phone number">
+            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+            <label for="street">Street Address:</label>
+            </div>
+            <div class="col-75">
+            <input type="text" th:value="${customer.street}" id="street" name="street"  >
+            <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+            <label for="city">City:</label>
+            </div>
+            <div class="col-75">
+            <input type="text" th:value="${customer.city}" id="city" name="city"  >
+            <p class="text-danger" th:errors="${profileFormDTO.city}"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+            <label for="zip">Zip Code:</label>
+            </div>
+            <div class="col-75">
+            <input type="text" th:value="${customer.zip}" id="zip" name="zip" >
+            <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <input type="submit" class="profile-button" value="Submit">
+        </div>
+
     </form>
+</div>
+
+
+
 </div>
 <script>
     function formatPhoneNumber() {
@@ -58,7 +111,6 @@
     }
 </script>
 
+
 </body>
 </html>
-
-
