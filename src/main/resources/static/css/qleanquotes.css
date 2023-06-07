@@ -720,6 +720,21 @@
 
 }
 
+
+.profile-cancel {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 90px !important;
+}
+
+.profile-cancel-button a {
+  color: #69AD9F ;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
 #profile-footer{
   position: fixed;
   bottom: 0;
@@ -798,7 +813,6 @@
 
 .edit-button:hover {
   background-color: #c05e44 !important;
-
 }
 
 
