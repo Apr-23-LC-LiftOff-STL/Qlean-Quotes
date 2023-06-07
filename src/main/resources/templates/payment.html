@@ -56,7 +56,7 @@
     </div>
 </div>
 
-<form class="payment-form" th:action="@{/payment}" method="post" id="payment-shipping-form">
+<form class="payment-form" th:action="@{/payment}" th:object="${paymentFormDTO}" method="post" id="payment-shipping-form">
     <div class="address-big-container">
         <div class="service-address-container">
             <div class="payment-title-container">

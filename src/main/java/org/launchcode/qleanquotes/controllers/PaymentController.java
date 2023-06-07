@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -71,11 +72,15 @@ public class PaymentController {
 
     @PostMapping("/payment")
     public String createPaymentRequest(@ModelAttribute @Valid PaymentFormDTO paymentFormDTO,
-                                       HttpSession session, Model model, Error errors) {
+                                       HttpSession session, Model model, Errors errors) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
-        model.addAttribute("errors", errors);
+
+        if (errors.hasErrors()) {
+            model.addAttribute("errors", errors);
+            return "payment";
+        }else{
 
         if (quote != null) {
             model.addAttribute("quote", quote);
@@ -147,6 +152,7 @@ public class PaymentController {
             }
         } catch (ApiException | IOException e) {
             System.out.println(e);
+        }
         }
         return "payment-successful";
     }
