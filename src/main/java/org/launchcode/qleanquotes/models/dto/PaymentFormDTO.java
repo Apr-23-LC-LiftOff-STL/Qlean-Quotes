@@ -1,16 +1,31 @@
 package org.launchcode.qleanquotes.models.dto;
 
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class PaymentFormDTO {
     //TODO need to add validation
+
+        @Size(min = 4, max = 50, message="Street address must be longer than 4 characters and shorter than 50")
         private String shippingAddressLine1;
         private String shippingAddressLine2;
+        @Size(min = 2, max = 30, message="City must be longer than 4 characters and shorter than 30")
         private String shippingLocality;
+        @Size(min = 2, max = 2, message="State must be only 2 characters")
         private String shippingAdministrativeDistrictLevel1;
+
+        @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Zip code should be numeric and be wither 5 digit (ex. 12345) or 9 digit (ex. 12345-6789")
+        @Size(min = 5, max = 10, message="Zip code should be between 5 and 10 characters")
         private String shippingPostalCode;
+        @Size(min = 4, max = 50, message="Street address must be longer than 4 characters and shorter than 50")
         private String billingAddressLine1;
         private String billingAddressLine2;
+        @Size(min = 2, max = 30, message="City must be longer than 4 characters and shorter than 30")
         private String billingLocality;
+        @Size(min = 2, max = 2, message="State must be only 2 characters")
         private String billingAdministrativeDistrictLevel1;
+        @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Zip code should be numeric and be wither 5 digit (ex. 12345) or 9 digit (ex. 12345-6789")
+        @Size(min = 5, max = 10, message="Zip code should be between 5 and 10 characters")
         private String billingPostalCode;
         private String token;
         private String idempotencyKey;

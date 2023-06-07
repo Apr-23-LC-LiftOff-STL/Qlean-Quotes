@@ -6,6 +6,7 @@ import com.squareup.square.models.CreatePaymentRequest;
 import com.squareup.square.models.Money;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import org.launchcode.qleanquotes.models.*;
 import org.launchcode.qleanquotes.models.data.OrdersRepository;
 import org.launchcode.qleanquotes.models.data.PaymentRepository;
@@ -38,12 +39,6 @@ public class PaymentController {
     @Autowired
     private OrdersRepository ordersRepository;
 
-    public static final String paymentSessionKey = "payment";
-
-
-    public static void setPaymentInsession(HttpSession session, Payment payment) {
-        session.setAttribute(paymentSessionKey, payment);
-    }
 
     @Autowired
     public PaymentController(SquareWrapper squareWrapper) {
@@ -75,12 +70,12 @@ public class PaymentController {
     }
 
     @PostMapping("/payment")
-    public String createPaymentRequest(@ModelAttribute PaymentFormDTO paymentFormDTO,
-                                       HttpSession session, HttpServletRequest request, Model model) {
+    public String createPaymentRequest(@ModelAttribute @Valid PaymentFormDTO paymentFormDTO,
+                                       HttpSession session, Model model, Error errors) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
-
+        model.addAttribute("errors", errors);
 
         if (quote != null) {
             model.addAttribute("quote", quote);
