@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}">
-</head>
-
-<nav th:replace="~{fragments :: page-header}"></nav>
+<head th:replace="~{fragments :: head}"></head>
+<body id="updated-profile">
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+                </a>
+            </div>
+            <div class="navbar-links">
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"> Home </a>
+                    </li>
+                    <li class="nav-item">
+                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                        <a class="nav-link" href="#"
+                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                            Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
 
 <div th:if="${param.error}"><h1>This didn't work</h1></div>
-<body>
 <div>
     <h1>User Profile</h1>
-    <h4 id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></h4>
-    <h4 id="customerEmail" th:text="'Email: ' + ${customer.email}"></h4>
-    <h4 id="customerPhone" th:text="'Phone: ' + ${customer.phoneNumber}"></h4>
-    <h4 id="street" th:text="'Street Address: ' + ${customer.street}"></h4>
-    <h4 id="city" th:text="'City: ' + ${customer.city}"></h4>
-    <h4 id="zip" th:text="'Zip: ' + ${customer.zip}"></h4>
 
-    <a class="edit-button" href="/profile">Edit</a>
+    <div class="updated-profile-contain" >
+        <img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar">
+
+        <div class="updated-profile-information" >
+
+           <p id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></p>
+           <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
+           <p id="customerPhone" th:text="'Phone: ' + ${customer.phoneNumber}"></p>
+           <p id="street" th:text="'Street Address: ' + ${customer.street}"></p>
+           <p id="city" th:text="'City: ' + ${customer.city}"></p>
+           <p id="zip" th:text="'Zip: ' + ${customer.zip}"></p>
+        </div>
+
+        <button class="edit-button" onclick="location.href='/profile'">Edit</button>
+
+    </div>
 </div>
+
+<div id="updated-profile-footer">
+    <footer>
+        ©2023 Qlean Quotes. All Rights Reserved.
+    </footer>
+</div>
+
+
+
 </body>
 </html>

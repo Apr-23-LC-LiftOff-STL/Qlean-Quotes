@@ -605,17 +605,13 @@
   justify-content: center;
   display: flex;
   font-weight: bold;
-  margin-top: 20px;
   color: #ffffff;
   margin-bottom: 15px;
 
 }
 
 
-
-
-
-.profile-picture{
+.profile-avatar{
   z-index: -1;
   text-align: center;
   display: flex;
@@ -639,12 +635,10 @@
   color: white;
   font-family: 'Montserrat', sans-serif !important;
 
-
-
 }
 
 .profile-details {
-   margin-left: 20px; /* Adjust the margin as needed */
+   margin-left: 80px;
 }
 
 .profile-form .row .col-25 {
@@ -711,12 +705,12 @@
   background-color: rgb(241,118,86) !important;
   border: none;
   color: #ffffff;
-  padding: 10px 200px;
+  padding: 10px 120px;
   font-size: 16px;
   margin-top: 25px;
   border-radius: 2px;
   justify-content: center !important;
-  margin-left: auto !important;
+  margin-left: 100px !important;
 
 }
 
@@ -725,6 +719,21 @@
   background-color: #c05e44 !important;
 
 }
+
+
+.profile-cancel {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 90px !important;
+}
+
+.profile-cancel-button a {
+  color: #69AD9F ;
+  font-size: 14px;
+  font-weight: bold;
+}
+
 
 #profile-footer{
   position: fixed;
@@ -740,6 +749,93 @@
   color: white;
   font-family: 'Montserrat', sans-serif !important;
 }
+
+
+
+#updated-profile{
+  background-color:#101728;
+}
+
+#updated-profile .nav-link{
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+#updated-profile .navbar-brand{
+  margin-left: 30px;
+}
+
+#updated-profile h1 {
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 40px;
+  justify-content: center;
+  display: flex;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 15px;
+
+}
+
+
+.updated-profile-contain{
+  display: flex;
+  justify-content: center !important;
+  flex-direction: column;
+  align-items: center !important;
+  text-align: justify !important;
+
+}
+
+
+.updated-profile-information{
+  margin: 10px 0;
+  text-align: justify !important;
+  text-justify: inter-word;
+  float: left;
+  font-size: 17px;
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.edit-button{
+  width: auto;
+  margin: 0 auto;
+  background-color: rgb(241,118,86) !important;
+  border: none;
+  color: #ffffff;
+  padding: 10px 120px;
+  font-size: 16px;
+  margin-top: 25px;
+  border-radius: 2px;
+  justify-content: center !important;
+  margin-left: auto !important;
+}
+
+.edit-button:hover {
+  background-color: #c05e44 !important;
+}
+
+
+
+#updated-profile-footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  font-size: small;
+  margin-right: 2cm;
+  padding: 4px;
+  color: white;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+
+
 .receipt-container {
     display: flex;
     flex-direction: column;
