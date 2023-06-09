@@ -16,7 +16,8 @@
 
 .navbar-brand img {
     width: auto;
-    height: 20vh;
+    height: 140px;
+    margin-left: 3cm;
 }
 
 .navbar-brand {
@@ -32,6 +33,7 @@
 .nav-item a {
     color: white;
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif !important;
 }
 
 .nav-item a:hover {
