@@ -424,11 +424,14 @@
 }
 
 
-#index {
-  background-color:#101728;
+#index .nav-item a:hover {
+    color: #F06744;
 }
 
 
+#index {
+  background-color:#101728;
+}
 
 
 #payment-successful{
@@ -595,6 +598,11 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
+#profile .nav-item a:hover {
+    color: #F06744;
+}
+
+
 #profile .navbar-brand{
   margin-left: 30px;
 }
@@ -760,6 +768,12 @@
   color: white;
   font-family: 'Montserrat', sans-serif !important;
 }
+
+
+#updated-profile .nav-item a:hover {
+    color: #F06744;
+}
+
 
 #updated-profile .navbar-brand{
   margin-left: 30px;
