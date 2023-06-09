@@ -55,6 +55,9 @@ public class QuoteController {
     @PostMapping("/createquote")
     public String handleCreateQuoteForm(@ModelAttribute @Valid CreateQuoteFormDTO createQuoteFormDTO,
                                         Errors errors, HttpServletRequest request, Model model) {
+        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("customer", customer);
+
         if (errors.hasErrors()) {
             model.addAttribute("errors", errors);
             return "createquote";
@@ -77,8 +80,6 @@ public class QuoteController {
         quote.setFormattedTotalCost(formattedTotalCost);
         setQuoteInsession(request.getSession(), quote);
         quoteRepository.save(quote);
-        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("customer", customer);
         model.addAttribute("quote", quote);
         return "createquote";
     }

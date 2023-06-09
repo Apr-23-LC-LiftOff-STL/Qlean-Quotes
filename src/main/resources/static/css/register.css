@@ -39,26 +39,19 @@
 
 }
 
-
 .register-label {
     color: white;
     font-size: 13px;
 }
 
-
 .form-control {
     background-color: white;
     color: #101728;
     border-radius: 0px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -webkit-text-fill-color: #101728 !important;
-    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
-
 .form-control::placeholder {
-    color: #101728;
+    color: #46736a;
 }
 
 .register-error {
