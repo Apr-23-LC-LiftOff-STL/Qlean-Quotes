@@ -22,9 +22,8 @@
     margin: 10px;
 }
 
- .navbar-brand img {
-    width: auto;
-    height: 20vh;
+.navbar-brand img {
+    margin-left: 3cm;
 }
 
 .register-form {
@@ -127,7 +126,7 @@
     align-items: center;
     justify-content: flex-end;
     text-align: center;
-    font-size: 10px;
+    font-size: small;
     margin-rirght: 2cm;
     padding: 4px;
     color: white;
