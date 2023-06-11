@@ -40,33 +40,37 @@
 <!--    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>-->
 
     <div class="receipt">
-        <span th:text="${customer.getName()} + ${customer.getLastName()}"></span><br>
+        <label> <b>Customer Details: </b></label><br>
+        <label> <b>Name: </b><span th:text="${customer.getName()} + ' ' +${customer.getLastName()}"></span> </label><br>
+        <label> <b>Email: </b><span th:text="${customer.getEmail()}"></span> </label> <br>
+        <th:block th:if="${customer.getPhoneNumber() != null}">
+            <label> <b>Phone: </b> <span th:text="${customer.getPhoneNumber()}"></span> </label><br>
+        </th:block>
         <hr>
-        <span th:text="${customer.getEmail()}"></span><br>
-        <th:block th:if="${customer.getPhoneNumber() != null}"><label>Phone Number:</label>
-        <span th:text="${customer.getPhoneNumber()}"></span><br>
-        </th:block><br>
-        <label>Service Address:</label><br>
+        <label> <b>Service Address: </b></label><br>
         <span th:text="${payment.getShippingAddressLine1()}"></span><br><th:block th:if="${payment.getShippingAddressLine2() != null}">
         <span th:text="${payment.getShippingAddressLine2()}"></span><br></th:block>
         <span th:text="${payment.getShippingLocality()}"></span><br>
         <span th:text="${payment.getShippingAdministrativeDistrictLevel1()}"></span><br>
         <span th:text="${payment.getShippingPostalCode()}"></span><br>
         <br>
-        <label>Billing Address:</label><br>
+        <hr>
+        <label> <b> Billing Address: </b></label><br>
         <span th:text="${payment.getBillingAddressLine1()}"></span><br><th:block th:if="${payment.getBillingAddressLine2() != null}">
         <span th:text="${payment.getBillingAddressLine2()}"></span><br></th:block>
         <span th:text="${payment.getBillingLocality()}"></span><br>
         <span th:text="${payment.getBillingAdministrativeDistrictLevel1()}"></span><br>
         <span th:text="${payment.getBillingPostalCode()}"></span><br>
         <br>
-        <br>
-        <label>Service Details</label><br>
-        <label>Square Feet:&nbsp;</label><span th:text="${quote.getSquareFeet()}"></span><br>
-        <label>Number of Rooms:&nbsp;</label><span th:text="${quote.getNumOfRoom()}"></span><br>
-        <label>Number of Bathrooms:&nbsp;</label><span th:text="${quote.getNumOfBathroom()}"></span><br>
-        <label>Cleaning Option:&nbsp;</label><span th:text="${quote.getCleaningOption().getDisplayName()}"></span><br><br>
-        <label>Total Charge:&nbsp;</label><span th:text="${quote.getFormattedTotalCost()}"></span><br>
+        <hr>
+        <label> <b>Service Details: </b></label><br>
+        <label> <b>Square Feet: </b><span th:text="${quote.getSquareFeet()}"></span> </label> <br>
+        <label> <b>Number of Rooms:&nbsp;</b><span th:text="${quote.getNumOfRoom()}"></span>  </label> <br>
+        <label> <b>Number of Bathrooms:&nbsp;</b><span th:text="${quote.getNumOfBathroom()}"></span> </label> <br>
+        <label> <b> Cleaning Option:&nbsp;</b><span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+        <hr>
+        <label> <b> Total Charge:&nbsp;</b><span th:text="${quote.getFormattedTotalCost()} +' $'"></span> </label>
+        <hr>
     </div>
 </div>
 
