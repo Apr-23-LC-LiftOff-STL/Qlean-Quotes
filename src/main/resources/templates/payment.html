@@ -17,7 +17,6 @@
     <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
 </head>
 
-<!--   wasn't sure which one to use - Rainy -->
 <body class="payment-body">
 
 <div class="navbar">
@@ -53,6 +52,7 @@
             </span>
             <span th:unless="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}"
                   th:text="${customer.getPhoneNumber()}"></span><br>
+
             <label>Service Details</label><br>
             <label>Square Feet:&nbsp;</label><span th:text="${quote.getSquareFeet()}"></span><br>
             <label>Number of Rooms:&nbsp;</label><span th:text="${quote.getNumOfRoom()}"></span><br>

@@ -14,7 +14,7 @@ public class PaymentFormDTO {
         @Size(min = 2, max = 2, message="State must be only 2 characters")
         private String shippingAdministrativeDistrictLevel1;
 
-        @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Zip code should be numeric and be wither 5 digit (ex. 12345) or 9 digit (ex. 12345-6789")
+        @Pattern(regexp = "^[0-9]{5}(?:-[0-9]{4})?$", message = "Zip code should be numeric and be within 5 digits (ex. 12345) or 9 digits (ex. 12345-6789")
         @Size(min = 5, max = 10, message="Zip code should be between 5 and 10 characters")
         private String shippingPostalCode;
         @Size(min = 4, max = 50, message="Street address must be longer than 4 characters and shorter than 50")

@@ -120,7 +120,7 @@
     <div class="create-quote-submit-button-container">
         <div class="form-group">
             <button type="submit" name="calculate" class="btn btn-primary">Calculate</button>
-            <a href="/payment" class="btn btn-success">Pay</a>
+                <a th:if="${quote != null && quote.formattedTotalCost != null}" href="/payment" class="btn btn-success">Pay</a>
         </div>
     </div>
     <div th:if="${quote != null && quote.formattedTotalCost != null}" class="alert-calculate" role="alert">
