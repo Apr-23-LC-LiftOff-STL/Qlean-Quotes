@@ -495,8 +495,35 @@
 
 #payment-successful .nav-link{
   color: white;
+  text-decoration: none;
   font-family: 'Montserrat', sans-serif !important;
 }
+
+
+#payment-successful .nav-item a:hover {
+    color: #F06744;
+}
+
+#payment-successful .navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #101728;
+}
+
+#payment-successful .navbar-header {
+    margin: 10px;
+}
+
+
+#payment-successful .navbar-brand {
+    margin-left: 3cm;
+}
+
+#payment-successful .nav {
+    list-style-type: none;
+}
+
+
 
 #payment-successful .navbar-brand{
   margin-left: 30px;
@@ -510,7 +537,6 @@
   justify-content: center;
   display: flex;
   font-weight: bold;
-  margin-top: 10px;
   color: #ffffff;
 }
 
@@ -556,32 +582,31 @@
 
 }
 
-.receipt-container{
-    color: white;
-    font-family: 'Montserrat', sans-serif !important;
-}
-
-
 .message-highlight {
   color: rgb(241,118,86) !important;
   text-decoration-line: underline !important;
 }
 
 
-
-#payment-success-footer{
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: center;
-    font-size: small;
-    margin-right: 2cm;
-    padding: 4px;
+.receipt-container{
     color: white;
     font-family: 'Montserrat', sans-serif !important;
+    margin-bottom: 40px !important;
+}
+
+
+#payment-success-footer{
+  color: #ffffff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top:5px;
+  text-align: center;
+  font-size: small;
+  padding: 4px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 
