@@ -554,7 +554,7 @@
 }
 
 
-.payment-image {
+#payment-successful .payment-image {
   z-index: -1;
   text-align: center;
   display: flex;
@@ -568,7 +568,7 @@
 }
 
 
-.payment-message {
+#payment-successful .payment-message {
   font-family: 'Montserrat', sans-serif !important;
   font-size: 31px;
   text-align: center;
@@ -579,7 +579,6 @@
   width: 50% !important;
   display: block;
   margin: 0 auto;
-
 }
 
 .message-highlight {
@@ -588,7 +587,7 @@
 }
 
 
-.receipt-container{
+#payment-successful .receipt-container{
     color: white;
     font-family: 'Montserrat', sans-serif !important;
     margin-bottom: 40px !important;
