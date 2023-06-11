@@ -170,17 +170,6 @@ label {
   color: #F06744 !important;
 }
 
-.payment-profile {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-.payment-profile-container {
-  background-color: #101728;
-  width: 400px;
-  color: white;
-  font-size: 16px;
-}
 
 .profile-link {
   text-decoration: none;
@@ -389,4 +378,35 @@ button:disabled {
 #afterpay-button {
   height: 40px;
 }
+
+
+.payment-profile {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #101728;
+}
+
+.payment-profile-container {
+  width: 400px;
+  background-color: #b7b9be ;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-top: dotted;
+  border-bottom: dotted;
+}
+
+.profile-information{
+ margin-bottom: 20px;
+}
+
+
+.payment-profile-container label {
+ font-size : 16px;
+ color: #101728 ;
+}
+
+
 
