@@ -66,45 +66,43 @@ public class PaymentController {
         model.put("locationId", squareWrapper.getSquareLocationId());
         model.put("appId", squareWrapper.getSquareAppId());
         model.put("idempotencyKey", UUID.randomUUID().toString());
-
         return "payment";
     }
 
     @PostMapping("/payment")
     public String createPaymentRequest(@ModelAttribute @Valid PaymentFormDTO paymentFormDTO,
-                                       HttpSession session, Model model, Errors errors) {
+                                       Errors errors, HttpSession session, Model model) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
+        model.addAttribute("errors", errors);
         Quote quote = (Quote) session.getAttribute(quoteSessionKey);
+        model.addAttribute("quote", quote);
 
         if (errors.hasErrors()) {
-            model.addAttribute("errors", errors);
             return "payment";
-        }else{
-
-        if (quote != null) {
-            model.addAttribute("quote", quote);
-            Payment payment = new Payment();
-            Orders order = new Orders();
-            payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
-            payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
-            payment.setShippingLocality(paymentFormDTO.getShippingLocality());
-            payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
-            payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
-            payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
-            payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
-            payment.setBillingLocality(paymentFormDTO.getBillingLocality());
-            payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
-            payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
-            payment.setTotalCost(quote.getTotalCost());
-            order.setPayment(payment);
-            order.setQuote(quote);
-            order.setCustomer(customer);
-            paymentRepository.save(payment);
-            model.addAttribute("payment", payment);
-            ordersRepository.save(order);
-            model.addAttribute("order", order);
         }
+
+        Payment payment = new Payment();
+        Orders order = new Orders();
+        payment.setShippingAddressLine1(paymentFormDTO.getShippingAddressLine1());
+        payment.setShippingAddressLine2(paymentFormDTO.getShippingAddressLine2());
+        payment.setShippingLocality(paymentFormDTO.getShippingLocality());
+        payment.setShippingAdministrativeDistrictLevel1(paymentFormDTO.getShippingAdministrativeDistrictLevel1());
+        payment.setShippingPostalCode(paymentFormDTO.getShippingPostalCode());
+        payment.setBillingAddressLine1(paymentFormDTO.getBillingAddressLine1());
+        payment.setBillingAddressLine2(paymentFormDTO.getBillingAddressLine2());
+        payment.setBillingLocality(paymentFormDTO.getBillingLocality());
+        payment.setBillingAdministrativeDistrictLevel1(paymentFormDTO.getBillingAdministrativeDistrictLevel1());
+        payment.setBillingPostalCode(paymentFormDTO.getBillingPostalCode());
+        payment.setTotalCost(quote.getTotalCost());
+        order.setPayment(payment);
+        order.setQuote(quote);
+        order.setCustomer(customer);
+        paymentRepository.save(payment);
+        model.addAttribute("payment", payment);
+        ordersRepository.save(order);
+        model.addAttribute("order", order);
+
         try {
             Money amountMoney = new Money.Builder()
                     .amount(quote.getTotalCharge())
@@ -153,7 +151,7 @@ public class PaymentController {
         } catch (ApiException | IOException e) {
             System.out.println(e);
         }
-        }
+
         return "payment-successful";
     }
 }
