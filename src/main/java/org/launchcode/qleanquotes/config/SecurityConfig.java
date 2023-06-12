@@ -48,8 +48,6 @@ public class SecurityConfig {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .loginPage("/authentication/login")
-
-                .loginPage("/authentication/register")
                 .failureUrl("/authentication/login?failed")
                 .loginProcessingUrl("/authentication/login/process")
                 .and()
