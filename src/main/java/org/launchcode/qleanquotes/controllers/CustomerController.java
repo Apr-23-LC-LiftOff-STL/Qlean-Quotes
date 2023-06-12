@@ -24,7 +24,7 @@ public class CustomerController {
     public String displayRegisterForm(Model model) {
         model.addAttribute(new RegisterFormDTO());
         model.addAttribute("title", "Register");
-        return "/authentication/register";
+        return "authentication/register";
     }
 
     @PostMapping("/authentication/register")
@@ -32,27 +32,27 @@ public class CustomerController {
                                       HttpServletRequest request, Model model) {
         model.addAttribute("errors", errors);
         if (errors.hasErrors()) {
-            return "/authentication/register";
+            return "authentication/register";
         }
         Customer existingCustomer = customerRepository.findByEmail(registerFormDTO.getEmail());
 
         if (existingCustomer != null) {
             errors.rejectValue("email", "email.alreadyExists", "A user with that email already exists");
-            return "/authentication/register";
+            return "authentication/register";
         }
 
         String password = registerFormDTO.getPassword();
         String verifyPassword = registerFormDTO.getVerifyPassword();
         if (!password.equals(verifyPassword)) {
             errors.rejectValue("password", "passwords.mismatch", "Passwords do not match");
-            return "/authentication/register";
+            return "authentication/register";
         }
 
         // OTHERWISE, save new email , hashed password and other info in database, and redirect to home page
         Customer newCustomer = new Customer(registerFormDTO.getName(), registerFormDTO.getLastName(), registerFormDTO.getEmail(), registerFormDTO.getPassword(), "", "", "", "");
         customerRepository.save(newCustomer);
 //        TODO figure out why, after registering a new user, it takes them t login, not index, its cause we need to create a session
-        return "redirect:/";
+        return "redirect:";
     }
 
     @GetMapping("/authentication/login")
