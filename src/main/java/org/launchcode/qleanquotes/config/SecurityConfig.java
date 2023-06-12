@@ -48,6 +48,8 @@ public class SecurityConfig {
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .loginPage("/authentication/login")
+//                added below to try to fix configuration template parsing error..?
+                .loginPage("/authentication/register")
                 .failureUrl("/authentication/login?failed")
                 .loginProcessingUrl("/authentication/login/process")
                 .and()
