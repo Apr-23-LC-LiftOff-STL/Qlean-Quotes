@@ -48,6 +48,13 @@ dependencies {
 
 }
 
+bootJar {
+	archiveClassifier.set('boot')
+}
+
+jar {
+	archiveClassifier.set('')
+}
 
 test {
 	useJUnitPlatform()
