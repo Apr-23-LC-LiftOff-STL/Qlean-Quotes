@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-    @GetMapping("")
+    @GetMapping("/")
     public String displayIndexPage(Model model) {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
