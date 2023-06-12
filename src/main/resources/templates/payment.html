@@ -62,7 +62,7 @@
                 <label> <b> Number of Bathrooms:&nbsp;</b> <span th:text="' ' +${quote.getNumOfBathroom()}"></span> </label> <br>
                 <label> <b> Cleaning Option: </b>
                     <span th:text="' ' +${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
-                <label> <b> Total Charge: </b> <span th:text="' ' +${quote.getFormattedTotalCost()} +' $'" ></span> </label> <br>
+                <label> <b> Total Charge: </b> <span th:text="'$ ' + ${quote.getFormattedTotalCost()}" ></span> </label> <br>
             </div>
         </div>
 </div>
