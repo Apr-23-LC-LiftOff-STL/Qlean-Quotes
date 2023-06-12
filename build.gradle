@@ -25,7 +25,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java:8.0.26'
-	implementation 'org.postgresql:postgresql:42.5.4'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 
 	implementation 'org.springframework.security:spring-security-crypto:5.6.0'
@@ -37,9 +36,6 @@ dependencies {
 
 	//spring security implementation
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-
-	// for deployment
-    implementation 'org.springframework.boot:spring-boot-maven-plugin:3.0.0'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test'){
