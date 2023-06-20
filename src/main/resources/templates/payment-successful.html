@@ -68,14 +68,13 @@
         <span th:text="${payment.getBillingAdministrativeDistrictLevel1()}"></span><br>
         <span th:text="${payment.getBillingPostalCode()}"></span><br>
         <hr>
-<!--        <label> <b>Service Details: </b></label><br>-->
-<!--        <label> <span th:text="${payment.getSquareFeet()} + ' square feet'"></span> </label> <br>-->
-<!--        <label> <span th:text="${payment.getNumOfRoom()} + ' rooms'"></span> </label> <br>-->
-<!--        <label> <span th:text="${payment.getNumOfBathroom()} + ' bathrooms'"></span> </label> <br>-->
-<!--                    <label>-->
-<!--                        <span th:text="${payment.getCleaningOption().getDisplayName()}"></span> </label> <br>-->
-<!--        <hr>-->
-<!--                    <label> <b> Total Charge: $</b> <span th:text="${payment.getFormattedTotalCost()}" ></span> </label> <br>-->
+        <label> <b>Service Details: </b></label><br>
+        <label> <b>Square Feet: </b><span th:text="${quote.getSquareFeet()}"></span> </label> <br>
+        <label> <b>Number of Rooms:&nbsp;</b><span th:text="${quote.getNumOfRoom()}"></span>  </label> <br>
+        <label> <b>Number of Bathrooms:&nbsp;</b><span th:text="${quote.getNumOfBathroom()}"></span> </label> <br>
+        <label> <b> Cleaning Option:&nbsp;</b><span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+        <hr>
+        <label> <b> Total Charge:&nbsp;</b><span th:text="${quote.getFormattedTotalCost()} +' $'"></span> </label>
     </div>
 </div>
 
