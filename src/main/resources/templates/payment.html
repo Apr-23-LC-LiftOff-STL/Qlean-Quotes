@@ -57,12 +57,12 @@
             </div>
             <div class="receipt-information">
                 <label> <b>Service Details: </b></label><br>
-                <label> <span th:text="${quote.getSquareFeet()} + ' square feet'"></span> </label> <br>
-                <label> <span th:text="${quote.getNumOfRoom()} + ' rooms'"></span> </label> <br>
-                <label> <span th:text="${quote.getNumOfBathroom()} + ' bathrooms'"></span> </label> <br>
+                <label> <span th:text="${quote.getSquareFeet()} + ' ' + 'square feet'"> </span> </label> <br>
+                <label> <span th:text="${quote.getNumOfRoom()} + ' ' + 'rooms'"></span> </label> <br>
+                <label>  <span th:text="${quote.getNumOfBathroom()} + ' ' + 'bathrooms'"></span> </label> <br>
                 <label>
-                    <span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
-                <label> <b> Total Charge: $</b> <span th:text="${quote.getFormattedTotalCost()}" ></span> </label> <br>
+                    <span th:text="' ' +${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+                <label> <b> Total Charge: $</b> <span th:text="' ' +${quote.getFormattedTotalCost()}" ></span> </label> <br>
             </div>
         </div>
 </div>
