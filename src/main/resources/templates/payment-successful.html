@@ -45,7 +45,7 @@
         <label> <span th:text="${customer.getEmail()}"></span> </label> <br>
         <label>
             <span th:if="${customer.getPhoneNumber() == '' or customer.getPhoneNumber() == null}"><a class="text-danger" href="/profile">We need your phone number!</a></span>
-            <span th:unless="${customer.getPhoneNumber() == '' or customer.getPhoneNumber() == null}"><b>Phone: </b><span th:text="${customer.getPhoneNumber()}"></span> </span>
+            <span th:unless="${customer.getPhoneNumber() == '' or customer.getPhoneNumber() == null}"><span th:text="${customer.getPhoneNumber()}"></span> </span>
         </label>
         <hr>
         <label> <b>Service Address: </b></label><br>
