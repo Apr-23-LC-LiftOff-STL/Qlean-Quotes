@@ -956,3 +956,9 @@
     padding: 1cm;
     color: #101728 ;
 }
+
+.text-danger {
+
+    color: #F06744 !important;
+    text-align: center;
+}

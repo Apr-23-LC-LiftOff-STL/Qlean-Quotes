@@ -59,6 +59,5 @@ public class CustomerController {
     public String displayLoginForm(Model model) {
         return "authentication/login";
     }
-
 }
 

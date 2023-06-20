@@ -26,8 +26,6 @@
     </div>
 </header>
 
-<div th:if="${param.error}"><h1>This didn't work</h1></div>
-
 <h1>User Profile</h1>
 
 <div class="profile-container">
@@ -82,22 +80,6 @@
         <div class="row">
             <input type="submit" class="profile-button" value="Submit">
         </div>
-
-<!--        //cancel button goes to update-profile only if they already have a registered phone number and address, otherwise it directs to index with a warning-->
-<!--        <div class="profile-cancel">-->
-<!--            <a class="profile-cancel-button" th:href="${customer?.phoneNumber} == '' ? '/' : '/updated-profile'">Cancel</a>-->
-<!--        </div>-->
-<!--        <div class="profile-cancel">-->
-<!--            <a class="profile-cancel-button" th:href="${customer?.phoneNumber} == '' ? '/' : '/updated-profile'" onclick="showAlert()">Cancel</a>-->
-<!--        </div>-->
-<!--        <script>-->
-<!--            function showAlert() {-->
-<!--                if ("${customer?.phoneNumber} == ''") {-->
-<!--                    alert('Please enter your phone number, it\'s important to us!');-->
-<!--                }-->
-<!--            }-->
-<!--        </script>-->
-
         <div class="profile-cancel">
             <a class="profile-cancel-button" th:href="${customer?.phoneNumber} == '' ? '/' : '/updated-profile'" onclick="showConfirmation(event)">Cancel</a>
         </div>
@@ -116,7 +98,6 @@
             }
         </script>
 
-<!--        <a class="nav-link" href="#" onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log Out</a>-->
     </form>
 </div>
 

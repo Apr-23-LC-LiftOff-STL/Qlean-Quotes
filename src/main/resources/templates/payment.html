@@ -45,24 +45,24 @@
         <div class="payment-profile-container">
             <div class="profile-information">
                 <label> <b>Customer Details: </b></label><br>
-                <label> <b>Name: </b> <span th:text="${customer.getName()} + ' ' + ${customer.getLastName()}"></span> </label> <br>
-                <label> <b>Email: </b> <span th:text="${customer.getEmail()}"></span> </label> <br>
-            <!--            <span th:text="${customer.getPhoneNumber()}"></span><br>-->
+                <label> <span th:text="${customer.getName()} + ' ' + ${customer.getLastName()}"></span> </label> <br>
+                <label> <span th:text="${customer.getEmail()}"></span> </label> <br>
                 <span class="text-danger" th:if="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}">
             We're missing your phone number! <br> Please update your <a class="profile-link" th:href="@{/profile}">user profile.</a>
             </span>
 
-                <label> <b>Phone: </b> <span th:unless="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}"
-                  th:text="${customer.getPhoneNumber()}"></span>   </label> <br>
+                 <span th:unless="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}">
+                     <span th:text="${customer.getPhoneNumber()}"></span>   </span>
+
             </div>
             <div class="receipt-information">
                 <label> <b>Service Details: </b></label><br>
-                <label> <b>Square Feet: </b><span th:text="' ' +${quote.getSquareFeet()}"></span> </label> <br>
-                <label> <b> Number of Rooms:&nbsp;</b><span th:text="' ' +${quote.getNumOfRoom()}"></span> </label> <br>
-                <label> <b> Number of Bathrooms:&nbsp;</b> <span th:text="' ' +${quote.getNumOfBathroom()}"></span> </label> <br>
-                <label> <b> Cleaning Option: </b>
-                    <span th:text="' ' +${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
-                <label> <b> Total Charge: </b> <span th:text="' ' +${quote.getFormattedTotalCost()} +' $'" ></span> </label> <br>
+                <label> <span th:text="${quote.getSquareFeet()} + ' square feet'"></span> </label> <br>
+                <label> <span th:text="${quote.getNumOfRoom()} + ' rooms'"></span> </label> <br>
+                <label> <span th:text="${quote.getNumOfBathroom()} + ' bathrooms'"></span> </label> <br>
+                <label>
+                    <span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+                <label> <b> Total Charge: $</b> <span th:text="${quote.getFormattedTotalCost()}" ></span> </label> <br>
             </div>
         </div>
 </div>

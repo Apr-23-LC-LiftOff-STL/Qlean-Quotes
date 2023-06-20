@@ -34,14 +34,13 @@
         <form class="register-form" th:action="@{/authentication/register}" method="post">
             <div class="form-group">
                 <label class="register-label">Name
-                    <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}"/>
+                    <input class="form-control" placeholder="Enter your name" th:field="${registerFormDTO.name}" oninput="formatName()"/>
                 </label>
                 <p class="register-error" th:errors="${registerFormDTO.name}"></p>
             </div>
             <div class="form-group">
                 <label class="register-label">Last Name
-                    <input class="form-control" placeholder="Enter your last name"
-                           th:field="${registerFormDTO.lastName}"/>
+                    <input class="form-control" placeholder="Enter your last name" th:field="${registerFormDTO.lastName}" oninput="formatName()"/>
                 </label>
                 <p class="register-error" th:errors="${registerFormDTO.lastName}"></p>
             </div>
@@ -85,6 +84,21 @@
         </footer>
     </div>
 </div>
+
+<script>
+    function formatName() {
+        let nameInput = document.getElementById('name');
+        let lastNameInput = document.getElementById('lastName');
+        // Format name
+        let name = nameInput.value;
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        nameInput.value = name;
+        // Format last name
+        let lastName = lastNameInput.value;
+        lastName = lastName.charAt(0).toUpperCase() + lastName.slice(1);
+        lastNameInput.value = lastName;
+    }
+</script>
 
 </body>
 </html>
