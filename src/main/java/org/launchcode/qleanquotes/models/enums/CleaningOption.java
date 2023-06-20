@@ -1,8 +1,8 @@
 package org.launchcode.qleanquotes.models.enums;
 
 public enum CleaningOption {
-    AVERAGE("Average Cleaning"),
-    DEEP("Deep Cleaning");
+    AVERAGE("Maintenance Clean"),
+    DEEP("Deep Clean");
 
     private final String displayName;
 
