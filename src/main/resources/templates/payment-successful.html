@@ -70,8 +70,14 @@
         <hr>
         <label> <b>Service Details: </b></label><br>
         <label> <span th:text="${quote.getSquareFeet()} + ' ' + 'square feet'"> </span> </label> <br>
-        <label> <span th:text="${quote.getNumOfRoom()} + ' '+ 'rooms'"></span>  </label> <br>
-        <label> <span th:text="${quote.getNumOfBathroom()} + ' ' + 'bathrooms'"></span> </label> <br>
+        <label>
+            <span th:text="${quote.getNumOfRoom()}"></span>
+            <span th:text="${quote.getNumOfRoom() == 1 ? ' room' : ' rooms'}"></span>
+        </label> <br>
+        <label>
+            <span th:text="${quote.getNumOfBathroom()}"></span>
+            <span th:text="${quote.getNumOfBathroom() == 1 ? ' bathroom' : ' bathrooms'}"></span>
+        <br>
         <label> <span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
         <hr>
         <label> <b> Total Charge:&nbsp;$</b><span th:text="${quote.getFormattedTotalCost()}"></span> </label>
