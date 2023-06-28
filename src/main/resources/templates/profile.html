@@ -36,7 +36,8 @@
         <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
     </div>
 
-    <form class="profile-form" action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
+<!--    added enctype for profile image-->
+    <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data" th:object="${profileFormDTO}" method="post">
         <div class="row">
             <div class="col-25">
             <label for="phoneNumber">Phone Number:</label>
@@ -74,6 +75,17 @@
             <div class="col-75">
             <input type="text" th:value="${customer.zip}" id="zip" name="zip" >
             <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
+            </div>
+        </div>
+
+<!--        trying to add profile Image-->
+        <div class="row">
+            <div class="col-25">
+                <label for="profileImage">Profile Image:</label>
+            </div>
+            <div class="col-75">
+                <input type="file" name="profileImage" th:value="${customer.profileImage}" id="profileImage">
+                <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>
             </div>
         </div>
 

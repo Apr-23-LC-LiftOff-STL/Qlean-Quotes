@@ -712,6 +712,10 @@
   margin-bottom: 15px;
 }
 
+.profile-avatar img {
+    max-width: 200px;
+    max-height: 200px;
+}
 
 .profile-container {
   display: flex;

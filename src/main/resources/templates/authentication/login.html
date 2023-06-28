@@ -27,6 +27,11 @@
 <!--if logout, the below th:if condition is triggered, find this in securityconfig, logoutURL() query parameter-->
 <div th:if="${param.logout}"> You have logged out.</div>
 
+<!--&lt;!&ndash;easter egg image source&ndash;&gt;-->
+<!--<div id="register-info" style="display: none;">-->
+<!--    <iframe src="https://i.giphy.com/media/26gscNQHswYio5RBu/giphy.webp" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>-->
+<!--</div>-->
+
 <!--easter egg image source-->
 <div id="register-info" style="display: none;">
     <iframe src="https://i.giphy.com/media/26gscNQHswYio5RBu/giphy.webp" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
@@ -67,6 +72,7 @@
         </form>
 
         <img class="login-image" src="/images/homepage.png" alt="Brand Name">
+
     </div>
 </div>
 <div th:replace="~{fragments :: page-about}"></div>
@@ -82,7 +88,10 @@
     new KonamiCode(function () {
         alert("It looks like you're trying to play Street Fighter. This is a house cleaning service.");
         let sexyMrClean = document.getElementById('register-info');
+        // let QQMainImage = document.getElementById('login-image');
+        // QQMainImage.stlye = 'display: none;';
         sexyMrClean.style = 'display: flex; justify-content: center;';
+
     });
 </script>
 

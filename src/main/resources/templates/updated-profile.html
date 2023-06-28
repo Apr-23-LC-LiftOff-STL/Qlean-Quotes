@@ -31,10 +31,11 @@
     <h1>User Profile</h1>
 
     <div class="updated-profile-contain" >
-        <img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar">
+        <div class="profile-avatar">
+            <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image">
+        </div>
 
         <div class="updated-profile-information" >
-
            <p id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></p>
            <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
            <p id="customerPhone" th:text="'Phone: ' + ${customer.phoneNumber}"></p>
@@ -42,9 +43,7 @@
            <p id="city" th:text="'City: ' + ${customer.city}"></p>
            <p id="zip" th:text="'Zip: ' + ${customer.zip}"></p>
         </div>
-
         <button class="edit-button" onclick="location.href='/profile'">Edit</button>
-
     </div>
 </div>
 
