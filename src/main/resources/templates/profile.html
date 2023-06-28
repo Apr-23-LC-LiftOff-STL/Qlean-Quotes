@@ -94,12 +94,13 @@
             <input type="submit" class="profile-button" value="Submit">
         </div>
         <div class="profile-cancel">
-            <a class="profile-cancel-button" th:href="${customer?.phoneNumber} == '' ? '/' : '/updated-profile'" onclick="showConfirmation(event)">Cancel</a>
+<!--            <a class="profile-cancel-button" th:href="${customer?.phoneNumber} == '' ? '/' : '/updated-profile'" onclick="showConfirmation(event)">Cancel</a>-->
+            <a class="profile-cancel-button" th:href="${customer.phoneNumber == '' ? '/' : '/updated-profile'}" onclick="showConfirmation('${customer.phoneNumber}')">Cancel</a>
         </div>
 
         <script>
-            function showConfirmation(event) {
-                if ("${customer?.phoneNumber} == ''") {
+            function showConfirmation(phoneNumber) {
+                if (phoneNumber== '') {
                     event.preventDefault();
                     let result = confirm("Please enter your phone number, it's important to us!");
                     if (result) {
