@@ -30,10 +30,11 @@
 <div>
     <h1>User Profile</h1>
 
-    <div class="updated-profile-contain" >
-        <div class="profile-avatar">
-            <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image">
-        </div>
+    <div class="profile-container" >
+
+            <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar"></span>
+            <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img class="profile-avatar" th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
+
 
         <div class="updated-profile-information" >
            <p id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></p>
@@ -47,7 +48,7 @@
     </div>
 </div>
 
-<div id="updated-profile-footer">
+<div class="profile-footer">
     <footer>
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>

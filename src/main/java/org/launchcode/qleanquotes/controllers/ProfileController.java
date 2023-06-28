@@ -32,34 +32,11 @@ public class ProfileController {
         Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("customer", customer);
         model.addAttribute("customerName", customer.getName());
-//        model.addAttribute(new ProfileFormDTO());
         model.addAttribute("profileFormDTO", new ProfileFormDTO());
         model.addAttribute("title", "profile");
         return "profile";
     }
 
-
-//    @PostMapping("/profile")
-//    public String savePhoneNumber(@ModelAttribute @Valid ProfileFormDTO phoneNumberForm, Errors errors, Model model) {
-//        Customer existingCustomer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("phoneNumber", phoneNumberForm.getPhoneNumber());
-//        existingCustomer.setPhoneNumber(phoneNumberForm.getPhoneNumber());
-//
-//        model.addAttribute("street", phoneNumberForm.getStreet());
-//        existingCustomer.setStreet(phoneNumberForm.getStreet());
-//        model.addAttribute("city", phoneNumberForm.getCity());
-//        existingCustomer.setCity(phoneNumberForm.getCity());
-//        model.addAttribute("zip", phoneNumberForm.getZip());
-//        existingCustomer.setZip(phoneNumberForm.getZip());
-//
-//        if (errors.hasErrors()) {
-//            model.addAttribute("customer", existingCustomer);
-//            return "profile";
-//        }
-//        customerRepository.save(existingCustomer);
-//
-//        return "redirect:/updated-profile";
-//    }
 
     @PostMapping("/profile")
     public String saveProfileInfo(@ModelAttribute @Valid ProfileFormDTO profileForm, Errors errors, Model model) {
@@ -75,10 +52,8 @@ public class ProfileController {
         if (!profileImage.isEmpty()) {
             try {
                 byte[] imageBytes = profileImage.getBytes();
-                existingCustomer.setProfileImage(imageBytes); // Set the image bytes to the customer entity
-                // Save the image bytes or process it as required
+                existingCustomer.setProfileImage(imageBytes);
             } catch (IOException e) {
-                // Handle the exception
             }
         }
         existingCustomer.setPhoneNumber(profileForm.getPhoneNumber());
@@ -90,19 +65,6 @@ public class ProfileController {
 
         return "redirect:/updated-profile";
     }
-
-    //
-//    @GetMapping("/updated-profile")
-//    public String displayUpdatedProfile(Model model) {
-//        Customer customer = (Customer) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//        model.addAttribute("customer", customer);
-//        model.addAttribute("customerName", customer.getName());
-//        model.addAttribute("phoneNumber", customer.getPhoneNumber());
-//        model.addAttribute(new ProfileFormDTO());
-//        model.addAttribute("title", "profile");
-//
-//        return "updated-profile";
-//    }
 
     @GetMapping("/updated-profile")
     public String displayUpdatedProfile(Model model) {
@@ -126,7 +88,6 @@ public class ProfileController {
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
 
 }
 

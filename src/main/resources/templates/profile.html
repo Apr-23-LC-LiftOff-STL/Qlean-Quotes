@@ -29,14 +29,16 @@
 <h1>User Profile</h1>
 
 <div class="profile-container">
-    <img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar">
+
+    <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar"></span>
+    <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img class="profile-avatar" th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
 
     <div class="profile-details">
         <p id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></p>
         <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
     </div>
 
-<!--    added enctype for profile image-->
+
     <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data" th:object="${profileFormDTO}" method="post">
         <div class="row">
             <div class="col-25">
@@ -78,7 +80,6 @@
             </div>
         </div>
 
-<!--        trying to add profile Image-->
         <div class="row">
             <div class="col-25">
                 <label for="profileImage">Profile Image:</label>
@@ -113,7 +114,7 @@
     </form>
 </div>
 
-<div id="profile-footer">
+<div class="profile-footer">
     <footer>
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>

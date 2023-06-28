@@ -726,7 +726,6 @@
   font-size: 17px;
   color: white;
   font-family: 'Montserrat', sans-serif !important;
-
 }
 
 .profile-details {
@@ -745,7 +744,6 @@
   margin-top: 8px;
 }
 
-/* Clear floats after the columns */
 .profile-form .row:after {
   content: "";
   display: table;
@@ -806,12 +804,9 @@
 
 }
 
-
 #profile input[type=submit]:hover {
   background-color: #c05e44 !important;
-
 }
-
 
 .profile-cancel {
   text-align: center;
@@ -826,8 +821,7 @@
   font-weight: bold;
 }
 
-
-#profile-footer{
+.profile-footer{
   position: fixed;
   bottom: 0;
   left: 0;
@@ -842,8 +836,6 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
-
-
 #updated-profile{
   background-color:#101728;
 }
@@ -853,11 +845,9 @@
   font-family: 'Montserrat', sans-serif !important;
 }
 
-
 #updated-profile .nav-item a:hover {
     color: #F06744;
 }
-
 
 #updated-profile .navbar-brand{
   margin-left: 3cm;
@@ -873,17 +863,6 @@
   margin-bottom: 15px;
 
 }
-
-
-.updated-profile-contain{
-  display: flex;
-  justify-content: center !important;
-  flex-direction: column;
-  align-items: center !important;
-  text-align: justify !important;
-
-}
-
 
 .updated-profile-information{
   margin: 10px 0;
@@ -915,24 +894,6 @@
 
 
 
-#updated-profile-footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  text-align: center;
-  font-size: small;
-  margin-right: 2cm;
-  padding: 4px;
-  color: white;
-  font-family: 'Montserrat', sans-serif !important;
-}
-
-
-
-
 
 .receipt-container {
     display: flex;
@@ -947,10 +908,6 @@
     margin-bottom: 1cm;
 }
 
-/*.receipt-title {*/
-/*    */
-/*}*/
-
 .receipt {
     font-size: 16px;
     background-color: #b7b9be ;
@@ -962,7 +919,6 @@
 }
 
 .text-danger {
-
     color: #F06744 !important;
     text-align: center;
 }
