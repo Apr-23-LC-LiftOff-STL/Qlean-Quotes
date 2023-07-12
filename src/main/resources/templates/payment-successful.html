@@ -37,11 +37,9 @@
 </div>
 
 <div class="receipt-container">
-    <!--    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>-->
-
     <div class="receipt">
         <label> <b>Customer Details: </b></label><br>
-        <label> <span th:text="${customer.getName()} + ' ' +${customer.getLastName()}"></span> </label><br>
+        <label> <span th:text="${#strings.capitalize(customer.getName())} + ' ' + ${#strings.capitalize(customer.getLastName())}"></span> </label><br>
         <label> <span th:text="${customer.getEmail()}"></span> </label> <br>
         <label>
             <span th:if="${customer.getPhoneNumber() == '' or customer.getPhoneNumber() == null}"><a class="text-danger" href="/profile">We need your phone number!</a></span>
@@ -69,18 +67,18 @@
         <span th:text="${payment.getBillingPostalCode()}"></span><br>
         <hr>
         <label> <b>Service Details: </b></label><br>
-        <label> <span th:text="${quote.getSquareFeet()} + ' ' + 'square feet'"> </span> </label> <br>
+        <label> <span th:text="${quote.getSquareFeet()} + ' ' + 'square feet'"> </span> </label>
         <label>
             <span th:text="${quote.getNumOfRoom()}"></span>
             <span th:text="${quote.getNumOfRoom() == 1 ? ' room' : ' rooms'}"></span>
-        </label> <br>
+        </label>
         <label>
             <span th:text="${quote.getNumOfBathroom()}"></span>
             <span th:text="${quote.getNumOfBathroom() == 1 ? ' bathroom' : ' bathrooms'}"></span>
-        <br>
+
         <label> <span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
         <hr>
-        <label> <b> Total Charge:&nbsp;$</b><span th:text="${quote.getFormattedTotalCost()}"></span> </label>
+        <label> <b> Total Charge:&nbsp; $</b><span th:text="${quote.getFormattedTotalCost()}"></span> </label>
     </div>
 </div>
 

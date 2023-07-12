@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
-<body id="profile">
+<head>
+    <meta charset="UTF-8"/>
+    <head th:fragment="head">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link th:href="@{/css/profile.css}" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
+    </head>
+</head>
+<body class="profile">
 <header>
     <div class="navbar">
             <div class="navbar-header">
@@ -30,12 +44,14 @@
 
 <div class="profile-container">
 
-    <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar"></span>
-    <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img class="profile-avatar" th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
+    <div class="profile-avatar">
+        <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img src="/images/profile-avatar.png" alt="Profile Avatar"></span>
+        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
+    </div>
 
     <div class="profile-details">
-        <p id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></p>
-        <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
+        <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>
+        <p id="customerEmail" th:text="${customer.email}"></p>
     </div>
 
 
@@ -94,7 +110,6 @@
             <input type="submit" class="profile-button" value="Submit">
         </div>
         <div class="profile-cancel">
-<!--            <a class="profile-cancel-button" th:href="${customer?.phoneNumber} == '' ? '/' : '/updated-profile'" onclick="showConfirmation(event)">Cancel</a>-->
             <a class="profile-cancel-button" th:href="${customer.phoneNumber == '' ? '/' : '/updated-profile'}" onclick="showConfirmation('${customer.phoneNumber}')">Cancel</a>
         </div>
 
@@ -111,7 +126,6 @@
                 }
             }
         </script>
-
     </form>
 </div>
 

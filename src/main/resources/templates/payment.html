@@ -45,7 +45,9 @@
         <div class="payment-profile-container">
             <div class="profile-information">
                 <label> <b>Customer Details: </b></label><br>
-                <label> <span th:text="${customer.getName()} + ' ' + ${customer.getLastName()}"></span> </label> <br>
+
+                <label> <span th:text="${#strings.capitalize(customer.name)} + ' ' + ${#strings.capitalize(customer.lastName)}"></span> </label> <br>
+
                 <label> <span th:text="${customer.getEmail()}"></span> </label> <br>
                 <span class="text-danger" th:if="${customer.getPhoneNumber() == null or customer.getPhoneNumber() == ''}">
             We're missing your phone number! <br> Please update your <a class="profile-link" th:href="@{/profile}">user profile.</a>

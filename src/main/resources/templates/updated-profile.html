@@ -1,28 +1,49 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
-<body id="updated-profile">
+<head>
+    <meta charset="UTF-8"/>
+    <head th:fragment="head">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link th:href="@{/css/profile.css}" rel="stylesheet" />
+
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap" rel="stylesheet">
+
+        <!--  Font for social media -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <!--        //the ternary operator below is checking whether the "title" variable has a value or not. If it has a value, then the webpage's title will be "QleanQuotes :: [value of title variable]". If it does not have a value, then the webpage's title will simply be "QleanQuotes".-->
+        <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
+    </head>
+</head>
+<body class="profile">
 <header>
     <div class="navbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
-                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
-                </a>
-            </div>
-            <div class="navbar-links">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"> Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                        <a class="nav-link" href="#"
-                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
-                            Out</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+            </a>
         </div>
+        <div class="navbar-links">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"> Home </a>
+                </li>
+                <li class="nav-item">
+                    <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                    <a class="nav-link" href="#"
+                       onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                        Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </div>
 </header>
 
@@ -30,19 +51,30 @@
 <div>
     <h1>User Profile</h1>
 
-    <div class="profile-container" >
+    <div class="profile-container">
+        <div class="profile-avatar">
+            <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img
+                    src="/images/profile-avatar.png" alt="Profile Avatar"></span>
+            <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img
+                    th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
+        </div>
 
-            <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar"></span>
-            <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img class="profile-avatar" th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
-
-
-        <div class="updated-profile-information" >
-           <p id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></p>
-           <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
-           <p id="customerPhone" th:text="'Phone: ' + ${customer.phoneNumber}"></p>
-           <p id="street" th:text="'Street Address: ' + ${customer.street}"></p>
-           <p id="city" th:text="'City: ' + ${customer.city}"></p>
-           <p id="zip" th:text="'Zip: ' + ${customer.zip}"></p>
+        <div class="updated-profile-information">
+            <p th:text="'User: '"></p>
+            <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>
+            <p id="customerEmail" th:text="${customer.email}"></p>
+            <p id="customerPhone" th:text="${customer.phoneNumber}"></p><hr>
+            <p th:text="'Address: '"></p>
+            <p id="street" th:text="${customer.street}"></p>
+            <p id="city" th:text="${customer.city}"></p>
+            <p id="zip" th:text="${customer.zip}"></p>
+            <hr>
+            <!--           <p id="customerName" th:text="'User: ' + ${customerName} + ' ' + ${customer.lastName}"></p>-->
+            <!--           <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>-->
+            <!--           <p id="customerPhone" th:text="'Phone: ' + ${customer.phoneNumber}"></p>-->
+            <!--           <p id="street" th:text="'Street Address: ' + ${customer.street}"></p>-->
+            <!--           <p id="city" th:text="'City: ' + ${customer.city}"></p>-->
+            <!--           <p id="zip" th:text="'Zip: ' + ${customer.zip}"></p>-->
         </div>
         <button class="edit-button" onclick="location.href='/profile'">Edit</button>
     </div>
@@ -53,7 +85,6 @@
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>
 </div>
-
 
 
 </body>
