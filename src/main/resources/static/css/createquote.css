@@ -29,6 +29,11 @@
     font-family: 'Montserrat', sans-serif !important;
 }
 
+.small-font {
+    font-size: 12px;
+    color: #a6a4a4;
+}
+
 .nav-item a:hover {
     color: #F06744;
 }

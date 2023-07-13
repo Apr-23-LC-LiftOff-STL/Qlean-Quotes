@@ -11,6 +11,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import static jakarta.persistence.FetchType.LAZY;
+
+
 @Entity
 public class Customer extends AbstractEntity implements UserDetails {
     @OneToMany
@@ -37,13 +40,20 @@ public class Customer extends AbstractEntity implements UserDetails {
 
     private String city;
 
+//    adding Profile Image
+//    Lob indicates that the images should be stored as a large image in the database
+//    LAZY means this data us not loaded everytime customer data is retrieved
+    @Lob @Basic(fetch=LAZY)
+    @Column(columnDefinition="BLOB NOT NULL")
+    protected byte[] profileImage;
+
     //below BCrypt class is provided by the spring-security-crypto dependency. It hashes the passwords for us.
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     public Customer() {
     }
 
-    public Customer(String name, String lastName, String email, String password, String phoneNumber, String street, String city, String zip) {
+    public Customer(String name, String lastName, String email, String password, String phoneNumber, String street, String city, String zip, byte[] profileImage) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -52,6 +62,7 @@ public class Customer extends AbstractEntity implements UserDetails {
         this.street = "";
         this.city = "";
         this.zip = "";
+        this.profileImage = profileImage;
     }
 
     public String getName() {
@@ -96,6 +107,15 @@ public class Customer extends AbstractEntity implements UserDetails {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+
+    public byte[] getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(byte[] profileImage) {
+        this.profileImage = profileImage;
     }
 
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.

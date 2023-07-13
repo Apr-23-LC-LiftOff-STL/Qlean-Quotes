@@ -37,7 +37,6 @@ dependencies {
 	//spring security implementation
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 
-
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation('org.springframework.boot:spring-boot-starter-test'){
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
@@ -46,6 +45,13 @@ dependencies {
 
 }
 
+bootJar {
+	archiveClassifier.set('boot')
+}
+
+jar {
+	archiveClassifier.set('')
+}
 
 test {
 	useJUnitPlatform()

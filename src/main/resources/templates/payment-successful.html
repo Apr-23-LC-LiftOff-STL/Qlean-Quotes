@@ -6,25 +6,25 @@
 
 <header>
     <div class="navbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
-                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
-                </a>
-            </div>
-            <div class="navbar-links">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"> Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                        <a class="nav-link" href="#"
-                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
-                            Out</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+            </a>
         </div>
+        <div class="navbar-links">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"> Home </a>
+                </li>
+                <li class="nav-item">
+                    <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                    <a class="nav-link" href="#"
+                       onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                        Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </div>
 </header>
 
@@ -37,43 +37,52 @@
 </div>
 
 <div class="receipt-container">
-<!--    <div class="receipt-title-container"><h1 class="receipt-title">Here's Your Receipt</h1></div>-->
-
     <div class="receipt">
         <label> <b>Customer Details: </b></label><br>
-        <label> <b>Name: </b><span th:text="${customer.getName()} + ' ' +${customer.getLastName()}"></span> </label><br>
-        <label> <b>Email: </b><span th:text="${customer.getEmail()}"></span> </label> <br>
-        <th:block th:if="${customer.getPhoneNumber() != null}">
-            <label> <b>Phone: </b> <span th:text="${customer.getPhoneNumber()}"></span> </label><br>
-        </th:block>
+        <label> <span th:text="${#strings.capitalize(customer.getName())} + ' ' + ${#strings.capitalize(customer.getLastName())}"></span> </label><br>
+        <label> <span th:text="${customer.getEmail()}"></span> </label> <br>
+        <label>
+            <span th:if="${customer.getPhoneNumber() == '' or customer.getPhoneNumber() == null}"><a class="text-danger" href="/profile">We need your phone number!</a></span>
+            <span th:unless="${customer.getPhoneNumber() == '' or customer.getPhoneNumber() == null}"><span th:text="${customer.getPhoneNumber()}"></span> </span>
+        </label>
         <hr>
         <label> <b>Service Address: </b></label><br>
-        <span th:text="${payment.getShippingAddressLine1()}"></span><br><th:block th:if="${payment.getShippingAddressLine2() != null}">
-        <span th:text="${payment.getShippingAddressLine2()}"></span><br></th:block>
+        <span th:text="${payment.getShippingAddressLine1()}"></span><br>
+        <span>
+            <span th:if="${payment.getShippingAddressLine2() == '' or payment.getShippingAddressLine2() == null}"></span>
+            <span th:unless="${payment.getShippingAddressLine2() == '' or payment.getShippingAddressLine2() == null}"><span th:text="${payment.getShippingAddressLine2()}"></span></span>
+        </span>
         <span th:text="${payment.getShippingLocality()}"></span><br>
         <span th:text="${payment.getShippingAdministrativeDistrictLevel1()}"></span><br>
         <span th:text="${payment.getShippingPostalCode()}"></span><br>
-        <br>
         <hr>
         <label> <b> Billing Address: </b></label><br>
-        <span th:text="${payment.getBillingAddressLine1()}"></span><br><th:block th:if="${payment.getBillingAddressLine2() != null}">
-        <span th:text="${payment.getBillingAddressLine2()}"></span><br></th:block>
+        <span th:text="${payment.getBillingAddressLine1()}"></span><br>
+        <span>
+            <span th:if="${payment.getShippingAddressLine2() == '' or payment.getShippingAddressLine2() == null}"></span>
+            <span th:unless="${payment.getShippingAddressLine2() == '' or payment.getShippingAddressLine2() == null}"><span th:text="${payment.getShippingAddressLine2()}"></span></span>
+        </span>
         <span th:text="${payment.getBillingLocality()}"></span><br>
         <span th:text="${payment.getBillingAdministrativeDistrictLevel1()}"></span><br>
         <span th:text="${payment.getBillingPostalCode()}"></span><br>
-        <br>
         <hr>
         <label> <b>Service Details: </b></label><br>
-        <label> <b>Square Feet: </b><span th:text="${quote.getSquareFeet()}"></span> </label> <br>
-        <label> <b>Number of Rooms:&nbsp;</b><span th:text="${quote.getNumOfRoom()}"></span>  </label> <br>
-        <label> <b>Number of Bathrooms:&nbsp;</b><span th:text="${quote.getNumOfBathroom()}"></span> </label> <br>
-        <label> <b> Cleaning Option:&nbsp;</b><span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+
+        <label> <span th:text="${quote.getSquareFeet()} + ' ' + 'square feet'"> </span> </label>
+        <label>
+            <span th:text="${quote.getNumOfRoom()}"></span>
+            <span th:text="${quote.getNumOfRoom() == 1 ? ' room' : ' rooms'}"></span>
+        </label>
+        <label>
+            <span th:text="${quote.getNumOfBathroom()}"></span>
+            <span th:text="${quote.getNumOfBathroom() == 1 ? ' bathroom' : ' bathrooms'}"></span>
+
+        <label> <span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+
         <hr>
-        <label> <b> Total Charge:&nbsp;</b><span th:text="'$ ' + ${quote.getFormattedTotalCost()}"></span> </label>
-        <hr>
+        <label> <b> Total Charge:&nbsp; $</b><span th:text="${quote.getFormattedTotalCost()}"></span> </label>
     </div>
 </div>
-
 
 <div>
     <div class="payment-message">

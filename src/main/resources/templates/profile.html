@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="~{fragments :: head}"></head>
-<body id="profile">
+<head>
+    <meta charset="UTF-8"/>
+    <head th:fragment="head">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link th:href="@{/css/profile.css}" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
+    </head>
+</head>
+<body class="profile">
 <header>
     <div class="navbar">
             <div class="navbar-header">
@@ -26,19 +40,22 @@
     </div>
 </header>
 
-<div th:if="${param.error}"><h1>This didn't work</h1></div>
-
 <h1>User Profile</h1>
 
 <div class="profile-container">
-    <img class="profile-avatar" src="/images/profile-avatar.png" alt="Profile Avatar">
 
-    <div class="profile-details">
-        <p id="customerName" th:text="'User: ' + ${customer.name} + ' ' + ${customer.lastName}"></p>
-        <p id="customerEmail" th:text="'Email: ' + ${customer.email}"></p>
+    <div class="profile-avatar">
+        <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img src="/images/profile-avatar.png" alt="Profile Avatar"></span>
+        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
     </div>
 
-    <form class="profile-form" action="#" th:action="@{/profile}" th:object="${profileFormDTO}" method="post">
+    <div class="profile-details">
+        <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>
+        <p id="customerEmail" th:text="${customer.email}"></p>
+    </div>
+
+
+    <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data" th:object="${profileFormDTO}" method="post">
         <div class="row">
             <div class="col-25">
             <label for="phoneNumber">Phone Number:</label>
@@ -80,17 +97,39 @@
         </div>
 
         <div class="row">
+            <div class="col-25">
+                <label for="profileImage">Profile Image:</label>
+            </div>
+            <div class="col-75">
+                <input type="file" name="profileImage" th:value="${customer.profileImage}" id="profileImage">
+                <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>
+            </div>
+        </div>
+
+        <div class="row">
             <input type="submit" class="profile-button" value="Submit">
         </div>
-
         <div class="profile-cancel">
-            <p class="profile-cancel-button"><a href="/updated-profile">Cancel</a></p>
+            <a class="profile-cancel-button" th:href="${customer.phoneNumber == '' ? '/' : '/updated-profile'}" onclick="showConfirmation('${customer.phoneNumber}')">Cancel</a>
         </div>
 
+        <script>
+            function showConfirmation(phoneNumber) {
+                if (phoneNumber== '') {
+                    event.preventDefault();
+                    let result = confirm("Please enter your phone number, it's important to us!");
+                    if (result) {
+                        window.location.href = '/profile';
+                    } else {
+                        window.location.href = '/';
+                    }
+                }
+            }
+        </script>
     </form>
 </div>
 
-<div id="profile-footer">
+<div class="profile-footer">
     <footer>
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>
