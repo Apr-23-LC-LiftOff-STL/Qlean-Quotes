@@ -90,7 +90,8 @@ public class Customer extends AbstractEntity implements UserDetails {
     }
 
     public void setStreet(String street) {
-        this.street = street;
+        String capitalizedStreet = capitalizeEachWord(street);
+        this.street = capitalizedStreet;
     }
 
     public String getZip() {
@@ -106,7 +107,8 @@ public class Customer extends AbstractEntity implements UserDetails {
     }
 
     public void setCity(String city) {
-        this.city = city;
+        String capitalizedCity = capitalizeEachWord(city);
+        this.city = capitalizedCity;
     }
 
 
@@ -117,6 +119,21 @@ public class Customer extends AbstractEntity implements UserDetails {
     public void setProfileImage(byte[] profileImage) {
         this.profileImage = profileImage;
     }
+
+    private String capitalizeEachWord(String text) {
+        String[] words = text.split("\\s");
+        StringBuilder result = new StringBuilder();
+        for (String word : words) {
+            if (word.length() > 0) {
+                char firstChar = Character.toUpperCase(word.charAt(0));
+                String capitalizedWord = firstChar + word.substring(1);
+                result.append(capitalizedWord).append(" ");
+            }
+        }
+        return result.toString().trim();
+    }
+
+
 
     //below nonsense is required by the UserDetails implementation or for security, dont touch, plz.
     @Override

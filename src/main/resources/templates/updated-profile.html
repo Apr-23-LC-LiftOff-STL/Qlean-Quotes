@@ -78,24 +78,5 @@
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>
 </div>
-
-<!--below code makes sure the users street address and city is capitalized nicely-->
-<script>
-    let streetElement = document.getElementById("street");
-    let streetText = streetElement.innerText;
-    let capitalizedStreet = streetText.replace(/\b\w/g, function(match) {
-        return match.toUpperCase();
-    });
-    streetElement.innerText = capitalizedStreet;
-
-    let cityElement = document.getElementById("city");
-    let cityText = cityElement.innerText;
-    let capitalizedCity = cityText.replace(/\b\w/g, function(match) {
-        return match.toUpperCase();
-    });
-    cityElement.innerText = capitalizedCity;
-</script>
-
-
 </body>
 </html>
