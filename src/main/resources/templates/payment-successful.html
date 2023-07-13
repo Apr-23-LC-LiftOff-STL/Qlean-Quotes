@@ -67,6 +67,7 @@
         <span th:text="${payment.getBillingPostalCode()}"></span><br>
         <hr>
         <label> <b>Service Details: </b></label><br>
+
         <label> <span th:text="${quote.getSquareFeet()} + ' ' + 'square feet'"> </span> </label>
         <label>
             <span th:text="${quote.getNumOfRoom()}"></span>
@@ -77,6 +78,7 @@
             <span th:text="${quote.getNumOfBathroom() == 1 ? ' bathroom' : ' bathrooms'}"></span>
 
         <label> <span th:text="${quote.getCleaningOption().getDisplayName()}"></span> </label> <br>
+
         <hr>
         <label> <b> Total Charge:&nbsp; $</b><span th:text="${quote.getFormattedTotalCost()}"></span> </label>
     </div>
