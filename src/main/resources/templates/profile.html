@@ -46,14 +46,28 @@
     <h1>User Profile</h1>
 
     <div class="profile-avatar">
-        <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img src="/images/profile-avatar.png" alt="Profile Avatar"></span>
-        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>
+    <span th:if="${customer.profileImage == null or customer.profileImage == ''}">
+        <img src="/images/profile-avatar.png" alt="Profile Avatar">
+        <input type="file" class="image-upload" name="profileImage" id="profileImage" accept="image/*">
+        <label for="profileImage" class="upload-button">Upload Image</label>
+    </span>
+        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}">
+        <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image">
+        <input type="file" class="image-upload" name="profileImage" id="profileImage" accept="image/*">
+        <label for="profileImage" class="upload-button">Change Image</label>
+    </span>
     </div>
 
-    <div class="profile-details">
-        <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>
-        <p id="customerEmail" th:text="${customer.email}"></p>
-    </div>
+<!--    <div class="profile-avatar">-->
+<!--        <span th:if="${customer.profileImage == null or customer.profileImage == ''}">-->
+<!--            <img src="/images/profile-avatar.png" alt="Profile Avatar"></span>-->
+<!--        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>-->
+<!--    </div>-->
+
+<!--    <div class="profile-details">-->
+<!--        <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>-->
+<!--        <p id="customerEmail" th:text="${customer.email}"></p>-->
+<!--    </div>-->
 
     <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data" th:object="${profileFormDTO}" method="post">
         <span>Phone Number</span>
@@ -67,7 +81,6 @@
             <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
         </div>
 
-
         <span>City</span>
         <div class="form-group">
             <input class="form-control" type="text" th:value="${customer.city}" name="city" placeholder="Please enter your city">
@@ -80,15 +93,11 @@
             <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
         </div>
 
-        <span>Profile Image</span>
-        <div class="form-group">
-            <input type="file" name="profileImage" th:value="${customer.profileImage}">
-            <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>
-        </div>
-
-
-
-
+<!--        <span>Profile Image</span>-->
+<!--        <div class="form-group">-->
+<!--            <input class="image-input" type="file" name="profileImage" th:value="${customer.profileImage}">-->
+<!--            <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>-->
+<!--        </div>-->
 
         <div class="row">
             <input type="submit" class="profile-button" value="Save">
