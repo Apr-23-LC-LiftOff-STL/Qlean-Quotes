@@ -40,9 +40,10 @@
     </div>
 </header>
 
-<h1>User Profile</h1>
+
 
 <div class="profile-container">
+    <h1>User Profile</h1>
 
     <div class="profile-avatar">
         <span th:if="${customer.profileImage == null or customer.profileImage == ''}"><img src="/images/profile-avatar.png" alt="Profile Avatar"></span>
@@ -54,60 +55,43 @@
         <p id="customerEmail" th:text="${customer.email}"></p>
     </div>
 
-
     <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data" th:object="${profileFormDTO}" method="post">
-        <div class="row">
-            <div class="col-25">
-            <label for="phoneNumber">Phone Number:</label>
-            </div>
-            <div class="col-75">
-            <input type="text" th:value="${customer.phoneNumber}" id="phoneNumber" name="phoneNumber" oninput="formatPhoneNumber()"  placeholder="Please enter phone number">
-            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
-            </div>
+        <span>Phone Number</span>
+        <div class="form-group">
+            <input class="form-control" type="text" th:value="${customer.phoneNumber}" name="phoneNumber" oninput="formatPhoneNumber()"  placeholder="Please enter phone number">
+                <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
         </div>
-
-        <div class="row">
-            <div class="col-25">
-            <label for="street">Street Address:</label>
-            </div>
-            <div class="col-75">
-            <input type="text" th:value="${customer.street}" id="street" name="street"  >
+        <span>Street Address</span>
+        <div class="form-group">
+            <input class="form-control" type="text" th:value="${customer.street}" name="street" placeholder="Please enter your street address">
             <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
-            </div>
         </div>
 
-        <div class="row">
-            <div class="col-25">
-            <label for="city">City:</label>
-            </div>
-            <div class="col-75">
-            <input type="text" th:value="${customer.city}" id="city" name="city"  >
+
+        <span>City</span>
+        <div class="form-group">
+            <input class="form-control" type="text" th:value="${customer.city}" name="city" placeholder="Please enter your city">
             <p class="text-danger" th:errors="${profileFormDTO.city}"></p>
-            </div>
         </div>
 
-        <div class="row">
-            <div class="col-25">
-            <label for="zip">Zip Code:</label>
-            </div>
-            <div class="col-75">
-            <input type="text" th:value="${customer.zip}" id="zip" name="zip" >
+        <span>ZIP Code</span>
+        <div class="form-group">
+            <input class="form-control" type="text" th:value="${customer.zip}" name="zip" placeholder="Please enter your ZIP code">
             <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
-            </div>
         </div>
 
-        <div class="row">
-            <div class="col-25">
-                <label for="profileImage">Profile Image:</label>
-            </div>
-            <div class="col-75">
-                <input type="file" name="profileImage" th:value="${customer.profileImage}" id="profileImage">
-                <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>
-            </div>
+        <span>Profile Image</span>
+        <div class="form-group">
+            <input type="file" name="profileImage" th:value="${customer.profileImage}">
+            <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>
         </div>
 
+
+
+
+
         <div class="row">
-            <input type="submit" class="profile-button" value="Submit">
+            <input type="submit" class="profile-button" value="Save">
         </div>
         <div class="profile-cancel">
             <a class="profile-cancel-button" th:href="${customer.phoneNumber == '' ? '/' : '/updated-profile'}" onclick="showConfirmation('${customer.phoneNumber}')">Cancel</a>

@@ -32,16 +32,14 @@
 
 
 .profile-avatar{
-    /*z-index: -1;*/
-    /*text-align: center;*/
+
     display: flex;
     justify-content: center;
     align-items: center;
-    /*max-width: 35%  !important;*/
-    /*max-height: 35%  !important;*/
+
     margin-left: auto  !important;
     margin-right: auto  !important;
-    /*margin-bottom: 15px;*/
+
 }
 
 .profile-avatar img {
@@ -94,7 +92,7 @@
     border: 1px solid #69AD9F ;
     border-radius: 2px;
     resize: vertical;
-    font-family: none;
+
 }
 
 
