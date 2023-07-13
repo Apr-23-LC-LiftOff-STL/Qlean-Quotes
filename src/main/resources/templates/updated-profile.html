@@ -60,7 +60,7 @@
         </div>
 
         <div class="updated-profile-information">
-            <p th:text="'User: '"></p>
+<!--            <p th:text="'User: '"></p>-->
             <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>
             <p id="customerEmail" th:text="${customer.email}"></p>
             <p id="customerPhone" th:text="${customer.phoneNumber}"></p><hr>
@@ -68,7 +68,6 @@
             <p id="street" th:text="${customer.street}"></p>
             <p id="city" th:text="${customer.city}"></p>
             <p id="zip" th:text="${customer.zip}"></p>
-            <hr>
         </div>
         <button class="edit-button" onclick="location.href='/profile'">Edit</button>
     </div>
@@ -79,6 +78,23 @@
         ©2023 Qlean Quotes. All Rights Reserved.
     </footer>
 </div>
+
+<!--below code makes sure the users street address and city is capitalized nicely-->
+<script>
+    let streetElement = document.getElementById("street");
+    let streetText = streetElement.innerText;
+    let capitalizedStreet = streetText.replace(/\b\w/g, function(match) {
+        return match.toUpperCase();
+    });
+    streetElement.innerText = capitalizedStreet;
+
+    let cityElement = document.getElementById("city");
+    let cityText = cityElement.innerText;
+    let capitalizedCity = cityText.replace(/\b\w/g, function(match) {
+        return match.toUpperCase();
+    });
+    cityElement.innerText = capitalizedCity;
+</script>
 
 
 </body>
