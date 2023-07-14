@@ -4,111 +4,108 @@
     <meta charset="UTF-8"/>
     <head th:fragment="head">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
+                integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+                crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <link th:href="@{/css/profile.css}" rel="stylesheet" />
+        <link th:href="@{/css/profile.css}" rel="stylesheet"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title th:text="'QleanQuotes' + ${title == null ? '' : ' :: ' + title}">Qlean Quotes</title>
     </head>
 </head>
 <body class="profile">
 <header>
     <div class="navbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
-                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
-                </a>
-            </div>
-            <div class="navbar-links">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/"> Home </a>
-                    </li>
-                    <li class="nav-item">
-                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                        <a class="nav-link" href="#"
-                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
-                            Out</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+            </a>
         </div>
+        <div class="navbar-links">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/"> Home </a>
+                </li>
+                <li class="nav-item">
+                    <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                    <a class="nav-link" href="#"
+                       onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = '/authentication/logout'}">Log
+                        Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </div>
 </header>
 
 
-
 <div class="profile-container">
     <h1>User Profile</h1>
+    <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data"
+          th:object="${profileFormDTO}" method="post">
 
-    <div class="profile-avatar">
-    <span th:if="${customer.profileImage == null or customer.profileImage == ''}">
-        <img src="/images/profile-avatar.png" alt="Profile Avatar">
-        <input type="file" class="image-upload" name="profileImage" id="profileImage" accept="image/*">
-        <label for="profileImage" class="upload-button">Upload Image</label>
-    </span>
-        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}">
-        <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image">
-        <input type="file" class="image-upload" name="profileImage" id="profileImage" accept="image/*">
-        <label for="profileImage" class="upload-button">Change Image</label>
-    </span>
-    </div>
+        <div class="profile-avatar">
+             <span th:if="${customer.profileImage == null or customer.profileImage == ''}">
+                <img src="/images/profile-avatar.png" alt="Profile Avatar">
+                <div class="upload-container">
+                    <input type="file" class="image-upload" name="profileImage" id="uploadProfileImage" accept="image/*">
+                    <label for="uploadProfileImage" class="upload-button">Upload Image</label>
+                </div>
+            </span>
+            <span th:unless="${customer.profileImage == null or customer.profileImage == ''}">
+                <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image">
+                <div class="upload-container">
+                    <input type="file" class="image-upload" name="profileImage" id="changeProfileImage" accept="image/*">
+                    <label for="changeProfileImage" class="upload-button">Change Image</label>
+            </div>
+            </span>
+        </div>
 
-<!--    <div class="profile-avatar">-->
-<!--        <span th:if="${customer.profileImage == null or customer.profileImage == ''}">-->
-<!--            <img src="/images/profile-avatar.png" alt="Profile Avatar"></span>-->
-<!--        <span th:unless="${customer.profileImage == null or customer.profileImage == ''}"> <img th:src="@{/profile-image/{customerId}(customerId=${customer.id})}" alt="Profile Image"></span>-->
-<!--    </div>-->
-
-<!--    <div class="profile-details">-->
-<!--        <p id="customerName" th:text="${#strings.capitalize(customerName)} + ' ' + ${#strings.capitalize(customer.lastName)}"></p>-->
-<!--        <p id="customerEmail" th:text="${customer.email}"></p>-->
-<!--    </div>-->
-
-    <form class="profile-form" action="#" th:action="@{/profile}" enctype="multipart/form-data" th:object="${profileFormDTO}" method="post">
         <span>Phone Number</span>
         <div class="form-group">
-            <input class="form-control" type="text" th:value="${customer.phoneNumber}" name="phoneNumber" oninput="formatPhoneNumber()"  placeholder="Please enter phone number">
-                <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
+            <input class="form-control" type="text" th:value="${customer.phoneNumber}" name="phoneNumber"
+                   id="phoneNumber" oninput="formatPhoneNumber()" placeholder="Please enter phone number">
+            <p class="text-danger" th:errors="${profileFormDTO.phoneNumber}"></p>
         </div>
         <span>Street Address</span>
         <div class="form-group">
-            <input class="form-control" type="text" th:value="${customer.street}" name="street" placeholder="Please enter your street address">
+            <input class="form-control" type="text" th:value="${customer.street}" name="street"
+                   placeholder="Please enter your street address">
             <p class="text-danger" th:errors="${profileFormDTO.street}"></p>
         </div>
 
         <span>City</span>
         <div class="form-group">
-            <input class="form-control" type="text" th:value="${customer.city}" name="city" placeholder="Please enter your city">
+            <input class="form-control" type="text" th:value="${customer.city}" name="city"
+                   placeholder="Please enter your city">
             <p class="text-danger" th:errors="${profileFormDTO.city}"></p>
         </div>
 
         <span>ZIP Code</span>
         <div class="form-group">
-            <input class="form-control" type="text" th:value="${customer.zip}" name="zip" placeholder="Please enter your ZIP code">
+            <input class="form-control" type="text" th:value="${customer.zip}" name="zip"
+                   placeholder="Please enter your ZIP code">
             <p class="text-danger" th:errors="${profileFormDTO.zip}"></p>
         </div>
-
-<!--        <span>Profile Image</span>-->
-<!--        <div class="form-group">-->
-<!--            <input class="image-input" type="file" name="profileImage" th:value="${customer.profileImage}">-->
-<!--            <p class="text-danger" th:errors="${profileFormDTO.profileImage}"></p>-->
-<!--        </div>-->
 
         <div class="row">
             <input type="submit" class="profile-button" value="Save">
         </div>
-        <div class="profile-cancel">
-            <a class="profile-cancel-button" th:href="${customer.phoneNumber == '' ? '/' : '/updated-profile'}" onclick="showConfirmation('${customer.phoneNumber}')">Cancel</a>
+        <div class="form-group">
+            <a class="profile-cancel-button" th:href="${customer.phoneNumber == '' ? '/' : '/updated-profile'}"
+               onclick="showConfirmation('${customer.phoneNumber}')">Cancel</a>
         </div>
 
         <script>
             function showConfirmation(phoneNumber) {
-                if (phoneNumber== '') {
+                if (phoneNumber == '') {
                     event.preventDefault();
                     let result = confirm("Please enter your phone number, it's important to us!");
                     if (result) {
@@ -131,9 +128,9 @@
 </div>
 <script>
     function formatPhoneNumber() {
-        var phoneNumber = document.getElementById('phoneNumber');
-        var digits = phoneNumber.value.replace(/\D/g, '');
-        var formattedNumber = '';
+        let phoneNumber = document.getElementById('phoneNumber');
+        let digits = phoneNumber.value.replace(/\D/g, '');
+        let formattedNumber = '';
 
         if (digits.length > 0) {
             formattedNumber += digits.substring(0, 3);
@@ -142,7 +139,7 @@
                 formattedNumber += '-' + digits.substring(3, 6);
 
                 if (digits.length > 6) {
-                    formattedNumber += '-' + digits.substring(6);
+                    formattedNumber += '-' + digits.substring(6, 10);
                 }
             }
         }
