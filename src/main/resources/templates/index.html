@@ -6,26 +6,26 @@
 
 <header>
     <div class="navbar">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
-                    <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
-                </a>
-            </div>
-            <div class="navbar-links">
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a th:href="${customer?.phoneNumber} == '' ? '/profile' : '/updated-profile'" class="nav-link">User
-                            Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
-                        <a class="nav-link" href="#"
-                           onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = 'authentication/logout'}">Log
-                            Out</a>
-                    </li>
-                </ul>
-            </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" title="Qlean Quotes Logo">
+                <img src="/images/logodark.png" width="140px" height="auto" alt="Logo">
+            </a>
         </div>
+        <div class="navbar-links">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a th:href="${customer?.phoneNumber} == '' ? '/profile' : '/updated-profile'" class="nav-link">User
+                        Profile</a>
+                </li>
+                <li class="nav-item">
+                    <form id="logout-form" method="post" th:action="@{authentication/logout}"></form>
+                    <a class="nav-link" href="#"
+                       onclick="if (confirm('Are you sure you want to log out?')) {document.getElementById('logout-form').submit(); window.location.href = 'authentication/logout'}">Log
+                        Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </div>
 </header>
 
@@ -42,7 +42,13 @@
             <img src="/images/average.png" alt="average cleaning" width="630px" height="auto">
         </div>
     </div>
-    <button class="button-a"><a href="/createquote" style="color:#FFFFFF;"><span>Create Quote </span></a></button>
+    <a href="/createquote" style="color:#FFFFFF;">
+        <button class="button-a">
+            <span>Create Quote </span>
+        </button>
+    </a>
+
+
     <div id="index-contact">
         <img src="/images/indexcontact.png" alt="homepage-contact">
     </div>
